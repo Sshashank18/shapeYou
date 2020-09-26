@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 
 // PASSPORT Config
 app.use(require("express-session")({
-	secret: "Once again rusty wins cutest dogs",
+	secret: "This is the cryptic secret",
 	resave: false,
 	saveUninitialized: false
 }));

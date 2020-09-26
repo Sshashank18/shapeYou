@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+
+//MONGOOSE
 const { MONGOURI } = require('./config/credentials');
 
 mongoose.connect(MONGOURI,{
@@ -19,16 +21,22 @@ mongoose.connection.on('error',(err)=>{
 
 mongoose.set('useFindAndModify', false);
 
+require('./models/trainer');
 
 
-const trainerRouter = require('./routes/trainer').route;
-
+//Decrypting
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
+//API Handling
+const trainerRouter = require('./routes/trainer').route;
+
 app.use('/trainer',trainerRouter);
 
+
+
+//Port Listening
 const PORT = 3500;
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));
 

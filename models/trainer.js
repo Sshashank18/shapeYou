@@ -9,13 +9,11 @@ var trainerSchema = new mongoose.Schema({
     },
     contact: Number,
     dob: Date,
-    startDate: Date,
-    endDate: Date,
-    user_id: String,
     isVerified: {
         type: Boolean,
         default: false
-    }
+    },
+    user_id: String,
 });
 
 module.exports = mongoose.model("Trainer", trainerSchema);

@@ -22,10 +22,7 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.get('/', (req, res) => {
-    res.send("HELLO");
-});
+app.use(AuthRoutes);
 
 app.listen(3000, function() {
     console.log("Server listening on port 3000");

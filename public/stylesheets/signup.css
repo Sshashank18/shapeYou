@@ -1,0 +1,16 @@
+body {
+    background-image: url(madara.png);
+    background-size: cover;
+}
+
+.form {
+    width: 300px;
+    margin-right: 36%;
+    margin-left:25%;
+    margin-top: 1.5%;
+    padding: 10px;
+}
+
+.hide {
+    display: none;
+}

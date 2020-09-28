@@ -15,6 +15,12 @@ var trainerSchema = new mongoose.Schema({
         default: false
     },
     user_id: String,
+    courses: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Course"
+        }
+    ]
 });
 
 trainerSchema.plugin(passportLocalMongoose);

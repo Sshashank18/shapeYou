@@ -26,6 +26,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 const Trainer = require('./models/trainer');
+const Course = require('./models/course');
 
 // PASSPORT CONFIG
 const passport = require('passport');
@@ -43,8 +44,6 @@ passport.use(new LocalStrategy(Trainer.authenticate()));
 passport.serializeUser(Trainer.serializeUser());
 passport.deserializeUser(Trainer.deserializeUser());
 
-require('./models/trainer');
-
 
 //Decrypting
 
@@ -55,9 +54,11 @@ app.use(express.urlencoded({extended:true}));
 //API Handling
 // const trainerRouter = require('./routes/trainer')
 const authRouter = require('./routes/auth');
+const courseRouter = require('./routes/course');
 
 // app.use('/trainer',trainerRouter);
 app.use('/auth', authRouter);
+app.use('/course', courseRouter);
 
 
 

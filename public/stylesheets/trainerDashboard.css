@@ -1,0 +1,18 @@
+.courseContainer{
+    display: flex;
+    flex-direction: column;
+    margin:12px;
+    width:70vw;
+    height:500px;
+    overflow-y: scroll;
+    border: 2px solid grey;
+    padding:15px;
+}
+
+.course{
+    border: 2px solid black;
+    box-shadow:10px 10px grey;
+    width: 100%;
+    padding:20px;
+    margin-bottom:25px;
+}

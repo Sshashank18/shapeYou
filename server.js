@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
@@ -22,6 +23,7 @@ mongoose.connection.on('error',(err)=>{
 });
 
 mongoose.set('useFindAndModify', false);
+
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
@@ -49,17 +51,23 @@ passport.deserializeUser(Trainer.deserializeUser());
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
+app.use(cors());
 
 //API Handling
-// const trainerRouter = require('./routes/trainer')
+const trainerRouter = require('./routes/trainer')
 const authRouter = require('./routes/auth');
 const courseRouter = require('./routes/course');
 
-// app.use('/trainer',trainerRouter);
-app.use('/auth', authRouter);
-app.use('/course', courseRouter);
 
+
+app.use('/auth', authRouter);
+
+app.use('/course', courseRouter);
+app.use('/trainer',trainerRouter);
+
+app.get('/',(req,res)=>{
+    res.render('register');
+})
 
 
 //Port Listening

@@ -39,7 +39,7 @@ route.get('/login', (req, res) => {
 // Login logic
 route.post("/login", passport.authenticate("local", 
 	{
-		successRedirect: "/home",
+		successRedirect: "/trainer",
 		failureRedirect: "/login"
 	}), function(req, res){
 });

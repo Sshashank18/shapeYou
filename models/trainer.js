@@ -9,9 +9,18 @@ var trainerSchema = new mongoose.Schema({
         unique: true
     },
     contact: Number,
-    dob: String,
-    profilePic: String,
-    about: String,
+    dob: {
+        type:String,
+        default: null
+    },
+    profilePic: {
+        type:String,
+        default:null
+    },
+    about: {
+        type:String,
+        default:null
+    },
     isVerified: {
         type: Boolean,
         default: false

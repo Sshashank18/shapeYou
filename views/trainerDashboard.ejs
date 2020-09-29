@@ -80,7 +80,11 @@
             <h5>Current Date</h5>
 
             <ul>
-                <li><span>6:00-7:00</span><button class="btn btn-warning">Create Link</button></li>
+                <li><span>6:00-7:00</span>
+                    <form method="post" action='/trainer/createMeeting'>
+                        <button class="btn btn-warning" type="submit">Create Link</button>
+                    </form>
+                </li>
                 <li><span>7:00-8:00</span><button class="btn btn-warning">Create Link</button></li>
                 <li><span>8:00-9:00</span><button class="btn btn-warning">Create Link</button></li>
             </ul>

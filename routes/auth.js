@@ -40,9 +40,11 @@ route.get('/login', (req, res) => {
 route.post("/login", passport.authenticate("local", 
 	{
 		successRedirect: "/trainer",
-		failureRedirect: "/login"
+		failureRedirect: "/auth/login"
 	}), function(req, res){
-});
+        console.log(req.user);
+    }
+);
 
 // Logout logic
 route.post('/logout', (req, res) => {

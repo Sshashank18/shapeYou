@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const ejs = require('ejs');
 
 const app = express();
 
@@ -24,7 +25,7 @@ mongoose.connection.on('error',(err)=>{
 
 mongoose.set('useFindAndModify', false);
 
-app.set("view engine", "ejs");
+app.set("view engine", 'ejs');
 app.use(express.static(__dirname + "/public"));
 
 const Trainer = require('./models/trainer');
@@ -61,7 +62,6 @@ const courseRouter = require('./routes/course');
 
 
 app.use('/auth', authRouter);
-
 app.use('/course', courseRouter);
 app.use('/trainer',trainerRouter);
 

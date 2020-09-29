@@ -18,21 +18,20 @@ $('#formSubmit').click(e => {
         })    
         .then(res => res.json())
         .then(data => {
-
-        $.ajax({
-            url:'/trainer/submitDetails',
-            type:'PUT',
-            data:{
-                image:data.url,
-                about:$('#inputabout3').val(),
-                dob:$('#inputdob3').val(),
+            $.ajax({
+                url:'/trainer/submitDetails',
+                type:'PUT',
+                data:{
+                    image:data.url,
+                    about:$('#inputabout3').val(),
+                    dob:$('#inputdob3').val(),
+                    },
+                success:(data)=>{
+                    alert('Saved Details');
+                    window.location= '/trainer/userInfo';
                 }
-            }).then(res=>{
-            console.log(res);
+            });
         })
-    })
-    .catch(err=>console.log(err));  
-
-    
+        .catch(err=>console.log(err));  
 });
 

@@ -101,6 +101,12 @@ const payload = {
 };
 const token = jwt.sign(payload, config.APISecret);
 
+var meetConfig = {
+    password:null,
+    signature:null,
+    meetingNumber:null,
+    username:null
+};
 
 route.post('/createMeeting',(req,res)=>{
     // email = req.body.email;
@@ -138,8 +144,12 @@ route.post('/createMeeting',(req,res)=>{
         // //Prettify the JSON format using pre tag and JSON.stringify
         // var result = title + '<code><pre style="background-color:#aef8f9;">'+JSON.stringify(resp, null, 2)+ '</pre></code>'
         // res.send(result1 + '<br>' + result);
+        
+        meetConfig.meetingNumber = response.pmi.toString();
 
-       res.redirect('/trainer/getMeeting/?id='+response.id.toString());
+        meetConfig.username = response.first_name + ' ' + response.last_name;
+
+       res.redirect('/trainer/getMeeting/?id='+response.pmi.toString());
  
     })
     .catch(function (err) {
@@ -153,7 +163,7 @@ route.get('/getMeeting',(req,res)=>{
 
     var options = {
         method: 'GET',
-        url: 'https://api.zoom.us/v2/meetings/8081918622',
+        url: 'https://api.zoom.us/v2/meetings/'+req.query.id,
         headers: {
           authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk'
         }
@@ -162,10 +172,16 @@ route.get('/getMeeting',(req,res)=>{
       request(options, function (error, response, body) {
         if (error) throw new Error(error);
       
-        console.log(JSON.parse(body));
+        body = JSON.parse(body);
+        meetConfig.password = body.password;
+
+        res.redirect('/trainer/zoomDashboard');
       });
 });
 
+route.get('/meeting',(req,res)=>{
+    res.render('meeting.ejs');
+});
 route.get('/zoomDashboard',(req,res)=>{
     res.render('zoomDashboard.ejs');
 });
@@ -185,9 +201,11 @@ route.post('/signature',(req,res)=>{
       }
       
       // pass in your Zoom JWT API Key, Zoom JWT API Secret, Zoom Meeting Number, and 0 to join meeting or webinar or 1 to start meeting
-      signature = generateSignature(config.APIKey, config.APISecret,123,1);
+      signature = generateSignature(config.APIKey, config.APISecret,meetConfig.meetingNumber,1);
       
-      res.send(signature);
+      meetConfig.signature = signature;
+
+      res.send({meetConfig});
 
 });
 

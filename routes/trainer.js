@@ -1,11 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
+const crypto = require('crypto');
 
 const jwt = require('jsonwebtoken');
 const config = require('../config/credentials');
 const rp = require('request-promise');
 var http = require("https");
+
+const request = require('request');
 
 
 const route = express.Router();
@@ -136,15 +139,55 @@ route.post('/createMeeting',(req,res)=>{
         // var result = title + '<code><pre style="background-color:#aef8f9;">'+JSON.stringify(resp, null, 2)+ '</pre></code>'
         // res.send(result1 + '<br>' + result);
 
-
-        res.render('zoomDashboard.ejs',{meetingUrl : 'https://success.zoom.us/wc/join/'+ response.id});
-
+       res.redirect('/trainer/getMeeting/?id='+response.id.toString());
  
     })
     .catch(function (err) {
         // API call failed...
         console.log('API call failed, reason ', err);
     });
+
+});
+
+route.get('/getMeeting',(req,res)=>{
+
+    var options = {
+        method: 'GET',
+        url: 'https://api.zoom.us/v2/meetings/8081918622',
+        headers: {
+          authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk'
+        }
+      };
+      
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+      
+        console.log(JSON.parse(body));
+      });
+});
+
+route.get('/zoomDashboard',(req,res)=>{
+    res.render('zoomDashboard.ejs');
+});
+
+
+route.post('/signature',(req,res)=>{
+
+    function generateSignature(apiKey,apiSecret, meetingNumber, role) {
+        
+        // Prevent time sync issue between client signature generation and zoom 
+        const timestamp = new Date().getTime() - 30000
+        const msg = Buffer.from(apiKey + meetingNumber + timestamp + role).toString('base64')
+        const hash = crypto.createHmac('sha256', apiSecret).update(msg).digest('base64')
+        const signature = Buffer.from(`${apiKey}.${meetingNumber}.${timestamp}.${role}.${hash}`).toString('base64')
+      
+        return signature
+      }
+      
+      // pass in your Zoom JWT API Key, Zoom JWT API Secret, Zoom Meeting Number, and 0 to join meeting or webinar or 1 to start meeting
+      signature = generateSignature(config.APIKey, config.APISecret,123,1);
+      
+      res.send(signature);
 
 });
 

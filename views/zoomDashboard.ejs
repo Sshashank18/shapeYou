@@ -4,10 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoom Meeting</title>
+
+    <!-- Zoom Css -->
+    <link type="text/css" rel="stylesheet" href="node_modules/@zoomus/websdk/dist/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="node_modules/@zoomus/websdk/dist/css/react-select.css" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
-<body>
-    <div class="iframe-container" style="overflow: hidden; padding-top: 56.25%; position: relative;">
-    	<iframe allow="microphone; camera" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" src= "<%=meetingUrl %>"></iframe>
-	</div>  
+<body class="ReactModal__Body--open">
+    <div id="zmmtg-root"></div>
+    <div id="aria-notify-area"></div>
+
+    <div id="response">
+        <%= response %>
+    </div>
+
+    <div id="signature">
+        Sign
+    </div>
+    <script>
+//         import  {ZoomMtg}  from '@zoomus/websdk'
+
+// // prepare required files
+// ZoomMtg.preLoadWasm();
+// ZoomMtg.prepareJssdk();
+
+console.log('enter');
+
+
+	fetch(`http://127.0.0.1:3500/trainer/signature`, {
+			method: 'POST',
+			body: JSON.stringify({ meetingData: meetConfig })
+		})
+		.then(result => result.text())
+		.then(response => {
+			// call the init method with meeting settings
+			ZoomMtg.init({
+				leaveUrl: 'http://127.0.0.1:3500/trainer/zoomDashboard',
+				isSupportAV: true,
+				// on success, call the join method
+				success: function() {	
+					ZoomMtg.join({
+						// pass your signature response in the join method
+						signature: response,
+						apiKey: 'lepPeTRsRo6Ap5x5Cb5gKQ',
+						meetingNumber: 12345,
+						userName: 'shashank',
+					})		
+        },
+        error(res) { 
+          console.log(res) 
+        }
+			})
+	})
+    </script>
 </body>
 </html>

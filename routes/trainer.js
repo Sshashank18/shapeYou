@@ -134,7 +134,6 @@ route.post('/createMeeting',(req,res)=>{
         console.log('User has', response);
         //console.log(typeof response);
         
-        resp = response
         
         //Adding html to the page
         // var title1 ='<center><h3>Your token: </h3></center>' 
@@ -175,6 +174,8 @@ route.get('/getMeeting',(req,res)=>{
         body = JSON.parse(body);
         meetConfig.password = body.password;
 
+        console.log(meetConfig.password);
+
         res.redirect('/trainer/zoomDashboard');
       });
 });
@@ -182,6 +183,7 @@ route.get('/getMeeting',(req,res)=>{
 route.get('/meeting',(req,res)=>{
     res.render('meeting.ejs');
 });
+
 route.get('/zoomDashboard',(req,res)=>{
     res.render('zoomDashboard.ejs');
 });
@@ -205,7 +207,7 @@ route.post('/signature',(req,res)=>{
       
       meetConfig.signature = signature;
 
-      res.send({meetConfig});
+      res.json({meetConfig});
 
 });
 

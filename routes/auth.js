@@ -1,6 +1,7 @@
 const express = require('express');
 var passport = require("passport");
 const Trainer = require('../models/trainer');
+const User = require('../models/user');
 
 const route = express.Router();
 
@@ -31,7 +32,22 @@ route.post('/trainer', (req, res) => {
     })
 });
 
-// Login form
+route.post('/user', (req, res) => {
+    var newUser = new User({
+        username: req.body.userName,
+        email: req.body.userEmail
+    });
+    User.register(newUser, req.body.userPassword, (err, user) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(user);
+            res.redirect('/');
+        }
+    })
+})
+
+// Trainer Login form
 route.get('/login', (req, res) => {
     res.render('login');
 });
@@ -45,6 +61,20 @@ route.post("/login", passport.authenticate("local",
         console.log(req.user);
     }
 );
+
+// User Login
+route.get('/login1', (req, res) => {
+    res.render('login1');
+});
+
+route.post("/login1", passport.authenticate("local", 
+	{
+		successRedirect: "/auth",
+		failureRedirect: "/auth/login"
+	}), function(req, res){
+    }
+);
+
 
 // Logout logic
 route.post('/logout', (req, res) => {

@@ -29,12 +29,12 @@ app.set("view engine", 'ejs');
 app.use(express.static(__dirname + "/public"));
 
 const Trainer = require('./models/trainer');
-const Course = require('./models/course');
+const User = require('./models/user');
 
 // PASSPORT CONFIG
 const passport = require('passport');
 const LocalStrategy  = require("passport-local");
-
+const LocalStrategy1 = require("passport-local");
 
 app.use(require("express-session")({
 	secret: "This is the secret cryptic message",
@@ -46,6 +46,10 @@ app.use(passport.session());
 passport.use(new LocalStrategy(Trainer.authenticate()));
 passport.serializeUser(Trainer.serializeUser());
 passport.deserializeUser(Trainer.deserializeUser());
+
+passport.use(new LocalStrategy1(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 //Decrypting

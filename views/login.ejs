@@ -1,12 +1,50 @@
-<html>
-    <head>
-        <title>Login Form</title>
-    </head>
-    <body>
-        <form action="/auth/login" method="POST">
-            <input type="text" name="username" placeholder="Username" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <button type="submit">Submit</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+
+    <div class="form bg-light">
+        <button class="btn btn-primary" id="userLoginButton">User Login</button>
+        <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
+        
+        <form id="userForm" method="POST" action="/auth/userLogin">
+            <div class="form-group mt-2">
+                <label for="userUsername">Username</label>
+                <input type="text" class="form-control" id="userUsername" name="username" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input type="password" class="form-control" id="userPassword" placeholder="Password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log-in</button>
         </form>
-    </body>
+
+        <form id="trainerForm" class="hide" method="POST" action="/auth/trainerLogin">
+            <div class="form-group mt-2">
+                <label for="trainerUsername">Trainer Username</label>
+                <input type="text" class="form-control" id="trainerUsername" name="username" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="trainerPassword">Password</label>
+                <input type="password" class="form-control" id="trainerPassword" placeholder="Password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log-in</button>
+        </form>
+
+        <h4>Dont Have An Account?? SignUp <a href="/auth">Here...</a></h4>
+
+    </div>
+
+
+    <script src="/scripts/login.js"></script>
+    
+</body>
 </html>

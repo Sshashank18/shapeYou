@@ -59,7 +59,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 //API Handling
-const trainerRouter = require('./routes/trainer')
+const trainerRouter = require('./routes/trainer');
+const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const courseRouter = require('./routes/course');
 
@@ -68,10 +69,11 @@ const courseRouter = require('./routes/course');
 app.use('/auth', authRouter);
 app.use('/course', courseRouter);
 app.use('/trainer',trainerRouter);
+app.use('/user',userRouter);
 
 app.get('/',(req,res)=>{
     res.render('register');
-})
+});
 
 
 //Port Listening

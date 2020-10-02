@@ -61,13 +61,13 @@ app.use(cors());
 //API Handling
 const trainerRouter = require('./routes/trainer')
 const authRouter = require('./routes/auth');
-const courseRouter = require('./routes/course');
+const userRouter = require('./routes/user');
 
 
 
 app.use('/auth', authRouter);
-app.use('/course', courseRouter);
 app.use('/trainer',trainerRouter);
+app.use('/user', userRouter);
 
 app.get('/',(req,res)=>{
     res.render('register');

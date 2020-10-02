@@ -34,7 +34,6 @@ const User = require('./models/user');
 // PASSPORT CONFIG
 const passport = require('passport');
 const LocalStrategy  = require("passport-local");
-const LocalStrategy1 = require("passport-local");
 
 app.use(require("express-session")({
 	secret: "This is the secret cryptic message",
@@ -43,11 +42,20 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(Trainer.authenticate()));
+passport.use('trainer-local', new LocalStrategy(Trainer.authenticate()));
 passport.serializeUser(Trainer.serializeUser());
 passport.deserializeUser(Trainer.deserializeUser());
 
-passport.use(new LocalStrategy1(User.authenticate()));
+const LocalStrategy1 = require("passport-local");
+
+app.use(require("express-session")({
+	secret: "This is the secret cryptic message for users",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use('user-local', new LocalStrategy1(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

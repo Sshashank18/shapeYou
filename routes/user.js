@@ -3,13 +3,14 @@ var route = express.Router();
 
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
+var Category = require('../models/category');
 
 route.get('/', (req, res) => {
-    Trainer.find({}, (err, foundTrainer) => {
+    Category.find({}, (err, foundCategory) => {
         if(err) {
             console.log(err);
         } else {
-            res.render('userDashboard', {trainers: foundTrainer});
+            res.render('userDashboard', {categories: foundCategory});
         }
     });
 });

@@ -78,9 +78,6 @@ app.use('/user',userRouter);
 
 app.get('/',(req,res)=>{
 	res.render('register');
-	Trainer.find({}, (err, trainers) => {
-		console.log(trainers);
-	});
 });
 
 //Port Listening

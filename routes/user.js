@@ -22,19 +22,21 @@ route.get('/', (req, res) => {
 });
 
 route.get('/category/:id', (req, res) => {
-    console.log(req.params.id);
     Category.findById(req.params.id, (err, foundCategory) => {
-        var trainers = [];
         Trainer.find({}, (err, foundTrainer) => {
             if(err) {
                 console.log(err)
             } else {
-                if(foundTrainer.subCategories.find(req.params.cat)) {
-                    trainers.push(foundTrainer);
-                }
+                var trainers = [];
+                foundTrainer.forEach(function(trainer) {
+                    if(trainer.subCategories.indexOf(foundCategory.title) >= 0) {
+                        trainers.push(trainer);
+                    }
+                });
+                console.log(trainers);
+                res.render('categoryShow', {category: foundCategory, trainers: trainers});
             }
         })
-        res.render('categoryShow', {category: foundCategory, trainers: trainers});
     })
 })
 

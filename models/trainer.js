@@ -26,10 +26,10 @@ var trainerSchema = new mongoose.Schema({
         default: false
     },
     user_id: String,
-    courses: [
+    subCategories: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Course"
+            type: String,
+            default: null
         }
     ]
 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
+const Category = require('../models/category');
 const crypto = require('crypto');
 
 const jwt = require('jsonwebtoken');
@@ -26,7 +27,8 @@ route.put('/submitDetails',(req,res)=>{
         {
             dob:req.body.dob,
             profilePic:req.body.image,
-            about:req.body.about
+            about:req.body.about,
+            subCategories: req.body.subcategories
         }
     ,(err,result)=>{
         if(err){
@@ -113,7 +115,7 @@ route.post('/createMeeting',(req,res)=>{
     console.log(req.user);
     var options = {
         //You can use a different uri if you're making an API call to a different Zoom endpoint.
-        uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com", 
+        uri: "https://api.zoom.us/v2/users/shashankaggarwal1315@gmail.com", 
         qs: {
             status: 'active' 
         },

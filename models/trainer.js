@@ -28,7 +28,8 @@ var trainerSchema = new mongoose.Schema({
     user_id: String,
     subCategories: [
         {
-            type: String
+            type: String,
+            default: null
         }
     ]
 });

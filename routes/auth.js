@@ -32,6 +32,8 @@ route.post('/trainer', (req, res) => {
     })
 });
 
+
+//Create a new User
 route.post('/user', (req, res) => {
     var newUser = new User({
         username: req.body.userName,
@@ -47,13 +49,15 @@ route.post('/user', (req, res) => {
     })
 })
 
+
+
 // Trainer Login form
-route.get('/login', (req, res) => {
+route.get('/login',(req,res)=>{
     res.render('login');
 });
 
 // Login logic
-route.post("/login", passport.authenticate("trainer-local", 
+route.post("/trainerLogin", passport.authenticate("trainer-local", 
 	{
 		successRedirect: "/trainer",
 		failureRedirect: "/auth/login"
@@ -63,15 +67,12 @@ route.post("/login", passport.authenticate("trainer-local",
 );
 
 // User Login
-route.get('/login1', (req, res) => {
-    res.render('login1');
-});
-
-route.post("/login1", passport.authenticate("user-local", 
+route.post("/userLogin", passport.authenticate("user-local", 
 	{
-		successRedirect: "/auth",
+		successRedirect: "/user",
 		failureRedirect: "/auth/login"
 	}), function(req, res){
+        console.log(req.user);
     }
 );
 

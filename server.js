@@ -67,20 +67,21 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 //API Handling
-const trainerRouter = require('./routes/trainer')
+const trainerRouter = require('./routes/trainer');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 
 
-
 app.use('/auth', authRouter);
 app.use('/trainer',trainerRouter);
-app.use('/user', userRouter);
+app.use('/user',userRouter);
 
 app.get('/',(req,res)=>{
-    res.render('register');
-})
-
+	res.render('register');
+	Trainer.find({}, (err, trainers) => {
+		console.log(trainers);
+	});
+});
 
 //Port Listening
 const PORT = 3500;

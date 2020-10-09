@@ -180,8 +180,9 @@ route.get('/getMeeting',(req,res)=>{
       });
 });
 
-route.get('/meeting',(req,res)=>{
-    res.render('meeting.ejs');
+//Pass meeting Details to user route
+route.get('/passMeetingDetails',(req,res)=>{
+    res.json({meetConfig});
 });
 
 route.get('/zoomDashboard',(req,res)=>{

@@ -59,6 +59,11 @@ passport.use('user-local', new LocalStrategy1(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
 
 //Decrypting
 
@@ -77,10 +82,9 @@ app.use('/trainer',trainerRouter);
 app.use('/user',userRouter);
 
 app.get('/',(req,res)=>{
-	res.render('register');
+	res.redirect('/user');
 });
 
 //Port Listening
 const PORT = 3500;
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));
-

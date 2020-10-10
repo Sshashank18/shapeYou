@@ -33,7 +33,6 @@ route.get('/category/:id', (req, res) => {
                         trainers.push(trainer);
                     }
                 });
-                console.log(trainers);
                 res.render('categoryShow', {category: foundCategory, trainers: trainers});
             }
         })

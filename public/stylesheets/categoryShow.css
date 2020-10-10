@@ -6,7 +6,8 @@
     background-color: white;
     max-width: 1240px;
     margin: 0 auto;
-    height: 100vh;
+    margin-top: 70px;
+    height: 100%;
 }
 
 .categoryDescription{
@@ -25,19 +26,28 @@
     max-width: 1240px;
     width: 100vw;
     margin: 0 auto;
-    height:200px;
+    height:500px;
     display: flex;
     justify-content: center;
+    padding-top:20px;
 }
 
-.Mycard{
-    border: 1px solid gray;
-    width: 300px;
-    height:80px;
-    margin:20px;
+button{
+    outline: none;
+    background-color: transparent;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    box-sizing: inherit;
+    display: inline-block;
+    font-size: 13pt;
+    transition: all .5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.cardImg{
-    float: left;
+.activated {
+    color: white !important;
+    background-color: #EE0079;
 }

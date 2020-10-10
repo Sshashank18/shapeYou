@@ -21,19 +21,31 @@ route.get('/', (req, res) => {
     })
 });
 
-route.get('/category/:id', (req, res) => {
-    Category.findById(req.params.id, (err, foundCategory) => {
+route.get('/category/:parent', (req, res) => {
+    Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+        var titles = [];  
+        for(var i=0;i<foundCategory.length;i++){
+            titles.push(foundCategory[i].title);
+        }
+
         Trainer.find({}, (err, foundTrainer) => {
             if(err) {
                 console.log(err)
             } else {
                 var trainers = [];
                 foundTrainer.forEach(function(trainer) {
-                    if(trainer.subCategories.indexOf(foundCategory.title) >= 0) {
-                        trainers.push(trainer);
+                    for (var i=0;i<trainer.subCategories.length;i++){
+    
+                        if(titles.indexOf(trainer.subCategories[i]) in titles===true){
+                            if (trainers.indexOf(trainer) in trainers==true){
+                                continue;
+                            }else{
+                                trainers.push(trainer);
+                            }
+                        }
                     }
                 });
-                res.render('categoryShow', {category: foundCategory, trainers: trainers});
+                res.render('categoryShow', {category: foundCategory[0], trainers: trainers});
             }
         })
     })

@@ -7,58 +7,153 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">ShapeYou</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
+
+<!-- content -->
+
+
     <div class="mainBox">
         <div class="categoryDescription">
-            <h1>Category Name</h1>
-            <div class="categoryContent">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
+            <h1><%= category.parent %></h1>
 
-        <div class="trainersBox">
-            <div class="subcategories">
-                <button style="margin:20px">Button A</button>
-                <button style="margin:20px">Button B</button>
+            <div id="trainers" hidden >
+                <%= trainers %>
             </div>
-            <div class="trainers">
 
-                  <div class="Mycard">
-                      <div class="cardImg" style="float: left">
-                          <img src="https://wallpaperaccess.com/full/304417.jpg" style="width: 140px;">
-                      </div>
-                      <div class="cardContent">
-                          Trainer Name: ddddd<br>
-                          trainer rAting: 5
-                      </div>
-                  </div>
-                  <div class="Mycard">
-                      <div class="cardImg" style="float: left">
-                          <img src="https://wallpaperaccess.com/full/304417.jpg" style="width: 140px;">
-                      </div>
-                      <div class="cardContent">
-                          Trainer Name: ddddd<br>
-                          trainer rAting: 5
-                      </div>
-                  </div>
-                  <div class="Mycard">
-                      <div class="cardImg" style="float: left">
-                          <img src="https://wallpaperaccess.com/full/304417.jpg" style="width: 140px;">
-                      </div>
-                      <div class="cardContent">
-                          Trainer Name: ddddd<br>
-                          trainer rAting: 5
-                      </div>
-                  </div>
+            <% switch (category.parent) {
+                case 'Wellness' : %>
+                        <div class="categoryContent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                    </div>
+            
+                    <div class="trainersBox">
+                        <div class="subcategories">
+                            <button name = "Yoga" style="margin:20px">Yoga</button>
+                            <button name = "Meditation" style="margin:20px">Meditation</button>
+                        </div>
+                        <% break;
+                
+                case 'Counselling' : %>
+                        <div class="categoryContent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                    </div>
+            
+                    <div class="trainersBox">
+                        <div class="subcategories">
+                            <button name = "Nutrition"  style="margin:20px">Nutrition</button>
+                            <button name = "Therapy & counselling" style="margin:20px">Therapy & counselling</button>
+                        </div>
+                        <% break;
+                
+                case 'Fitness trainer' : %>
+                        <div class="categoryContent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                    </div>
+            
+                    <div class="trainersBox">
+                        <div class="subcategories">
+                            <button name = "CrossFit" style="margin:20px">CrossFit</button>
+                            <button name = "Functional & Strength Training" style="margin:20px">Functional & Strength Training</button>
+                            <button name = "Zumba" style="margin:20px">Zumba</button>
+                            <button name = "Dance" style="margin:20px">Dance</button>
+                            <button name = "MMA and Boxing" style="margin:20px">MMA & Boxing</button>
+                        </div>
+                        <% break;
+                
+                } %>
+
+            <div class="trainers" id="trainersList">
+
+             
+
+                <% trainers.forEach((trainer)=>{   %>
+                    <div class="col-lg-4 col-md-6 px-auto">
+                        <div class="card mb-5" style="width: 18rem;">
+                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+                            <div class="card-body">
+                                <a href="/trainer/<%= trainer._id %>"><h5 class="card-title"><%= trainer.username %></h5></a>
+                            </div>
+                          </div>
+                    </div>
+                <% }); %>
+
+                  
+                  
 
             </div>
         </div>
     </div>
-    
+    <script>
+
+        var trainers = <%- JSON.stringify(trainers) %> ;
+
+        $("button").click(function() {
+            var text = '';
+
+            var name = this.name;
+
+            trainers.forEach(function(trainer){
+
+                subCategories = trainer.subCategories;
+
+                for(var i=0;i<subCategories.length;i++){
+                    
+                    if(subCategories[i] == name){
+                        
+                        text += `<div class="col-lg-4 col-md-6 px-auto">
+                                        <div class="card mb-5" style="width: 18rem;">
+                                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+                                            <div class="card-body">
+                                                <a href="/trainer/ ${trainer._id}"><h5 class="card-title"> ${trainer.username}</h5></a> 
+                                            </div>
+                                        </div>
+                                    </div>`
+                    }
+                }
+
+            });
+            document.getElementById("trainersList").innerHTML = text;
+                        
+        });        
+
+
+        $('button').on('click', function(){ 
+            $(this).addClass("activated");
+            $("button").not(this).removeClass('activated');
+        });
+
+    </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+ body{
+    background-color: green;
+ }
+
+.mainBox{
+    background-color: white;
+    max-width: 1240px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.categoryDescription{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.subcategories{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.trainers{
+    border:2px solid black;
+    max-width: 1240px;
+    width: 100vw;
+    margin: 0 auto;
+    height:200px;
+    display: flex;
+    justify-content: center;
+}
+
+.Mycard{
+    border: 1px solid gray;
+    width: 300px;
+    height:80px;
+    margin:20px;
+}
+
+
+.cardImg{
+    float: left;
+}

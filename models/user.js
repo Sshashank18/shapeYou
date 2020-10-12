@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    user: String
+    sessionCount: Number
 });
 
 userSchema.plugin(passportLocalMongoose);

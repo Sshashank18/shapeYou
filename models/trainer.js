@@ -10,7 +10,7 @@ var trainerSchema = new mongoose.Schema({
     },
     contact: Number,
     dob: {
-        type:String,
+        type:Date,
         default: null
     },
     profilePic: {
@@ -30,6 +30,18 @@ var trainerSchema = new mongoose.Schema({
         {
             type: String,
             default: null
+        }
+    ],
+    calendar: [
+        {
+            date: {
+                type: Date
+            },
+            slots: [
+                {
+                    type: Date
+                }
+            ]
         }
     ]
 });

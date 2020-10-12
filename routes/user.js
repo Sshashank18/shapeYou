@@ -23,7 +23,7 @@ route.get('/', (req, res) => {
 
 route.get('/category/:parent', (req, res) => {
     Category.find({parent:req.params.parent}, (err, foundCategory) => { 
-        var titles = [];  
+        var titles = [];
         for(var i=0;i<foundCategory.length;i++){
             titles.push(foundCategory[i].title);
         }

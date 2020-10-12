@@ -38,6 +38,13 @@ route.put('/submitDetails',(req,res)=>{
     });
 });
 
+
+route.post('/setTimeTable',(req,res)=>{
+    console.log(req.body);
+    res.sendStatus(200);
+});
+
+
 //Handling Zoom APIs
 
 
@@ -95,6 +102,20 @@ route.post('/userInfo',(req,res)=>{
 });
 
 
+// Trainer Profile Display
+
+route.get('/profile/:id', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('trainerProfile',{trainer:foundTrainer});
+        }
+    });
+});
+
+
+
 // Creating Meeting API
 
 const payload = {
@@ -134,18 +155,7 @@ route.post('/createMeeting',(req,res)=>{
 
       //printing the response on the console
         console.log('User has', response);
-        //console.log(typeof response);
-        
-        
-        //Adding html to the page
-        // var title1 ='<center><h3>Your token: </h3></center>' 
-        // var result1 = title1 + '<code><pre style="background-color:#aef8f9;">' + token + '</pre></code>';
-        // var title ='<center><h3>User\'s information:</h3></center>' 
-        
-        // //Prettify the JSON format using pre tag and JSON.stringify
-        // var result = title + '<code><pre style="background-color:#aef8f9;">'+JSON.stringify(resp, null, 2)+ '</pre></code>'
-        // res.send(result1 + '<br>' + result);
-        
+   
         meetConfig.meetingNumber = response.pmi.toString();
 
         meetConfig.username = response.first_name + ' ' + response.last_name;

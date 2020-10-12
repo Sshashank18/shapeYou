@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/trainerDashboard.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
@@ -23,7 +23,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Create course <span class="sr-only">(current)</span></a>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setTimeTable">
+                Set Time
+              </button>
+              
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -96,6 +99,357 @@
         </div>
         </div>
     </div>
+
+
+
+    <!-- Modal for set Time -->
+    <div class="modal fade" id="setTimeTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">One week Time Table</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="weekTable">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Slots</th>
+                        <th scope="col" id="date1"></th>
+                        <th scope="col" id="date2"></th>
+                        <th scope="col" id="date3"></th>
+                        <th scope="col" id="date4"></th>
+                        <th scope="col" id="date5"></th>
+                        <th scope="col" id="date6"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">3-4</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4-5</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">5-6</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">6-7</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">7-8</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary save"  data-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script>
+        var curr = new Date;
+        var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
+        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+
+
+        var weekday=new Array(7);
+        weekday[0]="MON";
+        weekday[1]="TUE";
+        weekday[2]="WED";
+        weekday[3]="THU";
+        weekday[4]="FRI";
+        weekday[5]="SAT";
+        weekday[6]="SUN";
+
+
+        var data=new Object();
+
+        var j=1;
+
+        for(var i=firstday.getDate();i<=lastday.getDate();i++){
+            document.getElementById('date'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
+            data[i.toString()] = new Array();
+            j++;
+        }
+
+        j=1;
+
+        $('.save').on('click',()=>{
+            $('#weekTable tr').each(function(){
+                var index = 0;
+                $(this).find('td').each(function(){
+                    if($(this).find('input[type="checkbox"]')[0].checked == true){
+                        data[Object.keys(data)[index]].push($(this).closest('tr').find('th')[0].innerText);
+                    }
+                    index++;
+                });
+            });
+            $.ajax({
+                url:'http://127.0.0.1:3500/trainer/setTimeTable',
+                method:'POST',
+                data: data,
+                success:()=>{
+                    alert('Saved Time Table');
+                }
+            });
+
+        });
+
+
+      </script>
 
 </body>
 </html>

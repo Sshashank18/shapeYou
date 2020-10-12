@@ -1,37 +1,19 @@
- body{
+.container{
     background-color: wheat;
- }
-
-.mainBox{
-    background-color: white;
-    max-width: 1240px;
-    margin: 0 auto;
-    margin-top: 55px;
-    height: 100%;
+    margin-top:55px;
+    padding-top: 20px;
 }
 
-.categoryDescription{
+.trainerDescription{
     text-align: center;
-    margin-bottom: 50px;
-}
-
-.subcategories{
+    height: 120px;
     display: flex;
     justify-content: center;
-    margin-bottom: 15px;
 }
 
-.trainers{
-    /* border:2px solid black; */
-    max-width: 1240px;
-    width: 100vw;
-    margin: 0 auto;
-    height:500px;
+.trainingType{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
     justify-content: center;
-    padding-top:20px;
 }
 
 button{
@@ -52,4 +34,10 @@ button{
 .activated {
     color: white !important;
     background-color: #EE0079;
+}
+
+.payment{
+    background-color: rgb(0, 104, 231);
+    border-radius: 20px;
+    float: right;
 }

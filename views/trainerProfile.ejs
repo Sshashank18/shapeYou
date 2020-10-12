@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/trainerProfile.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">ShapeYou</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
+
+<!-- content -->
+    <div class="container">
+        <div class="trainerDescription">
+            <img src="https://wallpaperaccess.com/full/817896.jpg" style="width:100px;float: left;">
+            <h3><%= trainer.username %></h3>
+        </div>
+
+        <div class="trainingType">
+            <button name = "Personal" class="button activated" style="margin:20px">Personal Training</button>
+            <button name = "Group" class="button" style="margin:20px">Group Training</button>
+        </div>
+
+        <div class="trainerSessions">
+            <h1>Sessions Available</h1>
+            <div id="sessions">
+                <div class="group" hidden>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card gradient-card">
+
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+
+                            <div class="card gradient-card">
+
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="personal">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card gradient-card">
+
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card gradient-card">
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-4">
+
+                            <div class="card gradient-card">
+
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-4">
+
+                            <div class="card gradient-card">
+
+                                <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                                    <div class="third-content  ml-auto mr-4 mb-2">
+                                    <p class="text-uppercase font-weight-bold float-right">1 Session</p><br>
+                                    <h4 class="font-weight-bold float-right">₹2000</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body white">
+                                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                                    <button class="payment">Pay Now</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+
+        $(".button").click(function() {
+            var name = this.name;
+            $(this).addClass("activated");
+            $(".button").not(this).removeClass('activated');
+           
+            if(name == 'Personal'){
+                $('.personal').removeAttr('hidden');
+                $('.group').attr('hidden','');
+            }
+            else{
+                $('.group').removeAttr('hidden');
+                $('.personal').attr('hidden','');
+            }
+
+        });
+        
+    </script>
+    
+</body>
+</html>

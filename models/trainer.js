@@ -32,18 +32,10 @@ var trainerSchema = new mongoose.Schema({
             default: null
         }
     ],
-    calendar: [
-        {
-            date: {
-                type: Date
-            },
-            slots: [
-                {
-                    type: Date
-                }
-            ]
-        }
-    ]
+    calendar:{
+        type: Object,
+        default:null
+    }
 });
 
 trainerSchema.plugin(passportLocalMongoose);

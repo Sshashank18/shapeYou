@@ -58,3 +58,11 @@ input[type=checkbox] {
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
+
+.content{
+  background-color: rgb(253, 39, 39);
+  height: 40px;
+  text-align: center;
+  line-height: 2.4;
+  color: darkred;
+}

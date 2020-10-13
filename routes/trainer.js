@@ -39,9 +39,23 @@ route.put('/submitDetails',(req,res)=>{
 });
 
 
-route.post('/setTimeTable',(req,res)=>{
-    console.log(req.body);
-    res.sendStatus(200);
+route.get('/getTimeTable',(req,res)=>{
+    Trainer.findById(req.user._id,(err,result)=>{
+        res.json(result.calendar);
+    });
+})
+
+route.put('/setTimeTable',(req,res)=>{
+    Trainer.findByIdAndUpdate(req.user._id,
+        {
+            calendar:req.body
+        }
+    ,(err,result)=>{
+        if(err){
+            return res.status(422).json({error: err});
+        }
+        res.sendStatus(200);
+    });
 });
 
 

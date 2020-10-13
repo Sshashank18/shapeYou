@@ -1,55 +1,14 @@
 <%- include('./partials/header') %>
 
-    <h1 class="text-center mt-5">Our categories</h1>
-    <!-- <div class="row text-center mt-5" style="display:flex; flex-wrap: wrap;"> -->
+<div style='margin-top: 150px;'>
+  <h1>helo</h1>
 
-        <h2>Fitness trainer</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-        <% categories.forEach(function(category) { %>
-            <% if(category.parent == 'Fitness trainer') { %>
-                    <div class="card mr-3 zoom" style="width: 18rem;">
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                        <div class="card-body">
-                            <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        </div>
-                      </div>
-            <% } %>
-         <% }); %>
-        </div>
-    </div>
-        <h2>Wellness</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-            <% categories.forEach(function(category) { %>
-                <% if(category.parent == 'Wellness') { %>
-                        <div class="card mr-3 zoom" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body">
-                                <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            </div>
-                          </div>
-                <% } %>
-             <% }); %>
-            </div>
-        </div>
-        <h2>Counselling</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-            <% categories.forEach(function(category) { %>
-                <% if(category.parent == 'Counselling') { %>
-                        <div class="card mr-3 zoom" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body">
-                                <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            </div>
-                          </div>
-                <% } %>
-             <% }); %>
-            </div>
-            </div>
+<h1>
+  <% user.trainers.forEach(function(trainer) { %>
+    <h1><%= trainer.username %></h1>
+  <% }) %>
+</h1>
+</div>
+
 
 <%- include('./partials/footer') %>

@@ -56,7 +56,7 @@ route.get('/login',(req,res)=>{
     res.render('login');
 });
 
-// Login logic
+// Login
 route.post("/trainerLogin", passport.authenticate("trainer-local", 
 	{
 		successRedirect: "/trainer",
@@ -78,7 +78,7 @@ route.post("/userLogin", passport.authenticate("user-local",
 
 
 // Logout logic
-route.post('/logout', (req, res) => {
+route.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });

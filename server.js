@@ -43,21 +43,16 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use('trainer-local', new LocalStrategy(Trainer.authenticate()));
-passport.serializeUser(Trainer.serializeUser());
-passport.deserializeUser(Trainer.deserializeUser());
+passport.use('user-local', new LocalStrategy(User.authenticate()));
 
-const LocalStrategy1 = require("passport-local");
-
-app.use(require("express-session")({
-	secret: "This is the secret cryptic message for users",
-	resave: false,
-	saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use('user-local', new LocalStrategy1(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) { 
+	done(null, user);
+  });
+  
+passport.deserializeUser(function(user, done) {
+	if(user!=null)
+		done(null,user);
+});
 
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;

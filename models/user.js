@@ -8,7 +8,13 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    sessionCount: Number
+    sessionCount: Number,
+    trainers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Trainer"
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);

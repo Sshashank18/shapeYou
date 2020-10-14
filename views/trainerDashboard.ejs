@@ -36,7 +36,7 @@
         </div>
     </nav>
 
-
+    <br>
     <!-- Trainer TimeTable -->
     <div class="container trainerTimeTable">
         <table class="table" id="trainerTT">
@@ -230,33 +230,21 @@
 
 
     <!-- Course Details -->
-    <div class="courseContainer">
-        <div class="course">
-            <h3>Course Name</h3>
-            <h5>Course Type</h5>
-            <h6>Start Date - End Date</h6>
-            Status : active<br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Open
-            </button>
+
+    <div class="trainingType">
+        <button name = "Personal" class="button " style="margin:20px">Personal</button>
+        <button name = "Group" class="button activated" style="margin:20px">Group</button>
+    </div>
+
+    <div class="container courseContainer">
+        <div class="group" >
+            <h2 id="todayDate"></h2>
+            <div id="classes">
+                
+            </div>
         </div>
-        <div class="course">
-            <h3>Course Name</h3>
-            <h5>Course Type</h5>
-            <h6>Start Date - End Date</h6>
-            Status : active<br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Open
-            </button>
-        </div>
-        <div class="course">
-            <h3>Course Name</h3>
-            <h5>Course Type</h5>
-            <h6>Start Date - End Date</h6>
-            Status : active<br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Open
-            </button>
+        <div class="personal" hidden>
+
         </div>
     </div>
 
@@ -594,48 +582,123 @@
 
       <script>
 
-        $.ajax({
-            url:'http://127.0.0.1:3500/trainer/getTimeTable',
-            method: 'GET',
-            success:(data)=>{
-                var index = 0;
-                $('#trainerTT tr').each(function(){
-                    var timeR = null;
-                    var timeStr = null;
-                    if(index!=0){
-                        timeR = $(this).find('th')[0].innerText;
-                        var timeA = timeR.split('-');
-                        timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
-                    }
-
-                    $(this).find('td').each(function(){
-                        var col = $("table thead tr th").eq($(this).index());
-                        var key = col[0].getAttribute('value');
-
-                        if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                            $(this).find('.content')[0].innerText = "Available";
-                            $(this).find('.content').css('background-color',"yellowgreen");
-                            $(this).find('.content').css('color',"darkgreen");
+          var compare = new Array();
+          
+          $.ajax({
+              url:'http://127.0.0.1:3500/trainer/getTimeTable',
+              method: 'GET',
+              success:(data)=>{
+                  var index = 0;
+                  $('#trainerTT tr').each(function(){
+                      var timeR = null;
+                      var timeStr = null;
+                      if(index!=0){
+                          timeR = $(this).find('th')[0].innerText;
+                          var timeA = timeR.split('-');
+                          timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
                         }
                         
+                        $(this).find('td').each(function(){
+                            var col = $("table thead tr th").eq($(this).index());
+                            var key = col[0].getAttribute('value');
+                            
+                            if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
+                                $(this).find('.content')[0].innerText = "Available";
+                                $(this).find('.content').css('background-color',"yellowgreen");
+                                $(this).find('.content').css('color',"darkgreen");
+                            }
+                            
+                        });
+                        index++;
                     });
-                index++;
-                // console.log(data);
+                    
+                    var today = new Date();
+
+                    var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
+                    var text = " ";
+
+                    if((todayTime in data)){
+                        for(var i =0;i<data[todayTime].length;i++){
+                            compare.push(data[todayTime][i]);
+                            text += `<div class="slotRow">
+                                    <div class="slots">
+                                    ${data[todayTime][i]}
+                                    </div>
+                                    <div class="createLink">
+                                        <form method="post" action='/trainer/createMeeting'>
+                                            <button style="background-color:red;cursor:default" disabled id="create${i}">Create</button>
+                                        </form>
+                                    </div>
+                                    </div>`
+                        }
+                        document.getElementById('classes').innerHTML = text;
+                    }
+                }
             });
-        }
-    });
             
+            
+            setInterval(()=>{
+                var today = new Date();
+                var m = today.getMinutes();
+                var h = today.getHours();
+                if(h == '0') {h = 12}
+                
+                if(h>12){
+                    h = h-12;
+                    if(m<10){
+                        m = '0' + m;
+                    }
+                    m = m+"PM";
+                }else{
+                    m = m + 'AM';
+                }
+                var currentTime = h+":"+m;
+                
+                document.getElementById('todayDate').innerText = today.toLocaleString('default', { month: 'short' }) + " " + today.getDate()+ " " + today.getFullYear() +" " + currentTime;
+
+                var compare1 = currentTime.slice(0,4);
+
+                for(var i=0;i<compare.length;i++){
+                    var compare2 = compare[i].slice(0,4);
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
+                        $('#create'+i).removeAttr('disabled');
+                        $('#create'+i).css('background-color','green');
+                        $('#create'+i).css('cursor','pointer');
+
+                    }
+                    else{
+                        $('#create'+i).attr('disabled','');
+                        $('#create'+i).css('background-color','red');
+                        $('#create'+i).css('cursor','default');
+                    }
+
+                }
+
+            },1000);
+            
+            
+            
+            
+        $(".button").click(function() {
+            var name = this.name;
+            $(this).addClass("activated");
+            $(".button").not(this).removeClass('activated');
+           
+            if(name == 'Personal'){
+                $('.personal').removeAttr('hidden');
+                $('.group').attr('hidden','');
+            }
+            else{
+                $('.group').removeAttr('hidden');
+                $('.personal').attr('hidden','');
+            }
+
+        });
 
         var curr = new Date;
         var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
         var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
 
-        var d = new Date();
-        var m = d.getMinutes();
-        var h = d.getHours();
-        if(h == '0') {h = 12}
-        
-        var currentTime = h+":"+m;
 
         var weekday=new Array(7);
         weekday[0]="MON";

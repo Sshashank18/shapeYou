@@ -150,7 +150,7 @@ route.post('/createMeeting',(req,res)=>{
     console.log(req.user);
     var options = {
         //You can use a different uri if you're making an API call to a different Zoom endpoint.
-        uri: "https://api.zoom.us/v2/users/shashankaggarwal1315@gmail.com", 
+        uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com", 
         qs: {
             status: 'active' 
         },
@@ -168,7 +168,7 @@ route.post('/createMeeting',(req,res)=>{
     .then(function (response) {
 
       //printing the response on the console
-        console.log('User has', response);
+        console.log('Trainer has', response);
    
         meetConfig.meetingNumber = response.pmi.toString();
 

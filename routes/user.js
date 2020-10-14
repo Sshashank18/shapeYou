@@ -63,11 +63,11 @@ var meetConfig = {
 };
 
 
-route.post('/signature',(req,res)=>{
+route.post('/signature/:trainerId',(req,res)=>{
 
     var options = {
         method: 'GET',
-        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails',
+        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/?id='+req.params.trainerId,
         headers: {
             'content-type': 'application/json'
         }

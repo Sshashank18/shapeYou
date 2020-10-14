@@ -152,7 +152,7 @@ route.post('/createMeeting',(req,res)=>{
         //You can use a different uri if you're making an API call to a different Zoom endpoint.
         uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com", 
         qs: {
-            status: 'active' 
+            status: 'active'
         },
         auth: {
             'bearer': token
@@ -200,6 +200,16 @@ route.get('/getMeeting',(req,res)=>{
         body = JSON.parse(body);
         meetConfig.password = body.password;
 
+        Trainer.findByIdAndUpdate(req.user._id,
+            {
+                meetingDetails:meetConfig
+            },
+        (err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+        });
+
         console.log(meetConfig.password);
 
         res.redirect('/trainer/zoomDashboard');
@@ -207,8 +217,14 @@ route.get('/getMeeting',(req,res)=>{
 });
 
 //Pass meeting Details to user route
-route.get('/passMeetingDetails',(req,res)=>{
-    res.json({meetConfig});
+route.get('/passMeetingDetails/:id',(req,res)=>{
+    Trainer.findById(req.params.id,(err,foundTrainer)=>{
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(foundTrainer.meetingDetails);
+        }
+    });
 });
 
 route.get('/zoomDashboard',(req,res)=>{

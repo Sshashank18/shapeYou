@@ -10,6 +10,7 @@ const request = require('request');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
+const user = require('../models/user');
 
 route.get('/', (req, res) => {
     // console.log(req.user);
@@ -62,7 +63,7 @@ route.post('/newSession', (req, res) => {
                 if(err) {
                     console.log(trainer);
                 } else {
-                    if(!user.trainers.trainer) {
+                    if(!(user.trainers.indexOf(trainer) in user.trainers)) {
                         user.trainers.push(trainer);
                         user.save();
                         // console.log(user);
@@ -87,8 +88,25 @@ route.get('/userDashboard/:id', (req, res) => {
     })
 });
 
-route.get('/zoomDashboard',(req,res)=>{
+route.put('/updateuser', (req, res) => {
+    User.findById(req.user._id, (err, user) => {
+        if(err) {
+            console.log(err);
+        } else {
+            user.bookedSlot = req.query.data;
+            user.save();
+        }
+    })
+});
+
+route.get('/zoomDashboard',(req, res)=>{
     res.render('userZoomDashboard.ejs');
+});
+
+route.get('/getTimeTable/:id', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        res.json(foundTrainer.calendar);
+    })
 });
 
 var meetConfig = {

@@ -14,7 +14,11 @@ var userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Trainer"
         }
-    ]
+    ],
+    bookedSlot: {
+        type: Object,
+        default: null
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);

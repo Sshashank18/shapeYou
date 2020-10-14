@@ -60,7 +60,8 @@
                 <li><a class="nav-link" href="/auth">Sign Up</a></li>
             <% } else{ %>
                 <li><a class="nav-link mr-3" href="#">Signed In as <%= currentUser.username %></a></li>
-                <li><a class="nav-link" href="/auth/logout">Sign Out</a></li>
+                <li><a class="nav-link mr-3" href="/auth/logout">Sign Out</a></li>
+                <li><a class="nav-link" href="/user/userDashboard/<%= currentUser._id %>">Go to Dashboard</a></li>
             <% } %>
           </ul>
         </div>

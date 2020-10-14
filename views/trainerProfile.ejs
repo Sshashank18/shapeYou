@@ -99,7 +99,11 @@
                                 </div>
                                 <div class="card-body white">
                                     <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
-                                    <button class="payment">Pay Now</button>
+                                    <form action="/user/newSession" method="POST">
+                                        <button class="payment" type="submit">Pay Now</button>
+                                        <input type="hidden" value="<%= trainer._id %>" name="trainerId" />
+                                    </form>
+                                    
                                 </div>
 
                             </div>

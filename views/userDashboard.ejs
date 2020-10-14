@@ -1,55 +1,354 @@
-<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/stylesheets/styles.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+                
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Clarence Taylor</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <% user.trainers.forEach(function(trainer) { %>
+                    <li class="nav-item"><a class="nav-link trainerId" name="<%= trainer._id %>"><%= trainer.username %></a></li>
+                  <% }) %>
+                    
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="about">
+                <div class="resume-section-content">
 
-    <h1 class="text-center mt-5">Our categories</h1>
-    <!-- <div class="row text-center mt-5" style="display:flex; flex-wrap: wrap;"> -->
 
-        <h2>Fitness trainer</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-        <% categories.forEach(function(category) { %>
-            <% if(category.parent == 'Fitness trainer') { %>
-                    <div class="card mr-3 zoom" style="width: 18rem;">
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                        <div class="card-body">
-                            <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        </div>
-                      </div>
-            <% } %>
-         <% }); %>
+                  <div class="container trainerTimeTable">
+                    <table class="table" id="trainerTT">
+                        <thead class="thead-dark">
+                          <tr style="text-align: center;">
+                            <th scope="col">Slots</th>
+                            <th scope="col" id="dateT1"></th>
+                            <th scope="col" id="dateT2"></th>
+                            <th scope="col" id="dateT3"></th>
+                            <th scope="col" id="dateT4"></th>
+                            <th scope="col" id="dateT5"></th>
+                            <th scope="col" id="dateT6"></th>
+                          </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+                            <tr>
+                              <th scope="row">3PM-4PM</th>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                                  
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                                  
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">4PM-5PM</th>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">5PM-6PM</th>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">6PM-7PM</th>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">7PM-8PM</th>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="content">
+                                    -    
+                                  </div>
+                              </td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+            
+                </div>
+            </section>
+            <hr class="m-0" />
         </div>
-    </div>
-        <h2>Wellness</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-            <% categories.forEach(function(category) { %>
-                <% if(category.parent == 'Wellness') { %>
-                        <div class="card mr-3 zoom" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body">
-                                <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            </div>
-                          </div>
-                <% } %>
-             <% }); %>
-            </div>
-        </div>
-        <h2>Counselling</h2>
-        <div class="container">
-        <div class="scrolling-wrapper row flex-row flex-nowrap">
-            <% categories.forEach(function(category) { %>
-                <% if(category.parent == 'Counselling') { %>
-                        <div class="card mr-3 zoom" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body">
-                                <a href="/user/category/<%= category.parent %>"><h5 class="card-title"><%= category.title %></h5></a>
-                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            </div>
-                          </div>
-                <% } %>
-             <% }); %>
-            </div>
-            </div>
 
-<%- include('./partials/footer') %>
+        <script>
+          var trainers = document.querySelectorAll(".trainerId");
+          var id;
+          for(var i=0; i<trainers.length; i++) {
+            trainers[i].addEventListener("click", function(event) {
+              id = this.getAttribute("name");
+              name = this.text;
+              $.ajax({
+              url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+              method: 'GET',
+              success:(data)=>{
+                  var index = 0;
+                  $('#trainerTT tr').each(function(){
+                      var timeR = null;
+                      var timeStr = null;
+                      if(index!=0){
+                          timeR = $(this).find('th')[0].innerText;
+                          var timeA = timeR.split('-');
+                          timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                      }
+        
+                      $(this).find('td').each(function(){
+                          var col = $("table thead tr th").eq($(this).index());
+                          var key = col[0].getAttribute('value');
+                        
+                          if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
+                              $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-key=${key.replace(/\s/g, '-')} data-slot=${timeStr.replace(/\s/g, '')} data-trainer=${name}>Book Your Slot</button>`;
+                              $(this).find('.content').css('background-color',"yellowgreen");
+                              $(this).find('.content').css('color',"darkgreen");
+                          }
+
+
+                          
+                      });
+                  index++;
+                  // console.log(data);
+              });
+            }
+          });
+            });
+          };
+        var curr = new Date;
+          var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
+          var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+        
+          var d = new Date();
+          var m = d.getMinutes();
+          var h = d.getHours();
+          if(h == '0') {h = 12}
+          
+          var currentTime = h+":"+m;
+        
+          var weekday=new Array(7);
+          weekday[0]="MON";
+          weekday[1]="TUE";
+          weekday[2]="WED";
+          weekday[3]="THU";
+          weekday[4]="FRI";
+          weekday[5]="SAT";
+          weekday[6]="SUN";
+        
+        
+          var data=new Object();
+        
+          var j=1;
+        
+          var first = firstday;
+      
+        
+          for(var d = 0;d<6; d++){
+              var nextDay = new Date();
+              nextDay.setDate(firstday.getDate()+1);
+              var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
+              data[datePassed] = new Array();
+              firstday = nextDay;
+          }
+        
+        
+          firstday = first;
+        
+          for(var i=firstday.getDate();i<=lastday.getDate();i++){
+              document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
+              document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
+              document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
+              j++;
+          }
+        
+          j=1;       
+          
+          
+          $('.bookSlot').on('click',()=>{
+                          // console.log("HI");
+              const key  = $(this).attr('data-key');
+              const slot = $(this).attr('data-slot');
+              const name = $(this).attr('data-trainer');
+
+              const bookedSlots = {
+                trainerName: name,
+                key: key,
+                slot: slot
+              }
+
+              console.log(bookedSlots);
+
+              // $.ajax({
+              //   url:'',
+              //   method:'PUT',
+              //   data:bookedSlots,
+              //   success:()=>{
+              //     console.log('data');
+              //   }
+              // });
+
+          });
+
+        </script>
+    </body>
+</html>

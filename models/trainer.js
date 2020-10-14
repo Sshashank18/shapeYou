@@ -39,7 +39,13 @@ var trainerSchema = new mongoose.Schema({
     calendar:{
         type: Object,
         default:null
-    }
+    },
+    users: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ]
 });
 
 trainerSchema.plugin(passportLocalMongoose);

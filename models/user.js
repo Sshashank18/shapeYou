@@ -8,7 +8,17 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    sessionCount: Number
+    sessionCount: Number,
+    trainers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Trainer"
+        }
+    ],
+    bookedSlot: {
+        type: Object,
+        default: null
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);

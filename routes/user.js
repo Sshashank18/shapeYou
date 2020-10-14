@@ -10,13 +10,15 @@ const request = require('request');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
+const user = require('../models/user');
 
 route.get('/', (req, res) => {
+    // console.log(req.user);
     Category.find({}, (err, foundCategories) => {
         if(err) {
             console.log(err);
         } else {
-            res.render('userDashboard', {categories: foundCategories});
+            res.render('index', {categories: foundCategories});
         }
     })
 });
@@ -49,10 +51,62 @@ route.get('/category/:parent', (req, res) => {
             }
         })
     })
-})
+});
 
-route.get('/zoomDashboard',(req,res)=>{
+route.post('/newSession', (req, res) => {
+    // console.log(req.user);
+    User.findById(req.user._id, (err, user) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Trainer.findById(req.body.trainerId, (err, trainer) => {
+                if(err) {
+                    console.log(trainer);
+                } else {
+                    if(!(user.trainers.indexOf(trainer) in user.trainers)) {
+                        user.trainers.push(trainer);
+                        user.save();
+                        // console.log(user);
+                        res.redirect('/user/userDashboard/' + user._id);
+                    }
+                }
+            });
+        }
+    });
+    
+    // req.user.save();
+});
+
+route.get('/userDashboard/:id', (req, res) => {
+    User.findById(req.params.id).populate("trainers").exec(function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            // console.log(user);
+            res.render('userDashboard', {user: user});
+        }
+    })
+});
+
+route.put('/updateuser', (req, res) => {
+    User.findById(req.user._id, (err, user) => {
+        if(err) {
+            console.log(err);
+        } else {
+            user.bookedSlot = req.query.data;
+            user.save();
+        }
+    })
+});
+
+route.get('/zoomDashboard',(req, res)=>{
     res.render('userZoomDashboard.ejs');
+});
+
+route.get('/getTimeTable/:id', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        res.json(foundTrainer.calendar);
+    })
 });
 
 var meetConfig = {

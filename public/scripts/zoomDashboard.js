@@ -1,7 +1,3 @@
-// import { ZoomMtg } from './@zoomus/websdk';
-
-// import {add} from './data.mjs';
-// console.log(add(2,3));
 
 // prepare required files
 ZoomMtg.preLoadWasm();
@@ -16,8 +12,6 @@ fetch(`http://127.0.0.1:3500/trainer/signature`, {
 	.then(response => response.json())
 	.then(data => {
 		// call the init method with meeting settings
-	// const joinUrl = "/trainer/meeting/?" + `meetingNumber=${data.meetConfig.meetingNumber}&username=${data.meetConfig.username}&signature=${data.meetConfig.signature}&password=${data.meetConfig.password}`;
-	// window.location = joinUrl;
 
 	const meetingConfig = {
 		leaveUrl:'http://127.0.0.1:3500/trainer',

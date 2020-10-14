@@ -15,8 +15,8 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-    res.render('trainerDashboard');
-});
+        res.render('trainerDashboard');
+    });
 
 route.get('/details',(req,res)=>{
     res.render('details');
@@ -218,6 +218,7 @@ route.get('/getMeeting',(req,res)=>{
 
 //Pass meeting Details to user route
 route.get('/passMeetingDetails/:id',(req,res)=>{
+   
     Trainer.findById(req.params.id,(err,foundTrainer)=>{
         if(err) {
             console.log(err);

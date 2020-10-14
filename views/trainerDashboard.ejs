@@ -602,7 +602,7 @@
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
                             
-                            if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
+                            if(index!=0 && data && data[key]!=undefined && (data[key].includes(timeStr) == true)){
                                 $(this).find('.content')[0].innerText = "Available";
                                 $(this).find('.content').css('background-color',"yellowgreen");
                                 $(this).find('.content').css('color',"darkgreen");
@@ -617,7 +617,7 @@
                     var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
                     var text = " ";
 
-                    if((todayTime in data)){
+                    if(data && (todayTime in data)){
                         for(var i =0;i<data[todayTime].length;i++){
                             compare.push(data[todayTime][i]);
                             text += `<div class="slotRow">

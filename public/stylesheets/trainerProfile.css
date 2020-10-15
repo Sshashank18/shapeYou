@@ -1,14 +1,27 @@
 .container{
-    background-color: wheat;
+    /* background-color: wheat; */
     margin-top:55px;
     padding-top: 20px;
 }
 
 .trainerDescription{
-    text-align: center;
-    height: 120px;
+    padding-top: 50px;
+    height: 100%;
+    font-family: 'Roboto';
     display: flex;
     justify-content: center;
+}
+
+.trainerImg{
+    width:320px;
+    height:320px;
+    float: left;
+}
+
+.trainerDetails{
+    width: 320px;
+    margin-left: 15px;
+    text-align: unset !important;
 }
 
 .trainingType{

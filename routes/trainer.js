@@ -15,13 +15,8 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-<<<<<<< HEAD
         res.render('trainerDashboard', {id: req.user._id});
 });
-=======
-        res.render('trainerDashboard');
-    });
->>>>>>> 6bb3fb46306dc8d4c2b4a29180417202fed4c15f
 
 route.get('/details',(req,res)=>{
     res.render('details');

@@ -38,7 +38,7 @@
 
         <div class="trainerDescription">
             <div class="trainerImg">
-                <img src="https://wallpaperaccess.com/full/817896.jpg" style="max-width: 100%;
+                <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 100%;
                                                                               max-height: 100%;
                                                                               display: block;">
             </div>
@@ -138,11 +138,14 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
+                                <form action="/user/newSession" method="POST">
+                                  <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                                   </svg>
-                                </button>
+                                  </button>
+                                  <input type="hidden" name="trainerId" value="<%= trainer._id %>">
+                              </form>
                                 <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
                               </div>
                             </div>

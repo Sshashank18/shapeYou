@@ -97,13 +97,8 @@ route.put('/updateuser', (req, res) => {
     })
 });
 
-<<<<<<< HEAD
-route.get('/zoomDashboard',(req, res) => {
-    res.render('userZoomDashboard.ejs');
-=======
 route.get('/zoomDashboard/:id',(req, res)=>{
     res.render('userZoomDashboard.ejs',{trainer:req.params.id});
->>>>>>> 6bb3fb46306dc8d4c2b4a29180417202fed4c15f
 });
 
 route.get('/getTimeTable/:id', (req, res) => {

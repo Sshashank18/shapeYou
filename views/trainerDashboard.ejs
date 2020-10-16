@@ -601,16 +601,10 @@
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
                             
-<<<<<<< HEAD
                             if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
                                 $(this).find('.content')[0].innerText = "";
                                 $(this).find('.content').css('background-color',"#2ecc72");
                                 $(this).find('.content').css('border-radius',"20px");
-=======
-                            if(index!=0 && data && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                                $(this).find('.content')[0].innerText = "Available";
-                                $(this).find('.content').css('background-color',"yellowgreen");
->>>>>>> 6bb3fb46306dc8d4c2b4a29180417202fed4c15f
                                 $(this).find('.content').css('color',"darkgreen");
                             }
                             

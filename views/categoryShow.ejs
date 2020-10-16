@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
 
@@ -33,23 +34,45 @@
 
 
     <div class="mainBox">
-        <div class="categoryDescription">
-            <h1><%= category.parent %></h1>
 
-            <div id="trainers" hidden >
-                <%= trainers %>
+        <section class="text-gray-700 body-font">
+            <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+              <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"><%= category.parent %>
+                </h1>
+
+                <% switch (category.parent) {
+                    case 'Wellness' : %>
+                        <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+                    </div>
+                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                        <img class="object-cover object-center rounded" alt="hero" src="https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness.jpeg">
+                    </div>
+                    <% break;%>
+                
+                    <% case 'Counselling' : %>
+                        <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+                    </div>
+                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                        <img class="object-cover object-center rounded" alt="hero" src="https://www.nalandaschool.org/assets/images/Counselling.jpg">
+                    </div>
+                    <% break;%>
+                
+                    <% case 'Fitness trainer' : %>
+                        <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+                    </div>
+                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                        <img class="object-cover object-center rounded" alt="hero" src="https://media.gq.com/photos/5ee2450a2e828590ab87b75a/16:9/w_1280,c_limit/what%2520comes%2520after%2520cross%2520fit%2520gq%2520june%25202020%2520.jpg">
+                    </div>
+                    <% break;%>
+                
+                <% } %>
+
             </div>
+          </section>
 
             <% switch (category.parent) {
                 case 'Wellness' : %>
-                        <div class="categoryContent">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </div>
-                    </div>
-            
                     <div class="trainersBox">
                         <div class="subcategories">
                             <button name = "Yoga" style="margin:20px">Yoga</button>
@@ -58,13 +81,6 @@
                         <% break;
                 
                 case 'Counselling' : %>
-                        <div class="categoryContent">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </div>
-                    </div>
             
                     <div class="trainersBox">
                         <div class="subcategories">
@@ -74,14 +90,6 @@
                         <% break;
                 
                 case 'Fitness trainer' : %>
-                        <div class="categoryContent">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </div>
-                    </div>
-            
                     <div class="trainersBox">
                         <div class="subcategories">
                             <button name = "CrossFit" style="margin:20px">CrossFit</button>
@@ -95,8 +103,6 @@
                 } %>
 
             <div class="trainers" id="trainersList">
-
-             
 
                 <% trainers.forEach((trainer)=>{   %>
                     <div class="col-lg-4 col-md-6 px-auto">
@@ -113,7 +119,6 @@
                   
 
             </div>
-        </div>
     </div>
     <script>
 

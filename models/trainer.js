@@ -32,6 +32,10 @@ var trainerSchema = new mongoose.Schema({
             default: null
         }
     ],
+    meetingDetails:{
+        type: Object,
+        default:null
+    },
     calendar:{
         type: Object,
         default:null

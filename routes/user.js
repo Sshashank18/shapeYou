@@ -97,8 +97,13 @@ route.put('/updateuser', (req, res) => {
     })
 });
 
+<<<<<<< HEAD
 route.get('/zoomDashboard',(req, res) => {
     res.render('userZoomDashboard.ejs');
+=======
+route.get('/zoomDashboard/:id',(req, res)=>{
+    res.render('userZoomDashboard.ejs',{trainer:req.params.id});
+>>>>>>> 6bb3fb46306dc8d4c2b4a29180417202fed4c15f
 });
 
 route.get('/getTimeTable/:id', (req, res) => {
@@ -119,7 +124,7 @@ route.post('/signature',(req,res)=>{
 
     var options = {
         method: 'GET',
-        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails',
+        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
         headers: {
             'content-type': 'application/json'
         }
@@ -129,7 +134,6 @@ route.post('/signature',(req,res)=>{
         if (error) throw new Error(error);
       
         body = JSON.parse(body);
-        console.log(body);
         
         function generateSignature(apiKey,apiSecret, meetingNumber, role) {
             
@@ -143,10 +147,10 @@ route.post('/signature',(req,res)=>{
         }
         
         // // pass in your Zoom JWT API Key, Zoom JWT API Secret, Zoom Meeting Number, and 0 to join meeting or webinar or 1 to start meeting
-          signature = generateSignature(config.APIKey, config.APISecret,body.meetConfig.meetingNumber,0);
+          signature = generateSignature(config.APIKey, config.APISecret,body.meetingNumber,0);
         
-          body.meetConfig.signature = signature;
-          body.meetConfig.username = req.user.username;
+          body.signature = signature;
+          body.username = req.user.username;
         
           res.json({body});
     });

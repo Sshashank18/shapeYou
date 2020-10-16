@@ -1,14 +1,14 @@
 body {
-    background-image: url(madara.png);
+    /* background-image: url(madara.png); */
     background-size: cover;
+    background-color: rgb(235, 236, 241);
 }
 
 .form {
-    width: 300px;
-    margin-right: 36%;
-    margin-left:25%;
-    margin-top: 1.5%;
+    width: 400px;
     padding: 10px;
+    margin: 0 auto;
+    margin-top: 130px;
 }
 
 .hide {

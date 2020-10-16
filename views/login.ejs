@@ -10,41 +10,48 @@
     <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
 <body>
-
-    <div class="form bg-light">
-        <button class="btn btn-primary" id="userLoginButton">User Login</button>
-        <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form bg-light">
+                <button class="btn btn-primary" id="userLoginButton">User Login</button>
+                <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
+                
+                <form id="userForm" method="POST" action="/auth/userLogin">
+                    <div class="form-group mt-2">
+                        <label for="userUsername">Username</label>
+                        <input type="text" class="form-control" id="userUsername" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword">Password</label>
+                        <input type="password" class="form-control" id="userPassword" placeholder="Password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log-in</button>
+                </form>
         
-        <form id="userForm" method="POST" action="/auth/userLogin">
-            <div class="form-group mt-2">
-                <label for="userUsername">Username</label>
-                <input type="text" class="form-control" id="userUsername" name="username" placeholder="Enter Username">
+                <form id="trainerForm" class="hide" method="POST" action="/auth/trainerLogin">
+                    <div class="form-group mt-2">
+                        <label for="trainerUsername">Trainer Username</label>
+                        <input type="text" class="form-control" id="trainerUsername" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="trainerPassword">Password</label>
+                        <input type="password" class="form-control" id="trainerPassword" placeholder="Password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log-in</button>
+                </form>
+        
+                <h4 style="font-size: 25px;">Dont Have An Account?? SignUp <a href="/auth">Here...</a></h4>
+        
             </div>
-            <div class="form-group">
-                <label for="userPassword">Password</label>
-                <input type="password" class="form-control" id="userPassword" placeholder="Password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Log-in</button>
-        </form>
-
-        <form id="trainerForm" class="hide" method="POST" action="/auth/trainerLogin">
-            <div class="form-group mt-2">
-                <label for="trainerUsername">Trainer Username</label>
-                <input type="text" class="form-control" id="trainerUsername" name="username" placeholder="Enter Username">
-            </div>
-            <div class="form-group">
-                <label for="trainerPassword">Password</label>
-                <input type="password" class="form-control" id="trainerPassword" placeholder="Password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Log-in</button>
-        </form>
-
-        <h4>Dont Have An Account?? SignUp <a href="/auth">Here...</a></h4>
-
+        </div>
+        <div class="col-lg-6 my-auto">
+            <img src="/images/undraw_authentication_fsn5.svg" alt="" style="width: 70%; height: auto;">
+        </div>
     </div>
 
 
     <script src="/scripts/login.js"></script>
+
     
 </body>
 </html>

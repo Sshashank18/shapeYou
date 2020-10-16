@@ -601,9 +601,10 @@
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
                             
-                            if(index!=0 && data && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                                $(this).find('.content')[0].innerText = "Available";
-                                $(this).find('.content').css('background-color',"yellowgreen");
+                            if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
+                                $(this).find('.content')[0].innerText = "";
+                                $(this).find('.content').css('background-color',"#2ecc72");
+                                $(this).find('.content').css('border-radius',"20px");
                                 $(this).find('.content').css('color',"darkgreen");
                             }
                             

@@ -64,28 +64,40 @@
       </div>
     </div>
   </section><!-- End Intro Section -->
-    <h1 class="text-center" style="font-size: 50px; margin-top: 130px;;">Our categories</h1>
+
+  <section style="margin-top: 130px; padding-bottom: 70px;">
+    <h1 class="text-center" style="font-size: 50px; font-family: 'Comfortaa', cursive;"><span style="color: rgb(188, 106, 141);">Define your goals</span></h1>
+    
+    <img src="./images/undraw_yoga_248n.svg" alt="" class="img-fluid mx-auto" style="width: 30%; height: auto;">
+    
+  </section>
+
+<section style="background-color: rgb(134, 196, 203); height: 150px; width: 100%; opacity: 1;"> 
+  <h1 class="text-center pl-3" style="color: white; font-size: 40px; padding-top: 50px; font-family: 'Poiret One', cursive;">Choose Your Sessions and Start Your Training</h1>
+</section>
+
+    <h1 class="text-center" style="font-size: 50px; margin-top: 90px; font-family: 'Comfortaa', cursive; color:rgb(188, 106, 141)">Our classes</h1>
 
     <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap w-full mb-20">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Fitness trainer</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Fitness trainer</h1>
         <div class="h-1 w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p>
+      <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p>
     </div>
 
     
     <div class="flex flex-wrap -m-4">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Fitness trainer') { %>
-      <div class="xl:w-1/2 md:w-1/2 p-4 zoom">
+      <div class="xl:w-1/5 md:w-1/2 p-4 zoom">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-primary"><a href="/user/category/<%= category.parent %>">Read More</a></button></p>
+          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
         </div>
       </div>
       <% } %>
@@ -95,14 +107,14 @@
     </div>
   </div>
 </section>
-<section class="text-gray-700 body-font">
+<section class="text-gray-700 body-font" >
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap w-full mb-20">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Wellness</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Wellness</h1>
         <div class="h-1 w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p>
+      <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p>
     </div>
 
     
@@ -114,7 +126,7 @@
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-primary"><a href="/user/category/<%= category.parent %>">Read More</a></button></p>
+          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>">Read More</a></button></p>
         </div>
       </div>
       <% } %>
@@ -129,10 +141,10 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap w-full mb-20">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Counselling</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Counselling</h1>
         <div class="h-1 w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+      <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
     </div>
 
     
@@ -144,7 +156,7 @@
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"> <button class="btn btn-primary"> <a href="/user/category/<%= category.parent %>">Read More</a></button></p>
+          <p class="leading-relaxed text-base"> <button class="btn btn-outline-secondary"> <a href="/user/category/<%= category.parent %>">Read More</a></button></p>
         </div>
       </div>
       <% } %>
@@ -154,76 +166,6 @@
     </div>
   </div>
 </section>
-
-
- <section id="testimonials" class="section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h3>Testimonials</h3>
-        </header>
-
-        <div class="owl-carousel testimonials-carousel">
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
-            <h4>Ceo &amp; Founder</h4>
-            <p>
-              <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-              <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonial-2.jpg" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
-            <p>
-              <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-              <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonial-3.jpg" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
-            <p>
-              <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-              <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonial-4.jpg" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
-            <p>
-              <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-              <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonial-5.jpg" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
-            <p>
-              <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-              <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section> --><!-- End Testimonials Section
 
 
 

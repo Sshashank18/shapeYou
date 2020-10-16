@@ -29,10 +29,9 @@
               
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-link"><a href="/auth/logout" style="text-decoration: none;">Logout</a></li>
+          </ul>
         </div>
     </nav>
 
@@ -55,7 +54,7 @@
                 <tr>
                   <th scope="row">3PM-4PM</th>
                   <td>
-                      <div class="content">
+                      <div class="content mx-auto">
                         -    
                       </div>
                   </td>
@@ -585,7 +584,7 @@
           var compare = new Array();
           
           $.ajax({
-              url:'http://127.0.0.1:3500/trainer/getTimeTable',
+              url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -603,8 +602,9 @@
                             var key = col[0].getAttribute('value');
                             
                             if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                                $(this).find('.content')[0].innerText = "Available";
-                                $(this).find('.content').css('background-color',"yellowgreen");
+                                $(this).find('.content')[0].innerText = "";
+                                $(this).find('.content').css('background-color',"#2ecc72");
+                                $(this).find('.content').css('border-radius',"20px");
                                 $(this).find('.content').css('color',"darkgreen");
                             }
                             
@@ -668,7 +668,9 @@
                     }
                     else{
                         $('#create'+i).attr('disabled','');
-                        $('#create'+i).css('background-color','red');
+                        $('#create'+i).css('background-color','#99AAAB');
+                        $('#create'+i).css('color','white');
+                        $('#create'+i).css('border-radius','20px');
                         $('#create'+i).css('cursor','default');
                     }
 
@@ -751,7 +753,7 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable',
+                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{

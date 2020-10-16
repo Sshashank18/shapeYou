@@ -15,7 +15,7 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-    res.render('trainerDashboard');
+        res.render('trainerDashboard', {id: req.user._id});
 });
 
 route.get('/details',(req,res)=>{
@@ -39,14 +39,14 @@ route.put('/submitDetails',(req,res)=>{
 });
 
 
-route.get('/getTimeTable',(req,res)=>{
-    Trainer.findById(req.user._id,(err,result)=>{
+route.get('/getTimeTable/:id',(req,res)=>{
+    Trainer.findById(req.params.id,(err,result)=>{
         res.json(result.calendar);
     });
 })
 
-route.put('/setTimeTable',(req,res)=>{
-    Trainer.findByIdAndUpdate(req.user._id,
+route.put('/setTimeTable/:id',(req,res)=>{
+    Trainer.findByIdAndUpdate(req.params.id,
         {
             calendar:req.body
         }

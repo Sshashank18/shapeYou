@@ -72,11 +72,15 @@ input[type=checkbox] {
 }
 
 .content{
-  background-color: rgb(253, 39, 39);
+  background-color: #E84342;
   height: 40px;
+  border-radius: 20px;
   text-align: center;
   line-height: 2.4;
   color: darkred;
+  width: 50%;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .trainingType{

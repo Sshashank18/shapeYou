@@ -54,7 +54,6 @@ route.get('/category/:parent', (req, res) => {
 });
 
 route.post('/newSession', (req, res) => {
-    // console.log(req.user);
     User.findById(req.user._id, (err, user) => {
         if(err) {
             console.log(err);
@@ -63,18 +62,18 @@ route.post('/newSession', (req, res) => {
                 if(err) {
                     console.log(trainer);
                 } else {
-                    if(!(user.trainers.indexOf(trainer) in user.trainers)) {
+                    if(!(user.trainers.includes(trainer._id)) ) {
+                        console.log("I DO NOT CONTAIN THE TRAINER");
                         user.trainers.push(trainer);
                         user.save();
-                        // console.log(user);
+                        res.redirect('/user/userDashboard/' + user._id);
+                    } else {
                         res.redirect('/user/userDashboard/' + user._id);
                     }
                 }
             });
         }
     });
-    
-    // req.user.save();
 });
 
 route.get('/userDashboard/:id', (req, res) => {
@@ -82,7 +81,6 @@ route.get('/userDashboard/:id', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            // console.log(user);
             res.render('userDashboard', {user: user});
         }
     })
@@ -99,7 +97,7 @@ route.put('/updateuser', (req, res) => {
     })
 });
 
-route.get('/zoomDashboard',(req, res)=>{
+route.get('/zoomDashboard',(req, res) => {
     res.render('userZoomDashboard.ejs');
 });
 

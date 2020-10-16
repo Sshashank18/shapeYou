@@ -81,5 +81,6 @@ app.get('/',(req,res)=>{
 });
 
 //Port Listening
-const PORT = 3500;
-app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));
+const port = process.env.PORT || 3500;
+// const PORT = 3500;
+app.listen(port,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));

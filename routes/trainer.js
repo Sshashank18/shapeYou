@@ -15,9 +15,11 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-        res.render('trainerDashboard', {id: req.user._id});
+    Trainer.findById(req.user._id,(err,trainer)=>{
+        res.render('trainerDashboard', {id: req.user._id,trainer:trainer});
+    });
 });
-
+ 
 route.get('/details',(req,res)=>{
     res.render('details');
 });

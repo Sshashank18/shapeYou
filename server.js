@@ -8,6 +8,8 @@ const app = express();
 //MONGOOSE
 const { MONGOURI } = require('./config/credentials');
 
+const PORT = process.env.PORT || 3500;
+
 const mongoose = require('mongoose');
 
 mongoose.connect(MONGOURI,{
@@ -81,5 +83,9 @@ app.get('/',(req,res)=>{
 });
 
 //Port Listening
+<<<<<<< HEAD
 
 app.listen(3500,()=>console.log("Server Up and Running on http://127.0.0.1:3500"));
+=======
+app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));
+>>>>>>> 7108528bc99d7a3119b2771d3d93efb93f9dfdc4

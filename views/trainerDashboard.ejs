@@ -37,6 +37,7 @@
     </nav>
 
     <br>
+
     <!-- Trainer TimeTable -->
     <div class="container trainerTimeTable">
         <table class="table" id="trainerTT">
@@ -288,7 +289,27 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">One week Time Table</h5>
+                <% trainer.subCategories.forEach((subs,index)=>{%>
+                    <% if(index==0){ %>
+                        <div class="title" name="<%= subs.replace(/\s/g, '') %>">
+                            <h5 class="modal-title" id="exampleModalLongTitle"><%=subs %></h5>
+                    <%}else{%>
+                        <div class="title" name="<%= subs.replace(/\s/g, '') %>" hidden>
+                            <%if(index!=(trainer.subCategories.length-1)){ %>
+                                <button type="button" class="prev">&lt;</button>
+                            <%}%>
+                            <h5 class="modal-title" id="exampleModalLongTitle" ><%=subs %></h5>
+                        <%}%>
+                        <%if(trainer.subCategories.length>1 && index!=(trainer.subCategories.length-1)){ %>
+                            <button type="button" class="next">&gt;</button>
+                        <% }else if(trainer.subCategories.length>1 && index ==(trainer.subCategories.length-1)){ %>
+                            <button type="button" class="prev">&lt;</button>
+                        <%}%>
+
+                    </div>
+
+                <% }) %>
+                
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -585,7 +606,8 @@
           var compare = new Array();
           
           $.ajax({
-              url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= id %>',
+            //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= id %>',
+              url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -601,12 +623,57 @@
                         $(this).find('td').each(function(){
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
-                            
-                            if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                                $(this).find('.content')[0].innerText = "";
-                                $(this).find('.content').css('background-color',"#2ecc72");
-                                $(this).find('.content').css('border-radius',"20px");
-                                $(this).find('.content').css('color',"darkgreen");
+                            if(index!=0 && data[key]!=undefined){
+                                for(var i=0;i<data[key].length;i++){
+                                    if(data[key][i].slice(0,11) == timeStr){
+                                        if(data[key][i].slice(12,) == "CrossFit"){
+                                            $(this).find('.content')[0].innerText = "C";
+                                            $(this).find('.content').css('background-color',"blue");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Functional&StrengthTraining"){
+                                            $(this).find('.content')[0].innerText = "F";
+                                            $(this).find('.content').css('background-color',"red");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "MMA&Boxing"){
+                                            $(this).find('.content')[0].innerText = "MMA";
+                                            $(this).find('.content').css('background-color',"orange");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Zumba"){
+                                            $(this).find('.content')[0].innerText = "Z";
+                                            $(this).find('.content').css('background-color',"grey");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Dance"){
+                                            $(this).find('.content')[0].innerText = "D";
+                                            $(this).find('.content').css('background-color',"pink");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Yoga"){
+                                            $(this).find('.content')[0].innerText = "Y";
+                                            $(this).find('.content').css('background-color',"green");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Meditation"){
+                                            $(this).find('.content')[0].innerText = "M";
+                                            $(this).find('.content').css('background-color',"black");
+                                            
+                                        }
+                                        else if(data[key][i].slice(12,) == "Nutrition"){
+                                            $(this).find('.content')[0].innerText = "N";
+                                            $(this).find('.content').css('background-color',"brown");
+                                            
+                                        }else{
+                                            $(this).find('.content')[0].innerText = "T";
+                                            $(this).find('.content').css('background-color',"lightgreen");
+                                            
+                                        }
+                                        $(this).find('.content').css('border-radius',"20px");
+                                        $(this).find('.content').css('color',"darkgreen");
+                                    }
+                                }
                             }
                             
                         });
@@ -740,28 +807,181 @@
 
         j=1;
 
+        var nameHead=$('.title').attr('name');
+
+        var nameArray = <%- JSON.stringify(trainer.subCategories) %>
+
+        $(document).on('change', ':checkbox', function() {
+           
+            if(nameHead == 'Yoga'){
+                if($(this).hasClass('Yoga')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Yoga','');
+
+                }else{
+                    $(this).addClass('Yoga');
+                    $(this).attr('name','Yoga');
+
+                }
+                $(this).next().css('background-color','green');
+            }
+
+            else if(nameHead=="Meditation"){
+                if($(this).hasClass('Meditation')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Meditation','');
+
+                }else{
+                    $(this).addClass('Meditation');
+                    $(this).attr('name','Meditation');
+
+                }
+                $(this).next().css('background-color','black');
+            }
+
+            else if(nameHead=="CrossFit"){
+                if($(this).hasClass('CrossFit')){
+                    $(this).removeClass('CrossFit','');
+
+                }else{
+                    $(this).addClass('CrossFit');
+                    $(this).attr('name','CrossFit');
+
+                }
+                $(this).next().css('background-color','blue');
+            }
+
+            else if(nameHead=="Functional&StrengthTraining"){
+                if($(this).hasClass('Functional&StrengthTraining')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Functional&StrengthTraining','');
+
+                }else{
+                    $(this).addClass('Functional&StrengthTraining');
+                    $(this).attr('name','Functional&StrengthTraining');
+
+                }
+                $(this).next().css('background-color','red');
+            }
+            else if(nameHead=="Zumba"){
+                if($(this).hasClass('Zumba')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Zumba','');
+
+                }else{
+                    $(this).addClass('Zumba');
+                    $(this).attr('name','Zumba');
+
+                }
+                $(this).next().css('background-color','grey');
+            }
+            else if(nameHead=="Dance"){
+                if($(this).hasClass('Dance')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Dance','');
+
+                }else{
+                    $(this).addClass('Dance');
+                    $(this).attr('name','Dance');
+
+                }
+                $(this).next().css('background-color','pink');
+            }
+            else if(nameHead=="MMA&Boxing"){
+                if($(this).hasClass('MMA&Boxing')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('MMA&Boxing','');
+
+                }else{
+                    $(this).addClass('MMA&Boxing');
+                    $(this).attr('name','MMA&Boxing');
+
+                }
+                $(this).next().css('background-color','orange');
+            }
+            else if(nameHead=="Nutrition"){
+                if($(this).hasClass('Nutrition')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Nutrition','');
+
+                }else{
+                    $(this).addClass('Nutrition');
+                    $(this).attr('name','Nutrition');
+                }
+                $(this).next().css('background-color','brown');
+            }
+            else{
+                if($(this).hasClass('Therapy&counselling')){
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass('Therapy&counselling','');
+
+                }else{
+                    $(this).addClass('Therapy&counselling');
+                    $(this).attr('name','Therapy&counselling');
+
+                }
+                $(this).next().css('background-color','lightgreen');
+            }
+
+        });
+        
+        $(document).on('click', '.next', function() {
+            $(this).parent().attr('hidden','');
+            $(this).parent().next().removeAttr('hidden');
+            nameHead = $(this).parent().next().attr('name');
+
+            for(var i=0;i<nameArray.length;i++){
+
+                if((nameHead != nameArray[i]) && $(`:checkbox:checked`).hasClass(`${nameArray[i].replace(/\s/g, '')}`)){
+                    $(`input:checkbox[class='${nameArray[i].replace(/\s/g, '')}']:checked`).attr('disabled','disabled');
+                }else if ($(`:checkbox:checked`).hasClass(`${nameHead}`)){
+                    $(`input:checkbox[class='${nameHead}']:checked`).removeAttr('disabled');
+                }
+            }
+        });
+
+        
+        $(document).on('click', '.prev', function() {
+            $(this).parent().attr('hidden','');
+            $(this).parent().prev().removeAttr('hidden');
+            nameHead = $(this).parent().prev().attr('name');
+            for(var i=0;i<nameArray.length;i++){
+                if((nameHead != nameArray[i]) && $(`:checkbox:checked`).hasClass(`${nameArray[i].replace(/\s/g, '')}`)){
+                    $(`input:checkbox[class='${nameArray[i].replace(/\s/g, '')}']:checked`).attr('disabled','disabled');
+                }else if ($(`:checkbox:checked`).hasClass(`${nameHead}`)){
+                    $(`input:checkbox[class='${nameHead}']:checked`).removeAttr('disabled');
+                }
+            }
+
+        });
+
+
+
         $('.save').on('click',()=>{
             $('#weekTable tr').each(function(){
                 var index = 0;
                 $(this).find('td').each(function(){
                     if($(this).find('input[type="checkbox"]')[0].checked == true){
+                        var subName = $(this).find(':checked').attr('name');
                         var timeR = $(this).closest('tr').find('th')[0].innerText;
                         var timeA = timeR.split('-');
-                        var timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                        var timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00"+" "+subName;
                         data[Object.keys(data)[index]].push(timeStr);
                     }
                     index++;
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= id %>',
+                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= id %>',
+                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
                     alert('Saved Time Table');
                 }
             });
-            window.location="http://127.0.0.1:3500/trainer";
+            // window.location="http://127.0.0.1:3500/trainer";
+            window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
 
 

@@ -92,7 +92,7 @@
                 case 'Fitness trainer' : %>
                     <div class="trainersBox">
                         <div class="subcategories">
-                            <button name = "CrossFit" style="margin:20px">CrossFit</button>
+                            <button name = "CrossFit" data-filter=".filter-crossfit" style="margin:20px">CrossFit</button>
                             <button name = "Functional & Strength Training" style="margin:20px">Functional & Strength Training</button>
                             <button name = "Zumba" style="margin:20px">Zumba</button>
                             <button name = "Dance" style="margin:20px">Dance</button>
@@ -137,7 +137,7 @@
                     
                     if(subCategories[i] == name){
                         
-                        text += `<div class="col-lg-4 col-md-6 px-auto">
+                        text += `<div class="col-lg-4 col-md-6 px-auto filter-crossfit">
                                         <div class="card mb-5" style="width: 18rem;">
                                             <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
                                             <div class="card-body">

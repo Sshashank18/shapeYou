@@ -13,7 +13,6 @@ var Category = require('../models/category');
 const user = require('../models/user');
 
 route.get('/', (req, res) => {
-    // console.log(req.user);
     Category.find({}, (err, foundCategories) => {
         if(err) {
             console.log(err);
@@ -21,6 +20,7 @@ route.get('/', (req, res) => {
             res.render('index', {categories: foundCategories});
         }
     })
+    // res.render('index');
 });
 
 route.get('/category/:parent', (req, res) => {
@@ -119,7 +119,8 @@ route.post('/signature',(req,res)=>{
 
     var options = {
         method: 'GET',
-        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
+        // url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
+        url: 'https://shapeyou-demo.herokuapp.com/trainer/passMeetingDetails/'+req.body.trainerId,
         headers: {
             'content-type': 'application/json'
         }

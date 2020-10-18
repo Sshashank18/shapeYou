@@ -13,14 +13,14 @@ var Category = require('../models/category');
 const user = require('../models/user');
 
 route.get('/', (req, res) => {
-    console.log('IN');
-    Category.find({}, (err, foundCategories) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render('index', {categories: foundCategories});
-        }
-    })
+    // Category.find({}, (err, foundCategories) => {
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+    //         res.render('index', {categories: foundCategories});
+    //     }
+    // })
+    res.render('index');
 });
 
 route.get('/category/:parent', (req, res) => {

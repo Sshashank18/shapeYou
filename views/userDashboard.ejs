@@ -334,7 +334,8 @@
               id = this.getAttribute("name");
               name = this.text;
               $.ajax({
-                url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+                // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+                url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
                 success:(data)=>{
                   var index = 0;
@@ -430,7 +431,8 @@
 
               console.log(bookedSlots);
 
-              window.location = 'http://127.0.0.1:3500/user/zoomDashboard/'+id;
+              // window.location = 'http://127.0.0.1:3500/user/zoomDashboard/'+id;
+              window.location = 'https://shapeyou-demo.herokuapp.com/user/zoomDashboard/'+id;
               
               // $.ajax({
               //   url:'',

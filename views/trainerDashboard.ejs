@@ -605,7 +605,8 @@
           var compare = new Array();
           
           $.ajax({
-              url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= id %>',
+            //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= id %>',
+              url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -970,14 +971,16 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= id %>',
+                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= id %>',
+                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
                     alert('Saved Time Table');
                 }
             });
-            window.location="http://127.0.0.1:3500/trainer";
+            // window.location="http://127.0.0.1:3500/trainer";
+            window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
 
 

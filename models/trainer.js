@@ -45,7 +45,11 @@ var trainerSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         }
-    ]
+    ],
+    isCreated: {
+        type: Boolean,
+        default: false
+    }
 });
 
 trainerSchema.plugin(passportLocalMongoose);

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require("passport-local-mongoose");
+const category = require('./category');
 
 var userSchema = new mongoose.Schema({
     username: String,
@@ -13,6 +14,9 @@ var userSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Trainer"
+        },
+        {
+            category: String
         }
     ],
     bookedSlot: {

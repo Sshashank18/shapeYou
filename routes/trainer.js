@@ -15,8 +15,9 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-    Trainer.findById(req.user._id,(err,trainer)=>{
-        res.render('trainerDashboard', {id: req.user._id,trainer:trainer});
+    // console.log(req.user);
+    Trainer.findById(req.user._id).populate('users').exec( (err,trainer)=>{
+        res.render('trainerDashboard', {trainer:trainer});
     });
 });
  
@@ -120,12 +121,13 @@ route.post('/userInfo',(req,res)=>{
 
 // Trainer Profile Display
 
-route.get('/profile/:id', (req, res) => {
+route.get('/profile/:id/:name', (req, res) => {
     Trainer.findById(req.params.id, (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
-            res.render('trainerProfile',{trainer:foundTrainer});
+            // console.log(req.params.name)
+            res.render('trainerProfile',{trainer:foundTrainer, category: req.params.name});
         }
     });
 });
@@ -152,7 +154,7 @@ route.post('/createMeeting',(req,res)=>{
     console.log(req.user);
     var options = {
         //You can use a different uri if you're making an API call to a different Zoom endpoint.
-        uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com", 
+        uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com",
         qs: {
             status: 'active'
         },

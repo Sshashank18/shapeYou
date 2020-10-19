@@ -65,11 +65,14 @@ route.post('/newSession', (req, res) => {
                     if(!(user.trainers.includes(trainer._id)) ) {
                         console.log("I DO NOT CONTAIN THE TRAINER");
                         user.trainers.push(trainer);
+                        user.trainers.category = req.body.category
                         user.save();
                         res.redirect('/user/userDashboard/' + user._id);
                     } else {
                         res.redirect('/user/userDashboard/' + user._id);
                     }
+                    trainer.users.push(user);
+                    trainer.save();
                 }
             });
         }

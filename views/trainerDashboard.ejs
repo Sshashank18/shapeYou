@@ -607,7 +607,7 @@
           
           $.ajax({
               url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
-            //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= id %>',
+            //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -710,12 +710,12 @@
                 var m = today.getMinutes();
                 var h = today.getHours();
                 if(h == '0') {h = 12}
-                
+                if(m<10){
+                        m = '0' + m;
+                }
                 if(h>12){
                     h = h-12;
-                    if(m<10){
-                        m = '0' + m;
-                    }
+                    
                     m = m+"PM";
                 }else{
                     m = m + 'AM';
@@ -728,7 +728,7 @@
 
                 for(var i=0;i<compare.length;i++){
                     var compare2 = compare[i].slice(0,4);
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) >=15 ))){
                         $('#create'+i).removeAttr('disabled');
                         $('#create'+i).css('background-color','green');
                         $('#create'+i).css('cursor','pointer');
@@ -972,8 +972,8 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
-                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= id %>',
+                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer.id %>',
+                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
@@ -983,9 +983,10 @@
             window.location="http://127.0.0.1:3500/trainer";
             // window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
-        
-        
-        </script>
+
+
+      </script>
+
 
 </body>
 </html>

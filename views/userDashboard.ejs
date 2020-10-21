@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/stylesheets/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/stylesheets/userDashboard.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
                 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -28,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                   <% user.trainers.forEach(function(trainer) { %>
-                    <li class="nav-item"><a class="nav-link trainerId" name="<%= trainer._id %>"><%= trainer.username %></a></li>
+                    <li class="nav-item"><a class="nav-link trainerId" data-id="<%= trainer._id %>" data-name="<%= trainer.username %>"><%= trainer.username %></a></li>
                   <% }) %>
                     
                 </ul>
@@ -61,7 +62,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -69,7 +69,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                                   
                               </td>
@@ -78,7 +77,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                                   
                               </td>
@@ -87,7 +85,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -95,7 +92,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -103,7 +99,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                             </tr>
@@ -114,7 +109,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -122,7 +116,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -130,7 +123,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -138,7 +130,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -146,7 +137,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -154,7 +144,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               
@@ -166,7 +155,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -174,7 +162,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -182,7 +169,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -190,7 +176,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -198,7 +183,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -206,7 +190,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               
@@ -218,7 +201,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -226,7 +208,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -234,7 +215,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -242,7 +222,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -250,7 +229,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -258,7 +236,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               
@@ -270,7 +247,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -278,7 +254,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -286,7 +261,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -294,7 +268,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -302,7 +275,6 @@
                                     <div class="empty">
                                       - 
                                     </div>
-                                    <button class='bookSlot' hidden>Book Your Slot</button>       
                                   </div>
                               </td>
                               <td>
@@ -311,6 +283,7 @@
                                       - 
                                     </div>
                                     <button class='bookSlot' hidden>Book Your Slot</button>   
+                                    <button class='booked' hidden>BOOKED</button>   
                                   </div>
                               </td>
                               
@@ -334,73 +307,191 @@
         </div>
     </div>
 
-        <script>
-
+      <script>
           
-          var trainers = document.querySelectorAll(".trainerId");
           var id;
-          
-          for(var i=0; i<trainers.length; i++) {
-            trainers[i].addEventListener("click", function(event) {
-              id = this.getAttribute("name");
-              name = this.text;
+          var trainer = null;
+          var compare = new Array();
+          var slots,slots2=null,slots3 = null;
+
+            $(document).on('click', '.trainerId', function() {
+              trainer = $(this);
+              id = $(this).attr("data-id");
+              name = $(this).attr("data-name");
+
+              $('#trainerTT tr').each(function(){
+                  $(this).find('td').each(function(){
+                    $(this).find('.content')[0].innerHTML = `<div class="content">
+                                      <div class="empty">
+                                        - 
+                                      </div>
+                                    </div>`
+                    $(this).find('.content').css('background-color',"unset");
+                    $(this).find('.content').css('color',"unset");
+                    });
+                  });
+
+
               $.ajax({
                 url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
                 // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
                 success:(data)=>{
                   var index = 0;
-                  $('#trainerTT tr').each(function(){
-                    var timeR = null;
-                    var timeStr = null;
-                    if(index!=0){
-                        timeR = $(this).find('th')[0].innerText;
-                        var timeA = timeR.split('-');
-                        timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                  $.ajax({
+                    url:'http://127.0.0.1:3500/user/bookedSlots/',
+                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/',
+                    method: 'GET',  
+                    success:(data2)=>{
+
+                    for(var i=0;i<data2.length;i++){
+                      if(Object.keys(data2[i])[0] == name){
+                        slots = data2[i][Object.keys(data2[i])[0]];
                       }
-                      
-                      $(this).find('td').each(function(){
-                        var col = $("table thead tr th").eq($(this).index());
-                        var key = col[0].getAttribute('value');
-                        
-                        if(index!=0 && data[key]!=undefined && (data[key].includes(timeStr) == true)){
-                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button>`;
-                          $(this).find('.content').find('.bookSlot').removeAttr('hidden');
-                          $(this).find('.content').find('.empty').attr('hidden','');
-                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                          $(this).find('.content').css('background-color',"yellowgreen");
-                          $(this).find('.content').css('color',"darkgreen");
-                        }
-                      });
-                      index++;
-                    });
-
-                    var today = new Date();
-
-                    var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
-                    var text = " ";
-
-                    if(data && (todayTime in data) && trainers[i].isCreated){
-                        for(var i =0;i<data[todayTime].length;i++){
-                            text += `<div class="slotRow">
-                                    <div class="slots">
-                                    ${data[todayTime][i]}
-                                    </div>
-                                    <div class="joinLink">
-                                        <form method="post" action='/user/zoomDashboard/${id}'>
-                                            <button style="background-color:red;cursor:default">Join</button>
-                                        </form>
-                                    </div>
-                                    </div>`
-                        }
-                        document.getElementById('classes').innerHTML = text;
                     }
+
+
+                      $('#trainerTT tr').each(function(){
+                        var timeR = null;
+                        var timeStr = null;
+                        if(index!=0){
+                            timeR = $(this).find('th')[0].innerText;
+                            var timeA = timeR.split('-');
+                            timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                            timeStr2 = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
+                          }
+                          
+                          $(this).find('td').each(function(){
+                            var col = $("table thead tr th").eq($(this).index());
+                            var key = col[0].getAttribute('value');
+                            var key2 = key.split(' ').join('-');
+                            if(slots){
+                              for(var j=0;j<slots.length;j++){
+                                if(key2 in slots[j]){
+                                  slots2 = slots[j];
+                                }
+                              }
+                            }
+
+                            if(index!=0 && data[key]!=undefined){
+
+                              for(var i=0;i<data[key].length;i++){
+                                if(data[key][i].slice(0,11) == timeStr){
+
+                                  if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
+                                    $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
+                                    $(this).find('.content').find('.empty').attr('hidden','');
+                                  }
+                                  else{
+                                    $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                    $(this).find('.content').find('.empty').attr('hidden','');
+                                    $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                    $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                    $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                    $(this).find('.content').css('background-color',"yellowgreen");
+                                    $(this).find('.content').css('color',"darkgreen");
+                                  }
+                                }
+                              }
+                            }
+                          });
+                          index++;
+                        });
+
+                        var today = new Date();
+
+                        var todayTime = today.getDate()+ "-"+today.toLocaleString('default', { month: 'short' })+ "-" + today.getFullYear();
+                        var text = " ";
+
+                          if(slots){
+                            for(var i=0;i<slots.length;i++){
+                              if(todayTime in slots[i]){
+                                for(var j=0;j<slots[i][todayTime].length;j++){
+                                  compare.push(slots[i][todayTime][j]);
+                                  text += `<div class="slotRow">
+                                              <div class="slots">
+                                              ${slots[i][todayTime][j]}
+                                              </div>
+                                              <div class="joinLink">
+                                                  <form method="get" action='/user/zoomDashboard/${id}'>
+                                                      <button style="background-color:red;cursor:default" disabled id="join${j}">Join</button>
+                                                  </form>
+                                              </div>
+                                              </div>`
+                                }
+                              }
+                            }
+
+                            document.getElementById('classes').innerHTML = text;
+                        }
+                    }
+                  });
                 }
               });
             });
-          };
+
+          $.ajax({
+            url:'http://127.0.0.1:3500/user/bookedSlots/',
+            // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/',
+            method: 'GET',  
+            success:(data)=>{
+              
+            }
+
+        
+          });
+
+
+          setInterval(()=>{
+                var today = new Date();
+                var m = today.getMinutes();
+                var h = today.getHours();
+                if(h == '0') {h = 12}
+                if(m<10){
+                    m = '0' + m;
+                }
+                
+                if(h>12){
+                    h = h-12;
+                    m = m+"PM";
+                }else{
+                    m = m + 'AM';
+                }
+                var currentTime = h+":"+m;
+                
+                document.getElementById('todayDate').innerText = today.toLocaleString('default', { month: 'short' }) + " " + today.getDate()+ " " + today.getFullYear() +" " + currentTime;
+
+                var compare1 = currentTime.slice(0,4);
+
+                for(var i=0;i<compare.length;i++){
+                    var compare2 = compare[i].slice(0,4);
+
+
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
+                      $.ajax({
+                        url:'http://127.0.0.1:3500/user/isCreated/'+id,
+                        // url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
+                        method: 'GET',
+                        success:(data)=>{
+                          if(data.isCreated == true){
+                            $('#join'+(i-1)).removeAttr('disabled');
+                            $('#join'+(i-1)).css('background-color','green');
+                            $('#join'+(i-1)).css('cursor','pointer');
+                          }
+                        }
+                      }); 
+                    }
+                    else{
+                        $('#join'+i).attr('disabled','');
+                        $('#join'+i).css('background-color','#99AAAB');
+                        $('#join'+i).css('color','white');
+                        $('#join'+i).css('border-radius','20px');
+                        $('#join'+i).css('cursor','default');
+                    }
+                }
+
+            },1000);
+            
 
         var curr = new Date;
           var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
@@ -455,26 +546,53 @@
               const slot = $(this).attr('data-slot');
               const name = $(this).attr('data-trainer');
 
-              const bookedSlots = {
-                trainerName: name,
-                key: key,
-                slot: slot
-              }
+              $(this).attr('hidden','');
+              $(this).next().removeAttr('hidden');
 
-              console.log(bookedSlots);
+              const bookedSlots = new Object();
+              const date = new Object();
 
-              window.location = 'http://127.0.0.1:3500/user/zoomDashboard/'+id;
-              // window.location = 'https://shapeyou-demo.herokuapp.com/user/zoomDashboard/'+id;
-              
+              date[key] = new Array();
+              date[key].push(slot);
+
               $.ajax({
-                url:'/user/updateuser',
-                method:'PUT',
-                data:bookedSlots,
-                success:()=>{
-                  console.log('data');
+                url:'/user/bookedSlots',
+                method:'GET',
+                success:(booked)=>{
+
+                  for(var i=0;i<booked.length;i++){
+                    if(Object.keys(booked[i])[0] == name){
+                      var temp = booked[i][Object.keys(booked[i])[0]];
+                      if(temp.length == 0){
+                        booked[i][Object.keys(booked[i])[0]].push(date); 
+                      }else{
+                        for(var j=0;j<temp.length;j++){
+                          if(key in temp[j]){
+                            booked[i][Object.keys(booked[i])[0]][j][key].push(slot);
+                            break;
+                          }
+                          else{
+                              booked[i][Object.keys(booked[i])[0]].push(date); 
+                              break;
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  $.ajax({
+                    url:'/user/updateuser',
+                    method:'PUT',
+                    data:{booked},
+                    success:(data2)=>{
+                      // console.log(data2);
+                      window.location = 'http://127.0.0.1:3500/user/userDashboard/';
+                        //window.location ='https://shapeyou-demo.herokuapp.com/user/userDashboard/',
+                    }
+                  });
+
                 }
               });
-            
           });
 
 

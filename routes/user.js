@@ -24,7 +24,8 @@ route.get('/', (req, res) => {
 });
 
 route.get('/category/:parent', (req, res) => {
-    Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+    var parent = req.params.parent;
+Category.find({parent:req.params.parent}, (err, foundCategory) => { 
         var titles = [];
         for(var i=0;i<foundCategory.length;i++){
             titles.push(foundCategory[i].title);
@@ -47,7 +48,7 @@ route.get('/category/:parent', (req, res) => {
                         }
                     }
                 });
-                res.render('categoryShow', {category: foundCategory[0], trainers: trainers});
+                res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent});
             }
         })
     })

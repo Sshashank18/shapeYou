@@ -1,4 +1,55 @@
-<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShapeYou - Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/trainerDashboard.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/index.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/>
+<script type="text/javascript" src="scripts/JQuery3.3.1.js"></script>
+<script type="text/javascript" src="scripts/lightslider.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">ShapeYou</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <% if(!currentUser){ %>
+                <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
+                <li><a class="nav-link" href="/auth">Sign Up</a></li>
+            <% } else{ %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/user/category/Fitness%20trainer">Fitness Trainer</a>
+                  <a class="dropdown-item" href="/user/category/Wellness">Welness</a>
+                  <a class="dropdown-item" href="/user/category/Counselling">Counselling</a>
+                </div>
+              </li>
+              <li><a class="nav-link" href="/user/userDashboard/<%= currentUser._id %>">Go to Dashboard</a></li>
+                <li><a class="nav-link mr-3" href="#">Signed In as <%= currentUser.username %></a></li>
+                <li><a class="nav-link mr-3" href="/auth/logout">Sign Out</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </nav>
 
   <!-- ======= Intro Section ======= -->
   <section id="intro">
@@ -156,23 +207,28 @@
       <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p>
     </div>
 
-    
-    <div class="flex flex-wrap -m-4">
+        <ul class="autoWidth" class="cs-hidden">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Fitness trainer') { %>
-      <div class="xl:w-1/5 md:w-1/2 p-4 zoom">
-        <div class="bg-gray-100 p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
+          
+          
+          <li class="item-a">
+            <!--slider-box-->
+            <div class="box">
+            <!--model-->
+            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+            <!--details-->
+            <div class="details">
+            <!--character-details-->
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
           <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
-        </div>
-      </div>
+            </div>
+            
+            </div>
+            </li>
       <% } %>
       <% }); %>
-
-
-    </div>
+    </ul>
   </div>
 </section>
 <section class="text-gray-700 body-font" >
@@ -186,22 +242,28 @@
     </div>
 
     
-    <div class="flex flex-wrap -m-4">
+    <ul class="autoWidth" class="cs-hidden">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
-      <div class="xl:w-1/2 md:w-1/2 p-4 zoom">
-        <div class="bg-gray-100 p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>">Read More</a></button></p>
-        </div>
-      </div>
+
+          <li class="item-a">
+            <!--slider-box-->
+            <div class="box">
+            <!--model-->
+            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+            <!--details-->
+            <div class="details">
+            <!--character-details-->
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
+          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
+            </div>
+            
+            </div>
+            </li>
+
       <% } %>
       <% }); %>
-
-
-    </div>
+    </ul>
   </div>
 </section>
 
@@ -216,26 +278,36 @@
     </div>
 
     
-    <div class="flex flex-wrap -m-4">
+    <ul class="autoWidth" class="cs-hidden">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
-      <div class="xl:w-1/2 md:w-1/2 p-4 zoom">
-        <div class="bg-gray-100 p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"> <button class="btn btn-outline-secondary"> <a href="/user/category/<%= category.parent %>">Read More</a></button></p>
-        </div>
-      </div>
+
+          <li class="item-a">
+            <!--slider-box-->
+            <div class="box">
+            <!--model-->
+            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+            <!--details-->
+            <div class="details">
+            <!--character-details-->
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
+          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
+            </div>
+            
+            </div>
+            </li>
       <% } %>
       <% }); %>
 
 
-    </div>
+    </ul>
   </div>
 </section>
 
+<script src="scripts/script.js" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-
-<%- include('./partials/footer') %>
+</body>
+</html>

@@ -15,7 +15,6 @@ const request = require('request');
 const route = express.Router();
 
 route.get('/',(req,res)=>{
-    // console.log(req.user);
     Trainer.findById(req.user._id).populate('users').exec( (err,trainer)=>{
         res.render('trainerDashboard', {trainer:trainer});
     });
@@ -189,6 +188,16 @@ route.post('/createMeeting',(req,res)=>{
 });
 
 route.get('/getMeeting',(req,res)=>{
+
+    Trainer.findByIdAndUpdate(req.user._id,
+        {
+            isCreated:true
+        },
+        (err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+        });
 
     var options = {
         method: 'GET',

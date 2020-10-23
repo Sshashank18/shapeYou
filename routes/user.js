@@ -23,6 +23,29 @@ route.get('/', (req, res) => {
     // res.render('index');
 });
 
+
+route.get('/isCreated/:id',(req,res)=>{
+    Trainer.findById(req.params.id,(err,trainer)=>{
+        if(err){
+            console.log(err);
+        }else{
+            var isCreated = trainer.isCreated;
+            res.json({isCreated});
+        }
+    });
+});
+
+
+route.get('/bookedSlots/',(req,res)=>{
+    User.findById(req.user._id,(err,user)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.json(user.bookedSlot);
+        }
+    });
+});
+
 route.get('/category/:parent', (req, res) => {
     var parent = req.params.parent;
 Category.find({parent:req.params.parent}, (err, foundCategory) => { 
@@ -67,21 +90,29 @@ route.post('/newSession', (req, res) => {
                         console.log("I DO NOT CONTAIN THE TRAINER");
                         user.trainers.push(trainer);
                         user.trainers.category = req.body.category
+
+                        const obj = new Object();
+                        obj[trainer.username] = new Array();
+
+                        user.bookedSlot.push(obj);
+                    
                         user.save();
-                        res.redirect('/user/userDashboard/' + user._id);
+                        res.redirect('/user/userDashboard/');
                     } else {
-                        res.redirect('/user/userDashboard/' + user._id);
+                        res.redirect('/user/userDashboard/');
                     }
+
                     trainer.users.push(user);
                     trainer.save();
+                    
                 }
             });
         }
     });
 });
 
-route.get('/userDashboard/:id', (req, res) => {
-    User.findById(req.params.id).populate("trainers").exec(function(err, user) {
+route.get('/userDashboard/', (req, res) => {
+    User.findById(req.user._id).populate("trainers").exec(function(err, user) {
         if(err) {
             console.log(err);
         } else {
@@ -91,12 +122,15 @@ route.get('/userDashboard/:id', (req, res) => {
 });
 
 route.put('/updateuser', (req, res) => {
-    User.findById(req.user._id, (err, user) => {
+    User.findByIdAndUpdate(req.user._id,
+        {
+            bookedSlot: req.body.booked
+        },
+        (err, user) => {
         if(err) {
             console.log(err);
         } else {
-            user.bookedSlot = req.query.data;
-            user.save();
+            res.sendStatus(200);
         }
     })
 });
@@ -123,8 +157,8 @@ route.post('/signature',(req,res)=>{
 
     var options = {
         method: 'GET',
-        // url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
-        url: 'https://shapeyou-demo.herokuapp.com/trainer/passMeetingDetails/'+req.body.trainerId,
+        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
+        // url: 'https://shapeyou-demo.herokuapp.com/trainer/passMeetingDetails/'+req.body.trainerId,
         headers: {
             'content-type': 'application/json'
         }

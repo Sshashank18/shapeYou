@@ -20,8 +20,8 @@ var userSchema = new mongoose.Schema({
         }
     ],
     bookedSlot: {
-        type: Object,
-        default: null
+        type: Array,
+        default: []
     }
 });
 

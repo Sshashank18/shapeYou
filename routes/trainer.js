@@ -66,13 +66,6 @@ route.get('/personalSlots', (req, res) => {
 });
 
 route.put('/personalSlots', (req, res) => {
-    // Trainer.findByIdAndUpdate(req.user._id, {personalSlots: req.body}, (err, trainer) => {
-    //     if(err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log(trainer);
-    //     }
-    // });
     const arr1 = [];
     const arr2 = [];
     const arr3 = [];
@@ -100,7 +93,13 @@ route.put('/personalSlots', (req, res) => {
         Friday: arr5f,
         Saturday: arr6f
     }
-    console.log(obj);
+    Trainer.findByIdAndUpdate(req.user._id, {personalSlots: obj}, (err, trainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(trainer);
+        }
+    });
 })
 
 //Handling Zoom APIs

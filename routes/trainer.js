@@ -66,13 +66,41 @@ route.get('/personalSlots', (req, res) => {
 });
 
 route.put('/personalSlots', (req, res) => {
-    Trainer.findByIdAndUpdate(req.user._id, {personalSlots: req.body}, (err, trainer) => {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(trainer);
-        }
-    });
+    // Trainer.findByIdAndUpdate(req.user._id, {personalSlots: req.body}, (err, trainer) => {
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log(trainer);
+    //     }
+    // });
+    const arr1 = [];
+    const arr2 = [];
+    const arr3 = [];
+    const arr4 = [];
+    const arr5 = [];
+    const arr6 = [];
+    if(req.body.Monday) arr1.push(req.body.Monday);
+    if(req.body.Tuesday) arr2.push(req.body.Tuesday);
+    if(req.body.Wednesday) arr3.push(req.body.Wednesday);
+    if(req.body.Thursday) arr4.push(req.body.Thursday);
+    if(req.body.Friday) arr5.push(req.body.Friday);
+    if(req.body.Saturday) arr6.push(req.body.Saturday);
+    var arr1f = Array.prototype.concat.apply([], arr1);
+    var arr2f = Array.prototype.concat.apply([], arr2);
+    var arr3f = Array.prototype.concat.apply([], arr3);
+    var arr4f = Array.prototype.concat.apply([], arr4);
+    var arr5f = Array.prototype.concat.apply([], arr5);
+    var arr6f = Array.prototype.concat.apply([], arr6);
+    const obj = 
+    {
+        Monday: arr1f,
+        Tuesday: arr2f,
+        Wednesday: arr3f,
+        Thursday: arr4f,
+        Friday: arr5f,
+        Saturday: arr6f
+    }
+    console.log(obj);
 })
 
 //Handling Zoom APIs

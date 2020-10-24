@@ -10,7 +10,6 @@ const request = require('request');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
-const user = require('../models/user');
 
 route.get('/', (req, res) => {
     Category.find({}, (err, foundCategories) => {

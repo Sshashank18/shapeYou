@@ -8,9 +8,11 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/lightslider.css"/>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="/scripts/JQuery3.3.1.js"></script>
+    <script type="text/javascript" src="/scripts/lightslider.js"></script>
 </head>
 <body>
 
@@ -71,7 +73,7 @@
             </div>
           </section>
 
-            <% switch (category.parent) {
+            <!-- <% switch (category.parent) {
                 case 'Wellness' : %>
                     <div class="trainersBox">
                         <div class="subcategories">
@@ -100,8 +102,8 @@
                         </div>
                         <% break;
                 
-                } %>
-
+                } %> -->
+<!-- 
             <div class="trainers" id="trainersList">
 
                 <% trainers.forEach((trainer)=>{   %>
@@ -118,9 +120,300 @@
                   
                   
 
-            </div>
-    </div>
-    <script>
+            </div> -->
+            <% if(parent == 'Fitness trainer') { %>
+            <section class="text-gray-700 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-wrap w-full mb-20">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">CrossFit</h1>
+                      <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                    </div>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                  </div>
+                  <ul class="autoWidth" class="cs-hidden">
+                  <% trainers.forEach(function(trainer, idx) { %>
+                    <% if(trainer.subCategories.includes('CrossFit')) { %>
+                        <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                    <% } %>
+                 <% }) %>
+                </ul>
+                </div>
+            </section>
+
+            <section class="text-gray-700 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-wrap w-full mb-20">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Functional & Strength training</h1>
+                      <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                    </div>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                  </div>
+                  <ul class="autoWidth" class="cs-hidden">
+                  <% trainers.forEach(function(trainer) { %>
+                    <% if(trainer.subCategories.includes('Functional & Strength Training')) { %>
+                        <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                    <% } %>
+                 <% }) %>
+                  </ul>
+                </div>
+            </section>
+
+            <section class="text-gray-700 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-wrap w-full mb-20">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Zumba</h1>
+                      <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                    </div>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                  </div>
+                  <ul class="autoWidth" class="cs-hidden">
+                  <% trainers.forEach(function(trainer) { %>
+                    <% if(trainer.subCategories.includes('Zumba')) { %>
+                        <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                    <% } %>
+                 <% }) %>
+                  </ul>
+                </div>
+            </section>
+
+            <section class="text-gray-700 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-wrap w-full mb-20">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Dance</h1>
+                      <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                    </div>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                  </div>
+                  <ul class="autoWidth" class="cs-hidden">
+                  <% trainers.forEach(function(trainer) { %>
+                    <% if(trainer.subCategories.includes('Dance')) { %>
+                        <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                    <% } %>
+                 <% }) %>
+                  </ul>
+                </div>
+            </section>
+
+            <section class="text-gray-700 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-wrap w-full mb-20">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">MMA & Boxing</h1>
+                      <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                    </div>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                  </div>
+                  <ul class="autoWidth" class="cs-hidden">
+                  <% trainers.forEach(function(trainer) { %>
+                    <% if(trainer.subCategories.includes('MMA & Boxing')) { %>
+                        <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                    <% } %>
+                 <% }) %>
+                  </ul>
+                </div>
+            </section>
+            <% } if(parent == 'Wellness') { %>
+                <section class="text-gray-700 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                      <div class="flex flex-wrap w-full mb-20">
+                        <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Yoga</h1>
+                          <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                        </div>
+                        <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                      </div>
+                      <ul class="autoWidth" class="cs-hidden">
+                      <% trainers.forEach(function(trainer) { %>
+                        <% if(trainer.subCategories.includes('Yoga')) { %>
+                            <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                        <% } %>
+                     <% }) %>
+                      </ul>
+                    </div>
+                </section>
+
+                <section class="text-gray-700 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                      <div class="flex flex-wrap w-full mb-20">
+                        <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Meditation</h1>
+                          <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                        </div>
+                        <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                      </div>
+                      <ul class="autoWidth" class="cs-hidden">
+                      <% trainers.forEach(function(trainer) { %>
+                        <% if(trainer.subCategories.includes('Meditation')) { %>
+                            <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                        <% } %>
+                     <% }) %>
+                      </ul>
+                    </div>
+                </section>
+            <% } if(parent == 'Counselling') { %>
+                <section class="text-gray-700 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                      <div class="flex flex-wrap w-full mb-20">
+                        <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Nutrition</h1>
+                          <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                        </div>
+                        <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                      </div>
+                      <ul class="autoWidth" class="cs-hidden">
+                      <% trainers.forEach(function(trainer) { %>
+                        <% if(trainer.subCategories.includes('Nutrition')) { %>
+                            <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                        <% } %>
+                     <% }) %>
+                      </ul>
+                    </div>
+                </section>
+
+                <section class="text-gray-700 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                      <div class="flex flex-wrap w-full mb-20">
+                        <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px;">Therapy & counselling</h1>
+                          <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                        </div>
+                        <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                      </div>
+                      <ul class="autoWidth" class="cs-hidden">
+                      <% trainers.forEach(function(trainer) { %>
+                        <% if(trainer.subCategories.includes('Therapy & counselling')) { %>
+                            <li class="item-a">
+                            <!--slider-box-->
+                            <div class="box">
+                            <!--model-->
+                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
+                            <!--details-->
+                            <div class="details">
+                            <!--character-details-->
+                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= trainer.username %></h2>
+                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>" style="text-decoration: none;">Read More</a></button></p>
+                            </div>
+                            
+                            </div>
+                            </li>
+                        <% } %>
+                     <% }) %>
+                      </ul>
+                    </div>
+                </section>
+            <% } %>
+
+
+    
+    <!-- <script>
 
         var trainers = <%- JSON.stringify(trainers) %> 
 
@@ -159,6 +452,7 @@
             $("button").not(this).removeClass('activated');
         });
 
-    </script>
+    </script> -->
+<script src="/scripts/script.js" type="text/javascript"></script>
 </body>
 </html>

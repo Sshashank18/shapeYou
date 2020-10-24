@@ -10,6 +10,7 @@ const rp = require('request-promise');
 var http = require("https");
 
 const request = require('request');
+const e = require('express');
 
 
 const route = express.Router();
@@ -60,6 +61,19 @@ route.put('/setTimeTable/:id',(req,res)=>{
     });
 });
 
+route.get('/personalSlots', (req, res) => {
+    res.render('trainerPersonal');
+});
+
+route.put('/personalSlots', (req, res) => {
+    Trainer.findByIdAndUpdate(req.user._id, {personalSlots: req.body}, (err, trainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(trainer);
+        }
+    });
+})
 
 //Handling Zoom APIs
 

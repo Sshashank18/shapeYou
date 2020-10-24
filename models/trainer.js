@@ -49,6 +49,10 @@ var trainerSchema = new mongoose.Schema({
     isCreated: {
         type: Boolean,
         default: false
+    },
+    personalSlots: {
+        type: Object,
+        default: null
     }
 });
 

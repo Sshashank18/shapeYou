@@ -98,6 +98,7 @@ route.put('/personalSlots', (req, res) => {
             console.log(err);
         } else {
             console.log(trainer);
+            res.redirect('/trainer');
         }
     });
 })

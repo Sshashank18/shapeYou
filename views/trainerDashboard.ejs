@@ -240,49 +240,16 @@
 
     <div class="container courseContainer">
         <div class="group" >
-            <h2 id="todayDate"></h2>
-            <div id="classes">
+            <h2 class="todayDate"></h2>
+            <div id="classesG">
                 
             </div>
         </div>
         <div class="personal" hidden>
-
+            <h2 class="todayDate"></h2>
+            <div id="classesP">
         </div>
     </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Course Name</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <h3>Course Description</h3>
-            <h5>Current Date</h5>
-
-            <ul>
-                <li><span>6:00-7:00</span>
-                    <form method="post" action='/trainer/createMeeting'>
-                        <button class="btn btn-warning" type="submit">Create Link</button>
-                    </form>
-                </li>
-                <li><span>7:00-8:00</span><button class="btn btn-warning">Create Link</button></li>
-                <li><span>8:00-9:00</span><button class="btn btn-warning">Create Link</button></li>
-            </ul>
-
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-        </div>
-    </div>
-
 
 
     <!-- Modal for set Time -->
@@ -604,8 +571,13 @@
 
       <script>
 
+          var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
+
           var compare = new Array();
+          var compareP = null;
           
+          var persSlots = null;
+
           $.ajax({
               url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
             //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
@@ -619,11 +591,47 @@
                           timeR = $(this).find('th')[0].innerText;
                           var timeA = timeR.split('-');
                           timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                          timeStr2 = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
                         }
                         
                         $(this).find('td').each(function(){
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
+                            var dayCol = col[0].innerHTML.split('>')[2].split('<')[0];
+
+                            switch (dayCol){
+                                case 'MON':
+                                    dayCol = "Monday";
+                                    break;
+                                case 'TUE':
+                                    dayCol = "Tuesday";
+                                    break;
+                                case 'WED':
+                                    dayCol = "Wednesday";
+                                    break;
+                                case 'THU':
+                                    dayCol = "Thursday";
+                                    break;
+                                case 'FRI':
+                                    dayCol = "Friday";
+                                    break;
+                                case 'SAT':
+                                    dayCol = "Saturday";
+                                    break;
+                                default:
+                                    dayCol = "Sunday";
+                            }
+
+                            persSlots = trainerPersonals[dayCol];
+
+                            for(var i=0;i<persSlots.length;i++){
+                                if(persSlots[i] == timeStr2){
+                                    $(this).find('.content')[0].innerText = "Personal";
+                                    $(this).find('.content').css('background-color',"wheat");
+                                }
+                            }
+
+
                             if(index!=0 && data[key]!=undefined){
                                 for(var i=0;i<data[key].length;i++){
                                     if(data[key][i].slice(0,11) == timeStr){
@@ -684,7 +692,9 @@
                     var today = new Date();
 
                     var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
+                    var todayDay = today.getDay();
                     var text = " ";
+                    var text2 = " ";
 
                     if(data && (todayTime in data)){
                         for(var i =0;i<data[todayTime].length;i++){
@@ -700,10 +710,85 @@
                                     </div>
                                     </div>`
                         }
-                        document.getElementById('classes').innerHTML = text;
+
+
+                        document.getElementById('classesG').innerHTML = text;
                     }
+
+                    var weekday=new Array(7);
+                    weekday[0]="Sunday";
+                    weekday[1]="Monday";
+                    weekday[2]="Tuesday";
+                    weekday[3]="Wednesday";
+                    weekday[4]="Thursday";
+                    weekday[5]="Friday";
+                    weekday[6]="Saturday";
+
+                    compareP = trainerPersonals[weekday[todayDay]];
+                    for(var j=0;j<trainerPersonals[weekday[todayDay]].length;j++){
+                        text2 += `<div class="slotRow">
+                                <div class="slots">
+                                ${trainerPersonals[weekday[todayDay]][j]}
+                                </div>
+                                <div class="createLink">
+                                    <form method="post" action='/trainer/createMeeting'>
+                                        <button style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
+                                    </form>
+                                </div>
+                                </div>`
+                    }
+
+                    document.getElementById('classesP').innerHTML = text2;
+
                 }
             });
+
+
+            setTimeout(function(){
+                $('#weekTable tr').each(function(){
+                    $(this).find('td').each(function(){
+                        var col = $("#weekTable thead tr th").eq($(this).index());
+                        var dayCol = col[0].innerText.slice(-3);
+
+                        switch (dayCol){
+                                case 'MON':
+                                    dayCol = "Monday";
+                                    break;
+                                case 'TUE':
+                                    dayCol = "Tuesday";
+                                    break;
+                                case 'WED':
+                                    dayCol = "Wednesday";
+                                    break;
+                                case 'THU':
+                                    dayCol = "Thursday";
+                                    break;
+                                case 'FRI':
+                                    dayCol = "Friday";
+                                    break;
+                                case 'SAT':
+                                    dayCol = "Saturday";
+                                    break;
+                                default:
+                                    dayCol = "Sunday";
+                            }
+
+                            var slotsP = trainerPersonals[dayCol];
+
+                            var timeR = $(this).closest('tr').find('th')[0].innerText;
+                            var timeA = timeR.split('-');
+                            var timeStr = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
+
+                            for(var j=0;j<slotsP.length;j++){
+                                if(slotsP[j] == timeStr){
+                                    $(this).find('input[type="checkbox"]').attr('disabled','');
+                                    $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
+                                    $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                                }
+                            }
+                    });
+                });
+            }, 500);
             
             
             setInterval(()=>{
@@ -723,13 +808,13 @@
                 }
                 var currentTime = h+":"+m;
                 
-                document.getElementById('todayDate').innerText = today.toLocaleString('default', { month: 'short' }) + " " + today.getDate()+ " " + today.getFullYear() +" " + currentTime;
+                $('.todayDate').text(today.toLocaleString('default', { month: 'short' }) + " " + today.getDate()+ " " + today.getFullYear() +" " + currentTime);
 
                 var compare1 = currentTime.slice(0,4);
 
                 for(var i=0;i<compare.length;i++){
                     var compare2 = compare[i].slice(0,4);
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) >=15 ))){
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
                         $('#create'+i).removeAttr('disabled');
                         $('#create'+i).css('background-color','green');
                         $('#create'+i).css('cursor','pointer');
@@ -743,6 +828,23 @@
                         $('#create'+i).css('cursor','default');
                     }
 
+                }
+
+                var compare2 = compareP;
+                for(var j=0;j<compare2.length;j++){
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))) && (compare1.slice(-2) <=15 ))){
+                        $('#createP'+j).removeAttr('disabled');
+                        $('#createP'+j).css('background-color','green');
+                        $('#createP'+j).css('cursor','pointer');
+
+                    }
+                    else{
+                        $('#createP'+j).attr('disabled','');
+                        $('#createP'+j).css('background-color','#99AAAB');
+                        $('#createP'+j).css('color','white');
+                        $('#createP'+j).css('border-radius','20px');
+                        $('#createP'+j).css('cursor','default');
+                    }
                 }
 
             },1000);
@@ -803,6 +905,7 @@
             document.getElementById('date'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
             document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
             document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
+            document.getElementById('date'+j).setAttribute('value',Object.keys(data)[j-1]);
             j++;
         }
 

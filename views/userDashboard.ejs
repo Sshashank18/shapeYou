@@ -430,19 +430,8 @@
               });
             });
 
-          $.ajax({
-            url:'http://127.0.0.1:3500/user/bookedSlots/',
-            // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/',
-            method: 'GET',  
-            success:(data)=>{
-              
-            }
 
-        
-          });
-
-
-          setInterval(()=>{
+            setInterval(()=>{
                 var today = new Date();
                 var m = today.getMinutes();
                 var h = today.getHours();

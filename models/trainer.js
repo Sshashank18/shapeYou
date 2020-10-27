@@ -53,7 +53,8 @@ var trainerSchema = new mongoose.Schema({
     personalSlots: {
         type: Object,
         default: null
-    }
+    },
+    categoryType: String
 });
 
 trainerSchema.plugin(passportLocalMongoose);

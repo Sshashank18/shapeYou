@@ -10,8 +10,23 @@ const request = require('request');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
+const { text } = require('express');
 
 route.get('/', (req, res) => {
+    if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Category.find({title: regex}, (err, foundCategories) => {
+            if(err) {
+                console.log(err);
+            } else {
+                var noMatch;
+                if(foundCategories.length < 1) {
+                    noMatch = "No categories found, please try again!";
+                }
+                res.render('index', {categories: foundCategories, noMatch: noMatch});
+            }
+        })
+    } else {
     Category.find({}, (err, foundCategories) => {
         if(err) {
             console.log(err);
@@ -19,6 +34,7 @@ route.get('/', (req, res) => {
             res.render('index', {categories: foundCategories});
         }
     })
+}
     // res.render('index');
 });
 
@@ -134,6 +150,16 @@ route.put('/updateuser', (req, res) => {
     })
 });
 
+// route.get('/:categoryType', (req, res) => {
+//     Trainer.find({categoryType: req.query.categoryType}, (err, foundTrainer) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             res.render('');
+//         }
+//     });
+// });
+
 route.get('/zoomDashboard/:id',(req, res)=>{
     res.render('userZoomDashboard.ejs',{trainer:req.params.id});
 });
@@ -189,5 +215,9 @@ route.post('/signature',(req,res)=>{
     });
 
 });
+
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = route;

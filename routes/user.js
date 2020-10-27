@@ -10,7 +10,8 @@ const request = require('request');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
-const { text } = require('express');
+
+var middleware = require("../middleware");
 
 route.get('/', (req, res) => {
     if(req.query.search) {
@@ -19,11 +20,11 @@ route.get('/', (req, res) => {
             if(err) {
                 console.log(err);
             } else {
-                var noMatch;
+                var noMatch = "";
                 if(foundCategories.length < 1) {
                     noMatch = "No categories found, please try again!";
                 }
-                res.render('index', {categories: foundCategories, noMatch: noMatch});
+                res.render('index1', {categories: foundCategories, noMatch: noMatch});
             }
         })
     } else {
@@ -50,16 +51,15 @@ route.get('/isCreated/:id',(req,res)=>{
     });
 });
 
-
-route.get('/bookedSlots/',(req,res)=>{
-    User.findById(req.user._id,(err,user)=>{
+route.get('/bookedSlots/:id',(req, res)=>{
+    User.findById(req.params.id,(err,user)=>{
         if(err){
             console.log(err);
         }else{
             res.json(user.bookedSlot);
         }
     });
-});
+    });
 
 route.get('/category/:parent', (req, res) => {
     var parent = req.params.parent;

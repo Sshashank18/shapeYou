@@ -627,7 +627,7 @@
                             for(var i=0;i<persSlots.length;i++){
                                 if(persSlots[i] == timeStr2){
                                     $(this).find('.content')[0].innerText = "Personal";
-                                    $(this).find('.content').css('background-color',"wheat");
+                                    $(this).find('.content').css('color',"darkred");
                                 }
                             }
 
@@ -636,47 +636,48 @@
                                 for(var i=0;i<data[key].length;i++){
                                     if(data[key][i].slice(0,11) == timeStr){
                                         if(data[key][i].slice(12,) == "CrossFit"){
-                                            $(this).find('.content')[0].innerText = "C";
-                                            $(this).find('.content').css('background-color',"blue");
+                                            $(this).find('.content')[0].innerText = "CrossFit";
+                                            $(this).find('.content').css('color',"blue");
+                                            $(this).find('.content').css('font-size',"28px");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Functional&StrengthTraining"){
                                             $(this).find('.content')[0].innerText = "F";
-                                            $(this).find('.content').css('background-color',"red");
+                                            $(this).find('.content').css('color',"red");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "MMA&Boxing"){
                                             $(this).find('.content')[0].innerText = "MMA";
-                                            $(this).find('.content').css('background-color',"orange");
+                                            $(this).find('.content').css('color',"orange");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Zumba"){
                                             $(this).find('.content')[0].innerText = "Z";
-                                            $(this).find('.content').css('background-color',"grey");
+                                            $(this).find('.content').css('color',"grey");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Dance"){
                                             $(this).find('.content')[0].innerText = "D";
-                                            $(this).find('.content').css('background-color',"pink");
+                                            $(this).find('.content').css('color',"pink");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Yoga"){
                                             $(this).find('.content')[0].innerText = "Y";
-                                            $(this).find('.content').css('background-color',"green");
+                                            $(this).find('.content').css('color',"green");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Meditation"){
                                             $(this).find('.content')[0].innerText = "M";
-                                            $(this).find('.content').css('background-color',"black");
+                                            $(this).find('.content').css('color',"black");
                                             
                                         }
                                         else if(data[key][i].slice(12,) == "Nutrition"){
                                             $(this).find('.content')[0].innerText = "N";
-                                            $(this).find('.content').css('background-color',"brown");
+                                            $(this).find('.content').css('color',"brown");
                                             
                                         }else{
                                             $(this).find('.content')[0].innerText = "T";
-                                            $(this).find('.content').css('background-color',"lightgreen");
+                                            $(this).find('.content').css('color',"lightgreen");
                                             
                                         }
                                         $(this).find('.content').css('border-radius',"20px");
@@ -1076,7 +1077,7 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer.id %>',
+                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
                 // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
                 method:'PUT',
                 data: data,

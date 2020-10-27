@@ -20,16 +20,19 @@ mongoose.connect(MONGOURI,{
 });
 
 mongoose.connection.on('connected',()=>{
-    console.log('Connected to Mongoose.');
+	console.log('Connected to Mongoose.');
 });
 
 mongoose.connection.on('error',(err)=>{
-    console.log(err);
+	console.log(err);
 });
 
 mongoose.set('useFindAndModify', false);
 
 app.set("view engine", 'ejs');
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cors());
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 
@@ -67,9 +70,6 @@ app.use(function(req, res, next){
 
 //Decrypting
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(cors());
 
 //API Handling
 const trainerRouter = require('./routes/trainer');

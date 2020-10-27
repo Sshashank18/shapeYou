@@ -11,7 +11,23 @@ var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
 
+var middleware = require("../middleware");
+
 route.get('/', (req, res) => {
+    if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Category.find({title: regex}, (err, foundCategories) => {
+            if(err) {
+                console.log(err);
+            } else {
+                var noMatch = "";
+                if(foundCategories.length < 1) {
+                    noMatch = "No categories found, please try again!";
+                }
+                res.render('index1', {categories: foundCategories, noMatch: noMatch});
+            }
+        })
+    } else {
     Category.find({}, (err, foundCategories) => {
         if(err) {
             console.log(err);
@@ -19,6 +35,7 @@ route.get('/', (req, res) => {
             res.render('index', {categories: foundCategories});
         }
     })
+}
     // res.render('index');
 });
 
@@ -34,16 +51,15 @@ route.get('/isCreated/:id',(req,res)=>{
     });
 });
 
-
-route.get('/bookedSlots/',(req,res)=>{
-    User.findById(req.user._id,(err,user)=>{
+route.get('/bookedSlots/:id',(req, res)=>{
+    User.findById(req.params.id,(err,user)=>{
         if(err){
             console.log(err);
         }else{
             res.json(user.bookedSlot);
         }
     });
-});
+    });
 
 route.get('/category/:parent', (req, res) => {
     var parent = req.params.parent;
@@ -134,6 +150,16 @@ route.put('/updateuser', (req, res) => {
     })
 });
 
+// route.get('/:categoryType', (req, res) => {
+//     Trainer.find({categoryType: req.query.categoryType}, (err, foundTrainer) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             res.render('');
+//         }
+//     });
+// });
+
 route.get('/zoomDashboard/:id',(req, res)=>{
     res.render('userZoomDashboard.ejs',{trainer:req.params.id});
 });
@@ -189,5 +215,9 @@ route.post('/signature',(req,res)=>{
     });
 
 });
+
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = route;

@@ -31,7 +31,13 @@
           <ul class="navbar-nav ml-auto">
             <% if(!currentUser){ %>
                 <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
-                <li><a class="nav-link" href="/auth">Sign Up</a></li>
+                <li><a class="nav-link mr-3" href="/auth">Sign Up</a></li>
+                <form action="/user" method="GET" class="form-inline">
+                  <div class="form-group">
+                  <input type="text" name="search" placeholder="Search.." class="form-control mr-3">
+                  <input type="submit" value="Search" class="btn btn-success">
+                </div>
+                </form>
             <% } else{ %>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

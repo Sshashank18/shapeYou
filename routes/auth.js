@@ -20,7 +20,8 @@ route.post('/trainer', (req, res) => {
         username: req.body.trainerName,
         email: req.body.trainerEmail,
         contact: req.body.trainerPhone,
-        dob: req.body.dob
+        dob: req.body.dob,
+        type: 'Trainer'
     });
     Trainer.register(newTrainer, req.body.password, (err, trainer) => {
         if (err) {
@@ -37,7 +38,8 @@ route.post('/trainer', (req, res) => {
 route.post('/user', (req, res) => {
     var newUser = new User({
         username: req.body.userName,
-        email: req.body.userEmail
+        email: req.body.userEmail,
+        type: "User"
     });
     User.register(newUser, req.body.userPassword, (err, user) => {
         if(err) {

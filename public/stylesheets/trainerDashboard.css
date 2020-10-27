@@ -1,5 +1,7 @@
 body{
     height: 1200px;
+    margin: 0;
+    padding: 0;
 }
 
 .courseContainer{
@@ -73,15 +75,16 @@ input[type=checkbox] {
 }
 
 .content{
-  background-color: #E84342;
+  /* background-color: #E84342; */
   height: 40px;
   border-radius: 20px;
   text-align: center;
   line-height: 2.4;
-  color: darkred;
+  /* color: darkred; */
   width: 50%;
   margin-left: auto !important;
   margin-right: auto !important;
+  margin-top: 50%;
 }
 
 .trainingType{
@@ -108,4 +111,13 @@ button{
 .activated {
     color: white !important;
     background-color: #EE0079;
+}
+
+.table1 {
+    height: 900px;
+    width: 1100px;
+}
+
+.table1 > th {
+    color: grey;
 }

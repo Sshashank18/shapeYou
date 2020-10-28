@@ -587,7 +587,8 @@
                     data:{booked,userCount},
                     success:(data2)=>{
                       // console.log(data2);
-                      window.location = 'http://127.0.0.1:3500/user/userDashboard/<%= currentUser._id %>';
+                        // window.location = 'http://127.0.0.1:3500/user/userDashboard/'+<%- JSON.stringify(currentUser._id)%>,
+                        window.location = 'https://shapeyou-demo.herokuapp.com/user/userDashboard/'+<%- JSON.stringify(currentUser._id)%>
                         //window.location ='https://shapeyou-demo.herokuapp.com/user/userDashboard/',
                     }
                   });

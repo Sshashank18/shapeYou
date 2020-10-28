@@ -332,6 +332,7 @@
                   });
 
 
+
               $.ajax({
                 url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
                 // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
@@ -339,8 +340,8 @@
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    url:'http://127.0.0.1:3500/user/bookedSlots/<%=currentUser._id%>',
-                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/',
+                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/<%- JSON.stringify(currentUser._id)%>',
                     method: 'GET',  
                     success:(data2)=>{
 
@@ -540,12 +541,20 @@
 
               const bookedSlots = new Object();
               const date = new Object();
+              const date2 = new Object();
+              const userCount = new Object();
 
               date[key] = new Array();
               date[key].push(slot);
 
+              var key2 = key.split('-').join(' ');
+
+              date2[key2] = slot;
+
+              userCount[id] = date2;
+
               $.ajax({
-                url:'/user/bookedSlots',
+                url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,
                 method:'GET',
                 success:(booked)=>{
 
@@ -555,24 +564,26 @@
                       if(temp.length == 0){
                         booked[i][Object.keys(booked[i])[0]].push(date); 
                       }else{
+                        var isThere = false;
                         for(var j=0;j<temp.length;j++){
                           if(key in temp[j]){
+                            isThere = true;
                             booked[i][Object.keys(booked[i])[0]][j][key].push(slot);
                             break;
                           }
-                          else{
-                              booked[i][Object.keys(booked[i])[0]].push(date); 
-                              break;
-                          }
                         }
+                      if(!isThere){
+                        booked[i][Object.keys(booked[i])[0]].push(date); 
+                        break;
                       }
                     }
                   }
+                }
 
                   $.ajax({
                     url:'/user/updateuser',
                     method:'PUT',
-                    data:{booked},
+                    data:{booked,userCount},
                     success:(data2)=>{
                       // console.log(data2);
                       window.location = 'http://127.0.0.1:3500/user/userDashboard/';

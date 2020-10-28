@@ -40,6 +40,7 @@
     <br>
 
     <!-- Trainer TimeTable -->
+    
     <div class="container trainerTimeTable">
         <table class="table table1 table-bordered table-striped" id="trainerTT">
             <thead class="table-dark">
@@ -1070,7 +1071,7 @@
                         var subName = $(this).find(':checked').attr('name');
                         var timeR = $(this).closest('tr').find('th')[0].innerText;
                         var timeA = timeR.split('-');
-                        var timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00"+" "+subName;
+                        var timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00"+" "+subName+" 0";
                         data[Object.keys(data)[index]].push(timeStr);
                     }
                     index++;

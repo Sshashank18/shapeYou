@@ -49,7 +49,7 @@
                   <a class="dropdown-item" href="/user/category/Counselling">Counselling</a>
                 </div>
               </li>
-              <li><a class="nav-link" href="/user/userDashboard">Go to Dashboard</a></li>
+              <li><a class="nav-link" href="/user/userDashboard/<%= currentUser._id %>">Go to Dashboard</a></li>
                 <li><a class="nav-link mr-3" href="#">Signed In as <%= currentUser.username %></a></li>
                 <li><a class="nav-link mr-3" href="/auth/logout">Sign Out</a></li>
             <% } %>

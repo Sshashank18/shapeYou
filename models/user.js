@@ -13,13 +13,8 @@ var userSchema = new mongoose.Schema({
     sessionCount: Number,
     trainers: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Trainer"
-        },
-        {
-            category: String,
-            type: String,
-            numOfSessions: Number
+            type: Object,
+            default: {}
         }
     ],
     bookedSlot: {

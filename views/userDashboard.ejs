@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <title>User dashboard</title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -29,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                   <% user.trainers.forEach(function(trainer) { %>
-                    <li class="nav-item"><a class="nav-link trainerId" data-id="<%= trainer._id %>" data-name="<%= trainer.username %>"><%= trainer.username %></a></li>
+                    <li class="nav-item"><a class="nav-link trainerId" data-id="<%= trainer.id %>" data-name="<%= trainer.name %>"><%= trainer.name %></a></li>
                   <% }) %>
                     
                 </ul>
@@ -340,7 +341,7 @@
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    url:'http://127.0.0.1:3500/user/bookedSlots/<%= currentUser._id %>',
                     // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/<%- JSON.stringify(currentUser._id)%>',
                     method: 'GET',  
                     success:(data2)=>{
@@ -586,7 +587,7 @@
                     data:{booked,userCount},
                     success:(data2)=>{
                       // console.log(data2);
-                      window.location = 'http://127.0.0.1:3500/user/userDashboard/';
+                      window.location = 'http://127.0.0.1:3500/user/userDashboard/<%= currentUser._id %>';
                         //window.location ='https://shapeyou-demo.herokuapp.com/user/userDashboard/',
                     }
                   });

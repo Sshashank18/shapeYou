@@ -99,13 +99,18 @@ route.post('/newSession', (req, res) => {
         } else {
             Trainer.findById(req.body.trainerId, (err, trainer) => {
                 if(err) {
-                    console.log(trainer);
+                    console.log(err);
                 } else {
-                    if(!(user.trainers.includes(trainer._id)) ) {
-                        user.trainers.push(trainer);
-                        user.trainers.category = req.body.category;
-                        user.trainers.type = req.body.type;
-                        user.trainers.numOfSessions = req.body.numOfSessions;
+                    if(!(user.trainers.some(el => el.id == trainer._id))) {
+                        var info = {
+                            id: trainer._id,
+                            category: req.body.category,
+                            name: req.body.username,
+                            type: req.body.type,
+                            numOfSessions: req.body.numOfSessions,
+                        }
+                        user.trainers.push(info);
+                        
                         const obj = new Object();
                         obj[trainer.username] = new Array();
 
@@ -113,22 +118,18 @@ route.post('/newSession', (req, res) => {
                         user.markModified('trainers');
                         user.markModified('bookedSlot');
                         user.save();
-                        res.redirect('/user/userDashboard/');
+                        res.redirect('/user/userDashboard/' + user._id);
                     } else {
-                        res.redirect('/user/userDashboard/');
+                        res.redirect('/user/userDashboard/' + user._id);
                     }
-
-                    trainer.users.push(user);
-                    trainer.save();
-                    
                 }
             });
         }
     });
 });
 
-route.get('/userDashboard/', (req, res) => {
-    User.findById(req.user._id).populate("trainers").exec(function(err, user) {
+route.get('/userDashboard/:id', (req, res) => {
+    User.findById(req.params.id, function(err, user) {
         if(err) {
             console.log(err);
         } else {
@@ -137,7 +138,7 @@ route.get('/userDashboard/', (req, res) => {
     })
 });
 
-route.put('/updateuser', (req, res) => {
+route.put('/updateuser/', (req, res) => {
     trainerID = Object.keys(req.body.userCount)[0];
     Trainer.findById(trainerID,(err,trainer)=>{
         if(err){

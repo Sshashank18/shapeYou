@@ -102,15 +102,16 @@ route.post('/newSession', (req, res) => {
                     console.log(trainer);
                 } else {
                     if(!(user.trainers.includes(trainer._id)) ) {
-                        console.log("I DO NOT CONTAIN THE TRAINER");
                         user.trainers.push(trainer);
-                        user.trainers.category = req.body.category
-
+                        user.trainers.category = req.body.category;
+                        user.trainers.type = req.body.type;
+                        user.trainers.numOfSessions = req.body.numOfSessions;
                         const obj = new Object();
                         obj[trainer.username] = new Array();
 
                         user.bookedSlot.push(obj);
-                    
+                        user.markModified('trainers');
+                        user.markModified('bookedSlot');
                         user.save();
                         res.redirect('/user/userDashboard/');
                     } else {

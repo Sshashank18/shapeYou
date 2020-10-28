@@ -17,7 +17,9 @@ var userSchema = new mongoose.Schema({
             ref: "Trainer"
         },
         {
-            category: String
+            category: String,
+            type: String,
+            numOfSessions: Number
         }
     ],
     bookedSlot: {

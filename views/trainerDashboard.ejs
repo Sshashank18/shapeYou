@@ -626,7 +626,7 @@
                             persSlots = trainerPersonals[dayCol];
 
                             for(var i=0;i<persSlots.length;i++){
-                                if(persSlots[i] == timeStr2){
+                                if(persSlots[i].slice(0,9) == timeStr2){
                                     $(this).find('.content')[0].innerText = "Personal";
                                     $(this).find('.content').css('color',"darkred");
                                 }
@@ -782,7 +782,7 @@
                             var timeStr = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
 
                             for(var j=0;j<slotsP.length;j++){
-                                if(slotsP[j] == timeStr){
+                                if(slotsP[j].slice(0,9) == timeStr){
                                     $(this).find('input[type="checkbox"]').attr('disabled','');
                                     $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
                                     $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
@@ -1086,7 +1086,8 @@
                     alert('Saved Time Table');
                 }
             });
-            window.location="http://127.0.0.1:3500/trainer";
+            location.reload();
+            // window.location="http://127.0.0.1:3500/trainer";
             // window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
 

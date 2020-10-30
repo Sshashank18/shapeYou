@@ -312,16 +312,36 @@
     </div>
 
       <script>
-          
+          var aboutTrainer = <%- JSON.stringify(currentUser.trainers)%>;
           var id;
           var trainer = null;
           var compare = new Array();
           var slots,slots2=null,slots3 = null;
 
+          var trainerCat = null;
+          var trainerType = null;
+          var userSessions = null;
+
+          var weekName = null;
+
+
+          $(function () {
+            $(".trainerId").first().trigger("click");
+          });
+
+
             $(document).on('click', '.trainerId', function() {
               trainer = $(this);
               id = $(this).attr("data-id");
               name = $(this).attr("data-name");
+              
+              aboutTrainer.some((t)=>{
+                if(t.name == name){
+                  trainerCat =  t.category;
+                  trainerType = t.type;
+                  userSessions = t.numOfSessions;
+                }
+              });
 
               $('#trainerTT tr').each(function(){
                   $(this).find('td').each(function(){
@@ -335,12 +355,11 @@
                     });
                   });
 
-
-
               $.ajax({
                 url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
                 // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
+                data: {trainerType},
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
@@ -354,7 +373,6 @@
                         slots = data2[i][Object.keys(data2[i])[0]];
                       }
                     }
-
 
                       $('#trainerTT tr').each(function(){
                         var timeR = null;
@@ -370,6 +388,7 @@
                             var col = $("table thead tr th").eq($(this).index());
                             var key = col[0].getAttribute('value');
                             var key2 = key.split(' ').join('-');
+                            var dayCol = col[0].innerHTML.split('>')[2].split('<')[0];
                             if(slots){
                               for(var j=0;j<slots.length;j++){
                                 if(key2 in slots[j]){
@@ -378,10 +397,10 @@
                               }
                             }
 
-                            if(index!=0 && data[key]!=undefined){
+                            if(trainerType == "group" && index!=0 && data[key]!=undefined){
 
                               for(var i=0;i<data[key].length;i++){
-                                if(data[key][i].slice(0,11) == timeStr){
+                                if(data[key][i].slice(0,11) == timeStr && data[key][i].substring(12,data[key][i].length-2)==trainerCat){
 
                                   if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
                                     $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
@@ -398,6 +417,49 @@
                                   }
                                 }
                               }
+                            }else if(trainerType == "personal" && index!=0){
+                                switch (dayCol){
+                                  case 'MON':
+                                      dayCol = "Monday";
+                                      break;
+                                  case 'TUE':
+                                      dayCol = "Tuesday";
+                                      break;
+                                  case 'WED':
+                                      dayCol = "Wednesday";
+                                      break;
+                                  case 'THU':
+                                      dayCol = "Thursday";
+                                      break;
+                                  case 'FRI':
+                                      dayCol = "Friday";
+                                      break;
+                                  case 'SAT':
+                                      dayCol = "Saturday";
+                                      break;
+                                  default:
+                                      dayCol = "Sunday";
+                              };
+                              for(var i=0;i<data[dayCol].length;i++){
+                                if(data[dayCol][i].slice(0,9)==timeStr2){
+                                  if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
+                                    $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
+                                    $(this).find('.content').find('.empty').attr('hidden','');
+                                  }
+                                  else{
+                                    if(parseInt(data[dayCol][i].slice(-1))==0){
+                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                      $(this).find('.content').find('.empty').attr('hidden','');
+                                      $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                      $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                                      $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                      $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                      $(this).find('.content').css('background-color',"yellowgreen");
+                                      $(this).find('.content').css('color',"darkgreen");
+                                    }
+                                  }
+                                }
+                              };
                             }
                           });
                           index++;
@@ -537,25 +599,31 @@
           
           $(document).on('click', '.bookSlot', function() {
               const key  = $(this).attr('data-key');
+              const key3  = $(this).attr('data-key2');
               const slot = $(this).attr('data-slot');
               const name = $(this).attr('data-trainer');
 
               $(this).attr('hidden','');
               $(this).next().removeAttr('hidden');
 
-              const bookedSlots = new Object();
               const date = new Object();
               const date2 = new Object();
               const userCount = new Object();
 
-              date[key] = new Array();
-              date[key].push(slot);
 
-              var key2 = key.split('-').join(' ');
-
-              date2[key2] = slot;
-
-              userCount[id] = date2;
+              if(trainerType == "group"){
+                  date[key] = new Array();
+                  date[key].push(slot);
+    
+                  var key2 = key.split('-').join(' ');
+    
+                  date2[key2] = slot;
+    
+                  userCount[id] = date2;
+                }else{
+                  date2[key3] = slot;
+                  userCount[id] = date2;
+                }
 
               $.ajax({
                 url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,
@@ -583,22 +651,20 @@
                     }
                   }
                 }
-
-                  $.ajax({
-                    url:'/user/updateuser',
-                    method:'PUT',
-                    data:{booked,userCount},
-                    success:(data2)=>{
-                      // console.log(data2);
-                        // window.location = 'http://127.0.0.1:3500/user/userDashboard/'+<%- JSON.stringify(currentUser._id)%>,
-                        // window.location = 'https://shapeyou-demo.herokuapp.com/user/userDashboard/'+<%- JSON.stringify(currentUser._id)%>
-                        location.reload();
-                    }
-                  });
-
-                }
-              });
+                $.ajax({
+                  url:'/user/updateuser',
+                  method:'PUT',
+                  data:{booked,userCount,trainerType},
+                  success:(data2)=>{
+                      location.reload();
+                  }
+                });
+              }
+            });
+          
           });
+
+
 
 
         </script>

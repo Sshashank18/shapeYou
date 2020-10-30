@@ -145,18 +145,31 @@ route.put('/updateuser/', (req, res) => {
             console.log(err);
         }
         else{
-            var trainerSlots = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]];
-            for(var i=0;i<trainerSlots.length;i++){
-                var timeStr=trainerSlots[i].slice(0,11);
-                timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
-                
-                if(req.body.userCount[trainerID][Object.keys(req.body.userCount[trainerID])[0]] == timeStr){
-                    var ref = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i];
-                    var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
-                    trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i] = output;
+            if(req.body.trainerType == "group"){
+                var trainerSlots = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]];
+                for(var i=0;i<trainerSlots.length;i++){
+                    var timeStr=trainerSlots[i].slice(0,11);
+                    timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
+                    
+                    if(req.body.userCount[trainerID][Object.keys(req.body.userCount[trainerID])[0]] == timeStr){
+                        var ref = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i];
+                        var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                        trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i] = output;
+                    }
                 }
+                trainer.markModified('calendar');
+            }else{
+                var trainerKey = Object.keys(req.body.userCount[trainerID])[0];
+                for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
+                    var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                    if(timeStr == req.body.userCount[trainerID][trainerKey]){
+                        var ref = trainer.personalSlots[trainerKey][i];
+                        var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                        trainer.personalSlots[trainerKey][i] = output;
+                    }
+                }
+                trainer.markModified('personalSlots');
             }
-            trainer.markModified('calendar');
             trainer.save();
         }
     });
@@ -173,25 +186,20 @@ route.put('/updateuser/', (req, res) => {
     })
 });
 
-// route.get('/:categoryType', (req, res) => {
-//     Trainer.find({categoryType: req.query.categoryType}, (err, foundTrainer) => {
-//         if(err) {
-//             console.log(err);
-//         } else {
-//             res.render('');
-//         }
-//     });
-// });
+route.get('/getTimeTable/:id', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        if(req.query.trainerType == 'group'){
+            res.json(foundTrainer.calendar);
+        }else{
+            res.json(foundTrainer.personalSlots);
+        }
+    })
+});
 
 route.get('/zoomDashboard/:id',(req, res)=>{
     res.render('userZoomDashboard.ejs',{trainer:req.params.id});
 });
 
-route.get('/getTimeTable/:id', (req, res) => {
-    Trainer.findById(req.params.id, (err, foundTrainer) => {
-        res.json(foundTrainer.calendar);
-    })
-});
 
 var meetConfig = {
     password:null,

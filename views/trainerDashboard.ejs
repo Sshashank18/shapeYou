@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/trainerDashboard.css">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ShapeYou - Trainer dashboard</title>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="/stylesheets/trainerDashboard.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+                
+    </head>
+<body id="page-top">
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
-<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none"><%= trainer.username %></span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="data:image/jpeg;base64,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" alt="" /></span>
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setTimeTable">
+                      Upload Group time slots
+                    </button>
+                </li>
+                <li class="nav-item">
+                      <a class="btn btn-primary" href="/trainer/personalSlots">
+                         Upload Personal time slots
+                      </a>
+                </li>
+                <li class="nav-item"><a class="btn btn-primary" href="/trainer/details">Edit Details</a></li>
+                <li class="nav-item"><a class="btn btn-primary" href="/auth/logout" style="text-decoration: none;">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">ShapeYou</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -39,11 +71,15 @@
             <li class="nav-link"><a href="/auth/logout" style="text-decoration: none;">Logout</a></li>
           </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <br>
 
     <!-- Trainer TimeTable -->
+
+    <div class="text-center">
+        <h2><%=trainer.username%>'s timetable for this week.</h2>
+    </div>
     
     <div class="container trainerTimeTable">
         <table class="table table1 table-bordered table-striped" id="trainerTT">
@@ -632,7 +668,7 @@
                             for(var i=0;i<persSlots.length;i++){
                                 if(persSlots[i] == timeStr2){
                                     $(this).find('.content')[0].innerText = "Personal";
-                                    $(this).find('.content').css('color',"darkred");
+                                    $(this).find('.content').css('color',"rgb(138, 148, 254)");
                                 }
                             }
 
@@ -681,8 +717,8 @@
                                             $(this).find('.content').css('color',"brown");
                                             
                                         }else{
-                                            $(this).find('.content')[0].innerText = "T";
-                                            $(this).find('.content').css('color',"lightgreen");
+                                            $(this).find('.content')[0].innerText = "Therapy";
+                                            $(this).find('.content').css('color',"rgb(130, 215, 0)");
                                             
                                         }
                                         $(this).find('.content').css('border-radius',"20px");

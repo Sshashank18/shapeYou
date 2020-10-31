@@ -32,9 +32,31 @@
                   <% if(user.trainers.length == 0) { %>
                     <li class="nav-item">No trainers purchased yet</li>
                   <% } else {%>
-                    <% user.trainers.forEach(function(trainer) { %>
-                      <li class="nav-item"><a class="nav-link trainerId" data-id="<%= trainer.id %>" data-name="<%= trainer.name %>"><%= trainer.name %></a></li>
-                    <% }) %>
+                    <li class="nav-item dropright">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Group trainers
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <% user.trainers.forEach(function(trainer) { %>
+                          <% if(trainer.type == 'group') { %>
+                          <a class="nav-link btn trainerId" style="color: black" data-id="<%= trainer.id %>" data-name="<%= trainer.name %>"><%= trainer.name %></a>
+                          <% } %>
+                        <% }) %>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropright">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Personal trainers
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <% user.trainers.forEach(function(trainer) { %>
+                          <% if(trainer.type == 'personal') { %>
+                          <a class="nav-link btn trainerId" style="color: black" data-id="<%= trainer.id %>" data-name="<%= trainer.name %>"><%= trainer.name %></a>
+                          <% } %>
+                        <% }) %>
+                      </div>
+                    </li>
                   <% } %>
                 </ul>
             </div>
@@ -626,7 +648,7 @@
                 }
 
               $.ajax({
-                url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,
+                url:'/user/bookedSlots/<%= user._id %>' ,
                 method:'GET',
                 success:(booked)=>{
 

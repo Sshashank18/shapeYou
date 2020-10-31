@@ -104,10 +104,10 @@ route.post('/newSession', (req, res) => {
                     if(!(user.trainers.some(el => el.id == trainer._id))) {
                         var info = {
                             id: trainer._id,
-                            category: req.body.category,
-                            name: req.body.username,
-                            type: req.body.type,
-                            numOfSessions: req.body.numOfSessions,
+                            category: req.body.category,           // subcategory
+                            name: req.body.username,               // username of trainer
+                            type: req.body.type,                   // personal or group
+                            numOfSessions: req.body.numOfSessions, // number of sessions
                         }
                         user.trainers.push(info);
                         

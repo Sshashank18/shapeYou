@@ -3916,7 +3916,7 @@ input[type=button].btn-block {
 .nav-link.disabled {
   color: #6c757d;
   pointer-events: none;
-  cursor: default;
+  cursor: pointer;
 }
 
 .nav-tabs {

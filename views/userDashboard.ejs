@@ -312,7 +312,7 @@
     </div>
 
       <script>
-          var aboutTrainer = <%- JSON.stringify(currentUser.trainers)%>;
+          var aboutTrainer = <%- JSON.stringify(user.trainers)%>;
           var id;
           var trainer = null;
           var compare = new Array();
@@ -363,7 +363,7 @@
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(user._id)%>,
                     // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
                     method: 'GET',  
                     success:(data2)=>{
@@ -625,7 +625,7 @@
                 }
 
               $.ajax({
-                url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,
+                url:'/user/bookedSlots/' + <%- JSON.stringify(user._id)%>,
                 method:'GET',
                 success:(booked)=>{
 

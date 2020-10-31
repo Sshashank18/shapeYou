@@ -99,7 +99,7 @@
 
       <div class="trainingType">
         <button name = "personal" class="button activated" style="margin:20px">Personal Training</button>
-        <button name = "group" class="button" style="margin:20px">Group Training</button>
+        <button name = "group" class="button" style="margin:20px">Group Training - <%=category %></button>
     </div>
 
       <div class="container trainerTimeTable">
@@ -387,7 +387,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -437,7 +437,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -493,7 +493,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -544,7 +544,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -594,7 +594,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -650,7 +650,7 @@
                                     </svg>
                                   </span>Mixtape chillwave tumeric
                                 </p>
-                                <form action="/user/newSession" method="POST">
+                                <form class="newSession" action="/user/newSession" method="POST">
                                   <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Pay Now
                                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -933,7 +933,6 @@
               const date = new Object();
               const date2 = new Object();
               const userCount = new Object();
-              var booked = new Array;
 
               date[key] = new Array();
               date[key].push(slot);
@@ -947,13 +946,48 @@
                 userCount[id] = date2;
               }
 
-              const newObj = new Object();
 
-              newObj[name] = date;
-              booked.push(newObj);
+              $.ajax({
+                url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,
+                method:'GET',
+                success:(booked)=>{
+                  if(booked.length == 0){
+                    var newObj = new Object();
+                    newObj[name] = new Array();
+                    newObj[name].push(date);
+                    booked.push(newObj);
+                  }
+
+                  for(var i=0;i<booked.length;i++){
+                    if(Object.keys(booked[i])[0] == name){
+                      var temp = booked[i][Object.keys(booked[i])[0]];
+                      if(temp.length == 0){
+                        booked[i][Object.keys(booked[i])[0]].push(date); 
+                      }else{
+                        var isThere = false;
+                        for(var j=0;j<temp.length;j++){
+                          if(key in temp[j]){
+                            isThere = true;
+                            booked[i][Object.keys(booked[i])[0]][j][key].push(slot);
+                            break;
+                          }
+                        }
+                      if(!isThere){
+                        booked[i][Object.keys(booked[i])[0]].push(date); 
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                console.log(booked);
+                var content = `<input type="hidden" name="booked" value=${JSON.stringify(booked)}>`
+                
+                $('.newSession').append(content);
               
-              
+            }
           });
+        });
 
     </script>
     

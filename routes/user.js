@@ -111,10 +111,10 @@ route.post('/newSession', (req, res) => {
                         }
                         user.trainers.push(info);
                         
-                        const obj = new Object();
-                        obj[trainer.username] = new Array();
+                        // const obj = new Object();
+                        // obj[trainer.username] = new Array();
 
-                        user.bookedSlot.push(obj);
+                        user.bookedSlot = JSON.parse(req.body.booked);
                         user.markModified('trainers');
                         user.markModified('bookedSlot');
                         user.save();

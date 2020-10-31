@@ -30,6 +30,16 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <% if(!currentUser){ %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/user/category/Fitness%20trainer">Fitness Trainer</a>
+                  <a class="dropdown-item" href="/user/category/Wellness">Welness</a>
+                  <a class="dropdown-item" href="/user/category/Counselling">Counselling</a>
+                </div>
+              </li>
                 <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
                 <li><a class="nav-link mr-3" href="/auth">Sign Up</a></li>
                 <form action="/user" method="GET" class="form-inline">
@@ -57,8 +67,59 @@
         </div>
       </nav>
 
+      <section class="content-section" id="index">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col-lg-6">
+              <a class="portfolio-item" href="/user/category/Fitness%20trainer">
+                <div class="caption">
+                  <div class="caption-content">
+                    <div class="h2" style="color: white">Fitness trainers</div>
+                    <p class="mb-0">Lorem ipsum dolor sit </p>
+                  </div>
+                </div>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+              </a>
+            </div>
+            <div class="col-lg-6">
+              <a class="portfolio-item" href="/user/category/Wellness">
+                <div class="caption">
+                  <div class="caption-content">
+                    <div class="h2" style="color: white">Wellness</div>
+                    <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p>
+                  </div>
+                </div>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1505455184862-554165e5f6ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+              </a>
+            </div>
+            <div class="col-lg-6">
+              <a class="portfolio-item" href="/user/category/Counselling">
+                <div class="caption">
+                  <div class="caption-content">
+                    <div class="h2" style="color: white;">Counselling</div>
+                    <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p>
+                  </div>
+                </div>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+              </a>
+            </div>
+            <div class="col-lg-6">
+              <a class="portfolio-item" href="#!">
+                <div class="caption">
+                  <div class="caption-content">
+                    <div class="h2" style="color: white;">Gym</div>
+                    <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p>
+                  </div>
+                </div>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
   <!-- ======= Intro Section ======= -->
-  <section id="intro">
+  <!-- <section id="intro">
     <div class="intro-container">
       <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
 
@@ -119,8 +180,8 @@
         </a>
 
       </div>
-    </div>
-  </section><!-- End Intro Section -->
+    </div> -->
+  <!-- </section>End Intro Section -->
 
   <section style="margin-top: 130px; padding-bottom: 70px;">
     <h1 class="text-center" style="font-size: 50px; font-family: 'Comfortaa', cursive;"><span style="color: rgb(188, 106, 141);">Define your goals</span></h1>
@@ -226,7 +287,7 @@
             <!--details-->
             <div class="details">
             <!--character-details-->
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
           <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
             </div>
             

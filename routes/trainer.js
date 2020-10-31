@@ -41,6 +41,16 @@ route.put('/submitDetails',(req,res)=>{
     });
 });
 
+route.get('/:type', (req, res) => {
+    Trainer.find({categoryType: req.params.type}, (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('trainerType', {trainers: foundTrainer});
+        }
+    });
+});
+
 
 route.get('/getTimeTable/:id',(req,res)=>{
     Trainer.findById(req.params.id,(err,result)=>{

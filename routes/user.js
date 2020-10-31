@@ -63,7 +63,7 @@ route.get('/bookedSlots/:id',(req, res)=>{
 
 route.get('/category/:parent', (req, res) => {
     var parent = req.params.parent;
-Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+    Category.find({parent:req.params.parent}, (err, foundCategory) => { 
         var titles = [];
         for(var i=0;i<foundCategory.length;i++){
             titles.push(foundCategory[i].title);
@@ -164,7 +164,7 @@ route.put('/updateuser/', (req, res) => {
                     var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
                     if(timeStr == req.body.userCount[trainerID][trainerKey]){
                         var ref = trainer.personalSlots[trainerKey][i];
-                        var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                        var output = ref.substring(0,ref.length-1) + req.body.trainerCat + " "+(parseInt(ref.slice('-1'))+1);
                         trainer.personalSlots[trainerKey][i] = output;
                     }
                 }

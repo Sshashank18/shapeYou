@@ -360,8 +360,8 @@
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    // url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
-                    url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
                     method: 'GET',  
                     success:(data2)=>{
 
@@ -587,7 +587,6 @@
         
           for(var i=firstday.getDate();i<=lastday.getDate();i++){
               document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
-              document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
               document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
               j++;
           }
@@ -607,10 +606,10 @@
               const date2 = new Object();
               const userCount = new Object();
 
+              date[key] = new Array();
+              date[key].push(slot);
 
               if(trainerType == "group"){
-                  date[key] = new Array();
-                  date[key].push(slot);
     
                   var key2 = key.split('-').join(' ');
     
@@ -651,7 +650,7 @@
                 $.ajax({
                   url:'/user/updateuser',
                   method:'PUT',
-                  data:{booked,userCount,trainerType},
+                  data:{booked,userCount,trainerType,trainerCat},
                   success:(data2)=>{
                       location.reload();
                   }

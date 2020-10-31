@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/stylesheets/trainerProfile.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/stars.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
@@ -96,15 +97,268 @@
       </section> -->
     
 
-        <div class="trainingType">
-            <button name = "Personal" class="button activated" style="margin:20px">Personal Training</button>
-            <button name = "Group" class="button" style="margin:20px">Group Training</button>
-        </div>
+      <div class="trainingType">
+        <button name = "personal" class="button activated" style="margin:20px">Personal Training</button>
+        <button name = "group" class="button" style="margin:20px">Group Training</button>
+    </div>
+
+      <div class="container trainerTimeTable">
+        <table class="table" id="trainerTT">
+          <thead class="thead-dark">
+                <tr style="text-align: center;">
+                  <th scope="col">Slots</th>
+                  <th scope="col" id="dateT1"></th>
+                  <th scope="col" id="dateT2"></th>
+                  <th scope="col" id="dateT3"></th>
+                  <th scope="col" id="dateT4"></th>
+                  <th scope="col" id="dateT5"></th>
+                  <th scope="col" id="dateT6"></th>
+                </tr>
+              </thead>
+              <tbody style="text-align:center">
+                  <tr>
+                    <th scope="row">3PM-4PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4PM-5PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">5PM-6PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">6PM-7PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">7PM-8PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                          <button class='bookSlot' hidden>Book Your Slot</button>   
+                          <button class='booked' hidden>BOOKED</button>   
+                        </div>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+  
+      </div>
 
         <div class="trainerSessions">
-            <h1 style="text-align: center;margin-top: 25px;">Sessions Available</h1>
-            <div id="sessions">
-                <div class="group" hidden>
+          <div class="group" hidden>
+
+              <h1 style="text-align: center;margin-top: 25px;">Sessions Available</h1>
+              <div id="sessions">
                     <section class="text-gray-700 body-font overflow-hidden">
                         <div class="container px-5 py-24 mx-auto">
                           <div class="flex flex-wrap -m-4">
@@ -258,7 +512,10 @@
                         </div>
                       </section>
                 </div>
-                <div class="personal">
+          </div>
+          <div class="personal">
+                  <h1 style="text-align: center;margin-top: 25px;">Sessions Available</h1>
+                  <div id="sessions">
                     <section class="text-gray-700 body-font overflow-hidden">
                         <div class="container px-5 py-24 mx-auto">
                           <div class="flex flex-wrap -m-4">
@@ -411,31 +668,293 @@
                           </div>
                         </div>
                       </section>
-                </div>
             </div>
-        </div>
+          </div>
 
     </div>
 
     <script>
 
+      var id = <%-JSON.stringify(trainer._id) %>;
+      var trainerCat = <%-JSON.stringify(category) %>;
+      var trainerType = 'personal';
+      var name = <%- JSON.stringify(trainer.username)%>;
 
-        $(".button").click(function() {
-            var name = this.name;
-            $(this).addClass("activated");
-            $(".button").not(this).removeClass('activated');
-           
-            if(name == 'Personal'){
-                $('.personal').removeAttr('hidden');
-                $('.group').attr('hidden','');
-            }
-            else{
-                $('.group').removeAttr('hidden');
-                $('.personal').attr('hidden','');
-            }
+      var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
+      var persSlots = null;
 
+      $(".button").click(function() {
+        $(this).addClass("activated");
+        $(".button").not(this).removeClass('activated');
+        trainerType = this.name;
+        if(trainerType == 'personal'){
+            $('.personal').removeAttr('hidden');
+            $('.group').attr('hidden','');
+        }
+        else{
+            $('.group').removeAttr('hidden');
+            $('.personal').attr('hidden','');
+        }
+
+        $('#trainerTT tr').each(function(){
+          $(this).find('td').each(function(){
+            $(this).find('.content')[0].innerHTML = `<div class="content">
+                              <div class="empty">
+                                - 
+                              </div>
+                            </div>`
+            $(this).find('.content').css('background-color',"unset");
+            $(this).find('.content').css('color',"unset");
+            });
+          });
+
+
+        $.ajax({
+        url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+        // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        method: 'GET',
+        data: {trainerType},
+        success:(data)=>{
+          var index = 0;
+          $('#trainerTT tr').each(function(){
+            var timeR = null;
+            var timeStr = null;
+            if(index!=0){
+                timeR = $(this).find('th')[0].innerText;
+                var timeA = timeR.split('-');
+                timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                timeStr2 = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
+              }
+              
+              $(this).find('td').each(function(){
+                var col = $("table thead tr th").eq($(this).index());
+                var key = col[0].getAttribute('value');
+                var key2 = key.split(' ').join('-');
+                var dayCol = col[0].innerHTML.split('>')[2].split('<')[0];
+              
+                if(trainerType == "group" && index!=0 && data[key]!=undefined){
+
+                  for(var i=0;i<data[key].length;i++){
+                    if(data[key][i].slice(0,11) == timeStr && data[key][i].substring(12,data[key][i].length-2)==trainerCat){
+                        $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                        $(this).find('.content').find('.empty').attr('hidden','');
+                        $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                        $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                        $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                        $(this).find('.content').css('background-color',"yellowgreen");
+                        $(this).find('.content').css('color',"darkgreen");
+                      
+                    }
+                  }
+                }else if(trainerType == "personal" && index!=0){
+                    switch (dayCol){
+                      case 'MON':
+                          dayCol = "Monday";
+                          break;
+                      case 'TUE':
+                          dayCol = "Tuesday";
+                          break;
+                      case 'WED':
+                          dayCol = "Wednesday";
+                          break;
+                      case 'THU':
+                          dayCol = "Thursday";
+                          break;
+                      case 'FRI':
+                          dayCol = "Friday";
+                          break;
+                      case 'SAT':
+                          dayCol = "Saturday";
+                          break;
+                      default:
+                          dayCol = "Sunday";
+                  };
+                  for(var i=0;i<data[dayCol].length;i++){
+                    if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
+                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                          $(this).find('.content').find('.empty').attr('hidden','');
+                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                          $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                          $(this).find('.content').css('background-color',"yellowgreen");
+                          $(this).find('.content').css('color',"darkgreen");
+                    }
+                  };
+                }
+              });
+              index++;
+            });
+          }
+        });
+
+      });
+
+
+      // DATE HEADINGS OF TIME TABLE 
+
+      var curr = new Date;
+      var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
+      var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+    
+      var d = new Date();
+      var m = d.getMinutes();
+      var h = d.getHours();
+      if(h == '0') {h = 12}
+      
+      var currentTime = h+":"+m;
+    
+      var weekday=new Array(7);
+      weekday[0]="MON";
+      weekday[1]="TUE";
+      weekday[2]="WED";
+      weekday[3]="THU";
+      weekday[4]="FRI";
+      weekday[5]="SAT";
+      weekday[6]="SUN";
+    
+    
+      var data=new Object();
+    
+      var j=1;
+    
+      var first = firstday;
+  
+    
+      for(var d = 0;d<6; d++){
+          var nextDay = new Date();
+          nextDay.setDate(firstday.getDate()+1);
+          var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
+          data[datePassed] = new Array();
+          firstday = nextDay;
+      }
+    
+    
+      firstday = first;
+    
+      for(var i=firstday.getDate();i<=lastday.getDate();i++){
+          document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
+          document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
+          j++;
+      }
+
+      //FILLING TABLE DETAILS
+
+      $.ajax({
+        url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+        // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        method: 'GET',
+        data: {trainerType},
+        success:(data)=>{
+          var index = 0;
+          $('#trainerTT tr').each(function(){
+            var timeR = null;
+            var timeStr = null;
+            if(index!=0){
+                timeR = $(this).find('th')[0].innerText;
+                var timeA = timeR.split('-');
+                timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+                timeStr2 = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
+              }
+              
+              $(this).find('td').each(function(){
+                var col = $("table thead tr th").eq($(this).index());
+                var key = col[0].getAttribute('value');
+                var key2 = key.split(' ').join('-');
+                var dayCol = col[0].innerHTML.split('>')[2].split('<')[0];
+              
+                if(trainerType == "group" && index!=0 && data[key]!=undefined){
+
+                  for(var i=0;i<data[key].length;i++){
+                    if(data[key][i].slice(0,11) == timeStr && data[key][i].substring(12,data[key][i].length-2)==trainerCat){
+                        $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                        $(this).find('.content').find('.empty').attr('hidden','');
+                        $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                        $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                        $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                        $(this).find('.content').css('background-color',"yellowgreen");
+                        $(this).find('.content').css('color',"darkgreen");
+                      
+                    }
+                  }
+                }else if(trainerType == "personal" && index!=0){
+                    switch (dayCol){
+                      case 'MON':
+                          dayCol = "Monday";
+                          break;
+                      case 'TUE':
+                          dayCol = "Tuesday";
+                          break;
+                      case 'WED':
+                          dayCol = "Wednesday";
+                          break;
+                      case 'THU':
+                          dayCol = "Thursday";
+                          break;
+                      case 'FRI':
+                          dayCol = "Friday";
+                          break;
+                      case 'SAT':
+                          dayCol = "Saturday";
+                          break;
+                      default:
+                          dayCol = "Sunday";
+                  };
+                  for(var i=0;i<data[dayCol].length;i++){
+                    if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
+                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                          $(this).find('.content').find('.empty').attr('hidden','');
+                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                          $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                          $(this).find('.content').css('background-color',"yellowgreen");
+                          $(this).find('.content').css('color',"darkgreen");
+                    }
+                  };
+                }
+              });
+              index++;
+            });
+          }
         });
         
+
+
+        $(document).on('click', '.bookSlot', function() {
+              const key  = $(this).attr('data-key');
+              const key3  = $(this).attr('data-key2');
+              const slot = $(this).attr('data-slot');
+              const name = $(this).attr('data-trainer');
+
+              $(this).attr('hidden','');
+              $(this).next().removeAttr('hidden');
+
+              const date = new Object();
+              const date2 = new Object();
+              const userCount = new Object();
+              var booked = new Array;
+
+              date[key] = new Array();
+              date[key].push(slot);
+
+              if(trainerType == "group"){
+                var key2 = key.split('-').join(' ');
+                date2[key2] = slot;
+                userCount[id] = date2;
+              }else{
+                date2[key3] = slot;
+                userCount[id] = date2;
+              }
+
+              const newObj = new Object();
+
+              newObj[name] = date;
+              booked.push(newObj);
+              
+              
+          });
+
     </script>
     
 </body>

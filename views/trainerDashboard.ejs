@@ -676,43 +676,44 @@
                             if(index!=0 && data[key]!=undefined){
                                 for(var i=0;i<data[key].length;i++){
                                     if(data[key][i].slice(0,11) == timeStr){
-                                        if(data[key][i].slice(12,) == "CrossFit"){
+                                        var subCat = data[key][i].slice(12,-2);
+                                        if(subCat == "CrossFit"){
                                             $(this).find('.content')[0].innerText = "CrossFit";
                                             $(this).find('.content').css('color',"blue");
                                             $(this).find('.content').css('font-size',"28px");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Functional&StrengthTraining"){
+                                        else if(subCat == "Functional&StrengthTraining"){
                                             $(this).find('.content')[0].innerText = "F";
                                             $(this).find('.content').css('color',"red");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "MMA&Boxing"){
+                                        else if(subCat == "MMA&Boxing"){
                                             $(this).find('.content')[0].innerText = "MMA";
                                             $(this).find('.content').css('color',"orange");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Zumba"){
+                                        else if(subCat == "Zumba"){
                                             $(this).find('.content')[0].innerText = "Z";
                                             $(this).find('.content').css('color',"grey");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Dance"){
+                                        else if(subCat == "Dance"){
                                             $(this).find('.content')[0].innerText = "D";
                                             $(this).find('.content').css('color',"pink");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Yoga"){
+                                        else if(subCat == "Yoga"){
                                             $(this).find('.content')[0].innerText = "Y";
                                             $(this).find('.content').css('color',"green");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Meditation"){
+                                        else if(subCat == "Meditation"){
                                             $(this).find('.content')[0].innerText = "M";
                                             $(this).find('.content').css('color',"black");
                                             
                                         }
-                                        else if(data[key][i].slice(12,) == "Nutrition"){
+                                        else if(subCat == "Nutrition"){
                                             $(this).find('.content')[0].innerText = "N";
                                             $(this).find('.content').css('color',"brown");
                                             
@@ -722,7 +723,7 @@
                                             
                                         }
                                         $(this).find('.content').css('border-radius',"20px");
-                                        $(this).find('.content').css('color',"darkgreen");
+                                        // $(this).find('.content').css('color',"darkgreen");
                                     }
                                 }
                             }

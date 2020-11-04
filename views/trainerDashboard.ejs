@@ -959,7 +959,8 @@
         var nameArray = <%- JSON.stringify(trainer.subCategories) %>
 
         $(document).on('change', ':checkbox', function() {
-           
+            $(this).parent().toggleClass('active');
+            
             if(nameHead == 'Yoga'){
                 if($(this).hasClass('Yoga')){
                     $(this).removeAttr('disabled');
@@ -987,9 +988,9 @@
             }
 
             else if(nameHead=="CrossFit"){
+
                 if($(this).hasClass('CrossFit')){
                     $(this).removeClass('CrossFit','');
-
                 }else{
                     $(this).addClass('CrossFit');
                     $(this).attr('name','CrossFit');
@@ -1082,6 +1083,7 @@
                 if((nameHead != nameArray[i]) && $(`:checkbox:checked`).hasClass(`${nameArray[i].replace(/\s/g, '')}`)){
                     $(`input:checkbox[class='${nameArray[i].replace(/\s/g, '')}']:checked`).attr('disabled','disabled');
                 }else if ($(`:checkbox:checked`).hasClass(`${nameHead}`)){
+                    console.log('in');
                     $(`input:checkbox[class='${nameHead}']:checked`).removeAttr('disabled');
                 }
             }
@@ -1096,6 +1098,7 @@
                 if((nameHead != nameArray[i]) && $(`:checkbox:checked`).hasClass(`${nameArray[i].replace(/\s/g, '')}`)){
                     $(`input:checkbox[class='${nameArray[i].replace(/\s/g, '')}']:checked`).attr('disabled','disabled');
                 }else if ($(`:checkbox:checked`).hasClass(`${nameHead}`)){
+                    console.log('in');
                     $(`input:checkbox[class='${nameHead}']:checked`).removeAttr('disabled');
                 }
             }

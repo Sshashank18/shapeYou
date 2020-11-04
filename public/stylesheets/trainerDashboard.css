@@ -74,7 +74,6 @@ input[type=checkbox] {
 }
 .btn.active span.glyphicon {				
     opacity: 1;				
-    background-color:red;
 }
 
 .content{

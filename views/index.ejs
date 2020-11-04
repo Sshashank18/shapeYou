@@ -9,6 +9,7 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" />
     <link rel="stylesheet" href="stylesheets/index.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/>
 <script type="text/javascript" src="scripts/JQuery3.3.1.js"></script>
@@ -281,17 +282,31 @@
           
           <li class="item-a">
             <!--slider-box-->
-            <div class="box">
-            <!--model-->
-            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-            <!--details-->
-            <div class="details">
-            <!--character-details-->
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
-            </div>
-            
-            </div>
+            <div class="card">
+              <!--model-->
+              <div class="view overlay">
+                <img class="card-img-top model" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                  alt="Card image cap">
+                <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!-- <img src="" class="model"> -->
+              <!--details-->
+               <!-- Card content -->
+    <div class="card-body">
+  
+      <!-- Title -->
+      <h4 class="card-title"><%= category.title %></h4>
+      <!-- Text -->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <!-- Button -->
+      <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
+  
+    </div>
+              
+              </div>
             </li>
       <% } %>
       <% }); %>
@@ -315,15 +330,29 @@
 
           <li class="item-a">
             <!--slider-box-->
-            <div class="box">
+            <div class="card">
             <!--model-->
-            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-            <!--details-->
-            <div class="details">
-            <!--character-details-->
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
+            <div class="view overlay">
+              <img class="card-img-top model" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
             </div>
+            <!-- <img src="" class="model"> -->
+            <!--details-->
+             <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h4 class="card-title"><%= category.title %></h4>
+    <!-- Text -->
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+      content.</p>
+    <!-- Button -->
+    <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
+
+  </div>
             
             </div>
             </li>
@@ -351,17 +380,31 @@
 
           <li class="item-a">
             <!--slider-box-->
-            <div class="box">
-            <!--model-->
-            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-            <!--details-->
-            <div class="details">
-            <!--character-details-->
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
-          <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
-            </div>
-            
-            </div>
+            <div class="card">
+              <!--model-->
+              <div class="view overlay">
+                <img class="card-img-top model" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                  alt="Card image cap">
+                <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!-- <img src="" class="model"> -->
+              <!--details-->
+               <!-- Card content -->
+    <div class="card-body">
+  
+      <!-- Title -->
+      <h4 class="card-title"><%= category.title %></h4>
+      <!-- Text -->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <!-- Button -->
+      <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
+  
+    </div>
+              
+              </div>
             </li>
       <% } %>
       <% }); %>

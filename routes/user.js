@@ -101,7 +101,9 @@ route.post('/newSession', (req, res) => {
                 if(err) {
                     console.log(err);
                 } else {
-                    if(!(user.trainers.some(el => el.id == trainer._id))) {
+                    
+                    if(req.body.type == 'personal') { 
+                        var flag = false;
                         var info = {
                             id: trainer._id,
                             category: req.body.category,           // subcategory
@@ -109,19 +111,75 @@ route.post('/newSession', (req, res) => {
                             type: req.body.type,                   // personal or group
                             numOfSessions: req.body.numOfSessions, // number of sessions
                         }
-                        user.trainers.push(info);
-                        
-                        // const obj = new Object();
-                        // obj[trainer.username] = new Array();
-
-                        user.bookedSlot = JSON.parse(req.body.booked);
-                        user.markModified('trainers');
-                        user.markModified('bookedSlot');
-                        user.save();
-                        res.redirect('/user/userDashboard/' + user._id);
-                    } else {
-                        res.redirect('/user/userDashboard/' + user._id);
+                        user.trainers.forEach((trainer) => {
+                            if(!(trainer.type == 'personal' && trainer.name == req.body.username)) {
+                                console.log('I CAN BE BOUGHT FROM PERSONAL');
+                                flag = true;
+                                // personal trainer not already present on dashboard as personal
+                                
+                                // user.trainers.push(info);
+                                
+                                // const obj = new Object();
+                                // obj[trainer.username] = new Array();
+                                // user.markModified('trainers');
+                                // user.save();
+                                // user.bookedSlot = JSON.parse(req.body.booked);
+                                // user.markModified('bookedSlot');
+                                // user.save();
+                            }
+                            flag = false;
+                        })
                     }
+
+                    else if(req.body.type == 'group') {
+                        var info = {
+                            id: trainer._id,
+                            category: req.body.category,           // subcategory
+                            name: req.body.username,               // username of trainer
+                            type: req.body.type,                   // personal or group
+                            numOfSessions: req.body.numOfSessions, // number of sessions
+                        }
+                        user.trainers.forEach((trainer) => {
+                            if(trainer.type == 'group' && req.body.type == 'group' && trainer.name == req.body.username) {
+                                // group trainer not already present as group
+                                console.log('I CAN BE BOUGHT FROM GROUP')
+                                
+                                // user.trainers.push(info);
+                                
+                                // const obj = new Object();
+                                // obj[trainer.username] = new Array();
+        
+                                
+                                // user.markModified('trainers');
+                                
+                                // user.save();
+                            } 
+                        })
+                    }
+
+                    // res.redirect('/user/userDashboard/' + user._id);
+
+                    // if(!(user.trainers.some(el => el.id == trainer._id))) {
+                    //     var info = {
+                    //         id: trainer._id,
+                    //         category: req.body.category,
+                    //         name: req.body.username,
+                    //         type: req.body.type,
+                    //         numOfSessions: req.body.numOfSessions,
+                    //     }
+                    //     user.trainers.push(info);
+                        
+                    //     // const obj = new Object();
+                    //     // obj[trainer.username] = new Array();
+
+                    //     user.bookedSlot = JSON.parse(req.body.booked);
+                    //     user.markModified('trainers');
+                    //     user.markModified('bookedSlot');
+                    //     user.save();
+                    //     res.redirect('/user/userDashboard/' + user._id);
+                    // } else {
+                    //     res.redirect('/user/userDashboard/' + user._id);
+                    // }
                 }
             });
         }

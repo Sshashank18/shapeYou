@@ -16,46 +16,55 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">ShapeYou</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <% if(!currentUser){ %>
-                <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
-                <li><a class="nav-link mr-3" href="/auth">Sign Up</a></li>
-                <form action="/user" method="GET" class="form-inline">
-                  <div class="form-group">
-                  <input type="text" name="search" placeholder="Search.." class="form-control mr-3">
-                  <input type="submit" value="Search" class="btn btn-success">
-                </div>
-                </form>
-            <% } else{ %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Categories
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/user/category/Fitness%20trainer">Fitness Trainer</a>
-                  <a class="dropdown-item" href="/user/category/Wellness">Welness</a>
-                  <a class="dropdown-item" href="/user/category/Counselling">Counselling</a>
-                </div>
-              </li>
-              <li><a class="nav-link" href="/user/userDashboard">Go to Dashboard</a></li>
-                <li><a class="nav-link mr-3" href="#">Signed In as <%= currentUser.username %></a></li>
-                <li><a class="nav-link mr-3" href="/auth/logout">Sign Out</a></li>
-            <% } %>
-          </ul>
-        </div>
-      </nav>      
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
+    <a class="navbar-brand" href="#">ShapeYou</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown ml-3">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/user/category/Fitness%20trainer" style="color: white;">Fitness Trainer</a>
+            <a class="dropdown-item" href="/user/category/Wellness" style="color: white;">Welness</a>
+            <a class="dropdown-item" href="/user/category/Counselling" style="color: white;">Counselling</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if(!currentUser){ %>
+          
+            
+            <form action="/user" method="GET" class="form-inline">
+              <div class="form-group">
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+              <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+            </div>
+            </form>
+            <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
+            <li><a class="nav-link mr-3" href="/auth" style="color: white">Sign Up</a></li>
+        <% } else{ %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
+              <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+              <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+              <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
+            </div>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>    
       <section style="margin-top: 130px; padding-bottom: 70px;">
         <% if(noMatch.length > 0) { %>
             <h1 class="text-center">No search results!!</h1>
@@ -64,17 +73,31 @@
                 <% categories.forEach(function(category) { %> 
                     <li class="item-a">
                       <!--slider-box-->
-                      <div class="box">
-                      <!--model-->
-                      <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-                      <!--details-->
-                      <div class="details">
-                      <!--character-details-->
-                      <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: white"><%= category.title %></h2>
-                    <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/user/category/<%= category.parent %>" style="text-decoration: none;">Read More</a></button></p>
-                      </div>
-                      
-                      </div>
+                      <div class="card" style="width: 25rem;">
+                        <!--model-->
+                        <div class="view overlay">
+                          <img class="card-img-top model" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                            alt="Card image cap">
+                          <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                          </a>
+                        </div>
+                        <!-- <img src="" class="model"> -->
+                        <!--details-->
+                         <!-- Card content -->
+              <div class="card-body">
+            
+                <!-- Title -->
+                <h4 class="card-title"><%= category.title %></h4>
+                <!-- Text -->
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                  content.</p>
+                <!-- Button -->
+                <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
+            
+              </div>
+                        
+                        </div>
                       </li>
                 <% }); %>
               </ul>

@@ -7,28 +7,74 @@
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
     <link rel="stylesheet" href="/stylesheets/stars.css">
+    <style>
+      .navbar-nav > li > .dropdown-menu { background-color: rgb(7, 7, 8); }
+      
+    </style>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">ShapeYou</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
+      <a class="navbar-brand" href="#">ShapeYou</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
+      </button>
     
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown ml-3">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/user/category/Fitness%20trainer" style="color: white;">Fitness Trainer</a>
+              <a class="dropdown-item" href="/user/category/Wellness" style="color: white;">Welness</a>
+              <a class="dropdown-item" href="/user/category/Counselling" style="color: white;">Counselling</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentUser){ %>
+            
+              
+              <form action="/user" method="GET" class="form-inline">
+                <div class="form-group">
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+                <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+              </div>
+              </form>
+              <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
+              <li><a class="nav-link mr-3" href="/auth" style="color: white">Sign Up</a></li>
+          <% } else{ %>
+            <form action="/user" method="GET" class="form-inline">
+              <div class="form-group">
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+              <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+            </div>
+            </form>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
+                <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
     </nav>
 
 <!-- content -->

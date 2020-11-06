@@ -620,8 +620,8 @@
           var persSlots = null;
 
           $.ajax({
-              url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
-            //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
+            //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
+              url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -1122,8 +1122,8 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
-                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
+                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
+                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{

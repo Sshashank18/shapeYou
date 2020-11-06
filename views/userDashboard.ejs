@@ -378,15 +378,15 @@
                   });
 
               $.ajax({
-                url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-                // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+                // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+                url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
                 data: {trainerType},
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(user._id)%>,
-                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    // url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(user._id)%>,
+                    url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
                     method: 'GET',  
                     success:(data2)=>{
 
@@ -547,8 +547,8 @@
 
                     if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
                       $.ajax({
-                        url:'http://127.0.0.1:3500/user/isCreated/'+id,
-                        // url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
+                        // url:'http://127.0.0.1:3500/user/isCreated/'+id,
+                        url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
                         method: 'GET',
                         success:(data)=>{
                           if(data.isCreated == true){

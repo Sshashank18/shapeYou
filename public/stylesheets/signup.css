@@ -1,5 +1,5 @@
 body {
-    /* background-image: url(madara.png); */
+    background-image: url('https://images.unsplash.com/photo-1580086319619-3ed498161c77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80');
     background-size: cover;
     background-color: rgb(235, 236, 241);
 }

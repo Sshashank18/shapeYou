@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
+    <title>ShapeYou - Trainers</title>
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/trainerProfile.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/stars.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
@@ -36,13 +36,24 @@
     </nav>
 
 <!-- content -->
+
+<section style="margin-top: 100px; height: 350px; background: #0f0c29;background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);background: linear-gradient(to right, #24243e, #302b63, #0f0c29);">
+  <div class="row my-auto">
+    <div class="col-lg-6">
+     <h2 style="text-align: center; text-transform: uppercase; color: white;"> <%= trainer.username %> <BR> BOXING | BASIC</h2>
+    </div>
+    <div class="col-lg-6">
+      <img class="img-fluid" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 40%; max-height: 40%; border-radius: 50%; display: block;">
+    </div>
+  </div>
+</section>
     <div class="container" >
       
 
       <section class="text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto flex flex-col">
           <div class="lg:w-4/6 mx-auto">
-            <h1 style="text-align: center;">YOUR TRAINER</h1>
+            <h1 style="text-align: center; text-transform: uppercase;"><%= trainer.username %></h1>
             <div class="flex flex-col sm:flex-row mt-10">
               <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
                 <div class="w-30 h-30 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -57,13 +68,13 @@
                   <h2 class="font-medium title-font mt-4 text-gray-900 text-lg"><%= trainer.username %></h2>
                   <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                   <div class="bulletPoints" style="font-family: Montserrat,sans-serif;font-size: 15px!important;margin-top: 15px;">
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px">AGE :</span> 32
+                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">AGE :</span> 32
                     <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px">WEIGHT :</span>60kg
+                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">WEIGHT :</span>60kg
                     <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px">OCCUPATION :</span>Boxing
+                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">OCCUPATION :</span>Boxing
                     <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px">CATEGORY :</span> Basic <%= trainer.categoryType %>
+                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">CATEGORY :</span> Basic <%= trainer.categoryType %>
                 </div>
                 </div>
               </div>
@@ -355,6 +366,82 @@
                 </tbody>
               </table>
   
+      </div>
+
+      <div class="timetable">
+        <div class="week-names">
+          <div>monday</div>
+          <div>tuesday</div>
+          <div>wednesday</div>
+          <div>thursday</div>
+          <div>friday</div>
+          <div class="weekend">saturday</div>
+          <div class="weekend">sunday</div>
+        </div>
+        <div class="time-interval">
+          <div>8:00 - 10:00</div>
+          <div>10:00 - 12:00</div>
+          <div>12:00 - 14:00</div>
+          <div>14:00 - 16:00</div>
+          <div>16:00 - 18:00</div>
+          <div>18:00 - 20:00</div>
+        </div>
+        <div class="content">
+          <div>
+            <div class="accent-orange-gradient"></div>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+              <div>
+            <div class="accent-green-gradient"></div>
+          </div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div>
+            <div class="accent-cyan-gradient"></div>
+          </div>
+          <div></div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+          <div>
+            <div class="accent-pink-gradient"></div>
+          </div>
+          <div></div>
+          <div>
+            <div class="accent-purple-gradient"></div>
+          </div>
+          <div></div>
+          <div></div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+          <div>
+            <div class="accent-purple-gradient"></div>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="weekend"></div>
+          <div class="weekend"></div>
+        </div>
       </div>
 
 

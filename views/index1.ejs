@@ -16,8 +16,8 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
-    <a class="navbar-brand" href="#">ShapeYou</a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0); height: 80px; font-size: 18px;">
+    <a class="navbar-brand" href="#" style="font-size: 22px;">ShapeYou</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,16 +27,16 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown ml-3">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/user/category/Fitness%20trainer" style="color: white;">Fitness Trainer</a>
-            <a class="dropdown-item" href="/user/category/Wellness" style="color: white;">Welness</a>
-            <a class="dropdown-item" href="/user/category/Counselling" style="color: white;">Counselling</a>
-          </div>
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="/user/category/Fitness%20trainer" style="color: white;">Fitness</a>
         </li>
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="/user/category/Wellness" style="color: white;">Wellness</a>
+        </li>
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="/user/category/Counselling" style="color: white;">Counselling</a>
+        </li>
+          
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if(!currentUser){ %>
@@ -44,13 +44,19 @@
             
             <form action="/user" method="GET" class="form-inline">
               <div class="form-group">
-              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
               <!-- <input type="submit" value="Search" class="btn btn-success"> -->
             </div>
             </form>
             <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
             <li><a class="nav-link mr-3" href="/auth" style="color: white">Sign Up</a></li>
         <% } else{ %>
+          <form action="/user" method="GET" class="form-inline">
+            <div class="form-group">
+            <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+            <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+          </div>
+          </form>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Account
@@ -64,7 +70,7 @@
         <% } %>
       </ul>
     </div>
-  </nav>    
+  </nav>
       <section style="margin-top: 130px; padding-bottom: 70px;">
         <% if(noMatch.length > 0) { %>
             <h1 class="text-center">No search results!!</h1>

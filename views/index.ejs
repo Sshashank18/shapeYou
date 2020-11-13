@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/>
 <style>
   .navbar-nav > li > .dropdown-menu { background-color: rgb(7, 7, 8); }
@@ -24,8 +25,8 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0);">
-        <a class="navbar-brand" href="#">ShapeYou</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0); height: 80px; font-size: 18px;">
+        <a class="navbar-brand" href="/user" style="font-size: 22px;">ShapeYou</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +34,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ml-3">
               <a class="nav-link" href="/user/category/Fitness%20trainer" style="color: white;">Fitness</a>
@@ -52,16 +53,16 @@
                 
                 <form action="/user" method="GET" class="form-inline">
                   <div class="form-group">
-                  <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+                  <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
                   <!-- <input type="submit" value="Search" class="btn btn-success"> -->
                 </div>
                 </form>
                 <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
-                <li><a class="nav-link mr-3" href="/auth" style="color: white">Sign Up</a></li>
+                
             <% } else{ %>
               <form action="/user" method="GET" class="form-inline">
                 <div class="form-group">
-                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
                 <!-- <input type="submit" value="Search" class="btn btn-success"> -->
               </div>
               </form>
@@ -130,84 +131,22 @@
           </div>
         <!-- </div> -->
       </section>
-
-  <!-- ======= Intro Section ======= -->
-  <!-- <section id="intro">
-    <div class="intro-container">
-      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
-
-        <ol class="carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-          <div class="carousel-item active" style="background-image: url(https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">We are professional</h2>
-                <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#featured-services" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1552196563-55cd4e45efb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1526&q=80)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
-                <p class="animate__animated animate__fadeInUp">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
-                <a href="#featured-services" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Temporibus autem quibusdam</h2>
-                <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
-                <a href="#featured-services" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1544216717-3bbf52512659?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Nam libero tempore</h2>
-                <p class="animate__animated animate__fadeInUp">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum.</p>
-                <a href="#featured-services" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-
-      </div>
-    </div> -->
-  <!-- </section>End Intro Section -->
-
   
 <section style="background-color: rgb(7,7,8); height: 150px; width: 100%; opacity: 1;"> 
   <h1 class="text-center pl-3" style="color: white; font-size: 40px; padding-top: 50px; font-family: 'Poiret One', cursive;">Choose Your Sessions and Start Your Training</h1>
 </section>
 
-    <h1 class="text-center" style="font-size: 50px; margin-top: 90px; font-family: 'Montserrat', sans-serif, cursive; color: white;"> <span style=" background-color: #E71C23">Our</span><span style="background-color: rgb(7, 7, 8);">classes</span></h1>
+<section style="height: 400px; background: url('https://images.unsplash.com/photo-1484452330304-377cdeb05340?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80')">
+  <div class="text-center" style="padding-top: 10%;">
+   <h1 style="color: white; font-family: 'Londrina Outline', cursive; font-size: 100px;">OUR CLASSES</h1> 
+  </div>
+</section>
 
     <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap w-full mb-20">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px; color: black;"> Fitness trainer</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-size: 40px; color: black;">Fitness trainer</h1>
         <!-- <div class="h-1 w-20 bg-indigo-500 rounded"></div> -->
       </div>
       <!-- <p class="lg:w-1/2 w-full leading-relaxed text-base" style="font-size: 20px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium repellat iste aliquam tenetur nam, totam autem. Beatae officia ex accusamus cum illum rem veritatis voluptate, veniam sequi quos ad nisi?</p> -->
@@ -232,13 +171,12 @@
               <!-- <img src="" class="model"> -->
               <!--details-->
                <!-- Card content -->
-    <div class="card-body">
+    <div class="card-body text-center">
   
       <!-- Title -->
       <h4 class="card-title"><%= category.title %></h4>
       <!-- Text -->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+      <!-- <p class="card-text"></p> -->
       <!-- Button -->
       <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
   
@@ -331,13 +269,13 @@
               <!-- <img src="" class="model"> -->
               <!--details-->
                <!-- Card content -->
-    <div class="card-body">
+    <div class="card-body text-center">
   
       <!-- Title -->
       <h4 class="card-title"><%= category.title %></h4>
       <!-- Text -->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p> -->
       <!-- Button -->
       <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
   

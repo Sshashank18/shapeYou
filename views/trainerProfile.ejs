@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/stars.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
@@ -20,71 +22,84 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">ShapeYou</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0); height: 80px; font-size: 18px;">
+      <a class="navbar-brand" href="/user" style="font-size: 22px;">ShapeYou</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
+      </button>
     
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Fitness%20trainer" style="color: white;">Fitness</a>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Wellness" style="color: white;">Wellness</a>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Counselling" style="color: white;">Counselling</a>
+          </li>
+            
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentUser){ %>
+            
+              
+              <form action="/user" method="GET" class="form-inline">
+                <div class="form-group">
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
+                <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+              </div>
+              </form>
+              <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
+              
+          <% } else{ %>
+            <form action="/user" method="GET" class="form-inline">
+              <div class="form-group">
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
+              <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+            </div>
+            </form>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
+                <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
     </nav>
 
 <!-- content -->
 
-<section style="margin-top: 100px; height: 350px; background: #0f0c29;background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);background: linear-gradient(to right, #24243e, #302b63, #0f0c29);">
-  <div class="row my-auto">
+<section style="height: 350px; background: #000000; background: -webkit-linear-gradient(to right, #434343, #000000); background: linear-gradient(to right, #434343, #000000);">
+  <div class="row">
     <div class="col-lg-6">
-     <h2 style="text-align: center; text-transform: uppercase; color: white;"> <%= trainer.username %> <BR> BOXING | BASIC</h2>
+     <h2 style="font-size: 60px;; text-align: center; text-transform: uppercase; color: white; margin-top: 20%;"> anish </h2>
+      <p style="font-size: 40px; text-align: center; color: white"> BOXING | BASIC </p>
     </div>
     <div class="col-lg-6">
-      <img class="img-fluid" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 40%; max-height: 40%; border-radius: 50%; display: block;">
+      <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 50%; max-height: 50%; border-radius: 50%; display: block; margin-top: 15%; margin-left: 10%;">
     </div>
   </div>
 </section>
-    <div class="container" >
-      
 
-      <section class="text-gray-700 body-font">
-        <div class="container px-5 py-24 mx-auto flex flex-col">
-          <div class="lg:w-4/6 mx-auto">
-            <h1 style="text-align: center; text-transform: uppercase;"><%= trainer.username %></h1>
-            <div class="flex flex-col sm:flex-row mt-10">
-              <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                <div class="w-30 h-30 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                  <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg> -->
-                  <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 100%; max-height: 100%; border-radius: 50%;
-                                                                              display: block;">
-                </div>
-                <div class="flex flex-col items-center text-center justify-center">
-                  <h2 class="font-medium title-font mt-4 text-gray-900 text-lg"><%= trainer.username %></h2>
-                  <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
-                  <div class="bulletPoints" style="font-family: Montserrat,sans-serif;font-size: 15px!important;margin-top: 15px;">
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">AGE :</span> 32
-                    <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">WEIGHT :</span>60kg
-                    <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">OCCUPATION :</span>Boxing
-                    <hr>
-                    <span style="float: left;margin-left: 10px;color:#4564fd;width:120px; font-family: 'Montserrat', sans-serif;">CATEGORY :</span> Basic <%= trainer.categoryType %>
-                </div>
-                </div>
-              </div>
-              <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-300 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-                <p class="leading-relaxed text-lg mb-4">Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.</p>
-              </div>
-            </div>
-          </div>
+      <div class="container">
+        <div class="text-left">
+          <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; font-weight: 800; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">about anish </h1>
+          <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">
+            Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.
+          </p>
         </div>
-      </section>
+      </div>
 
 
 
@@ -112,11 +127,11 @@
     
 
       <div class="trainingType">
-        <button name = "personal" class="button activated" style="margin:20px">Personal Training</button>
-        <button name = "group" class="button" style="margin:20px">Group Training - <%=category %></button>
+        <button name = "personal" class="button activated" style="margin:20px; background: #000000; background: -webkit-linear-gradient(to right, #434343, #000000); background: linear-gradient(to right, #434343, #000000);">Personal Training</button>
+        <button name = "group" class="button" style="margin:20px; background: #000000; background: -webkit-linear-gradient(to right, #434343, #000000); background: linear-gradient(to right, #434343, #000000);">Group Training - <%=category %></button>
     </div>
 
-      <div class="container trainerTimeTable">
+      <!-- <div class="container trainerTimeTable">
         <table class="table" id="trainerTT">
             <thead class="week-names">
               <tr style="text-align: center;">
@@ -370,7 +385,7 @@
                 </tbody>
               </table>
   
-      </div>
+      </div> -->
 
       <!-- <div class="timetable">
         <div class="week-names">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>ShapeYou - Login</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/login.css">
@@ -12,10 +12,10 @@
 <body>
     <div class="row">
         <div class="col-lg-6">
-            <div class="form bg-light">
+            <div class="form bg-dark text-center">
                 <button class="btn btn-primary" id="userLoginButton">User Login</button>
                 <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
-                
+                <div class="container">
                 <form id="userForm" method="POST" action="/auth/userLogin">
                     <div class="form-group mt-2">
                         <label for="userUsername">Username</label>
@@ -39,14 +39,14 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Log-in</button>
                 </form>
-        
-                <h4 style="font-size: 25px;">Dont Have An Account?? SignUp <a href="/auth">Here...</a></h4>
+            </div>
+                <h4 style="font-size: 20px; margin-top: 30px;">Dont Have An Account? <a href="/auth">SignUp</a></h4>
         
             </div>
         </div>
         <div class="col-lg-6 my-auto">
-            <!-- <img src="/images/undraw_authentication_fsn5.svg" alt="" style="width: 70%; height: auto;"> -->
-        </div>
+            
+         </div>
     </div>
 
 

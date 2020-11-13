@@ -71,9 +71,10 @@ route.put('/setTimeTable/:id',(req,res)=>{
     });
 });
 
-route.get('/personalSlots', (req, res) => {
+route.get('/personalSlots',(req,res)=>{
     res.render('trainerPersonal');
 });
+
 
 route.put('/personalSlots', (req, res) => {
     const arr1 = [];

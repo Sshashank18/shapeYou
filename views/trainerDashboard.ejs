@@ -665,10 +665,12 @@
 
                             persSlots = trainerPersonals[dayCol];
 
-                            for(var i=0;i<persSlots.length;i++){
-                                if(persSlots[i].slice(0,9) == timeStr2){
-                                    $(this).find('.content')[0].innerText = "Personal";
-                                    $(this).find('.content').css('color',"rgb(138, 148, 254)");
+                            if(persSlots){
+                                for(var i=0;i<persSlots.length;i++){
+                                    if(persSlots[i].slice(0,9) == timeStr2){
+                                        $(this).find('.content')[0].innerText = "Personal";
+                                        $(this).find('.content').css('color',"rgb(138, 148, 254)");
+                                    }
                                 }
                             }
 
@@ -822,11 +824,13 @@
                             var timeA = timeR.split('-');
                             var timeStr = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
 
-                            for(var j=0;j<slotsP.length;j++){
-                                if(slotsP[j].slice(0,9) == timeStr){
-                                    $(this).find('input[type="checkbox"]').attr('disabled','');
-                                    $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
-                                    $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                            if(slotsP){
+                                for(var j=0;j<slotsP.length;j++){
+                                    if(slotsP[j].slice(0,9) == timeStr){
+                                        $(this).find('input[type="checkbox"]').attr('disabled','');
+                                        $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
+                                        $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                                    }
                                 }
                             }
                     });
@@ -855,38 +859,40 @@
 
                 var compare1 = currentTime.slice(0,4);
 
-                for(var i=0;i<compare.length;i++){
-                    var compare2 = compare[i].slice(0,4);
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
-                        $('#create'+i).removeAttr('disabled');
-                        $('#create'+i).css('background-color','green');
-                        $('#create'+i).css('cursor','pointer');
-
+                    for(var i=0;i<compare.length;i++){
+                        var compare2 = compare[i].slice(0,4);
+                        if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
+                            $('#create'+i).removeAttr('disabled');
+                            $('#create'+i).css('background-color','green');
+                            $('#create'+i).css('cursor','pointer');
+    
+                        }
+                        else{
+                            $('#create'+i).attr('disabled','');
+                            $('#create'+i).css('background-color','#99AAAB');
+                            $('#create'+i).css('color','white');
+                            $('#create'+i).css('border-radius','20px');
+                            $('#create'+i).css('cursor','default');
+                        }
+    
                     }
-                    else{
-                        $('#create'+i).attr('disabled','');
-                        $('#create'+i).css('background-color','#99AAAB');
-                        $('#create'+i).css('color','white');
-                        $('#create'+i).css('border-radius','20px');
-                        $('#create'+i).css('cursor','default');
-                    }
-
-                }
 
                 var compare2 = compareP;
-                for(var j=0;j<compare2.length;j++){
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))) && (compare1.slice(-2) <=15 ))){
-                        $('#createP'+j).removeAttr('disabled');
-                        $('#createP'+j).css('background-color','green');
-                        $('#createP'+j).css('cursor','pointer');
-
-                    }
-                    else{
-                        $('#createP'+j).attr('disabled','');
-                        $('#createP'+j).css('background-color','#99AAAB');
-                        $('#createP'+j).css('color','white');
-                        $('#createP'+j).css('border-radius','20px');
-                        $('#createP'+j).css('cursor','default');
+                if(compare2){
+                    for(var j=0;j<compare2.length;j++){
+                        if(((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))) && (compare1.slice(-2) <=15 ))){
+                            $('#createP'+j).removeAttr('disabled');
+                            $('#createP'+j).css('background-color','green');
+                            $('#createP'+j).css('cursor','pointer');
+    
+                        }
+                        else{
+                            $('#createP'+j).attr('disabled','');
+                            $('#createP'+j).css('background-color','#99AAAB');
+                            $('#createP'+j).css('color','white');
+                            $('#createP'+j).css('border-radius','20px');
+                            $('#createP'+j).css('cursor','default');
+                        }
                     }
                 }
 

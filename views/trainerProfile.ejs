@@ -903,18 +903,21 @@
                       default:
                           dayCol = "Sunday";
                   };
-                  for(var i=0;i<data[dayCol].length;i++){
-                    if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
-                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".bd-example-modal-lg">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
-                          $(this).find('.content').find('.empty').attr('hidden','');
-                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                          $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
-                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                          $(this).find('.content').css('background-color',"yellowgreen");
-                          $(this).find('.content').css('color',"darkgreen");
-                    }
-                  };
+
+                  if(data[dayCol]){
+                    for(var i=0;i<data[dayCol].length;i++){
+                      if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
+                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".bd-example-modal-lg">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                            $(this).find('.content').find('.empty').attr('hidden','');
+                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                            $(this).find('.content').css('background-color',"yellowgreen");
+                            $(this).find('.content').css('color',"darkgreen");
+                      }
+                    };
+                  }
                 }
               });
               index++;
@@ -1034,18 +1037,21 @@
                       default:
                           dayCol = "Sunday";
                   };
-                  for(var i=0;i<data[dayCol].length;i++){
-                    if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
-                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".bd-example-modal-lg">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
-                          $(this).find('.content').find('.empty').attr('hidden','');
-                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                          $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
-                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                          $(this).find('.content').css('background-color',"yellowgreen");
-                          $(this).find('.content').css('color',"darkgreen");
-                    }
-                  };
+
+                  if(data[dayCol]){
+                    for(var i=0;i<data[dayCol].length;i++){
+                      if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
+                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".bd-example-modal-lg">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                            $(this).find('.content').find('.empty').attr('hidden','');
+                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                            $(this).find('.content').css('background-color',"yellowgreen");
+                            $(this).find('.content').css('color',"darkgreen");
+                      }
+                    };
+                  }
                 }
               });
               index++;

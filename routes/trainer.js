@@ -72,7 +72,7 @@ route.put('/setTimeTable/:id',(req,res)=>{
 });
 
 route.get('/personalSlots', (req, res) => {
-    res.render('trainerPersonal');
+    res.render('trainerPersonal.ejs');
 });
 
 route.put('/personalSlots', (req, res) => {

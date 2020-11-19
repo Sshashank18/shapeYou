@@ -28,11 +28,14 @@ route.post('/trainer', (req, res) => {
             console.log(err);
         } else {
             console.log(trainer);
-            res.redirect('/waiting');
+            res.redirect('/auth/userInfo');
         }
     })
 });
 
+route.get('/userInfo',(req,res)=>{
+    res.render('zoomEmailVerification.ejs');
+});
 
 //Create a new User
 route.post('/user', (req, res) => {

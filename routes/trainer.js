@@ -25,20 +25,44 @@ route.get('/details',(req,res)=>{
     res.render('details');
 });
 
-route.put('/submitDetails',(req,res)=>{
-    Trainer.findByIdAndUpdate(req.user._id,
-        {
-            dob:req.body.dob,
-            profilePic:req.body.image,
-            about:req.body.about,
-            subCategories: req.body.subcategories
-        }
-    ,(err,result)=>{
+route.get('/getDetails',(req,res)=>{
+    Trainer.findById(req.user._id,(err,result)=>{
         if(err){
             return res.status(422).json({error: err});
         }
         res.json(result);
     });
+});
+
+route.put('/submitDetails',(req,res)=>{
+    if(req.body.subcategories!=undefined){
+        Trainer.findByIdAndUpdate(req.user._id,
+            {
+                dob:req.body.dob,
+                profilePic:req.body.image,
+                about:req.body.about,
+                subCategories: req.body.subcategories
+            }
+        ,(err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+            res.json(result);
+        });
+    }else{
+        Trainer.findByIdAndUpdate(req.user._id,
+            {
+                dob:req.body.dob,
+                profilePic:req.body.image,
+                about:req.body.about,
+            }
+        ,(err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+            res.json(result);
+        });
+    }
 });
 
 route.get('/:type', (req, res) => {
@@ -71,9 +95,20 @@ route.put('/setTimeTable/:id',(req,res)=>{
     });
 });
 
-route.get('/personalSlots',(req,res)=>{
-    res.render('personal');
+
+route.put('/addCoupon/:id',(req,res)=>{
+    Trainer.findByIdAndUpdate(req.params.id,
+        {
+            coupon:req.body
+        }
+    ,(err,result)=>{
+        if(err){
+            return res.status(422).json({error: err});
+        }
+        res.sendStatus(200);
+    });
 });
+
 
 
 route.put('/personalSlots', (req, res) => {
@@ -108,7 +143,6 @@ route.put('/personalSlots', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            console.log(trainer);
             res.redirect('/trainer');
         }
     });
@@ -119,12 +153,10 @@ route.put('/personalSlots', (req, res) => {
 
 //Creating User API
 
-
-route.get('/userInfo',(req,res)=>{
-    res.render('zoomEmailVerification.ejs');
-});
-
 route.post('/userInfo',(req,res)=>{
+    console.log(req.user);
+    console.log('break');
+    console.log(req.body);
     var options = {
         "method": "POST",
         "hostname": "api.zoom.us",
@@ -160,9 +192,9 @@ route.post('/userInfo',(req,res)=>{
     
     req1.write(JSON.stringify({ action: 'create',
       user_info: 
-       { email: req.user.email,
+       { email: req.body.email,
          type: 1,
-         first_name: req.user.username,
+        //  first_name: req.user.username,
         } 
     }));
     

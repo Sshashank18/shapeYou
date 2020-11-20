@@ -235,82 +235,119 @@ var meetConfig = {
 route.post('/createMeeting',(req,res)=>{
     // email = req.body.email;
     console.log(req.user);
+
     var options = {
-        //You can use a different uri if you're making an API call to a different Zoom endpoint.
-        uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com",
-        qs: {
-            status: 'active'
-        },
-        auth: {
-            'bearer': token
-        },
-        headers: {
-            'User-Agent': 'Zoom-api-Jwt-Request',
-            'content-type': 'application/json'
-        },
-        json: true //Parse the JSON string in the response
+      "method": "POST",
+      "hostname": "api.zoom.us",
+      "port": null,
+      "path": `/v2/users/${req.user.user_id}/meetings`,
+      "headers": {
+        "content-type": "application/json",
+        "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk"
+      }
     };
+    
+    var req2 = http.request(options, function (res2) {
+      var chunks = [];
+    
+      res2.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+    
+      res2.on("end", function () {
+        var body = Buffer.concat(chunks);
+        var response = JSON.parse(body.toString());
+        console.log(response);
 
-    rp(options)
-    .then(function (response) {
+        meetConfig.meetingNumber = response.id;
 
-      //printing the response on the console
-        console.log('Trainer has', response);
-   
-        meetConfig.meetingNumber = response.pmi.toString();
+        meetConfig.username = req.user.username;
 
-        meetConfig.username = response.first_name + ' ' + response.last_name;
+       res.redirect('/trainer/getMeeting/'+response.id);
 
-       res.redirect('/trainer/getMeeting/?id='+response.pmi.toString());
- 
-    })
-    .catch(function (err) {
-        // API call failed...
-        console.log('API call failed, reason ', err);
+      });
     });
+    
+    req2.write(JSON.stringify({type: 1,settings:{"use_pmi":true}}));
+    req2.end();
+
+    // rp(options)
+    // .then(function (response) {
+
+    //   //printing the response on the console
+    //     console.log('Trainer has', response);
+   
+    //     meetConfig.meetingNumber = response.pmi.toString();
+
+    //     meetConfig.username = response.first_name + ' ' + response.last_name;
+
+    //    res.redirect('/trainer/getMeeting/?id='+response.pmi.toString());
+ 
+    // })
+    // .catch(function (err) {
+    //     // API call failed...
+    //     console.log('API call failed, reason ', err);
+    // });
+
 
 });
 
-route.get('/getMeeting',(req,res)=>{
+route.get('/getMeeting/:id',(req1,res1)=>{
 
-    Trainer.findByIdAndUpdate(req.user._id,
+    console.log(req1.params.id);
+    Trainer.findByIdAndUpdate(req1.user._id,
         {
             isCreated:true
         },
         (err,result)=>{
             if(err){
-                return res.status(422).json({error: err});
+                return res1.status(422).json({error: err});
             }
         });
 
-    var options = {
-        method: 'GET',
-        url: 'https://api.zoom.us/v2/meetings/'+req.query.id,
-        headers: {
-          authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk'
-        }
-      };
-      
-      request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-      
-        body = JSON.parse(body);
-        meetConfig.password = body.password;
-
-        Trainer.findByIdAndUpdate(req.user._id,
-            {
-                meetingDetails:meetConfig
-            },
-        (err,result)=>{
-            if(err){
-                return res.status(422).json({error: err});
+        var options = {
+            "method": "GET",
+            "hostname": "api.zoom.us",
+            "port": null,
+            "path": "/v2/meetings/"+req1.params.id,
+            "headers": {
+              "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk"
             }
-        });
+          };
 
-        console.log(meetConfig.password);
+          var req = http.request(options, function (res) {
+            var chunks = [];
+          
+            res.on("data", function (chunk) {
+              chunks.push(chunk);
+            });
+          
+            res.on("end", function () {
+              var body = Buffer.concat(chunks);
+              body= JSON.parse(body.toString());
+              console.log(body);
 
-        res.redirect('/trainer/zoomDashboard');
-      });
+              meetConfig.password = body.password;
+
+              Trainer.findByIdAndUpdate(req1.user._id,
+                  {
+                      meetingDetails:meetConfig
+                  },
+              (err,result)=>{
+                  if(err){
+                      return res1.status(422).json({error: err});
+                  }
+              });
+      
+              console.log(meetConfig.password);
+              res1.redirect('/zoomDashboard');
+            //   res1.render('zoomDashboard');
+            
+            });
+          });
+          
+          req.end();
+      
 });
 
 //Pass meeting Details to user route
@@ -323,10 +360,6 @@ route.get('/passMeetingDetails/:id',(req,res)=>{
             res.json(foundTrainer.meetingDetails);
         }
     });
-});
-
-route.get('/zoomDashboard',(req,res)=>{
-    res.render('zoomDashboard.ejs');
 });
 
 

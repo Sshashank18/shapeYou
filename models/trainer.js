@@ -59,7 +59,11 @@ var trainerSchema = new mongoose.Schema({
         type:Object,
         default:null
     },
-    categoryType: String
+    categoryType: String,
+    isZoomVerified:{
+        type: Boolean,
+        default: false
+    }
 });
 
 trainerSchema.plugin(passportLocalMongoose);

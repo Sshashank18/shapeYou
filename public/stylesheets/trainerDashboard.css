@@ -38,6 +38,10 @@ input[type=checkbox] {
     visibility: hidden; 
 } 
 
+.entry{
+  visibility:unset !important;
+}
+
 .glyphicon{
     position: absolute; 
     top: 2px;
@@ -83,7 +87,7 @@ input[type=checkbox] {
   text-align: center;
   line-height: 2.4;
   font-weight: 700;
-  font-size: 19px;
+  font-size: 12px;
   letter-spacing: .2rem;
 }
 
@@ -94,23 +98,84 @@ input[type=checkbox] {
 
 
 button{
-    outline: none;
-    background-color: transparent;
-    padding: 10px 20px;
-    border: 1px solid #fff;
-    box-sizing: inherit;
-    display: inline-block;
-    font-size: 13pt;
-    transition: all .5s;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  outline: none;
+  background-color: transparent;
+  padding: 10px 10px;
+  /* border: 1px solid #fff; */
+  box-sizing: inherit;
+  display: inline-block;
+  font-size: 13pt;
+  transition: all .5s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookSlot{
+  background-color: lightgreen;
+  box-shadow: 2.5px 2.5px darkgreen;
+  border-radius: 10px;
+  color:darkgreen;
+}
+
+.booked{
+  background-color: lightgreen;
+  border-radius: 10px;
+  color:darkgreen;
 }
 
 .activated {
     color: white !important;
     background-color: #EE0079;
+}
+
+.modal-header{
+  display: unset !important;
+  align-items: unset !important;
+  justify-content: unset !important;
+}
+
+.modal-title{
+  display: inline;
+}
+
+.prev{
+  display: inline-block;
+  float: left;
+}
+
+.next{
+  display: inline-block;
+  float: right;
+}
+
+.week-names{
+  background-color: black;
+  color:white;
+}
+
+.weekend{
+  background-color: lightgray;
+}
+
+.time-interval{
+  background-color: black;
+  color:white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.table{
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table tr{
+  height:100px;
+}
+
+.table td,.table th,.table thead th{
+  vertical-align: inherit !important;
 }
 
 .table1 {

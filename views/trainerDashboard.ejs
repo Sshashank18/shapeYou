@@ -29,17 +29,24 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
+                <% if(trainer.subCategories.length>0){ %>
                 <li class="nav-item">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setTimeTable">
                       Upload Group time slots
                     </button>
                 </li>
                 <li class="nav-item">
-                      <a class="btn btn-primary" href="/trainer/personalSlots">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#setPersonalTimeTable">
                          Upload Personal time slots
-                      </a>
+                      </button>
                 </li>
+                <% } %>
                 <li class="nav-item"><a class="btn btn-primary" href="/trainer/details">Edit Details</a></li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#coupon">
+                       Add Coupon
+                    </button>
+              </li>
                 <li class="nav-item"><a class="btn btn-primary" href="/auth/logout" style="text-decoration: none;">Logout</a></li>
             </ul>
         </div>
@@ -82,194 +89,291 @@
     </div>
     
     <div class="container trainerTimeTable">
-        <table class="table table1 table-bordered table-striped" id="trainerTT">
-            <thead class="table-dark">
-              <tr style="text-align: center;">
-                <th scope="col">Slots</th>
+        <table class="table table-bordered" id="trainerTT">
+            <thead class="week-names">
+              <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
+                <th scope="col" style="background-color: #888888;vertical-align: inherit;" >Slots</th>
                 <th scope="col" id="dateT1"></th>
                 <th scope="col" id="dateT2"></th>
                 <th scope="col" id="dateT3"></th>
                 <th scope="col" id="dateT4"></th>
                 <th scope="col" id="dateT5"></th>
-                <th scope="col" id="dateT6"></th>
+                <th scope="col" style="background-color: rgb(144, 140, 140); color:black" id="dateT6"></th>
+                <th scope="col" style="background-color: rgb(144, 140, 140); color:black" id="dateT7"></th>
               </tr>
             </thead>
-            <tbody style="text-align:center">
-                <tr> 
-                  <th scope="row" >3PM-4PM</th>
-                  <td>
+              <tbody style="text-align:center">
+                  <tr>
+                    <th scope="row" class="time-interval">3PM-4PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
                       <div class="content">
-                        -    
+                        <div class="empty">
+                          - 
+                        </div>
                       </div>
-                  </td>
-                  <td>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row" class="time-interval">4PM-5PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
                       <div class="content">
-                        -    
+                        <div class="empty">
+                          - 
+                        </div>
                       </div>
-                      
-                  </td>
-                  <td>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row" class="time-interval">5PM-6PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
                       <div class="content">
-                        -    
+                        <div class="empty">
+                          - 
+                        </div>
                       </div>
-                      
-                  </td>
-                  <td>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row" class="time-interval" >6PM-7PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
                       <div class="content">
-                        -    
+                        <div class="empty">
+                          - 
+                        </div>
                       </div>
-                  </td>
-                  <td>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row"class="time-interval" >7PM-8PM</th>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td class="weekend">
                       <div class="content">
-                        -    
+                        <div class="empty">
+                          - 
+                        </div>
                       </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">4PM-5PM</th>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <th scope="row">5PM-6PM</th>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <th scope="row">6PM-7PM</th>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  
-                </tr>
-                <tr>
-                  <th scope="row">7PM-8PM</th>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  <td>
-                      <div class="content">
-                        -    
-                      </div>
-                  </td>
-                  
-                </tr>
-              </tbody>
-            </table>
-
-    </div>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+  
+      </div>
 
 
     <!-- Course Details -->
@@ -298,7 +402,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-                <% trainer.subCategories.forEach((subs,index)=>{%>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                <% if(trainer.subCategories){ 
+                   trainer.subCategories.forEach((subs,index)=>{%>
                     <% if(index==0){ %>
                         <div class="title" name="<%= subs.replace(/\s/g, '') %>">
                             <h5 class="modal-title" id="exampleModalLongTitle"><%=subs %></h5>
@@ -319,30 +427,30 @@
 
                 <% }) %>
                 
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <% } %>
+              
             </div>
             <div class="modal-body">
-                <table class="table" id="weekTable">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">Slots</th>
+                <table class="table table-bordered" id="weekTable">
+                    <thead class="week-names">
+                      <tr  style="text-align: center;font-family: 'Roboto', sans-serif;">
+                        <th scope="col" style="background-color: #888888;vertical-align: inherit;">Slots</th>
                         <th scope="col" id="date1"></th>
                         <th scope="col" id="date2"></th>
                         <th scope="col" id="date3"></th>
                         <th scope="col" id="date4"></th>
                         <th scope="col" id="date5"></th>
                         <th scope="col" id="date6"></th>
+                        <th scope="col" id="date7"></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">3PM-4PM</th>
+                        <th scope="row" class="time-interval">3PM-4PM</th>
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -350,16 +458,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
-                                    <span class="glyphicon glyphicon-ok"></span>
-                                </label>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -368,7 +467,16 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -376,7 +484,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -384,18 +492,26 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">4PM-5PM</th>
+                        <th scope="row" class="time-interval">4PM-5PM</th>
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -403,7 +519,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -411,7 +527,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -419,7 +535,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -427,7 +543,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -435,19 +551,26 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
                         </td>
-                        
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
                       </tr>
                       <tr>
-                        <th scope="row">5PM-6PM</th>
+                        <th scope="row" class="time-interval">5PM-6PM</th>
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -455,7 +578,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -463,7 +586,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -471,7 +594,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -479,7 +602,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -487,19 +610,26 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
                         </td>
-                        
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
                       </tr>
                       <tr>
-                        <th scope="row">6PM-7PM</th>
+                        <th scope="row" class="time-interval">6PM-7PM</th>
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -507,7 +637,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -515,7 +645,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -523,7 +653,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -531,7 +661,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -539,19 +669,26 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
                         </td>
-                        
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
                       </tr>
                       <tr>
-                        <th scope="row">7PM-8PM</th>
+                        <th scope="row" class="time-interval">7PM-8PM</th>
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -559,7 +696,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -567,7 +704,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -575,7 +712,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -583,7 +720,7 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
@@ -591,12 +728,19 @@
                         <td>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-warning">
-                                    <input type="checkbox" autocomplete="off">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </label>
                             </div>
                         </td>
-                        
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning">
+                                    <input data-n = "grp" type="checkbox" autocomplete="off">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </label>
+                            </div>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -604,6 +748,331 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary save"  data-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Modal for Coupon -->
+    <div class="modal fade" id="coupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="title">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Coupon</h5>
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <input id="couponName" value="COUP" type="text" style="text-transform:uppercase"/>
+                <h3>DISCOUNT</h3>
+                <select id="couponDiscount">
+                    <option value="10%" selected>10%</option>
+                    <option value="25%">25%</option>
+                    <option value="50%">50%</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary saveCoupon"  data-dismiss="modal">Add Coupon</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Modal for set Personal Time -->
+    <div class="modal fade" id="setPersonalTimeTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="title">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Personal Time Table</h5>
+                </div>
+            </div>
+            <div class="modal-body">
+            <form action="/trainer/personalSlots?_method=PUT" method="POST">
+                <table class="table table-bordered" id="mytab">
+                    <thead class="week-names">
+                      <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
+                        <th scope="col">#</th>
+                        <th scope="col">MON</th>
+                        <th scope="col">TUE</th>
+                        <th scope="col">WED</th>
+                        <th scope="col">THU</th>
+                        <th scope="col">FRI</th>
+                        <th scope="col">SAT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="time-interval">3-4</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Monday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Tuesday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Wednesday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Thursday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Friday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Saturday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="time-interval">4-5</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Monday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Tuesday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Wednesday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Thursday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Friday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Saturday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="time-interval">5-6</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Monday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Tuesday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Wednesday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Thursday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Friday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Saturday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="time-interval">6-7</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Monday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Tuesday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Wednesday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Thursday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Friday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Saturday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="time-interval">7-8</th>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Monday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Tuesday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Wednesday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Thursday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Friday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Saturday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button class="btn btn-primary" id="button">Submit</button>
+                </form>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -620,8 +1089,8 @@
           var persSlots = null;
 
           $.ajax({
-              url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
-            //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
+            //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
+              url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -663,24 +1132,28 @@
                                     dayCol = "Sunday";
                             }
 
-                            persSlots = trainerPersonals[dayCol];
-
-                            for(var i=0;i<persSlots.length;i++){
-                                if(persSlots[i].slice(0,9) == timeStr2){
-                                    $(this).find('.content')[0].innerText = "Personal";
-                                    $(this).find('.content').css('color',"rgb(138, 148, 254)");
+                            if(trainerPersonals){
+                                persSlots = trainerPersonals[dayCol];
+                            }
+                            
+                            if(persSlots){
+                                for(var i=0;i<persSlots.length;i++){
+                                    if(persSlots[i].slice(0,9) == timeStr2){
+                                        $(this).find('.content')[0].innerText = "Personal";
+                                        $(this).find('.content').css('color',"rgb(138, 148, 254)");
+                                    }
                                 }
                             }
 
 
-                            if(index!=0 && data[key]!=undefined){
+                            if(index!=0 && data && data[key]!=undefined){
                                 for(var i=0;i<data[key].length;i++){
                                     if(data[key][i].slice(0,11) == timeStr){
                                         var subCat = data[key][i].slice(12,-2);
                                         if(subCat == "CrossFit"){
                                             $(this).find('.content')[0].innerText = "CrossFit";
                                             $(this).find('.content').css('color',"blue");
-                                            $(this).find('.content').css('font-size',"28px");
+                                            // $(this).find('.content').css('font-size',"28px");
                                             
                                         }
                                         else if(subCat == "Functional&StrengthTraining"){
@@ -767,18 +1240,21 @@
                     weekday[5]="Friday";
                     weekday[6]="Saturday";
 
-                    compareP = trainerPersonals[weekday[todayDay]];
-                    for(var j=0;j<trainerPersonals[weekday[todayDay]].length;j++){
-                        text2 += `<div class="slotRow">
-                                <div class="slots">
-                                ${trainerPersonals[weekday[todayDay]][j]}
-                                </div>
-                                <div class="createLink">
-                                    <form method="post" action='/trainer/createMeeting'>
-                                        <button style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
-                                    </form>
-                                </div>
-                                </div>`
+                    if(trainerPersonals)      compareP = trainerPersonals[weekday[todayDay]];
+                    
+                    if(compareP){
+                        for(var j=0;j<trainerPersonals[weekday[todayDay]].length;j++){
+                            text2 += `<div class="slotRow">
+                                    <div class="slots">
+                                    ${trainerPersonals[weekday[todayDay]][j]}
+                                    </div>
+                                    <div class="createLink">
+                                        <form method="post" action='/trainer/createMeeting'>
+                                            <button style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
+                                        </form>
+                                    </div>
+                                    </div>`
+                        }
                     }
 
                     document.getElementById('classesP').innerHTML = text2;
@@ -816,17 +1292,19 @@
                                     dayCol = "Sunday";
                             }
 
-                            var slotsP = trainerPersonals[dayCol];
+                            if(trainerPersonals)   var slotsP = trainerPersonals[dayCol];
 
                             var timeR = $(this).closest('tr').find('th')[0].innerText;
                             var timeA = timeR.split('-');
                             var timeStr = timeA[0].slice(0,1)+":00-"+timeA[1].slice(0,1)+":00";
 
-                            for(var j=0;j<slotsP.length;j++){
-                                if(slotsP[j].slice(0,9) == timeStr){
-                                    $(this).find('input[type="checkbox"]').attr('disabled','');
-                                    $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
-                                    $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                            if(slotsP){
+                                for(var j=0;j<slotsP.length;j++){
+                                    if(slotsP[j].slice(0,9) == timeStr){
+                                        $(this).find('input[type="checkbox"]').attr('disabled','');
+                                        $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
+                                        $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                                    }
                                 }
                             }
                     });
@@ -855,38 +1333,40 @@
 
                 var compare1 = currentTime.slice(0,4);
 
-                for(var i=0;i<compare.length;i++){
-                    var compare2 = compare[i].slice(0,4);
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
-                        $('#create'+i).removeAttr('disabled');
-                        $('#create'+i).css('background-color','green');
-                        $('#create'+i).css('cursor','pointer');
-
+                    for(var i=0;i<compare.length;i++){
+                        var compare2 = compare[i].slice(0,4);
+                        if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
+                            $('#create'+i).removeAttr('disabled');
+                            $('#create'+i).css('background-color','green');
+                            $('#create'+i).css('cursor','pointer');
+    
+                        }
+                        else{
+                            $('#create'+i).attr('disabled','');
+                            $('#create'+i).css('background-color','#99AAAB');
+                            $('#create'+i).css('color','white');
+                            $('#create'+i).css('border-radius','20px');
+                            $('#create'+i).css('cursor','default');
+                        }
+    
                     }
-                    else{
-                        $('#create'+i).attr('disabled','');
-                        $('#create'+i).css('background-color','#99AAAB');
-                        $('#create'+i).css('color','white');
-                        $('#create'+i).css('border-radius','20px');
-                        $('#create'+i).css('cursor','default');
-                    }
-
-                }
 
                 var compare2 = compareP;
-                for(var j=0;j<compare2.length;j++){
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))) && (compare1.slice(-2) <=15 ))){
-                        $('#createP'+j).removeAttr('disabled');
-                        $('#createP'+j).css('background-color','green');
-                        $('#createP'+j).css('cursor','pointer');
-
-                    }
-                    else{
-                        $('#createP'+j).attr('disabled','');
-                        $('#createP'+j).css('background-color','#99AAAB');
-                        $('#createP'+j).css('color','white');
-                        $('#createP'+j).css('border-radius','20px');
-                        $('#createP'+j).css('cursor','default');
+                if(compare2){
+                    for(var j=0;j<compare2.length;j++){
+                        if(((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((parseInt(compare1.slice(0,2)) == parseInt(compare2[j].slice(0,2))) && (compare1.slice(-2) <=15 ))){
+                            $('#createP'+j).removeAttr('disabled');
+                            $('#createP'+j).css('background-color','green');
+                            $('#createP'+j).css('cursor','pointer');
+    
+                        }
+                        else{
+                            $('#createP'+j).attr('disabled','');
+                            $('#createP'+j).css('background-color','#99AAAB');
+                            $('#createP'+j).css('color','white');
+                            $('#createP'+j).css('border-radius','20px');
+                            $('#createP'+j).css('cursor','default');
+                        }
                     }
                 }
 
@@ -913,7 +1393,7 @@
 
         var curr = new Date;
         var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
-        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+7));
 
 
         var weekday=new Array(7);
@@ -933,7 +1413,7 @@
         var first = firstday;
 
 
-        for(var d = 0;d<6; d++){
+        for(var d = 0;d<7; d++){
             var nextDay = new Date();
             nextDay.setDate(firstday.getDate()+1);
             var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
@@ -959,12 +1439,14 @@
         var nameArray = <%- JSON.stringify(trainer.subCategories) %>
 
         $(document).on('change', ':checkbox', function() {
+
+        if($(this).attr('data-n') == "grp"){
             $(this).parent().toggleClass('active');
-            
+
             if(nameHead == 'Yoga'){
                 if($(this).hasClass('Yoga')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Yoga','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Yoga');
@@ -975,9 +1457,10 @@
             }
 
             else if(nameHead=="Meditation"){
+
                 if($(this).hasClass('Meditation')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Meditation','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Meditation');
@@ -990,7 +1473,8 @@
             else if(nameHead=="CrossFit"){
 
                 if($(this).hasClass('CrossFit')){
-                    $(this).removeClass('CrossFit','');
+                    $(this).removeAttr('disabled');
+                    $(this).removeClass();
                 }else{
                     $(this).addClass('CrossFit');
                     $(this).attr('name','CrossFit');
@@ -1002,7 +1486,7 @@
             else if(nameHead=="Functional&StrengthTraining"){
                 if($(this).hasClass('Functional&StrengthTraining')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Functional&StrengthTraining','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Functional&StrengthTraining');
@@ -1014,7 +1498,7 @@
             else if(nameHead=="Zumba"){
                 if($(this).hasClass('Zumba')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Zumba','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Zumba');
@@ -1026,7 +1510,7 @@
             else if(nameHead=="Dance"){
                 if($(this).hasClass('Dance')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Dance','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Dance');
@@ -1038,7 +1522,7 @@
             else if(nameHead=="MMA&Boxing"){
                 if($(this).hasClass('MMA&Boxing')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('MMA&Boxing','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('MMA&Boxing');
@@ -1050,7 +1534,7 @@
             else if(nameHead=="Nutrition"){
                 if($(this).hasClass('Nutrition')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Nutrition','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Nutrition');
@@ -1061,7 +1545,7 @@
             else{
                 if($(this).hasClass('Therapy&counselling')){
                     $(this).removeAttr('disabled');
-                    $(this).removeClass('Therapy&counselling','');
+                    $(this).removeClass();
 
                 }else{
                     $(this).addClass('Therapy&counselling');
@@ -1070,7 +1554,10 @@
                 }
                 $(this).next().css('background-color','lightgreen');
             }
-
+            }else{
+                $(this).parent().toggleClass('active');
+                $(this).next().css('background-color','black');
+            }
         });
         
         $(document).on('click', '.next', function() {
@@ -1106,7 +1593,6 @@
         });
 
 
-
         $('.save').on('click',()=>{
             $('#weekTable tr').each(function(){
                 var index = 0;
@@ -1122,8 +1608,8 @@
                 });
             });
             $.ajax({
-                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
-                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
+                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
+                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer.id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
@@ -1133,6 +1619,24 @@
             location.reload();
             // window.location="http://127.0.0.1:3500/trainer";
             // window.location="https://shapeyou-demo.herokuapp.com/trainer";
+        });
+
+        $('.saveCoupon').on('click',()=>{
+            var couponName = $('#couponName').val();
+            var discount = $( "#couponDiscount option:selected" ).text();
+            var coupon = {
+                couponName,
+                discount
+            }
+            $.ajax({
+                url:'http://127.0.0.1:3500/trainer/addCoupon/<%= trainer._id %>',
+                // url:'https://shapeyou-demo.herokuapp.com/trainer/addCoupon/<%= trainer._id %>',
+                method:'PUT',
+                data:coupon,
+                success:()=>{
+                    alert('Saved Coupon Details.');
+                }
+            });
         });
 
 

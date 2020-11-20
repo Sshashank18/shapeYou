@@ -36,6 +36,9 @@ route.post('/trainer', (req, res) => {
     });
 });
 
+route.get('/userInfo',(req,res)=>{
+    res.render('zoomEmailVerification.ejs');
+});
 
 //Create a new User
 route.post('/user', (req, res) => {

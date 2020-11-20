@@ -32,6 +32,44 @@ html, body {
     text-align: unset !important;
 }
 
+.coupon {
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: 'Raleway';
+    width: 120px;
+    height: 70px;
+    padding: 7px;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    box-shadow: 2px 2px 15px 0px #0dab3a;
+}
+.coupon:before, .coupon:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    height: 6px;
+    width: 110px;
+}
+.coupon:before {
+    top: -5px;
+    background: radial-gradient(circle, transparent, transparent 50%, black 50%, black 100%) -7px -8px / 16px 16px repeat-x;
+}
+.coupon:after {
+    bottom: -5px;
+    background: radial-gradient(circle, transparent, transparent 50%, black 50%, black 100%) -7px -2px / 16px 16px repeat-x;
+}
+.ticket__content {
+    box-sizing: border-box;
+    height: 100%;
+    width: 98%;
+    border: 4px solid #d8d8d8;
+}
+
+
+
 .trainingType{
     display: flex;
     justify-content: center;
@@ -40,8 +78,8 @@ html, body {
 button{
     outline: none;
     background-color: transparent;
-    padding: 10px 20px;
-    border: 1px solid #fff;
+    padding: 10px 10px;
+    /* border: 1px solid #fff; */
     box-sizing: inherit;
     display: inline-block;
     font-size: 13pt;
@@ -50,6 +88,19 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.bookSlot{
+    background-color: lightgreen;
+    box-shadow: 2.5px 2.5px darkgreen;
+    border-radius: 10px;
+    color:darkgreen;
+}
+
+.booked{
+    background-color: lightgreen;
+    border-radius: 10px;
+    color:darkgreen;
 }
 
 .activated {
@@ -63,7 +114,35 @@ button{
     float: right;
 }
 
-.timetable {
+
+.week-names{
+    background-color: black;
+    color:white;
+}
+
+.weekend{
+    background-color: lightgray;
+}
+
+.time-interval{
+    background-color: black;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table tr{
+    height:100px;
+}
+
+.table td,.table th,.table thead th{
+    vertical-align: inherit;
+}
+/* .timetable {
     display: grid;
     grid-template-areas: ". week" "time content";
     grid-template-columns: 120px;
@@ -178,4 +257,4 @@ button{
 }
 .timetable .content > div {
     box-shadow: inset 1px 0 0 #eceff1, inset 0 1px 0 0 #eceff1;
-}
+} */

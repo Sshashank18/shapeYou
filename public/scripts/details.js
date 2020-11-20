@@ -37,29 +37,96 @@ $('#formSubmit').click(e => {
     dataI.append('upload_preset','shapeYou');
     dataI.append('cloud_name','deucalion');
 
-
-    fetch("https://api.cloudinary.com/v1_1/deucalion/image/upload",{                 
+    if(image!=undefined){
+        fetch("https://api.cloudinary.com/v1_1/deucalion/image/upload",{                 
             method:"post",
             body:dataI
         })    
         .then(res => res.json())
         .then(data => {
+            var data2= null;
             $.ajax({
-                url:'/trainer/submitDetails',
-                type:'PUT',
-                data:{
-                    image:data.url,
-                    about:$('#inputabout3').val(),
-                    dob:$('#inputdob3').val(),
-                    subcategories: subcategories
-                    },
-                success:(data)=>{
-                    alert('Saved Details');
-                    window.location= '/trainer/userInfo';
-                }
+                url:'/trainer/getDetails',
+                type:'GET',
+                success:(data1)=>{
+
+                    if((data1.subCategories.length>1 || data1.subCategories.length==0) && (subcategories.length>0)){
+                        console.log('in');
+                        data2={
+                            image:data.url,
+                            about:$('#inputabout3').val(),
+                            dob:$('#inputdob3').val(),
+                            subcategories: subcategories
+                        }
+                    }else{
+                        data2={
+                            image:data.url,
+                            about:$('#inputabout3').val(),
+                            dob:$('#inputdob3').val(),
+                            subcategories: data1.subCategories
+                        }
+                    }
+
+                    $.ajax({
+                        url:'/trainer/submitDetails',
+                        type:'PUT',
+                        data:data2,
+                        success:(data)=>{
+                            alert('Saved Details');
+                            window.location= '/trainer';
+                        }
+                    });
+                    }
+                
             });
+           
         })
         .catch(err=>console.log(err));  
+    }
+    else{
+        var data2= null;
+        $.ajax({
+            url:'/trainer/getDetails',
+            type:'GET',
+            success:(data1)=>{
+
+                if((data1.subCategories.length>1 || data1.subCategories.length==0) && (subcategories.length>0)){
+                    console.log('in');
+                    data2={
+                        image:null,
+                        about:$('#inputabout3').val(),
+                        dob:$('#inputdob3').val(),
+                        subcategories: subcategories
+                    }
+                }else if(data1.subCategories.length>1 && subcategories.length==0){
+                    data2={
+                        image:null,
+                        about:$('#inputabout3').val(),
+                        dob:$('#inputdob3').val(),
+                        subcategories: data1.subCategories
+                    }
+                }else{
+                    data2={
+                        image:null,
+                        about:$('#inputabout3').val(),
+                        dob:$('#inputdob3').val(),
+                    }
+                }
+
+                $.ajax({
+                    url:'/trainer/submitDetails',
+                    type:'PUT',
+                    data:data2,
+                    success:(data)=>{
+                        alert('Saved Details');
+                        window.location= '/trainer';
+                    }
+                });
+                }
+            
+        });
+    }
+   
 });
 
 

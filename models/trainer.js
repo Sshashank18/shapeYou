@@ -53,7 +53,11 @@ var trainerSchema = new mongoose.Schema({
     },
     personalSlots: {
         type: Object,
-        default: null
+        default:null
+    },
+    coupon:{
+        type:Object,
+        default:null
     },
     categoryType: String
 });

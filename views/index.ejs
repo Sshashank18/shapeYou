@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShapeYou - Index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/trainerDashboard.css">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
@@ -14,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/>
 <style>
   .navbar-nav > li > .dropdown-menu { background-color: rgb(7, 7, 8); }
@@ -25,25 +26,25 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0); height: 80px; font-size: 18px;">
-        <a class="navbar-brand" href="/user" style="font-size: 22px;">ShapeYou</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
+        <a class="navbar-brand" href="/user"><img style="width: 9rem; height: auto; margin-top: 1rem;" src="/images/arnav.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="/user">Home</a>
             </li>
             <li class="nav-item ml-3">
-              <a class="nav-link" href="/user/category/Fitness%20trainer" style="color: white;">Fitness</a>
+              <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
             </li>
             <li class="nav-item ml-3">
-              <a class="nav-link" href="/user/category/Wellness" style="color: white;">Wellness</a>
+              <a class="nav-link" href="/user/category/Wellness" ">Wellness</a>
             </li>
             <li class="nav-item ml-3">
-              <a class="nav-link" href="/user/category/Counselling" style="color: white;">Counselling</a>
+              <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
             </li>
               
           </ul>
@@ -53,11 +54,11 @@
                 
                 <form action="/user" method="GET" class="form-inline">
                   <div class="form-group">
-                  <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
+                  <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0;"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
                   <!-- <input type="submit" value="Search" class="btn btn-success"> -->
                 </div>
                 </form>
-                <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
+                <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
                 
             <% } else{ %>
               <form action="/user" method="GET" class="form-inline">
@@ -82,17 +83,17 @@
       </nav>
 
       <section class="content-section" id="index">
-        <!-- <div class="container"> -->
+        <div class="container">
           <div class="row no-gutters">
             <div class="col-lg-6">
               <a class="portfolio-item" href="/user/category/Fitness%20trainer">
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white">Fitness trainers</div>
-                    <p class="mb-0">Lorem ipsum dolor sit </p>
+                    <!-- <p class="mb-0">Lorem ipsum dolor sit </p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="/images/fitness.png" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -100,10 +101,10 @@
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white">Wellness</div>
-                    <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p>
+                    <!-- <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1505455184862-554165e5f6ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="/images/wellness.jpg" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -111,10 +112,10 @@
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white;">Counselling</div>
-                    <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p>
+                    <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="/images/counselling.png" alt="">
               </a>
             </div>
             <div class="col-lg-6">
@@ -122,25 +123,25 @@
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white;">Gym</div>
-                    <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p>
+                    <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="/images/gym.png" alt="">
               </a>
             </div>
           </div>
-        <!-- </div> -->
+        </div>
       </section>
   
-<section style="background-color: rgb(7,7,8); height: 150px; width: 100%; opacity: 1;"> 
-  <h1 class="text-center pl-3" style="color: white; font-size: 40px; padding-top: 50px; font-family: 'Poiret One', cursive;">Choose Your Sessions and Start Your Training</h1>
+<section style=" height: 150px; width: 100%; opacity: 1;"> 
+  <h1 class="text-center pl-3" style="color: #0083A9; font-size: 40px; padding-top: 50px; font-family: 'Poiret One', cursive; font-weight: 700;">Choose Your Sessions and Start Your Training</h1>
 </section>
-
+<!-- 
 <section style="height: 400px; background: url('https://images.unsplash.com/photo-1484452330304-377cdeb05340?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80')">
   <div class="text-center" style="padding-top: 10%;">
    <h1 style="color: white; font-family: 'Londrina Outline', cursive; font-size: 100px;">OUR CLASSES</h1> 
   </div>
-</section>
+</section> -->
 
     <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto">

@@ -10,7 +10,6 @@ const rp = require('request-promise');
 var http = require("https");
 
 const request = require('request');
-const e = require('express');
 
 
 const route = express.Router();

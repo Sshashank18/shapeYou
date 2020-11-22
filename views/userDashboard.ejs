@@ -538,7 +538,7 @@
                                               </div>
                                               <div class="joinLink">
                                                   <form method="get" action='/user/zoomDashboard/${id}'>
-                                                      <button style="background-color:red;cursor:default" disabled id="join${j}">Join</button>
+                                                      <button style="background-color:red;cursor:default" id="join${j}">Join</button>
                                                   </form>
                                               </div>
                                               </div>`
@@ -580,28 +580,28 @@
                     var compare2 = compare[i].slice(0,4);
 
 
-                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
+                    // if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
                       $.ajax({
                         // url:'http://127.0.0.1:3500/user/isCreated/'+id,
                         url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
                         method: 'GET',
                         success:(data)=>{
-                          if(data.isCreated == true){
+                          // if(data.isCreated == true){
                             $('#join'+(i-1)).removeAttr('disabled');
                             $('#join'+(i-1)).css('background-color','green');
                             $('#join'+(i-1)).css('cursor','pointer');
-                          }
+                          // }
                         }
                       }); 
                     }
-                    else{
-                        $('#join'+i).attr('disabled','');
-                        $('#join'+i).css('background-color','#99AAAB');
-                        $('#join'+i).css('color','white');
-                        $('#join'+i).css('border-radius','20px');
-                        $('#join'+i).css('cursor','default');
-                    }
-                }
+                    // else{
+                    //     $('#join'+i).attr('disabled','');
+                    //     $('#join'+i).css('background-color','#99AAAB');
+                    //     $('#join'+i).css('color','white');
+                    //     $('#join'+i).css('border-radius','20px');
+                    //     $('#join'+i).css('cursor','default');
+                    // }
+                // }
 
             },1000);
             

@@ -168,10 +168,11 @@ route.post('/newSession', (req, res) => {
                         }
                         user.trainers.push(info);
                         
-                        // const obj = new Object();
-                        // obj[trainer.username] = new Array();
+                        const obj = new Object();
+                        obj[trainer.username] = new Array();
 
-                        user.bookedSlot = JSON.parse(req.body.booked);
+                        // user.bookedSlot = JSON.parse(req.body.booked);
+                        user.bookedSlot = obj;
                         user.markModified('trainers');
                         user.markModified('bookedSlot');
                         user.save();
@@ -254,7 +255,7 @@ route.get('/getTimeTable/:id', (req, res) => {
 });
 
 route.get('/zoomDashboard/:id',(req, res)=>{
-    res.render('userZoomDashboard.ejs',{trainer:req.params.id});
+    res.render('userZoomDashboard',{trainer:req.params.id});
 });
 
 
@@ -266,8 +267,7 @@ var meetConfig = {
 };
 
 
-route.post('/signature',(req,res)=>{
-
+route.post('/signature/:username',(req,res)=>{
     var options = {
         method: 'GET',
         url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
@@ -297,7 +297,7 @@ route.post('/signature',(req,res)=>{
           signature = generateSignature(config.APIKey, config.APISecret,body.meetingNumber,0);
         
           body.signature = signature;
-          body.username = req.user.username;
+          body.username = req.params.username;
         
           res.json({body});
     });

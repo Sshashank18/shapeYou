@@ -88,7 +88,7 @@
     <div class="col-lg-6">
      <h2 style="font-size: 60px;; text-align: center; text-transform: uppercase; color: white; margin-top: 20%;"> anish </h2>
       <p style="font-size: 40px; text-align: center; color: white"> BOXING | BASIC </p>
-      <%if(trainer.coupon.couponName){%>
+      <%if(trainer.coupon != null){%>
       <div class="coupon">
           <div class="ticket__content">
             <%=trainer.coupon.couponName %><br>
@@ -969,8 +969,8 @@
                         $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
                         $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
                         $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                        $(this).find('.content').css('background-color',"yellowgreen");
-                        $(this).find('.content').css('color',"darkgreen");
+                        // $(this).find('.content').css('background-color',"yellowgreen");
+                        // $(this).find('.content').css('color',"darkgreen");
                       
                     }
                   }
@@ -1007,8 +1007,8 @@
                             $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
                             $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
                             $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                            $(this).find('.content').css('background-color',"yellowgreen");
-                            $(this).find('.content').css('color',"darkgreen");
+                            // $(this).find('.content').css('background-color',"yellowgreen");
+                            // $(this).find('.content').css('color',"darkgreen");
                       }
                     };
                   }
@@ -1098,13 +1098,13 @@
 
                   for(var i=0;i<data[key].length;i++){
                     if(data[key][i].slice(0,11) == timeStr && data[key][i].substring(12,data[key][i].length-2)==trainerCat){
-                        $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                        $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                         $(this).find('.content').find('.empty').attr('hidden','');
                         $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
                         $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
                         $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                        $(this).find('.content').css('background-color',"yellowgreen");
-                        $(this).find('.content').css('color',"darkgreen");
+                        // $(this).find('.content').css('background-color',"yellowgreen");
+                        // $(this).find('.content').css('color',"darkgreen");
                       
                     }
                   }

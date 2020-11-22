@@ -72,8 +72,8 @@ app.use(function(req, res, next){
 
 
 //API Handling
-const trainerRouter = require('./routes/trainer');
 const authRouter = require('./routes/auth');
+const trainerRouter = require('./routes/trainer');
 const userRouter = require('./routes/user');
 
 
@@ -85,6 +85,9 @@ app.get('/',(req,res)=>{
 	res.redirect('/user');
 });
 
+app.get('/zoomDashboard',(req,res)=>{
+	res.render('zoomDashboard');
+})
 
 //Port Listening
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));

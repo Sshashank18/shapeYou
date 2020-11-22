@@ -2,6 +2,7 @@ const express = require('express');
 var passport = require("passport");
 const Trainer = require('../models/trainer');
 const User = require('../models/user');
+var http = require("https");
 
 const route = express.Router();
 
@@ -28,12 +29,12 @@ route.post('/trainer', (req, res) => {
             console.log(err);
         } else {
             console.log(trainer);
-
-            req.login(trainer, (err) => {
-                if(err) {
-                    console.log(err)
+            
+            req.login(trainer, function (err) {
+                if (err){
+                    console.log(err);
                 } else {
-                    res.redirect('/trainer');
+                    res.redirect('/auth/userInfo');
                 }
             })
             // res.redirect('/waiting');
@@ -57,7 +58,14 @@ route.post('/user', (req, res) => {
             console.log(err);
         } else {
             console.log(user);
-            res.redirect('/');
+            req.login(user, function (err) {
+                if (err){
+                    console.log(err);
+                } else {
+                    res.redirect('/');
+                }
+            })
+            // res.redirect('/');
         }
     })
 })
@@ -76,6 +84,7 @@ route.post("/trainerLogin", passport.authenticate("trainer-local",
 		failureRedirect: "/auth/login"
 	}), function(req, res){
         console.log(req.user);
+     
     }
 );
 

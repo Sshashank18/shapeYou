@@ -1063,11 +1063,11 @@
     
       firstday = first;
     
-      for(var i=firstday.getDate();i<=lastday.getDate();i++){
-          document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
-          document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
-          j++;
-      }
+      for(var i=firstday;i<=lastday;i.setDate(i.getDate() + 1)){
+            document.getElementById('dateT'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
+            document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
+            j++;
+        }
 
       //FILLING TABLE DETAILS
 

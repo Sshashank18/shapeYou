@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const ejs = require('ejs');
+const cron = require('node-cron');
 
 const app = express();
 
@@ -87,7 +88,16 @@ app.get('/',(req,res)=>{
 
 app.get('/zoomDashboard',(req,res)=>{
 	res.render('zoomDashboard');
-})
+});
+
+cron.schedule('0 22 * * 5', function() {
+	console.log('Data Reset');
+	Trainer.updateMany({$set:{calendar:null,personalSlots:null}},(err,result)=>{
+        if(err) console.log(err);
+        else console.log('Calendar has been resetted.');
+    });
+});
+
 
 //Port Listening
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));

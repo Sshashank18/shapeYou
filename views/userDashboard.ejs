@@ -538,7 +538,7 @@
                                               </div>
                                               <div class="joinLink">
                                                   <form method="get" action='/user/zoomDashboard/${id}'>
-                                                      <button style="background-color:red;cursor:default" id="join${j}">Join</button>
+                                                      <button style="background-color:red;cursor:default" disabled id="join${j}">Join</button>
                                                   </form>
                                               </div>
                                               </div>`
@@ -580,7 +580,7 @@
                     var compare2 = compare[i].slice(0,4);
 
 
-                    // if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
+                    if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=40 ))){
                       $.ajax({
                         // url:'http://127.0.0.1:3500/user/isCreated/'+id,
                         url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
@@ -594,14 +594,14 @@
                         }
                       }); 
                     }
-                    // else{
-                    //     $('#join'+i).attr('disabled','');
-                    //     $('#join'+i).css('background-color','#99AAAB');
-                    //     $('#join'+i).css('color','white');
-                    //     $('#join'+i).css('border-radius','20px');
-                    //     $('#join'+i).css('cursor','default');
-                    // }
-                // }
+                    else{
+                        $('#join'+i).attr('disabled','');
+                        $('#join'+i).css('background-color','#99AAAB');
+                        $('#join'+i).css('color','white');
+                        $('#join'+i).css('border-radius','20px');
+                        $('#join'+i).css('cursor','default');
+                    }
+                }
 
             },1000);
             
@@ -645,11 +645,11 @@
         
           firstday = first;
         
-          for(var i=firstday.getDate();i<=lastday.getDate();i++){
-              document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
-              document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
-              j++;
-          }
+          for(var i=firstday;i<=lastday;i.setDate(i.getDate() + 1)){
+            document.getElementById('dateT'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
+            document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
+            j++;
+        }
         
           j=1;       
           

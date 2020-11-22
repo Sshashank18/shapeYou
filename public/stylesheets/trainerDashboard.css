@@ -6,6 +6,23 @@ body{
     padding: 0;
 }
 
+
+.hide1,.hide2 {
+  display: none;
+}
+
+.grpUpload:hover + .hide1 {
+  display: block;
+  color: black;
+}
+
+.persUpload:hover + .hide2 {
+  display: block;
+  color: black;
+}
+
+
+
 .courseContainer{
     height: 40%;
     border: 2px solid grey;

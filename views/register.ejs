@@ -11,67 +11,65 @@
 </head>
 <body>
 
-    <div class="row">
-        <div class="col-lg-6 my-auto">
-            <!-- <img src="/images/undraw_authentication_fsn5.svg" alt="" style="width: 70%; height: auto;"> -->
+    <div class="row showcase">
+        <div class="showcase-content text-center">
+            <h1>ShapeYou Register</h1>
+            <div class="form text-center">
+                <button class="btn btn-primary" id="userSignupButton">User Signup</button>
+                <button class="btn btn-secondary" id="trainerSignupButton">Trainer Signup</button>
+                
+                <!-- User Sign up -->
+                <form id="userForm" method="POST" action="/auth/user">
+                    <div class="form-group mt-2">
+                        <label for="userName">Name</label>
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Name" required>
+                    </div>
+                    <!-- <div class="form-group mt-2">
+                        <label for="userAddress">Address</label>
+                        <input type="text" class="form-control" id="userAddress" name="Address" placeholder="Enter Address" required>
+                    </div> -->
+                    <div class="form-group mt-2">
+                        <label for="userEmail">Email address</label>
+                        <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="Enter Email" required>
+                        <small id="userSignupError" class="form-text text-danger" hidden>Email Already Exist</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword">Password</label>
+                        <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password" required>
+                    </div>
+                    <!-- <div class="form-group mt-2">
+                        <label for="userMobile">Mobile</label>
+                        <input type="number" class="form-control" id="userMobile" name="Mobile" placeholder="Enter Mobile Number" required>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary" id="userSignupFormButton">Sign-up</button>
+                    <h4 style="font-size: 20px; margin-top: 30px;">Have An Existing Account?<a href="/auth/login">Login</a></h4>
+                </form>
+                
+                
+                <!-- Trainer Sign up -->
+                <form id="trainerForm" class="hide" method="POST" action="/auth/trainer">
+                    <div class="form-group mt-2 ">
+                        <label for="trainerName">Username</label>
+                        <input type="text" class="form-control" id="trainerName" name="trainerName" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="trainerEmail">Email address</label>
+                        <input type="text" class="form-control" id="trainerEmail" name="trainerEmail" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trainerPassword">Password</label>
+                        <input type="password" class="form-control" id="trainerPassword" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="trainerMobile">Mobile</label>
+                        <input type="number" class="form-control" id="trainerMobile" name="trainerPhone" placeholder="Enter Mobile Number" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="trainerSignupFormButton">Sign-up</button>
+                    <h4 style="font-size: 20px; margin-top: 30px;">Have An Existing Account?<a href="/auth/login">Login</a></h4>
+                </form>
+            </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-    <div class="form bg-dark mr-0 text-center">
-        <button class="btn btn-primary" id="userSignupButton">User Signup</button>
-        <button class="btn btn-secondary" id="trainerSignupButton">Trainer Signup</button>
-        
-        <!-- User Sign up -->
-        <form id="userForm" method="POST" action="/auth/user">
-            <div class="form-group mt-2">
-                <label for="userName">Name</label>
-                <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Name" required>
-            </div>
-            <!-- <div class="form-group mt-2">
-                <label for="userAddress">Address</label>
-                <input type="text" class="form-control" id="userAddress" name="Address" placeholder="Enter Address" required>
-            </div> -->
-            <div class="form-group mt-2">
-                <label for="userEmail">Email address</label>
-                <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="Enter Email" required>
-                <small id="userSignupError" class="form-text text-danger" hidden>Email Already Exist</small>
-            </div>
-            <div class="form-group">
-                <label for="userPassword">Password</label>
-                <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password" required>
-            </div>
-            <!-- <div class="form-group mt-2">
-                <label for="userMobile">Mobile</label>
-                <input type="number" class="form-control" id="userMobile" name="Mobile" placeholder="Enter Mobile Number" required>
-            </div> -->
-            <button type="submit" class="btn btn-primary" id="userSignupFormButton">Sign-up</button>
-            <h4 style="font-size: 20px; margin-top: 30px;">Have An Existing Account?<a href="/auth/login">Login</a></h4>
-        </form>
-
-
-        <!-- Trainer Sign up -->
-        <form id="trainerForm" class="hide" method="POST" action="/auth/trainer">
-            <div class="form-group mt-2 ">
-                <label for="trainerName">Username</label>
-                <input type="text" class="form-control" id="trainerName" name="trainerName" placeholder="Enter Name" required>
-            </div>
-            <div class="form-group mt-2">
-                <label for="trainerEmail">Email address</label>
-                <input type="text" class="form-control" id="trainerEmail" name="trainerEmail" placeholder="Enter Email" required>
-            </div>
-            <div class="form-group">
-                <label for="trainerPassword">Password</label>
-                <input type="password" class="form-control" id="trainerPassword" name="password" placeholder="Password" required>
-            </div>
-            <div class="form-group mt-2">
-                <label for="trainerMobile">Mobile</label>
-                <input type="number" class="form-control" id="trainerMobile" name="trainerPhone" placeholder="Enter Mobile Number" required>
-            </div>
-            <button type="submit" class="btn btn-primary" id="trainerSignupFormButton">Sign-up</button>
-            <h4 style="font-size: 20px; margin-top: 30px;">Have An Existing Account?<a href="/auth/login">Login</a></h4>
-        </form>
-    </div>
-    </div>
-</div>
     <script src = "/scripts/signup.js"></script>
 </body>
 </html>

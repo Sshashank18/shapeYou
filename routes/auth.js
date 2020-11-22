@@ -28,9 +28,14 @@ route.post('/trainer', (req, res) => {
             console.log(err);
         } else {
             console.log(trainer);
-            passport.authenticate("Local")(req, res, () => {
-                res.redirect('/trainer');
-            });
+
+            req.login(trainer, (err) => {
+                if(err) {
+                    console.log(err)
+                } else {
+                    res.redirect('/trainer');
+                }
+            })
             // res.redirect('/waiting');
         }
     });

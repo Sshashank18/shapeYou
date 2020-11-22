@@ -236,7 +236,7 @@ route.post('/createMeeting',(req,res)=>{
     // email = req.body.email;
     console.log(req.user);
     var options = {
-        //You can use a different uri if you're making an API call to a different Zoom endpoint.
+        // You can use a different uri if you're making an API call to a different Zoom endpoint.
         uri: "https://api.zoom.us/v2/users/shashankaggarwal13@gmail.com",
         qs: {
             status: 'active'

@@ -16,14 +16,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/stylesheets/lightslider.css"/>
 <style>
   .navbar-nav > li > .dropdown-menu { background-color: rgb(7, 7, 8); }
   
   
 </style>
-<script type="text/javascript" src="/scripts/JQuery3.3.1.js"></script>
-<script type="text/javascript" src="/scripts/lightslider.js"></script>
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
@@ -188,50 +185,52 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
+                      <div class="card text-center" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
                         <div class="card-body">
-                          <h3 style="color: white;">Basic</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
+                          <h3 style="color: white; font-size: 20px;">Basic</h3>
+                          <p style="color: white; font-size: 40px;"><b>Rs. 500</b></p>
                         </div>
                       </div>
                     </div>
                     <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
+                      <div class="card text-center" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
                         <div class="card-body">
-                          <h3 style="color: white;">Standard</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
+                          <h3 style="color: white; font-size: 20px;">Standard</h3>
+                          <p style="color: white; font-size: 40px;"><b>Rs. 750</b></p>
                         </div>
                       </div>
                     </div>
                     <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
+                      <div class="card text-center" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
                         <div class="card-body">
-                          <h3 style="color: white;">Premium</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
+                          <h3 style="color: white; font-size: 20px;">Premium</h3>
+                          <p style="color: white; font-size: 40px;"><b>Rs. 1000</b></p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <ul class="autoWidth" class="cs-hidden" style="margin-top: 100px;">
+                  <div id="carousel" class="carouselBox">
+                    <div class="control-container">
+                    <div id="left-scroll-button" class="left-scroll button scroll">
+                      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </div>
+                    <div id="right-scroll-button" class="right-scroll button scroll">
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                    <div class="items" id="carousel-items">
                   <% trainers.forEach(function(trainer) { %>
                     <% if(trainer.subCategories.includes('CrossFit')) { %>
-                        <li class="item-a">
-                            <!--slider-box-->
-                            <div class="card box">
-                            <!--model-->
-                            <img src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="model">
-                            <!--details-->
-                            <div class="details">
-                            <!--character-details-->
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: black"><%= trainer.username %></h2>
-                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/CrossFit" style="text-decoration: none;">Read More</a></button></p>
-                            </div>
-                            
-                            </div>
-                          </li>
+                      <div class="item">
+                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+                        <span class="item-title"><%= trainer.username %></span>
+                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
+                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      </div>
                     <% } %>
                  <% }) %>
-                </ul>
+                </div>
+              </div>
           
             </section>
 
@@ -272,26 +271,28 @@
                     </div>
                   </div>
                 </div>
-                  <ul class="autoWidth" class="cs-hidden" style="margin-top: 100px;">
+                <div id="carousel" class="carouselBox">
+                  <div class="control-container">
+                  <div id="left-scroll-button" class="left-scroll button scroll">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </div>
+                  <div id="right-scroll-button" class="right-scroll button scroll">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </div>
+                  </div>
+                  <div class="items" id="carousel-items">
                   <% trainers.forEach(function(trainer) { %>
                     <% if(trainer.subCategories.includes('Functional & Strength Training')) { %>
                         <li class="item-a">
-                            <!--slider-box-->
-                            <div class="card box">
-                            <!--model-->
-                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-                            <!--details-->
-                            <div class="details">
-                            <!--character-details-->
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: black"><%= trainer.username %></h2>
-                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/Functional%20&%20Strength%20Training" style="text-decoration: none;">Read More</a></button></p>
-                            </div>
-                            
-                            </div>
-                            </li>
+                          <div class="item">
+                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+                            <span class="item-title"><%= trainer.username %></span>
+                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
+                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          </div>
                     <% } %>
                  <% }) %>
-                  </ul>
+                        </div>
                 </div>
             </section>
 
@@ -332,26 +333,27 @@
                     </div>
                   </div>
                 </div>
-                  <ul class="autoWidth" class="cs-hidden" style="margin-top: 100px;">
+                <div id="carousel" class="carouselBox">
+                  <div class="control-container">
+                  <div id="left-scroll-button" class="left-scroll button scroll">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </div>
+                  <div id="right-scroll-button" class="right-scroll button scroll">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </div>
+                  </div>
+                  <div class="items" id="carousel-items">
                   <% trainers.forEach(function(trainer) { %>
                     <% if(trainer.subCategories.includes('Zumba')) { %>
-                        <li class="item-a">
-                            <!--slider-box-->
-                            <div class="card box">
-                            <!--model-->
-                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-                            <!--details-->
-                            <div class="details">
-                            <!--character-details-->
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: black"><%= trainer.username %></h2>
-                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/Zumba" style="text-decoration: none;">Read More</a></button></p>
-                            </div>
-                            
-                            </div>
-                            </li>
+                      <div class="item">
+                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+                        <span class="item-title"><%= trainer.username %></span>
+                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
+                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      </div>
                     <% } %>
                  <% }) %>
-                  </ul>
+                    </div>
                 </div>
             </section>
 
@@ -363,7 +365,7 @@
                     <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                   </div>
                   <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1516208813382-cbaf53501037?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80">
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
@@ -392,26 +394,27 @@
                     </div>
                   </div>
                 </div>
-                  <ul class="autoWidth" class="cs-hidden" style="margin-top: 100px;">
+                <div id="carousel" class="carouselBox">
+                  <div class="control-container">
+                  <div id="left-scroll-button" class="left-scroll button scroll">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </div>
+                  <div id="right-scroll-button" class="right-scroll button scroll">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </div>
+                  </div>
+                  <div class="items" id="carousel-items">
                   <% trainers.forEach(function(trainer) { %>
                     <% if(trainer.subCategories.includes('Dance')) { %>
-                        <li class="item-a">
-                            <!--slider-box-->
-                            <div class="card box">
-                            <!--model-->
-                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-                            <!--details-->
-                            <div class="details">
-                            <!--character-details-->
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: black"><%= trainer.username %></h2>
-                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/Dance" style="text-decoration: none;">Read More</a></button></p>
-                            </div>
-                            
-                            </div>
-                            </li>
+                      <div class="item">
+                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+                        <span class="item-title"><%= trainer.username %></span>
+                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
+                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      </div>
                     <% } %>
                  <% }) %>
-                  </ul>
+                    </div>
                 </div>
             </section>
 
@@ -452,26 +455,27 @@
                     </div>
                   </div>
                 </div>
-                  <ul class="autoWidth" class="cs-hidden" style="margin-top: 100px;">
+                <div id="carousel" class="carouselBox">
+                  <div class="control-container">
+                  <div id="left-scroll-button" class="left-scroll button scroll">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </div>
+                  <div id="right-scroll-button" class="right-scroll button scroll">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </div>
+                  </div>
+                  <div class="items" id="carousel-items">
                   <% trainers.forEach(function(trainer) { %>
                     <% if(trainer.subCategories.includes('MMA & Boxing')) { %>
-                        <li class="item-a">
-                            <!--slider-box-->
-                            <div class="card box">
-                            <!--model-->
-                            <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="model">
-                            <!--details-->
-                            <div class="details">
-                            <!--character-details-->
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="color: black"><%= trainer.username %></h2>
-                            <p class="leading-relaxed text-base"><button class="btn btn-outline-secondary"><a href="/trainer/profile/<%= trainer._id %>/MMA%20&%20Boxing" style="text-decoration: none;">Read More</a></button></p>
-                            </div>
-                            
-                            </div>
-                            </li>
+                      <div class="item">
+                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+                        <span class="item-title"><%= trainer.username %></span>
+                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
+                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      </div>
                     <% } %>
                  <% }) %>
-                  </ul>
+                    </div>
                 </div>
             </section>
             <% } if(parent == 'Wellness') { %>
@@ -716,109 +720,10 @@
                 </section>
             <% } %>
 
-            <!-- Modal -->
-            <div class="modal fade" id="Basic" tabindex="-1" role="dialog" aria-labelledby="basic" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="basic">Basic Trainers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <% trainers.forEach(function(trainer, idx) { %>
-                          <% if(trainer.subCategories.includes('CrossFit') && trainer.categoryType == 'Basic') { %>
-                            <h1>HELLO</h1>
-                          <% } %>
-                        <% }) %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal fade" id="Standard" tabindex="-1" role="dialog" aria-labelledby="standard" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="standard">Standard trainers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      
-                        <% trainers.forEach(function(trainer, idx) { %>
-                          <% if(trainer.subCategories.includes('CrossFit')) { %>
-                            <div class="col-12">
-                              <div class="container">
-                              <div class="row">
-                                <div class="col-lg-4">
-                                 <img class="img-fluid" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 50%; max-height: 50%; border-radius: 50%;" alt="">
-                                </div>
-                                <div class="col-lg-4">
-                                  <a href="/trainer/profile/<%= trainer._id %>/<%= trainer.username %>"><h1><%= trainer.username %></h1></a>
-                                </div>
-                                <div class="col-lg-4">
-                                  <p class="starability-result" data-rating = "3">
-                                    Rated: 3 stars
-                                  </p>
-                                </div>
-                              </div>
-                              <hr style="margin-top: 0%;"> 
-                            </div>
-                              <!-- Rating -->
-                            </div>     
-                          <% } %>
-                        <% }) %>
-                      
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal fade" id="Premium" tabindex="-1" role="dialog" aria-labelledby="premium" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="premium">Premium trainers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <% trainers.forEach(function(trainer, idx) { %>
-                          <% if(trainer.subCategories.includes('CrossFit') && trainer.categoryType == 'Premium') { %>
-                            <h1>HELLO</h1>
-                          <% } %>
-                        <% }) %>
-                          </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="/scripts/carousel.js"></script>
 </body>
 </html>

@@ -84,40 +84,7 @@ route.post("/trainerLogin", passport.authenticate("trainer-local",
 		failureRedirect: "/auth/login"
 	}), function(req, res){
         console.log(req.user);
-        var options = {
-            "method": "GET",
-            "hostname": "api.zoom.us",
-            "port": null,
-            "path": `/v2/users/email?email=${req.user.email}`,
-            "headers": {
-              "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk"
-            }
-          };
-
-          var req1 = http.request(options, function (res1) {
-            var chunks = [];
-          
-            res1.on("data", function (chunk) {
-              chunks.push(chunk);
-            });
-          
-            res1.on("end", function () {
-              var body = Buffer.concat(chunks);
-              body = JSON.parse(body.toString());
-              console.log(body.existed_email);
-            
-              if(body.existed_email == true){
-                Trainer.findByIdAndUpdate(req.user._id,{isZoomVerified:true},(err,trainer)=>{
-                    if(err) console.log(err);
-                    else console.log(trainer);
-                });
-               }
-
-            });
-          });
-          
-          req1.end();
-
+     
     }
 );
 

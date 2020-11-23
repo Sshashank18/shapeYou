@@ -8,13 +8,15 @@
     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" /> -->
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/> -->
 <style>
   .navbar-nav > li > .dropdown-menu { background-color: #79B258; }
@@ -82,7 +84,7 @@
               <a class="portfolio-item" href="/user/category/Fitness%20trainer">
                 <div class="caption">
                   <div class="caption-content">
-                    <div class="h2" style="color: white">Fitness trainers</div>
+                    <div class="h2" style="color: white;">Fitness trainers</div>
                     <!-- <p class="mb-0">Lorem ipsum dolor sit </p> -->
                   </div>
                 </div>
@@ -125,10 +127,11 @@
           </div>
         <!-- </div> -->
       </section>
-  
-<section style=" height: 150px; width: 100%; opacity: 1;"> 
-  <h1 class="text-center pl-3" style="color: #0083A9; font-size: 40px; padding-top: 50px; font-family: 'Poiret One', cursive; font-weight: 700;">Choose Your Sessions and Start Your Training</h1>
-</section>
+<div class="container">
+  <section style=" height: 150px; width: 100%; opacity: 1; background: black;"> 
+    <h1 class="text-center" style="color: white; font-size: 50px; padding-top: 50px; font-family: 'Playfair Display', serif;">Choose Your Sessions and Start Your Training</h1>
+  </section>
+</div>  
 <!-- 
 <section style="height: 400px; background: url('https://images.unsplash.com/photo-1484452330304-377cdeb05340?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80')">
   <div class="text-center" style="padding-top: 10%;">
@@ -136,10 +139,10 @@
   </div>
 </section> -->
 
-<section class="text-center">
+<section class="text-center" style="margin-top: 35px;">
   <div class="container mx-auto">
-    <div class="text-left">
-      <h1 style="font-size: 40px; color: black;">Fitness Trainer</h1>
+    <div class="text-center">
+      <h1 style="font-size: 40px; color: black; font-family: 'Playfair Display', serif;">Fitness Trainers</h1>
     </div>
       
     <div id="carousel" class="carouselBox">
@@ -155,8 +158,8 @@
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Fitness trainer') { %>
           
-          <div class="item">
-            <img class="item-image" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
+          <div class="item" style="background: #7F986F;">
+            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
             <span class="item-title"><%= category.title %></span>
             <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fa fa-play"></i></a></span>
             <div class="item-description opacity-none">Trainers under <%= category.title %> category.</div>
@@ -190,8 +193,8 @@
       <div class="items" id="carousel-items">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
-          <div class="item">
-            <img class="item-image" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
+          <div class="item" style="background: #F4FCDE;">
+            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
             <span class="item-title"><%= category.title %></span>
             <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fa fa-play"></i></a></span>
             <div class="item-description opacity-none">Trainers under <%= category.title %> category.</div>
@@ -226,8 +229,8 @@
       <div class="items" id="carousel-items">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
-          <div class="item">
-            <img class="item-image" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
+          <div class="item" style="background: #F6EDD9;">
+            <img class="img-fluid item-image" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
             <span class="item-title"><%= category.title %></span>
             <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fa fa-play"></i></a></span>
             <div class="item-description opacity-none">Trainers under <%= category.title %> category.</div>

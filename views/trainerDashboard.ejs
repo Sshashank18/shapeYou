@@ -31,12 +31,14 @@
             <ul class="navbar-nav">
                 <% if(trainer.subCategories.length>0){ %>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setTimeTable">
+                    <div class="hide1">U can change calendar every sunday and it can be changed once for that week.</div>
+                    <button type="button" class="btn btn-primary grpUpload" id="groupSlotsButton" data-toggle="modal" data-target="#setTimeTable">
                       Upload Group time slots
                     </button>
                 </li>
                 <li class="nav-item">
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#setPersonalTimeTable">
+                        <div class="hide1">U can change calendar every sunday and it can be changed once for that week.</div>
+                      <button class="btn btn-primary persUpload" id="personalSlotsButton" data-toggle="modal" data-target="#setPersonalTimeTable">
                          Upload Personal time slots
                       </button>
                 </li>
@@ -93,56 +95,56 @@
             <thead class="week-names">
               <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
                 <th scope="col" style="background-color: #888888;vertical-align: inherit;" >Slots</th>
-                <th scope="col" id="dateT1"></th>
+                <th scope="col" style="background-color: rgb(144, 140, 140); color:black" id="dateT1"></th>
                 <th scope="col" id="dateT2"></th>
                 <th scope="col" id="dateT3"></th>
                 <th scope="col" id="dateT4"></th>
                 <th scope="col" id="dateT5"></th>
-                <th scope="col" style="background-color: rgb(144, 140, 140); color:black" id="dateT6"></th>
+                <th scope="col"  id="dateT6"></th>
                 <th scope="col" style="background-color: rgb(144, 140, 140); color:black" id="dateT7"></th>
               </tr>
             </thead>
               <tbody style="text-align:center">
                   <tr>
                     <th scope="row" class="time-interval">3PM-4PM</th>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                        
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                        
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
                     <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
                         <div class="content">
                           <div class="empty">
                             - 
@@ -160,42 +162,42 @@
                   </tr>
                   <tr>
                     <th scope="row" class="time-interval">4PM-5PM</th>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="content">
-                          <div class="empty">
-                            - 
-                          </div>
-                        </div>
-                    </td>
                     <td class="weekend">
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="content">
+                          <div class="empty">
+                            - 
+                          </div>
+                        </div>
+                    </td>
+                    <td >
                         <div class="content">
                           <div class="empty">
                             - 
@@ -213,7 +215,7 @@
                   </tr>
                   <tr>
                     <th scope="row" class="time-interval">5PM-6PM</th>
-                    <td>
+                    <td  class="weekend">
                         <div class="content">
                           <div class="empty">
                             - 
@@ -248,7 +250,7 @@
                           </div>
                         </div>
                     </td>
-                    <td class="weekend">
+                    <td>
                         <div class="content">
                           <div class="empty">
                             - 
@@ -266,7 +268,7 @@
                   </tr>
                   <tr>
                     <th scope="row" class="time-interval" >6PM-7PM</th>
-                    <td>
+                    <td  class="weekend">
                         <div class="content">
                           <div class="empty">
                             - 
@@ -301,7 +303,7 @@
                           </div>
                         </div>
                     </td>
-                    <td class="weekend">
+                    <td>
                         <div class="content">
                           <div class="empty">
                             - 
@@ -319,7 +321,7 @@
                   </tr>
                   <tr>
                     <th scope="row"class="time-interval" >7PM-8PM</th>
-                    <td>
+                    <td  class="weekend">
                         <div class="content">
                           <div class="empty">
                             - 
@@ -354,7 +356,7 @@
                           </div>
                         </div>
                     </td>
-                    <td class="weekend">
+                    <td >
                         <div class="content">
                           <div class="empty">
                             - 
@@ -809,6 +811,7 @@
                         <th scope="col">THU</th>
                         <th scope="col">FRI</th>
                         <th scope="col">SAT</th>
+                        <th scope="col">SUN</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -857,6 +860,14 @@
                             <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-warning">
                                 <input type="checkbox" autocomplete="off" name="Saturday" value = "3:00-4:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Sunday" value = "3:00-4:00 0">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </label>
                             </div>
@@ -912,6 +923,14 @@
                             </label>
                             </div>
                         </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Sunday" value = "4:00-5:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row" class="time-interval">5-6</th>
@@ -959,6 +978,14 @@
                             <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-warning">
                                 <input type="checkbox" autocomplete="off" name="Saturday" value = "5:00-6:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Sunday" value = "5:00-6:00 0">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </label>
                             </div>
@@ -1014,6 +1041,14 @@
                             </label>
                             </div>
                         </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Sunday" value = "6:00-7:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row" class="time-interval">7-8</th>
@@ -1065,6 +1100,14 @@
                             </label>
                             </div>
                         </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-warning">
+                                <input type="checkbox" autocomplete="off" name="Sunday" value = "7:00-8:00 0">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                            </div>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -1082,6 +1125,7 @@
       <script>
 
           var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
+          var calendar = <%- JSON.stringify(trainer.calendar) %>;
 
           var compare = new Array();
           var compareP = null;
@@ -1221,7 +1265,7 @@
                                     </div>
                                     <div class="createLink">
                                         <form method="post" action='/trainer/createMeeting'>
-                                            <button style="background-color:red;cursor:default" id="create${i}">Create</button>
+                                            <button style="background-color:red;cursor:default" disabled id="create${i}">Create</button>
                                         </form>
                                     </div>
                                     </div>`
@@ -1309,6 +1353,46 @@
                             }
                     });
                 });
+
+                var weekday=new Array(7);
+                weekday[0]="SUN";
+                weekday[1]="MON";
+                weekday[2]="TUE";
+                weekday[3]="WED";
+                weekday[4]="THU";
+                weekday[5]="FRI";
+                weekday[6]="SAT";
+
+                var smallObj = {};
+
+                if(calendar!=null){
+                    var smallArr = Object.keys(calendar);
+                    for(var i=0;i<smallArr.length;i++){
+                        var newD = new Date(smallArr[i]);
+                        smallObj[weekday[newD.getDay()]]= calendar[smallArr[i]];
+                    }
+
+                    $('#mytab tr').each(function(){
+                        $(this).find('td').each(function(){
+                            var col = $("#mytab thead tr th").eq($(this).index());
+                            var dayCol = col[0].innerText.slice(-3);
+
+                            var timeR = $(this).closest('tr').find('th')[0].innerText;
+                            var timeA = timeR.split('-');
+                            var timeStr = timeA[0].slice(0,1)+":00 - "+timeA[1].slice(0,1)+":00";
+
+                            if(smallObj[dayCol]!=undefined){
+                                for(var i=0;i<smallObj[dayCol].length;i++){
+                                    if(smallObj[dayCol][i].slice(0,11)==timeStr){
+                                        $(this).find('input[type="checkbox"]').attr('disabled','');
+                                        $(this).find('input[type="checkbox"]').parent().css("background-color","grey");
+                                        $(this).find('input[type="checkbox"]').parent().css("border-color","grey");
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
             }, 500);
             
             
@@ -1331,23 +1415,23 @@
                 
                 $('.todayDate').text(today.toLocaleString('default', { month: 'short' }) + " " + today.getDate()+ " " + today.getFullYear() +" " + currentTime);
 
-                // var compare1 = currentTime.slice(0,4);
+                var compare1 = currentTime.slice(0,4);
 
                     for(var i=0;i<compare.length;i++){
-                //         var compare2 = compare[i].slice(0,4);
-                //         if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
+                        var compare2 = compare[i].slice(0,4);
+                        if(((parseInt(compare1.slice(0,2)) == parseInt(compare2.slice(0,2))-1) && (compare1.slice(-2)>=45))    ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ))){
                             $('#create'+i).removeAttr('disabled');
                             $('#create'+i).css('background-color','green');
                             $('#create'+i).css('cursor','pointer');
     
-                //         }
-                //         else{
-                            // $('#create'+i).attr('disabled','');
-                            // $('#create'+i).css('background-color','#99AAAB');
-                            // $('#create'+i).css('color','white');
-                            // $('#create'+i).css('border-radius','20px');
-                            // $('#create'+i).css('cursor','default');
-                        // }
+                        }
+                        else{
+                            $('#create'+i).attr('disabled','');
+                            $('#create'+i).css('background-color','#99AAAB');
+                            $('#create'+i).css('color','white');
+                            $('#create'+i).css('border-radius','20px');
+                            $('#create'+i).css('cursor','default');
+                        }
     
                     }
 
@@ -1392,18 +1476,29 @@
         });
 
         var curr = new Date;
-        var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() +1));
-        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+7));
+        var firstday = new Date(curr.setDate((curr.getDate() - curr.getDay())));
+        var lastday = new Date((curr.setDate((curr.getDate() - curr.getDay())+6)));
+
+        var tod = new Date();
+
+        if(calendar==null || trainerPersonals==null){
+
+            $('#groupSlotsButton').removeAttr('disabled');
+            $('#groupSlotsButton').css('cursor','pointer');
+            
+            $('#personalSlotsButton').removeAttr('disabled');
+            $('#personalSlotsButton').css('cursor','pointer');
+        }
 
 
         var weekday=new Array(7);
-        weekday[0]="MON";
-        weekday[1]="TUE";
-        weekday[2]="WED";
-        weekday[3]="THU";
-        weekday[4]="FRI";
-        weekday[5]="SAT";
-        weekday[6]="SUN";
+        weekday[0]="SUN";
+        weekday[1]="MON";
+        weekday[2]="TUE";
+        weekday[3]="WED";
+        weekday[4]="THU";
+        weekday[5]="FRI";
+        weekday[6]="SAT";
 
 
         var data=new Object();
@@ -1421,12 +1516,11 @@
             firstday = nextDay;
         }
 
-
         firstday = first;
 
-        for(var i=firstday.getDate();i<=lastday.getDate();i++){
-            document.getElementById('date'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
-            document.getElementById('dateT'+j).innerHTML = `<span>${i}<br>${weekday[j-1]}</span>`;
+        for(var i=firstday;i<=lastday;i.setDate(i.getDate() + 1)){
+            document.getElementById('date'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
+            document.getElementById('dateT'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
             document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
             document.getElementById('date'+j).setAttribute('value',Object.keys(data)[j-1]);
             j++;
@@ -1592,8 +1686,18 @@
 
         });
 
+        if(calendar!=null && curr!=lastday){
+            $('#groupSlotsButton').attr('disabled','');
+            $('#groupSlotsButton').css('cursor','not-allowed');
+        }
+
+        if(trainerPersonals!=null && curr!=lastday){
+            $('#personalSlotsButton').attr('disabled','');
+            $('#personalSlotsButton').css('cursor','not-allowed');
+        }
 
         $('.save').on('click',()=>{
+
             $('#weekTable tr').each(function(){
                 var index = 0;
                 $(this).find('td').each(function(){

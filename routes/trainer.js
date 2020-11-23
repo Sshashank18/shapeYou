@@ -180,7 +180,7 @@ route.put('/personalSlots', (req, res) => {
             res.redirect('/trainer');
         }
     });
-})
+});
 
 //Handling Zoom APIs
 

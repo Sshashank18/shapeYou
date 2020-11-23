@@ -32,14 +32,21 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active-link" href="/user">Home</a>
+              <div class="underline"></div>
+            </li>
             <li class="nav-item ml-3">
               <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+              <div class="underline"></div>
             </li>
             <li class="nav-item ml-3">
               <a class="nav-link" href="/user/category/Wellness" ">Wellness</a>
+              <div class="underline"></div>
             </li>
             <li class="nav-item ml-3">
               <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
+              <div class="underline"></div>
             </li>
               
           </ul>
@@ -246,5 +253,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/scripts/carousel.js"></script>
+<script>
+  $('.nav-link').on('click', function() {
+	$('.active-link').removeClass('active-link');
+	$(this).addClass('active-link');
+});
+</script>
 </body>
 </html>

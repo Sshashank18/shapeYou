@@ -16,12 +16,17 @@ function MouseWheelHandler(e, element) {
   }
   
   window.onload = function() {
+
+    var len = document.getElementsByClassName('carouselBox').length;
+
+    for(var i=1;i<=len;i++){
+
     var carousel = {};
-    carousel.e = document.getElementById('carousel');
-    carousel.items = document.getElementById('carousel-items');
-    carousel.leftScroll = document.getElementById('left-scroll-button');
-    carousel.rightScroll = document.getElementById('right-scroll-button');
-  
+    carousel.e = document.getElementById('carousel'+i);
+    carousel.items = document.getElementById('carousel-items'+i);
+    carousel.leftScroll = document.getElementById('left-scroll-button'+i);
+    carousel.rightScroll = document.getElementById('right-scroll-button'+i);
+
     carousel.items.addEventListener("mousewheel", handleMouse, false);
     carousel.items.addEventListener("scroll", scrollEvent);
     carousel.leftScroll.addEventListener("click", leftScrollClick);
@@ -85,3 +90,4 @@ function MouseWheelHandler(e, element) {
         }
     }
   }
+}

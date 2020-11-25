@@ -999,7 +999,7 @@
                           dayCol = "Sunday";
                   };
 
-                  if(data[dayCol]){
+                  if(data && data[dayCol]){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
@@ -1133,7 +1133,7 @@
                           dayCol = "Sunday";
                   };
 
-                  if(data[dayCol]){
+                  if(data && data[dayCol]!=undefined){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;

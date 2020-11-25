@@ -122,6 +122,26 @@
     bottom: calc(50% - 50px);
   }
 
+  .card-deck{
+    height: 100% !important;
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+
+  .card{
+    min-width: 250px !important;
+    max-width: 250px !important;
+    margin: 20px !important;
+  }
+
+  .btn-holder{
+    display: flex;
+    margin:10px;
+    backdrop-filter: blur(8px); 
+    justify-content: center;
+  }
+
 .mainBox{
     background-color: white;
     /* max-width: 1240px; */

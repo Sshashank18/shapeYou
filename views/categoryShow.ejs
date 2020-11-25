@@ -212,7 +212,7 @@
                       </div>
                     </div>
                   </div>
-                  <div id="carousel1" class="carouselBox">
+                  <!-- <div id="carousel1" class="carouselBox">
                     <div class="control-container">
                     <div id="left-scroll-button" class="left-scroll button scroll">
                       <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -220,20 +220,37 @@
                     <div id="right-scroll-button" class="right-scroll button scroll">
                       <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
-                    </div>
-                    <div class="items" id="carousel-items1">
-                  <% trainers.forEach(function(trainer) { %>
+                    </div> -->
+                    <!-- <div class="items"> -->
+                      <br><br>
+                      <div class="card-deck">
+                  <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('CrossFit')) { %>
-                      <div class="item">
-                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                        <span class="item-title"><%= trainer.username %></span>
-                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><i class="fa fa-play"></i></a></span>
-                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      <% if(i<3){ %>
+                          <div class="card">
+                            <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                              <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                            </div>
+                          </div>
+                        <!-- </div> -->
+                    <% } else {%>
+                      <div class="card more" hidden>
+                        <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                          <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                        </div>
                       </div>
-                    <% } %>
-                 <% }) %>
+                    <%}%>
+                 <% }}) %>
                 </div>
-              </div>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+              <!-- </div> -->
           
             </section>
 
@@ -275,7 +292,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="carousel2" class="carouselBox">
+                <!-- <div id="carousel2" class="carouselBox">
                   <div class="control-container">
                   <div id="left-scroll-button" class="left-scroll button scroll">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -283,20 +300,35 @@
                   <div id="right-scroll-button" class="right-scroll button scroll">
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </div>
-                  </div>
-                  <div class="items" id="carousel-items2">
-                  <% trainers.forEach(function(trainer) { %>
+                  </div> -->
+                  <!-- <div class="items" id="carousel-items2"> -->
+                    <br><br>
+                      <div class="card-deck">
+                  <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('Functional & Strength Training')) { %>
-                        <li class="item-a">
-                          <div class="item">
-                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                            <span class="item-title"><%= trainer.username %></span>
-                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><i class="fa fa-play"></i></a></span>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                      <% if(i<3){ %>
+                          <div class="card">
+                            <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                              <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                            </div>
                           </div>
-                    <% } %>
-                 <% }) %>
+                        <!-- </div> -->
+                    <% } else {%>
+                      <div class="card more" hidden>
+                        <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                          <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
                         </div>
+                      </div>
+                    <%}%>
+                 <% }}) %>
+                </div>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
                 </div>
             </section>
 
@@ -337,7 +369,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="carousel3" class="carouselBox">
+                <!-- <div id="carousel3" class="carouselBox">
                   <div class="control-container">
                   <div id="left-scroll-button" class="left-scroll button scroll">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -346,19 +378,36 @@
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </div>
                   </div>
-                  <div class="items" id="carousel-items3">
-                  <% trainers.forEach(function(trainer) { %>
-                    <% if(trainer.subCategories.includes('Zumba')) { %>
-                      <div class="item">
-                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                        <span class="item-title"><%= trainer.username %></span>
-                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><i class="fa fa-play"></i></a></span>
+                  <div class="items" id="carousel-items3"> -->
+                    <br><br>
+                    <div class="card-deck">
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('Zumba')) { %>
+                    <% if(i<3){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
                         <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
                       </div>
-                    <% } %>
-                 <% }) %>
                     </div>
-                </div>
+                  <%}%>
+               <% }}) %>
+              </div>
+              <div class="btn-holder">
+                <button class="btn btn-primary viewMore">View more</button>
+                <button class="btn btn-warning viewLess" hidden>View less</button>
+              </div>
+              
             </section>
 
             <section style="background: #7F986F;">
@@ -398,7 +447,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="carousel4" class="carouselBox">
+                <!-- <div id="carousel4" class="carouselBox">
                   <div class="control-container">
                   <div id="left-scroll-button" class="left-scroll button scroll">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -407,19 +456,36 @@
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </div>
                   </div>
-                  <div class="items" id="carousel-items4">
-                  <% trainers.forEach(function(trainer) { %>
-                    <% if(trainer.subCategories.includes('Dance')) { %>
-                      <div class="item">
-                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                        <span class="item-title"><%= trainer.username %></span>
-                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/Dance"><i class="fa fa-play"></i></a></span>
+                  <div class="items" id="carousel-items4"> -->
+                    <br><br>
+                    <div class="card-deck">
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('Dance')) { %>
+                    <% if(i<3){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
                         <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
                       </div>
-                    <% } %>
-                 <% }) %>
                     </div>
-                </div>
+                  <%}%>
+               <% }}) %>
+              </div>
+              <div class="btn-holder">
+                <button class="btn btn-primary viewMore">View more</button>
+                <button class="btn btn-warning viewLess" hidden>View less</button>
+              </div>
+                
             </section>
 
             <section>
@@ -459,7 +525,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="carousel5" class="carouselBox">
+                <!-- <div id="carousel5" class="carouselBox">
                   <div class="control-container">
                   <div id="left-scroll-button" class="left-scroll button scroll">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -468,20 +534,38 @@
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </div>
                   </div>
-                  <div class="items" id="carousel-items5">
-                  <% trainers.forEach(function(trainer) { %>
-                    <% if(trainer.subCategories.includes('MMA & Boxing')) { %>
-                      <div class="item">
-                        <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                        <span class="item-title"><%= trainer.username %></span>
-                        <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><i class="fa fa-play"></i></a></span>
+                  <div class="items" id="carousel-items5"> -->
+                    <br><br>
+                    <div class="card-deck">
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('MMA & Boxing')) { %>
+                    <% if(i<3){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
                         <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
                       </div>
-                    <% } %>
-                 <% }) %>
                     </div>
-                </div>
+                  <%}%>
+               <% }}) %>
+              </div>
+              <div class="btn-holder">
+                <button class="btn btn-primary viewMore">View more</button>
+                <button class="btn btn-warning viewLess" hidden>View less</button>
+              </div>
+               
             </section>
+            
             <% } if(parent == 'Wellness') { %>
               <section>
                 <div class="container">
@@ -756,12 +840,34 @@
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script src="/scripts/carousel.js"></script>
+            <!-- <script src="/scripts/carousel.js"></script> -->
             <script>
-              $('.nav-link').on('click', function() {
-              $('.active-link').removeClass('active-link');
-              $(this).addClass('active-link');
-            });
+            //  $(document).on('click','.viewMore',()=>{
+            //   $(this).prev('.more').css('display','block');
+            //   console.log($(this));
+            //  });
+            const viewMore = document.querySelectorAll('.viewMore');
+
+            for (let i = 0; i < viewMore.length; i++) {
+                viewMore[i].addEventListener("click", function() {
+                  $(this).parent().prev().find('.more').css('display','block');
+                  $(this).parent().prev().find('.more').removeAttr('hidden');
+                  $(this).attr('hidden','');
+                  $(this).next().removeAttr('hidden');
+                });
+
+            }
+            const viewLess = document.querySelectorAll('.viewLess');
+
+            for (let i = 0; i < viewLess.length; i++) {
+                viewLess[i].addEventListener("click", function() {
+                  $(this).parent().prev().find('.more').css('display','none');
+                  $(this).parent().prev().find('.more').attr('hidden','');
+                  $(this).attr('hidden','');
+                  $(this).prev().removeAttr('hidden');
+                });
+            }
+          
             </script>
 </body>
 </html>

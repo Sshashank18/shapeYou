@@ -3,7 +3,7 @@
 body{
 	margin:0px;
     padding:0px;
-    background-color:white;
+    background-color:#fffff4;
 }
 ul{
 	list-style:none;
@@ -319,7 +319,7 @@ div.scroll i {
     
 }
 .item .item-title {
-    color: white;
+    color: black;
     position: absolute;
     margin: 5px 0;
     padding: 10px 0;
@@ -354,14 +354,14 @@ div.scroll i {
     width: 60px;
     height: 60px;
     border-radius: 60px;
-    z-index: 950;
-    background-color: rgba(0, 0, 0, 0.7);
-    transition: all 0.3s ease-in-out;
+    /* z-index: 950; */
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    /* transition: all 0.3s ease-in-out; */
 }
 .button i {
     position: relative;
-    top: 50%;
-    left: 50%;
+    top: 42%;
+    left: 22%;
     transform: translate(-35%, -55%);
     z-index: 950;
 }

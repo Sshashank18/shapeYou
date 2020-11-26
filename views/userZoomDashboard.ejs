@@ -30,8 +30,8 @@
 
         var id =<%- JSON.stringify(trainer) %>;
 
-        fetch(`http://127.0.0.1:3500/user/signature/`+<%-JSON.stringify(currentUser.username) %>, {
-        // fetch(`https://shapeyou-demo.herokuapp.com/user/signature/`, {
+        // fetch(`http://127.0.0.1:3500/user/signature/`+<%-JSON.stringify(currentUser.username) %>, {
+        fetch(`https://shapeyou-demo.herokuapp.com/user/signature/`+<%-JSON.stringify(currentUser.username) %>, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,8 +45,8 @@
                 console.log(data);
 
             const meetingConfig = {
-                leaveUrl:'http://127.0.0.1:3500/user/',
-                // leaveUrl:'https://shapeyou-demo.herokuapp.com/user',
+                // leaveUrl:'http://127.0.0.1:3500/user/',
+                leaveUrl:'https://shapeyou-demo.herokuapp.com/user',
                 signature: data.body.signature,
                 meetingNumber : data.body.meetingNumber,
                 userName : data.body.username,

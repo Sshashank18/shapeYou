@@ -16,25 +16,26 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(0, 0, 0); height: 80px; font-size: 18px;">
-    <a class="navbar-brand" href="#" style="font-size: 22px;">ShapeYou</a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
+    <a class="navbar-brand" href="/user"><img style="width: 3rem; height: auto;" src="/images/arnav.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+          <div class="underline"></div>
         </li>
         <li class="nav-item ml-3">
-          <a class="nav-link" href="/user/category/Fitness%20trainer" style="color: white;">Fitness</a>
+          <a class="nav-link" href="/user/category/Wellness" ">Wellness</a>
+          <div class="underline"></div>
         </li>
         <li class="nav-item ml-3">
-          <a class="nav-link" href="/user/category/Wellness" style="color: white;">Wellness</a>
-        </li>
-        <li class="nav-item ml-3">
-          <a class="nav-link" href="/user/category/Counselling" style="color: white;">Counselling</a>
+          <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
+          <div class="underline"></div>
         </li>
           
       </ul>
@@ -44,16 +45,16 @@
             
             <form action="/user" method="GET" class="form-inline">
               <div class="form-group">
-              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3" style="color: white"></i></button>
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
               <!-- <input type="submit" value="Search" class="btn btn-success"> -->
             </div>
             </form>
-            <li><a class="nav-link mr-3" href="/auth/login" style="color: white;">Login</a></li>
+            <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
             
         <% } else{ %>
           <form action="/user" method="GET" class="form-inline">
             <div class="form-group">
-            <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button class="btn" type="submit" style="padding: 0;"><i class="fas fa-search mr-3"></i></button>
+              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
             <!-- <input type="submit" value="Search" class="btn btn-success"> -->
           </div>
           </form>

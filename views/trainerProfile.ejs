@@ -26,7 +26,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
-      <a class="navbar-brand" href="/user"><img style="width: 9rem; height: auto; margin-top: 1rem;" src="/images/arnav.png" alt=""></a>
+      <a class="navbar-brand" href="/user"><img style="width: 3rem; height: auto;" src="/images/arnav.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -1063,7 +1063,7 @@
                           dayCol = "Sunday";
                   };
 
-                  if(data[dayCol]){
+                  if(data && data[dayCol]){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
@@ -1197,7 +1197,7 @@
                           dayCol = "Sunday";
                   };
 
-                  if(data[dayCol]){
+                  if(data && data[dayCol]!=undefined){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].slice(0,9)==timeStr2 && parseInt(data[dayCol][i].slice(-1))==0){
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;

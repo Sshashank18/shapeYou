@@ -34,7 +34,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
-      <a class="navbar-brand" href="/user"><img style="width: 9rem; height: auto; margin-top: 1rem;" src="/images/arnav.png" alt=""></a>
+      <a class="navbar-brand" href="/user"><img style="width: 3rem; height: auto;" src="/images/arnav.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -163,7 +163,7 @@
                     <div class="col-lg-4 col-md-6 px-auto">
                         <div class="card mb-5" style="width: 18rem;">
                             <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <a href="/trainer/profile/<%= trainer._id %>"><h5 class="card-title"><%= trainer.username %></h5></a>
                             </div>
                           </div>
@@ -187,30 +187,14 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 100px;">
-                    <div class="col-lg-4">
-                      <div class="card text-center" style="background: #DCE35B; background: -webkit-linear-gradient(to right, #45B649, #DCE35B); background: linear-gradient(to right, #45B649, #DCE35B);
-                      ">
-                        <div class="card-body">
-                          <h3 style="color: white; font-size: 20px;">Basic</h3>
-                          <p style="color: white; font-size: 40px;"><b>Rs. 500</b></p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="card text-center" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                        <div class="card-body">
-                          <h3 style="color: white; font-size: 20px;">Standard</h3>
-                          <p style="color: white; font-size: 40px;"><b>Rs. 750</b></p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="card text-center" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                        <div class="card-body">
-                          <h3 style="color: white; font-size: 20px;">Premium</h3>
-                          <p style="color: white; font-size: 40px;"><b>Rs. 1000</b></p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                     </div>
                   </div>
                   <!-- <div id="carousel1" class="carouselBox">
@@ -225,32 +209,36 @@
                     <!-- <div class="items"> -->
                       <br><br>
                       <div class="card-deck">
+                  <% z = 0 %>
                   <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('CrossFit')) { %>
-                      <% if(i<3){ %>
+                      <% if(z<4){ %>
                           <div class="card">
                             <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                               <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
-                              <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                              
                             </div>
                           </div>
                         <!-- </div> -->
                     <% } else {%>
                       <div class="card more" hidden>
                         <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                           <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
-                          <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          
                         </div>
                       </div>
                     <%}%>
+                    <% z++ %>
                  <% }}) %>
                 </div>
+                <% if(z>4){ %>
                 <div class="btn-holder">
                   <button class="btn btn-primary viewMore">View more</button>
                   <button class="btn btn-warning viewLess" hidden>View less</button>
                 </div>
+                <%} %>
               <!-- </div> -->
           
             </section>
@@ -267,30 +255,14 @@
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #00F260; background: -webkit-linear-gradient(to right, #0575E6, #00F260); background: linear-gradient(to right, #0575E6, #00F260);                    
-                    ">
-                      <div class="card-body">
-                        <h3 style="color: white;">Basic</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Standard</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Premium</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                   </div>
                 </div>
                 <!-- <div id="carousel2" class="carouselBox">
@@ -305,32 +277,35 @@
                   <!-- <div class="items" id="carousel-items2"> -->
                     <br><br>
                       <div class="card-deck">
+                        <% z = 0 %>
                   <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('Functional & Strength Training')) { %>
-                      <% if(i<3){ %>
+                      <% if(z<4){ %>
                           <div class="card">
                             <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                               <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
-                              <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                              
                             </div>
                           </div>
                         <!-- </div> -->
                     <% } else {%>
                       <div class="card more" hidden>
                         <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                           <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
-                          <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                          
                         </div>
                       </div>
-                    <%}%>
+                    <%} z++%>
                  <% }}) %>
                 </div>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
+                <% if(z>4){ %>
+                  <div class="btn-holder">
+                    <button class="btn btn-primary viewMore">View more</button>
+                    <button class="btn btn-warning viewLess" hidden>View less</button>
+                  </div>
+                  <%} %>
             </section>
 
             <section>
@@ -345,29 +320,14 @@
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Basic</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Standard</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Premium</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                   </div>
                 </div>
                 <!-- <div id="carousel3" class="carouselBox">
@@ -382,32 +342,35 @@
                   <div class="items" id="carousel-items3"> -->
                     <br><br>
                     <div class="card-deck">
+                      <% z = 0 %>
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Zumba')) { %>
-                    <% if(i<3){ %>
+                    <% if(z<4){ %>
                         <div class="card">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body">
+                          <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                            
                           </div>
                         </div>
                       <!-- </div> -->
                   <% } else {%>
                     <div class="card more" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body">
+                      <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
-                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                        
                       </div>
                     </div>
-                  <%}%>
+                  <%}z++%>
                <% }}) %>
               </div>
-              <div class="btn-holder">
-                <button class="btn btn-primary viewMore">View more</button>
-                <button class="btn btn-warning viewLess" hidden>View less</button>
-              </div>
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
               
             </section>
 
@@ -423,29 +386,14 @@
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Basic</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Standard</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Premium</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                   </div>
                 </div>
                 <!-- <div id="carousel4" class="carouselBox">
@@ -460,33 +408,35 @@
                   <div class="items" id="carousel-items4"> -->
                     <br><br>
                     <div class="card-deck">
+                      <% z = 0 %>
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Dance')) { %>
-                    <% if(i<3){ %>
+                    <% if(z<4){ %>
                         <div class="card">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body">
+                          <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                            
                           </div>
                         </div>
                       <!-- </div> -->
                   <% } else {%>
                     <div class="card more" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body">
+                      <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
-                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                        
                       </div>
                     </div>
-                  <%}%>
+                  <%}z++%>
                <% }}) %>
               </div>
-              <div class="btn-holder">
-                <button class="btn btn-primary viewMore">View more</button>
-                <button class="btn btn-warning viewLess" hidden>View less</button>
-              </div>
-                
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
             </section>
 
             <section>
@@ -501,29 +451,14 @@
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Basic</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Standard</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                      <div class="card-body">
-                        <h3 style="color: white;">Premium</h3>
-                        <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                      </div>
-                    </div>
+                  <div class="col-lg-4 text-center">
+                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                   </div>
                 </div>
                 <!-- <div id="carousel5" class="carouselBox">
@@ -538,32 +473,35 @@
                   <div class="items" id="carousel-items5"> -->
                     <br><br>
                     <div class="card-deck">
+                      <% z = 0 %>
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('MMA & Boxing')) { %>
-                    <% if(i<3){ %>
+                    <% if(z<4){ %>
                         <div class="card">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body">
+                          <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                            
                           </div>
                         </div>
                       <!-- </div> -->
                   <% } else {%>
                     <div class="card more" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body">
+                      <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
-                        <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                        
                       </div>
                     </div>
-                  <%}%>
+                  <%}z++%>
                <% }}) %>
               </div>
-              <div class="btn-holder">
-                <button class="btn btn-primary viewMore">View more</button>
-                <button class="btn btn-warning viewLess" hidden>View less</button>
-              </div>
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
                
             </section>
             
@@ -614,8 +552,7 @@
                       <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                     </div>
                   </div>
-                  </div>
-                  <div id="carousel" class="carouselBox">
+                  <!-- <div id="carousel5" class="carouselBox">
                     <div class="control-container">
                     <div id="left-scroll-button" class="left-scroll button scroll">
                       <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -624,19 +561,39 @@
                       <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
                     </div>
-                    <div class="items" id="carousel-items5">
-                      <% trainers.forEach(function(trainer) { %>
-                        <% if(trainer.subCategories.includes('Yoga')) { %>
-                          <div class="item">
-                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                            <span class="item-title"><%= trainer.username %></span>
-                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><i class="fa fa-play"></i></a></span>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                    <div class="items" id="carousel-items5"> -->
+                      <br><br>
+                    <div class="card-deck">
+                      <% z = 0 %>
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('Yoga')) { %>
+                    <% if(z<4){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                            
                           </div>
-                        <% } %>
-                     <% }) %>
                         </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                        
+                      </div>
                     </div>
+                  <%}z++%>
+               <% }}) %>
+              </div>
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
+               
                 </section>
 
                 <section>
@@ -661,28 +618,38 @@
                         <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                       </div>
                     </div>
-                    <div id="carousel5" class="carouselBox" style="margin-top: 60px;">
-                      <div class="control-container">
-                      <div id="left-scroll-button" class="left-scroll button scroll">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                      </div>
-                      <div id="right-scroll-button" class="right-scroll button scroll">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </div>
-                      </div>
-                      <div class="items" id="carousel-items5">
-                      <% trainers.forEach(function(trainer) { %>
-                        <% if(trainer.subCategories.includes('Meditation')) { %>
-                          <div class="item">
-                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                            <span class="item-title"><%= trainer.username %></span>
-                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><i class="fa fa-play"></i></a></span>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                    <br><br>
+                    <div class="card-deck">
+                      <% z = 0 %>
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('Meditation')) { %>
+                    <% if(z<4){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                            
                           </div>
-                        <% } %>
-                     <% }) %>
                         </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                        
+                      </div>
                     </div>
+                  <%}z++%>
+               <% }}) %>
+              </div>
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
+               
                 </section>
             <% } if(parent == 'Counselling') { %>
               <section>
@@ -697,53 +664,47 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 100px;">
-                    <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                        <div class="card-body">
-                          <h3 style="color: white;">Basic</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                        <div class="card-body">
-                          <h3 style="color: white;">Standard</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                        <div class="card-body">
-                          <h3 style="color: white;">Premium</h3>
-                          <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                        </div>
-                      </div>
+                    <div class="col-lg-4 text-center">
+                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                     </div>
                   </div>
-                  <div id="carousel5" class="carouselBox">
-                    <div class="control-container">
-                    <div id="left-scroll-button" class="left-scroll button scroll">
-                      <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    </div>
-                    <div id="right-scroll-button" class="right-scroll button scroll">
-                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </div>
-                    </div>
-                    <div class="items" id="carousel-items5">
-                      <% trainers.forEach(function(trainer) { %>
-                        <% if(trainer.subCategories.includes('Nutrition')) { %>
-                          <div class="item">
-                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                            <span class="item-title"><%= trainer.username %></span>
-                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><i class="fa fa-play"></i></a></span>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
-                          </div>
-                        <% } %>
-                     <% }) %>
+                  <br><br>
+                  <div class="card-deck">
+                    <% z = 0 %>
+              <% trainers.forEach(function(trainer,i) { %>
+                <% if(trainer.subCategories.includes('Nutrition')) { %>
+                  <% if(z<4){ %>
+                      <div class="card">
+                        <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                        <div class="card-body text-center">
+                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                          
                         </div>
+                      </div>
+                    <!-- </div> -->
+                <% } else {%>
+                  <div class="card more" hidden>
+                    <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                    <div class="card-body text-center">
+                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                      
                     </div>
+                  </div>
+                <%}z++%>
+             <% }}) %>
+            </div>
+            <% if(z>4){ %>
+              <div class="btn-holder">
+                <button class="btn btn-primary viewMore">View more</button>
+                <button class="btn btn-warning viewLess" hidden>View less</button>
+              </div>
+              <%} %>
                 </section>
 
                 <section style="background: #F6EDD9;">
@@ -758,53 +719,46 @@
                       </div>
                     </div>
                     <div class="row" style="margin-top: 100px;">
-                      <div class="col-lg-4">
-                        <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                          <div class="card-body">
-                            <h3 style="color: white;">Basic</h3>
-                            <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 text-center">
+                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                          <div class="card-body">
-                            <h3 style="color: white;">Standard</h3>
-                            <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 text-center">
+                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="card" style="background: #0F2027;background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);background: linear-gradient(to right, #2C5364, #203A43, #0F2027);">
-                          <div class="card-body">
-                            <h3 style="color: white;">Premium</h3>
-                            <p style="color: white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita molestiae maxime ullam. Amet totam fugit facere ipsam. Error ullam quidem fuga tenetur. Ab sapiente officia quam nisi dolorum qui quod.</p>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 text-center">
+                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
                       </div>
                     </div>
-                    <div id="carousel5" class="carouselBox">
-                      <div class="control-container">
-                      <div id="left-scroll-button" class="left-scroll button scroll">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                      </div>
-                      <div id="right-scroll-button" class="right-scroll button scroll">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </div>
-                      </div>
-                      <div class="items" id="carousel-items5">
-                      <% trainers.forEach(function(trainer) { %>
-                        <% if(trainer.subCategories.includes('Therapy & counselling')) { %>
-                          <div class="item">
-                            <img class="item-image" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
-                            <span class="item-title"><%= trainer.username %></span>
-                            <span class="item-load-icon button opacity-none"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><i class="fa fa-play"></i></a></span>
-                            <div class="item-description opacity-none">Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</div>
+                    <br><br>
+                    <div class="card-deck">
+                      <% z = 0 %>
+                <% trainers.forEach(function(trainer,i) { %>
+                  <% if(trainer.subCategories.includes('Therapy & counselling')) { %>
+                    <% if(z<4){ %>
+                        <div class="card">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                            
                           </div>
-                        <% } %>
-                     <% }) %>
                         </div>
+                      <!-- </div> -->
+                  <% } else {%>
+                    <div class="card more" hidden>
+                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                      </div>
                     </div>
+                  <%}z++%>
+               <% }}) %>
+              </div>
+              <% if(z>4){ %>
+                <div class="btn-holder">
+                  <button class="btn btn-primary viewMore">View more</button>
+                  <button class="btn btn-warning viewLess" hidden>View less</button>
+                </div>
+                <%} %>
                 </section>
             <% } %>
             <footer id="footer">

@@ -61,7 +61,7 @@ route.get('/bookedSlots/:id',(req, res)=>{
     });
     });
 
-route.get('/category/:parent', (req, res) => {
+route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
     var parent = req.params.parent;
     Category.find({parent:req.params.parent}, (err, foundCategory) => { 
         var titles = [];
@@ -92,7 +92,7 @@ route.get('/category/:parent', (req, res) => {
     })
 });
 
-route.post('/newSession', (req, res) => {
+route.post('/newSession', middleware.isUserLoggedIn, (req, res) => {
     User.findById(req.user._id, (err, user) => {
         if(err) {
             console.log(err);
@@ -186,7 +186,7 @@ route.post('/newSession', (req, res) => {
     });
 });
 
-route.get('/userDashboard/:id', (req, res) => {
+route.get('/userDashboard/:id', middleware.isUserLoggedIn, (req, res) => {
     User.findById(req.params.id, function(err, user) {
         if(err) {
             console.log(err);

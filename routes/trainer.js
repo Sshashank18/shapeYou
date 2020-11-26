@@ -8,13 +8,13 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/credentials');
 const rp = require('request-promise');
 var http = require("https");
-
+var middleware = require("../middleware");
 const request = require('request');
 
 
 const route = express.Router();
 
-route.get('/',(req,res)=>{
+route.get('/', middleware.isTrainerLoggedIn, (req,res)=>{
 
     var options = {
         "method": "GET",

@@ -55,7 +55,7 @@ route.get('/', middleware.isTrainerLoggedIn, (req,res)=>{
     });
 });
  
-route.get('/details',(req,res)=>{
+route.get('/details',middleware.isTrainerLoggedIn,(req,res)=>{
     res.render('details');
 });
 

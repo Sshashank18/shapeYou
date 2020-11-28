@@ -90,7 +90,7 @@ app.get('/zoomDashboard',(req,res)=>{
 	res.render('zoomDashboard');
 });
 
-cron.schedule('0 22 * * 5', function() {
+cron.schedule('0 0 * * sun', function() {
 	console.log('Data Reset');
 	Trainer.updateMany({$set:{calendar:null,personalSlots:null}},(err,result)=>{
         if(err) console.log(err);

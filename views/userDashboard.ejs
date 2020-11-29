@@ -69,7 +69,7 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
 
-                  <div class="container trainerTimeTable">
+                  <div class="container trainerTimeTable table-responsive">
                     <table class="table table-bordered" id="trainerTT">
                         <thead class="week-names">
                           <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -456,7 +456,7 @@
                               }
                             }
 
-                            if(trainerType == "group" && index!=0 && data[key]!=undefined){
+                            if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
 
                               for(var i=0;i<data[key].length;i++){
                                 if(data[key][i].slice(0,11) == timeStr && data[key][i].substring(12,data[key][i].length-2)==trainerCat){
@@ -476,7 +476,7 @@
                                   }
                                 }
                               }
-                            }else if(trainerType == "personal" && index!=0){
+                            }else if(trainerType == "personal" && data &&index!=0){
                                 switch (dayCol){
                                   case 'MON':
                                       dayCol = "Monday";

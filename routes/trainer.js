@@ -14,8 +14,8 @@ const request = require('request');
 
 const route = express.Router();
 
-route.get('/', middleware.isTrainerLoggedIn, (req,res)=>{
-
+route.get('/', (req,res)=>{
+ 
     var options = {
         "method": "GET",
         "hostname": "api.zoom.us",
@@ -55,7 +55,7 @@ route.get('/', middleware.isTrainerLoggedIn, (req,res)=>{
     });
 });
  
-route.get('/details',(req,res)=>{
+route.get('/details', (req,res)=>{
     res.render('details');
 });
 

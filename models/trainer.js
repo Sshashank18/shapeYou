@@ -63,7 +63,13 @@ var trainerSchema = new mongoose.Schema({
     isZoomVerified:{
         type: Boolean,
         default: false
-    }
+    },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Review"
+        }
+    ]
 });
 
 trainerSchema.plugin(passportLocalMongoose);

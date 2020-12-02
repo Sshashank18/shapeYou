@@ -31,7 +31,7 @@
             <ul class="navbar-nav">
                 <% if(trainer.subCategories.length>0){ %>
                 <li class="nav-item">
-                    <div class="hide1">U can change calendar every sunday and it can be changed once for that week.</div>
+                    <div class="hide1">You can change calendar every sunday and it can be changed once for that week.</div>
                     <button type="button" class="btn btn-primary grpUpload" id="groupSlotsButton" data-toggle="modal" data-target="#setTimeTable">
                       Upload Group time slots
                     </button>
@@ -82,7 +82,7 @@
         </div>
     </nav> -->
 
-    <br>
+    
 
     <!-- Trainer TimeTable -->
 
@@ -90,7 +90,7 @@
         <h2><%=trainer.username%>'s timetable for this week.</h2>
     </div>
     
-    <div class="container trainerTimeTable">
+    <div class="container trainerTimeTable table-responsive">
         <table class="table table-bordered" id="trainerTT">
             <thead class="week-names">
               <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -432,7 +432,7 @@
                 <% } %>
               
             </div>
-            <div class="modal-body">
+            <div class="modal-body table-responsive">
                 <table class="table table-bordered" id="weekTable">
                     <thead class="week-names">
                       <tr  style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -799,8 +799,8 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">Personal Time Table</h5>
                 </div>
             </div>
-            <div class="modal-body">
             <form action="/trainer/personalSlots?_method=PUT" method="POST">
+            <div class="modal-body table-responsive">
                 <table class="table table-bordered" id="mytab">
                     <thead class="week-names">
                       <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -1111,9 +1111,9 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" id="button">Submit</button>
-                </form>
-              </div>
+                </div>
+                <button class="btn btn-primary" id="button" style="text-align: center;">Submit</button>
+            </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

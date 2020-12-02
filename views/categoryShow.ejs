@@ -6,7 +6,7 @@
     <title>Category</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" />
@@ -32,6 +32,7 @@
 </head>
 <body>
 
+  <div class="mainBox">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
       <a class="navbar-brand" href="/user"><img style="width: 3rem; height: auto;" src="/images/arnav.png" alt=""></a>
@@ -93,7 +94,6 @@
 <!-- content -->
 
 
-    <div class="mainBox">
 
                 <% switch (category.parent) {
                     case 'Wellness' : %>
@@ -125,65 +125,16 @@
           
             
           </section>
-
-            <!-- <% switch (category.parent) {
-                case 'Wellness' : %>
-                    <div class="trainersBox">
-                        <div class="subcategories">
-                            <button name = "Yoga" style="margin:20px">Yoga</button>
-                            <button name = "Meditation" style="margin:20px">Meditation</button>
-                        </div>
-                        <% break;
-                
-                case 'Counselling' : %>
-            
-                    <div class="trainersBox">
-                        <div class="subcategories">
-                            <button name = "Nutrition"  style="margin:20px">Nutrition</button>
-                            <button name = "Therapy & counselling" style="margin:20px">Therapy & counselling</button>
-                        </div>
-                        <% break;
-                
-                case 'Fitness trainer' : %>
-                    <div class="trainersBox">
-                        <div class="subcategories">
-                            <button name = "CrossFit" data-filter=".filter-crossfit" style="margin:20px">CrossFit</button>
-                            <button name = "Functional & Strength Training" style="margin:20px">Functional & Strength Training</button>
-                            <button name = "Zumba" style="margin:20px">Zumba</button>
-                            <button name = "Dance" style="margin:20px">Dance</button>
-                            <button name = "MMA and Boxing" style="margin:20px">MMA & Boxing</button>
-                        </div>
-                        <% break;
-                
-                } %> -->
-<!-- 
-            <div class="trainers" id="trainersList">
-
-                <% trainers.forEach((trainer)=>{   %>
-                    <div class="col-lg-4 col-md-6 px-auto">
-                        <div class="card mb-5" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
-                            <div class="card-body text-center">
-                                <a href="/trainer/profile/<%= trainer._id %>"><h5 class="card-title"><%= trainer.username %></h5></a>
-                            </div>
-                          </div>
-                    </div>
-                <% }); %>
-
-                  
-                  
-
-            </div> -->
             <% if(parent == 'Fitness trainer') { %>
             <section>
-                <div class="container px-5 py-24 mx-auto">
+                <div class="container pt-5 mx-auto">
                   <div class="row">
                     <div class="col-lg-6 my-auto">
                       <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">CROSSFIT</h1>
                       <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                     </div>
                     <div class="col-lg-6">
-                      <img src="https://images.unsplash.com/photo-1578762560042-46ad127c95ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                      <img src="https://images.unsplash.com/photo-1578762560042-46ad127c95ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid">
                     </div>
                   </div>
                   <div class="row" style="margin-top: 100px;">
@@ -244,14 +195,14 @@
             </section>
 
             <section style="background: #7F986F;">
-              <div class="container px-5 py-24 mx-auto">
+              <div class="container pt-5 mx-auto">
                 <div class="row">
                   <div class="col-lg-6 my-auto">
                     <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">FUNCTIONAL STRENGHT & TRAINING</h1>
                     <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                   </div>
                   <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1516208813382-cbaf53501037?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                    <img class="img-fluid" src="https://images.unsplash.com/photo-1516208813382-cbaf53501037?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
@@ -309,14 +260,14 @@
             </section>
 
             <section>
-              <div class="container px-5 py-24 mx-auto">
+              <div class="container pt-5 mx-auto">
                 <div class="row">
                   <div class="col-lg-6 my-auto">
                     <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">ZUMBA</h1>
                     <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                   </div>
                   <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                    <img class="img-fluid" src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
@@ -375,14 +326,14 @@
             </section>
 
             <section style="background: #7F986F;">
-              <div class="container px-5 py-24 mx-auto">
+              <div class="container pt-5 mx-auto">
                 <div class="row">
                   <div class="col-lg-6 my-auto">
                     <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">DANCE</h1>
                     <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                   </div>
                   <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80">
+                    <img class="img-fluid" src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80">
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
@@ -440,14 +391,14 @@
             </section>
 
             <section>
-              <div class="container px-5 py-24 mx-auto">
+              <div class="container pt-5 mx-auto">
                 <div class="row">
                   <div class="col-lg-6 my-auto">
                     <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">MMA & BOXING</h1>
                     <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                   </div>
                   <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1555661530-68c8e98db4e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                    <img class="img-fluid" src="https://images.unsplash.com/photo-1555661530-68c8e98db4e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
                   </div>
                 </div>
                 <div class="row" style="margin-top: 100px;">
@@ -531,14 +482,14 @@
                 </div>
               </div>
               <section style="background: #9ad3bc;">
-                  <div class="container py-5 mx-auto">
+                  <div class="container pt-5 mx-auto">
                     <div class="row">
                       <div class="col-lg-6 my-auto">
                         <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">YOGA</h1>
                         <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                     </div>
                     <div class="col-lg-6">
-                      <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                      <img class="img-fluid" src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
                     </div>
                   </div>
                   <div class="row" style="margin-top: 100px;">
@@ -597,14 +548,14 @@
                 </section>
 
                 <section>
-                  <div class="container px-5 py-24 mx-auto">
+                  <div class="container pt-5 mx-auto">
                     <div class="row">
                       <div class="col-lg-6 my-auto">
                         <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">MEDITATION</h1>
                         <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                       </div>
                       <div class="col-lg-6">
-                        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1993&q=80" alt="">
+                        <img class="img-fluid" src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1993&q=80" alt="">
                       </div>
                     </div>
                     <div class="row" style="margin-top: 100px;">
@@ -653,14 +604,14 @@
                 </section>
             <% } if(parent == 'Counselling') { %>
               <section>
-                <div class="container px-5 py-24 mx-auto">
+                <div class="container pt-5 mx-auto">
                   <div class="row">
                     <div class="col-lg-6 my-auto">
                       <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">NUTRITION</h1>
                       <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                     </div>
                     <div class="col-lg-6">
-                      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1935&q=80" alt="">
+                      <img class="img-fluid" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1935&q=80" alt="">
                     </div>
                   </div>
                   <div class="row" style="margin-top: 100px;">
@@ -708,14 +659,14 @@
                 </section>
 
                 <section style="background: #F6EDD9;">
-                  <div class="container px-5 py-24 mx-auto">
+                  <div class="container pt-5 mx-auto">
                     <div class="row">
                       <div class="col-lg-6 my-auto">
                         <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">THERAPY & COUNSELLING</h1>
                         <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque aliquid maxime rerum, consectetur inventore ipsa exercitationem aperiam tempora velit labore incidunt porro vel magni enim, laboriosam libero explicabo neque repudiandae.</p>
                       </div>
                       <div class="col-lg-6">
-                        <img src="https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                        <img class="img-fluid" src="https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
                       </div>
                     </div>
                     <div class="row" style="margin-top: 100px;">

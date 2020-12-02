@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
 const Category = require('../models/category');
+const Review = require('../models/reviews');
 const crypto = require('crypto');
 
 const jwt = require('jsonwebtoken');
@@ -10,6 +11,7 @@ const rp = require('request-promise');
 var http = require("https");
 var middleware = require("../middleware");
 const request = require('request');
+const e = require('express');
 
 
 const route = express.Router();
@@ -55,7 +57,7 @@ route.get('/', (req,res)=>{
     });
 });
  
-route.get('/details', (req,res)=>{
+route.get('/details',middleware.isTrainerLoggedIn,(req,res)=>{
     res.render('details');
 });
 
@@ -418,6 +420,38 @@ route.post('/signature',(req,res)=>{
 
       res.json({meetConfig});
 
+});
+
+// FEEDBACK ROUTING
+
+route.get('/:id/review', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('feedback', {trainer: foundTrainer});
+        }
+    });
+});
+
+route.post('/:id/review', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Review.create(req.body.review, (err, review) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    review.author.id = req.user._id;
+                    review.author.username = req.user.username;
+                    review.save();
+                    foundTrainer.reviews.push(review);
+                    foundTrainer.save();
+                }
+            });
+        }
+    });
 });
 
 module.exports = route;

@@ -69,7 +69,13 @@ var trainerSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Review"
         }
-    ]
+    ],
+    pricePlan: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Price"
+        }
+    }
 });
 
 trainerSchema.plugin(passportLocalMongoose);

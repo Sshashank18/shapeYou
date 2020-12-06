@@ -65,6 +65,7 @@
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
+          <h3 class="text-center"> <span class="trainerName"></span>'s time table</h3>
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
@@ -393,7 +394,12 @@
               trainer = $(this);
               id = $(this).attr("data-id");
               name = $(this).attr("data-name");
-              
+
+              $('.trainerName').text(name);
+
+              // if(user.trainers.find(el => el.id == id)) {
+              //   $('.trainerName').text(el.username)
+              // }
               aboutTrainer.some((t)=>{
                 if(t.name == name){
                   trainerCat =  t.category;

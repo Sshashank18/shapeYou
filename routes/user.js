@@ -78,7 +78,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
                     for (var i=0;i<trainer.subCategories.length;i++){
     
                         if(titles.indexOf(trainer.subCategories[i]) in titles===true){
-                            if (trainers.indexOf(trainer) in trainers==true){
+                            if (trainers.indexOf(trainer) in trainers==true || req.user.trainers.find(el => el.id == trainer._id)){
                                 continue;
                             }else{
                                 trainers.push(trainer);

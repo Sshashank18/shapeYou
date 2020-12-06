@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
 const Category = require('../models/category');
 const User = require('../models/user');
+const Price = require('../models/pricing');
 var middleware = require("../middleware");
-const e = require('express');
 
 const route = express.Router();
 
@@ -48,7 +48,7 @@ route.put('/trainerVerify/:id', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            res.redirect('/admin/trainers');
+            res.redirect('/admin/trainer/' + req.params.id);
         }
     });
 });
@@ -61,6 +61,42 @@ route.get('/user/:id', (req, res) => {
             res.render('adminUserProfile', {user: foundUser});
         }
     })
-})
+});
+
+route.get('/pricing', (req, res) => {
+    Price.find({}, (err, foundPrices) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('pricing', {prices: foundPrices});
+        }
+    });
+});
+
+route.post('/pricing', (req, res) => {
+    Price.create(req.body, (err, price) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(price);
+            res.redirect('/admin/pricing');
+        }
+    });
+});
+
+route.get('/editPrice', (req, res) => {
+    res.render('priceEditForm');
+});
+
+route.put('/editPrice', (req, res) => {
+    Price.find({title: req.body.segment}, (err, foundPrice) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(foundPrice);
+            res.redirect('/admin');
+        }
+    })
+});
 
 module.exports = route;

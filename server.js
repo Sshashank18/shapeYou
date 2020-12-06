@@ -6,6 +6,9 @@ const cron = require('node-cron');
 const app = express();
 
 const methodOverride = require("method-override");
+// const multer = require('multer');
+// const GridFsStorage = require('multer-gridfs-storage');
+// const Grid = require('gridfs-stream');
 
 
 //MONGOOSE
@@ -30,7 +33,16 @@ mongoose.connection.on('error',(err)=>{
 
 mongoose.set('useFindAndModify', false);
 
+// let gfs;
+
+// mongoose.connection.on('open',()=>{
+//  gfs = Grid(mongoose.connection.db,mongoose.mongo);
+//  gfs.collection('uploads');
+// });
+
+
 app.set("view engine", 'ejs');
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());

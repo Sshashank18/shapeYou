@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('../config/credentials');
 const rp = require('request-promise');
-var http = require("https");
+var https = require("https");
 const request = require('request');
 
 var User = require('../models/user');
@@ -12,6 +12,87 @@ var Trainer = require('../models/trainer');
 var Category = require('../models/category');
 
 var middleware = require("../middleware");
+// var payment = require("../middleware/payment")(route);
+// const PaytmChecksum = require('./PaytmChecksum');
+
+
+// function payment(req,res,next){
+route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
+
+    const shortid = require('shortid');
+    const checksum_lib = require('./checksum/checksum');
+	
+        const orderId = shortid.generate();
+        const customerId = shortid.generate();
+
+        // var paytmParams = {};
+
+        // var paytmParams = {
+        //     "requestType"   : "Payment",
+        //     "mid"           : "cuZBeb01092536643568",
+        //     "websiteName"   : "WEBSTAGING",
+        //     "orderId"       : "ORDERID_98765",
+        //     "callbackUrl"   : "https://merchant.com/callback",
+        //     "txnAmount"     : {
+        //         "value"     : "1.00",
+        //         "currency"  : "INR",
+        //     },
+        //     "userInfo"      : {
+        //         "custId"    : "CUST_001",
+        //     },
+        // };
+
+        var price = null;
+
+        if(req.body.price != undefined){
+            price = req.body.price;
+        }else{
+            price = req.body.defaultPrice;
+        }
+
+        var paytmParams = {
+            "MID" : "cuZBeb01092536643568",
+            "WEBSITE" : "DEFAULT",
+            "INDUSTRY_TYPE_ID" : "Retail",
+            "CHANNEL_ID" : "WEB",
+            "ORDER_ID" : orderId,
+            "CUST_ID" : req.body.trainerId,
+            // "MOBILE_NO" : r,
+            "EMAIL" : req.user.email,
+            "TXN_AMOUNT" : price,
+            // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
+            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}`,
+            // "CALLBACK_URL" :`http://127.0.0.1:3500/user/success?trainerId=${req.body.trainerId}&category=${req.body.category}&type=${req.body.type}&username=${req.body.username}&numOfSessions=${req.body.numOfSessions}&booked=${req.body.booked}`,
+        };
+        
+        checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
+            
+            // var url = "https://securegw.paytm.in/order/process";
+            var url = "https://securegw-stage.paytm.in/order/process"   //For testing purposes
+    
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write('<html>');
+            res.write('<head>');
+            res.write('<title>Merchant Checkout Page</title>');
+            res.write('</head>');
+            res.write('<body>');
+            res.write('<center><h1>Please do not refresh this page...</h1></center>');
+            res.write('<form method="post" action="' + url + '" name="paytm_form">');
+            for(var x in paytmParams){
+                res.write('<input type="hidden" name="' + x + '" value="' + paytmParams[x] + '">');
+            }
+            res.write('<input type="hidden" name="CHECKSUMHASH" value="' + checksum + '">');
+            res.write('</form>');
+            res.write('<script type="text/javascript">');
+            res.write('document.paytm_form.submit();');
+            res.write('</script>');
+            res.write('</body>');
+            res.write('</html>');
+            res.end();
+        });
+});
+
+      
 
 route.get('/', (req, res) => {
     if(req.query.search) {
@@ -92,12 +173,14 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
     })
 });
 
-route.post('/newSession', middleware.isUserLoggedIn, (req, res) => {
-    User.findById(req.user._id, (err, user) => {
+route.post('/newSession', middleware.isUserLoggedIn,(req, res) => {
+    var details = JSON.parse(req.query.body);
+    if (req.body.STATUS === "TXN_SUCCESS") {
+        User.findById(req.user._id, (err, user) => {
         if(err) {
             console.log(err);
         } else {
-            Trainer.findById(req.body.trainerId, (err, trainer) => {
+            Trainer.findById(details.trainerId, (err, trainer) => {
                 if(err) {
                     console.log(err);
                 } else {
@@ -161,21 +244,37 @@ route.post('/newSession', middleware.isUserLoggedIn, (req, res) => {
                     if(!(user.trainers.some(el => el.id == trainer._id))) {
                         var info = {
                             id: trainer._id,
-                            category: req.body.category,
-                            name: req.body.username,
-                            type: req.body.type,
-                            numOfSessions: req.body.numOfSessions,
+                            category: details.category,
+                            name: details.username,
+                            type: details.type,
+                            numOfSessions: details.numOfSessions,
                         }
                         user.trainers.push(info);
                         
-                        const obj = new Object();
-                        obj[trainer.username] = new Array();
+                        // const obj = new Object();
+                        // obj[trainer.username] = new Array();
 
-                        // user.bookedSlot = JSON.parse(req.body.booked);
-                        user.bookedSlot = obj;
+                        user.bookedSlot = JSON.parse(details.booked);
+
+                        details.userCount = JSON.parse(details.userCount);
+
+                        var trainerKey = Object.keys(details.userCount[trainer._id])[0];
+                        for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
+                            var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                            if(timeStr == details.userCount[trainer._id][trainerKey]){
+                                var ref = trainer.personalSlots[trainerKey][i];
+                                var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
+                                trainer.personalSlots[trainerKey][i] = output;
+                            }
+                        }
+                        trainer.markModified('personalSlots');
+                        trainer.save();
+
+                        // user.bookedSlot = obj;
                         user.markModified('trainers');
                         user.markModified('bookedSlot');
                         user.save();
+                
                         res.redirect('/user/userDashboard/' + user._id);
                     } else {
                         res.redirect('/user/userDashboard/' + user._id);
@@ -184,6 +283,9 @@ route.post('/newSession', middleware.isUserLoggedIn, (req, res) => {
             });
         }
     });
+    }else{
+        res.redirect('/user');
+    }
 });
 
 route.get('/userDashboard/:id', middleware.isUserLoggedIn, (req, res) => {

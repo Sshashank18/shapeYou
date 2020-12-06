@@ -14,6 +14,7 @@ const request = require('request');
 const e = require('express');
 
 
+
 const route = express.Router();
 
 route.get('/', (req,res)=>{
@@ -241,7 +242,7 @@ route.post('/userInfo',(req,res)=>{
 
 // Trainer Profile Display
 
-route.get('/profile/:id/:name', (req, res) => {
+route.get('/profile/:id/:name', middleware.isUserLoggedIn,(req, res) => {
     Trainer.findById(req.params.id, (err, foundTrainer) => {
         if(err) {
             console.log(err);

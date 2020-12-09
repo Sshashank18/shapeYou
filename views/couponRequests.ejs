@@ -29,15 +29,15 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a href="/admin/trainers" class="nav-link btn">Trainers</a></li>
+                    <li class="nav-item"><a href="/admin/trainers" class="nav-link btn">Trainers</a></li>
                     <li class="nav-item"><a href="/admin/users" class="nav-link btn">Users</a></li>
                     <li class="nav-item"><a href="/admin/pricing" class="nav-link btn">Pricing</a></li>
-                    <li class="nav-item"><a href="/admin/couponRequests">Coupon Requests</a></li>
+                    <li class="nav-item active"><a href="/admin/couponRequests">Coupon Requests</a></li>
                     <li class="nav-item"><a class="nav-link btn" href="/auth/logout">Sign Out</a></li>
                 </ul>
             </div>
         </nav>
-        <h1 class="text-center">ShapeYou - Trainers</h1>
+        <h1 class="text-center">ShapeYou - Coupon Requests</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -48,12 +48,15 @@
                 </tr>
             </thead>
             <tbody>
-            <% trainers.forEach(function(trainer, idx) { %>
+            <% requests.forEach(function(request, idx) { %>
               <tr>
                 <th scope="row"><%= idx+1 %></th>
-                <td><%= trainer.username %></td>
-                <td><%= trainer.email %></td>
-                <td><a href="/admin/trainer/<%= trainer._id %>">View Profile</a></td>
+                <td><%= request.username %></td>
+                <td><%= request.id %></td>
+                <td>
+                    <form action="/admin/approveCoupon/<%= request.id %>/<%= request._id %>?_method=PUT" method="POST">
+                        <button type="submit">Approve</a></td>
+                    </form>
               </tr>
             <% }) %>
               

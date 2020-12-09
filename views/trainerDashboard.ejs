@@ -769,19 +769,22 @@
                 </div>
 
             </div>
+            <form action="/trainer/addCoupon/<%= trainer._id %>" method="POST">
             <div class="modal-body">
-                <input id="couponName" value="COUP" type="text" style="text-transform:uppercase"/>
+                <input id="couponName" name="couponCode" value="COUP" type="text" style="text-transform:uppercase"/>
                 <h3>DISCOUNT</h3>
-                <select id="couponDiscount">
-                    <option value="10%" selected>10%</option>
-                    <option value="25%">25%</option>
-                    <option value="50%">50%</option>
+                <select name="couponDiscount" id="couponDiscount">
+                    <option name="Twenty" value="10%" selected>10%</option>
+                    <option name="TwentyFive" value="25%">25%</option>
+                    <option name="Fifty" value="50%">50%</option>
                 </select>
+                <button type="submit">Add Coupon</button>
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary saveCoupon"  data-dismiss="modal">Add Coupon</button>
-            </div>
+              <button type="submit" class="btn btn-primary saveCoupon"  data-dismiss="modal">Add Coupon</button>
+            </div> -->
+            </form>
           </div>
         </div>
       </div>
@@ -1722,25 +1725,7 @@
                 }
             });
             // window.location="http://127.0.0.1:3500/trainer";
-            window.location="https://shapeyou-demo.herokuapp.com/trainer";
-        });
-
-        $('.saveCoupon').on('click',()=>{
-            var couponName = $('#couponName').val();
-            var discount = $( "#couponDiscount option:selected" ).text();
-            var coupon = {
-                couponName,
-                discount
-            }
-            $.ajax({
-                // url:'http://127.0.0.1:3500/trainer/addCoupon/<%= trainer._id %>',
-                url:'https://shapeyou-demo.herokuapp.com/trainer/addCoupon/<%= trainer._id %>',
-                method:'PUT',
-                data:coupon,
-                success:()=>{
-                    alert('Saved Coupon Details.');
-                }
-            });
+            // window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
 
 

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
 const Category = require('../models/category');
+const Request = require('../models/requestCoupon');
 const Review = require('../models/reviews');
 const crypto = require('crypto');
 
@@ -133,17 +134,40 @@ route.put('/setTimeTable/:id',(req,res)=>{
 });
 
 
-route.put('/addCoupon/:id',(req,res)=>{
-    Trainer.findByIdAndUpdate(req.params.id,
-        {
-            coupon:req.body
+route.post('/addCoupon/:id', middleware.isTrainerLoggedIn, (req,res)=>{
+    console.log(req.body);
+    Trainer.findById(req.params.id, (err, trainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            var request = {
+                    id: req.params.id,
+                    username: trainer.username,
+                    coupon: {
+                        couponName: req.body.couponCode,
+                        couponDiscount: req.body.couponDiscount
+                    }
+            }
+            Request.create(request, (err, request) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    console.log(request);
+                    res.redirect('/trainer')
+                }
+            });
         }
-    ,(err,result)=>{
-        if(err){
-            return res.status(422).json({error: err});
-        }
-        res.sendStatus(200);
-    });
+    })
+    // Trainer.findByIdAndUpdate(req.params.id,
+    //     {
+    //         coupon:req.body
+    //     }
+    // ,(err,result)=>{
+    //     if(err){
+    //         return res.status(422).json({error: err});
+    //     }
+    //     res.sendStatus(200);
+    // });
 });
 
 
@@ -243,7 +267,7 @@ route.post('/userInfo',(req,res)=>{
 // Trainer Profile Display
 
 route.get('/profile/:id/:name', middleware.isUserLoggedIn,(req, res) => {
-    Trainer.findById(req.params.id, (err, foundTrainer) => {
+    Trainer.findById(req.params.id).populate('reviews').exec( (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
@@ -440,15 +464,21 @@ route.post('/:id/review', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            Review.create(req.body.review, (err, review) => {
+            var review = {
+                author: {
+                    id: req.user._id,
+                    username: req.user.username
+                },
+                body: req.body.review.message,
+                rating: req.body.review.rating
+            }
+            Review.create(review, (err, review) => {
                 if(err) {
                     console.log(err);
                 } else {
-                    review.author.id = req.user._id;
-                    review.author.username = req.user.username;
-                    review.save();
                     foundTrainer.reviews.push(review);
                     foundTrainer.save();
+                    res.send("Review submitted")
                 }
             });
         }

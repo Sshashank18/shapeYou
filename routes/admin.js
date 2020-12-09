@@ -5,6 +5,7 @@ const Trainer = require('../models/trainer');
 const Category = require('../models/category');
 const User = require('../models/user');
 const Price = require('../models/pricing');
+const Request = require('../models/requestCoupon');
 var middleware = require("../middleware");
 
 const route = express.Router();
@@ -95,6 +96,27 @@ route.put('/editPrice', (req, res) => {
         } else {
             console.log(foundPrice);
             res.redirect('/admin');
+        }
+    })
+});
+
+route.get('/couponRequests', (req, res) => {
+    Request.find({}, (err, requests) => {
+        res.render('couponRequests', {requests: requests});
+    });
+});
+
+route.put('/approveCoupon/:id/:requestid', (req, res) => {
+    Request.findById(req.params.requestid, (err, request) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Trainer.findByIdAndUpdate(req.params.id, { coupon:request.coupon } ,(err,result)=>{
+                    if(err){
+                        return res.status(422).json({error: err});
+                    }
+                    res.sendStatus(200);
+                });
         }
     })
 });

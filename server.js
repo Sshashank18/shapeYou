@@ -111,6 +111,36 @@ cron.schedule('0 0 * * sun', function() {
     });
 });
 
+var tempTrainers;
+
+cron.schedule('0 0 * * *',()=>{
+	var currDate = new Date();
+	currDate.setHours(0, 0, 0, 0);
+	User.find({},(err,result)=>{
+		result.forEach(user => {
+			if(user.trainers.length!=0){
+				tempTrainers = user.trainers;
+				user.trainers.forEach((i,value)=>{
+					if(i.txndate){
+						i.txndate.setHours(0,0,0,0);
+						if(currDate.getTime() == i.txndate.getTime()){
+							tempTrainers = [];
+							for(var l=0;l<user.trainers.length;l++){
+								if(l!=value){
+									tempTrainers.push(user.trainers[l]);
+								}
+							}
+	
+						}
+					}
+				});
+				user.trainers = tempTrainers;
+				user.save();
+			}
+		});
+	});
+});
+
 
 //Port Listening
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));

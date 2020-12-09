@@ -6,6 +6,7 @@ const Category = require('../models/category');
 const User = require('../models/user');
 const Price = require('../models/pricing');
 var middleware = require("../middleware");
+var http = require("https");
 
 const route = express.Router();
 
@@ -43,14 +44,65 @@ route.get('/trainer/:id', (req, res) => {
     });
 });
 
-route.put('/trainerVerify/:id', (req, res) => {
-    Trainer.findByIdAndUpdate(req.params.id, {isVerified: true}, (err, foundTrainer) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect('/admin/trainer/' + req.params.id);
-        }
-    });
+route.put('/trainerVerify', (req, res) => {
+
+    console.log(req.body);
+
+        var options = {
+            "method": "POST",
+            "hostname": "api.zoom.us",
+            "port": null,
+            "path": "/v2/users?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk",
+            "headers": {
+              "content-type": "application/json"
+            }
+        };
+    
+        var req1 = http.request(options, function (res1) {
+            var chunks = [];
+          
+            res1.on("data", function (chunk) {
+              chunks.push(chunk);
+            });
+          
+            res1.on("end", function () {
+              var body = Buffer.concat(chunks);
+              body=JSON.parse(body.toString());
+              Trainer.findByIdAndUpdate(req.body.id,
+                {
+                    user_id: body.id,
+                    isVerified: true
+                }
+                ,(err,result)=>{
+                    if(err){
+                        return res.status(422).json({error: err});
+                    }
+                    res.sendStatus(200);
+                });
+            });
+          });
+    
+        req1.write(JSON.stringify({ action: 'create',
+          user_info: 
+           { email: req.body.email,
+             type: 1,
+            //  first_name: req.user.username,
+            } 
+        }));
+        
+        req1.end();
+
+    
+    
+
+
+    // Trainer.findByIdAndUpdate(req.params.id, {isVerified: true}, (err, foundTrainer) => {
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+           
+    //     }
+    // });
 });
 
 route.get('/user/:id', (req, res) => {

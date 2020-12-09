@@ -17,7 +17,7 @@ const e = require('express');
 
 const route = express.Router();
 
-route.get('/', (req,res)=>{
+route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
  
     var options = {
         "method": "GET",

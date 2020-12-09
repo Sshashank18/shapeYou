@@ -61,8 +61,7 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
             "EMAIL" : req.user.email,
             "TXN_AMOUNT" : price,
             // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
-            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}`,
-            // "CALLBACK_URL" :`http://127.0.0.1:3500/user/success?trainerId=${req.body.trainerId}&category=${req.body.category}&type=${req.body.type}&username=${req.body.username}&numOfSessions=${req.body.numOfSessions}&booked=${req.body.booked}`,
+            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&userId=${req.user._id}`,
         };
         
         checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
@@ -173,17 +172,100 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
     })
 });
 
-route.post('/newSession', middleware.isUserLoggedIn,(req, res) => {
+route.post('/newSession',(req, res) => {
     var details = JSON.parse(req.query.body);
+    var userID = req.query.userId;
+    console.log(req.user);
     if (req.body.STATUS === "TXN_SUCCESS") {
-        User.findById(req.user._id, (err, user) => {
+        User.findById(userID, (err, user) => {
         if(err) {
             console.log(err);
         } else {
-            Trainer.findById(details.trainerId, (err, trainer) => {
-                if(err) {
-                    console.log(err);
-                } else {
+            console.log(user);
+            // req.login(user,(err)=>{
+                // if(err) console.log(err);
+                // else{
+                    // Trainer.findById(details.trainerId, (err, trainer) => {
+                    //     if(err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         console
+                    //         if(!(user.trainers.some(el => el.id == trainer._id))) {
+
+                    //             var txnD = req.body.TXNDATE.slice(0,11);
+                    //             var trsD = new Date(txnD);
+                                
+                    //             if(details.numOfSessions == 5){
+                    //                 trsD.setDate(trsD.getDate()+30);
+                    //             }else if(details.numOfSessions == 10){
+                    //                 trsD.setDate(trsD.getDate()+90);
+                    //             }
+
+                    //             var info = {
+                    //                 id: trainer._id,
+                    //                 category: details.category,
+                    //                 name: details.username,
+                    //                 type: details.type,
+                    //                 numOfSessions: details.numOfSessions,
+                    //                 txndate: trsD,
+                    //             }
+                    //             user.trainers.push(info);
+                                
+                    //             // const obj = new Object();
+                    //             // obj[trainer.username] = new Array();
+        
+                    //             user.bookedSlot = JSON.parse(details.booked);
+        
+                    //             details.userCount = JSON.parse(details.userCount);
+        
+                               
+                    //             if(details.type == "group"){
+                    //                 var trainerSlots = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')];
+                    //                 for(var i=0;i<trainerSlots.length;i++){
+                    //                     var timeStr=trainerSlots[i].slice(0,11);
+                    //                     timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
+                                        
+                    //                     if(details.userCount[trainer._id][Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')] == timeStr){
+                    //                         var ref = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i];
+                    //                         var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                    //                         trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i] = output;
+                    //                     }
+                    //                 }
+                    //                 trainer.markModified('calendar');
+                    //             }else{
+                        
+                    //                 var trainerKey = Object.keys(details.userCount[trainer._id])[0].split('-').join(' ');
+                    //                 console.log(trainerKey);
+                    //                 for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
+                    //                     console.log(trainer.personalSlots[trainerKey][i]);
+                    //                     var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                    //                     if(timeStr == details.userCount[trainer._id][trainerKey]){
+                    //                         var ref = trainer.personalSlots[trainerKey][i];
+                    //                         var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
+                    //                         trainer.personalSlots[trainerKey][i] = output;
+                    //                     }
+                    //                 }
+            
+                    //                 trainer.markModified('personalSlots');
+                    //             }
+        
+                    //             trainer.save();
+        
+                    //             // user.bookedSlot = obj;
+                    //             user.markModified('trainers');
+                    //             user.markModified('bookedSlot');
+                    //             user.save();
+                    //             setTimeout(()=>{
+                    //                 res.redirect('/user/userDashboard/' + user._id);
+                    //             },1000);
+                    //         } else {
+                    //             res.redirect('/user/userDashboard/' + user._id);
+                    //         }
+                    //     }
+                    // });
+                // }
+            // })
+            
                     
                     // if(req.body.type == 'personal') { 
                     //     var flag = false;
@@ -241,46 +323,7 @@ route.post('/newSession', middleware.isUserLoggedIn,(req, res) => {
 
                     // res.redirect('/user/userDashboard/' + user._id);
 
-                    if(!(user.trainers.some(el => el.id == trainer._id))) {
-                        var info = {
-                            id: trainer._id,
-                            category: details.category,
-                            name: details.username,
-                            type: details.type,
-                            numOfSessions: details.numOfSessions,
-                        }
-                        user.trainers.push(info);
-                        
-                        // const obj = new Object();
-                        // obj[trainer.username] = new Array();
-
-                        user.bookedSlot = JSON.parse(details.booked);
-
-                        details.userCount = JSON.parse(details.userCount);
-
-                        var trainerKey = Object.keys(details.userCount[trainer._id])[0];
-                        for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
-                            var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
-                            if(timeStr == details.userCount[trainer._id][trainerKey]){
-                                var ref = trainer.personalSlots[trainerKey][i];
-                                var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
-                                trainer.personalSlots[trainerKey][i] = output;
-                            }
-                        }
-                        trainer.markModified('personalSlots');
-                        trainer.save();
-
-                        // user.bookedSlot = obj;
-                        user.markModified('trainers');
-                        user.markModified('bookedSlot');
-                        user.save();
-                
-                        res.redirect('/user/userDashboard/' + user._id);
-                    } else {
-                        res.redirect('/user/userDashboard/' + user._id);
-                    }
-                }
-            });
+               
         }
     });
     }else{

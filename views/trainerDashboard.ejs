@@ -1715,8 +1715,8 @@
                 });
             });
             $.ajax({
-                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
-                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer._id %>',
+                url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
+                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer._id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
@@ -1726,6 +1726,27 @@
             });
             // window.location="http://127.0.0.1:3500/trainer";
             // window.location="https://shapeyou-demo.herokuapp.com/trainer";
+<<<<<<< HEAD
+=======
+        });
+
+        $('.saveCoupon').on('click',()=>{
+            var couponName = $('#couponName').val();
+            var discount = $( "#couponDiscount option:selected" ).text();
+            var coupon = {
+                couponName,
+                discount
+            }
+            $.ajax({
+                // url:'http://127.0.0.1:3500/trainer/addCoupon/<%= trainer._id %>',
+                url:'https://shapeyou-demo.herokuapp.com/trainer/addCoupon/<%= trainer._id %>',
+                method:'PUT',
+                data:coupon,
+                success:()=>{
+                    alert('Saved Coupon Details.');
+                }
+            });
+>>>>>>> d4210c6f2b733e62fd6073bc63bccbc3bf847728
         });
 
 

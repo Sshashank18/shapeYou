@@ -1314,14 +1314,12 @@
               date[key].push(slot);
 
               if(trainerType == "group"){
-                var key2 = key.split('-').join(' ');
-                date2[key2] = slot;
+                date2[key] = slot;
                 userCount[id] = date2;
               }else{
                 date2[key3] = slot;
                 userCount[id] = date2;
               }
-
 
               $.ajax({
                 url:'/user/bookedSlots/' + <%- JSON.stringify(currentUser._id)%>,

@@ -61,7 +61,7 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
             "EMAIL" : req.user.email,
             "TXN_AMOUNT" : price,
             // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
-            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}`,
             // "CALLBACK_URL" :`http://127.0.0.1:3500/user/success?trainerId=${req.body.trainerId}&category=${req.body.category}&type=${req.body.type}&username=${req.body.username}&numOfSessions=${req.body.numOfSessions}&booked=${req.body.booked}`,
         };
         
@@ -173,10 +173,10 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
     })
 });
 
-route.post('/newSession', (req, res) => {
+route.post('/newSession', middleware.isUserLoggedIn, (req, res) => {
     var details = JSON.parse(req.query.body);
     if (req.body.STATUS === "TXN_SUCCESS") {
-        User.findById(req.query.id, (err, user) => {
+        User.findById(req.user._id, (err, user) => {
         if(err) {
             console.log(err);
         } else {

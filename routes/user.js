@@ -247,41 +247,94 @@ route.post('/newSession', (req, res) => {
         
                             // res.redirect('/user/userDashboard/' + user._id);
         
+                            console.log(req.body);
+
                             if(!(user.trainers.some(el => el.id == trainer._id))) {
+
+                                var txnD = req.body.TXNDATE.slice(0,11);
+                                var trsD = new Date(txnD);
+
+                                if(details.numOfSessions == 5){
+                                    trsD.setDate(trsD.getDate()+30);
+                                }else if(details.numOfSessions == 10){
+                                    trsD.setDate(trsD.getDate()+90);
+                                }
+
                                 var info = {
                                     id: trainer._id,
                                     category: details.category,
                                     name: details.username,
                                     type: details.type,
-                                    numOfSessions: details.numOfSessions,
+                                    numOfSessions:  parseInt(details.numOfSessions)-1,
+                                    txndate: trsD,
                                 }
                                 user.trainers.push(info);
-                                
-                                // const obj = new Object();
-                                // obj[trainer.username] = new Array();
-        
-                                user.bookedSlot = JSON.parse(details.booked);
-        
-                                details.userCount = JSON.parse(details.userCount);
-        
-                                var trainerKey = Object.keys(details.userCount[trainer._id])[0];
-                                for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
-                                    var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
-                                    if(timeStr == details.userCount[trainer._id][trainerKey]){
-                                        var ref = trainer.personalSlots[trainerKey][i];
-                                        var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
-                                        trainer.personalSlots[trainerKey][i] = output;
+
+                                var info2 = {
+                                    userName: user.username,
+                                    category: details.category,
+                                    type: details.type,
+                                    numOfSessions: details.numOfSessions,
+                                    payment_info:{
+                                        TransactionID: req.body.TXNID,
+                                        TransactionAmount: req.body.TXNAMOUNT,
+                                        TransactionDate: req.body.TXNDATE,
+                                        OrderId: req.body.ORDERID,
+                                        BankName:req.body.BANKNAME,
+                                        BankTransactionID: req.body.BANKTXNID,
                                     }
                                 }
-                                trainer.markModified('personalSlots');
+
+                                trainer.users.push(info2);
+                                trainer.markModified('users');
+
+                                // const obj = new Object();
+                                // obj[trainer.username] = new Array();
+
+                                user.bookedSlot = JSON.parse(details.booked);
+
+                                details.userCount = JSON.parse(details.userCount);
+
+
+                                if(details.type == "group"){
+                                    var trainerSlots = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')];
+                                    for(var i=0;i<trainerSlots.length;i++){
+                                        var timeStr=trainerSlots[i].slice(0,11);
+                                        timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
+
+                                        if(details.userCount[trainer._id][Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')] == timeStr){
+                                            var ref = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i];
+                                            var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                                            trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i] = output;
+                                        }
+                                    }
+                                    trainer.markModified('calendar');
+                                }else{
+
+                                    var trainerKey = Object.keys(details.userCount[trainer._id])[0].split('-').join(' ');
+                                    console.log(trainerKey);
+                                    for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
+                                        console.log(trainer.personalSlots[trainerKey][i]);
+                                        var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                                        if(timeStr == details.userCount[trainer._id][trainerKey]){
+                                            var ref = trainer.personalSlots[trainerKey][i];
+                                            var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
+                                            trainer.personalSlots[trainerKey][i] = output;
+                                        }
+                                    }
+
+                                    trainer.markModified('personalSlots');
+                                }
+
                                 trainer.save();
-        
+
                                 // user.bookedSlot = obj;
                                 user.markModified('trainers');
                                 user.markModified('bookedSlot');
                                 user.save();
-                        
-                                res.redirect('/user/userDashboard/' + user._id);
+                                setTimeout(()=>{
+                                    res.redirect('/user/userDashboard/' + user._id);
+                                },1000);
                             } else {
                                 res.redirect('/user/userDashboard/' + user._id);
                             }
@@ -341,14 +394,21 @@ route.put('/updateuser/', (req, res) => {
             trainer.save();
         }
     });
-    User.findByIdAndUpdate(req.user._id,
-        {
-            bookedSlot: req.body.booked
-        },
-        (err, user) => {
+    User.findById(req.user._id,(err,user)=>{
         if(err) {
             console.log(err);
         } else {
+            user.bookedSlot = req.body.booked2;
+            user.trainers.forEach(trainer =>{
+                console.log(trainer);
+                if(trainer.id == trainerID){
+                    trainer.numOfSessions -= 1;
+                }
+            });
+
+            user.markModified('bookedSlot')
+            user.markModified('trainers')
+            user.save()
             res.sendStatus(200);
         }
     })

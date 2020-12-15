@@ -375,6 +375,26 @@
         </div>
     </div>
 
+    <!-- Modal for confirmation -->
+    <div class="modal fade" id="confirmslot" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+             <button type="button" class="close" onclick="javascript:window.location.reload()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+               <h3>Your Session will be deducted on booking a slot.</h3>
+          </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-primary btn-default accept">Accept</button>
+               <button type="button" class="btn btn-default" onclick="javascript:window.location.reload()" data-dismiss="modal">Cancel</button>
+            </div>
+         </div>
+      </div>
+    </div>
+    
+
       <script>
           var aboutTrainer = <%- JSON.stringify(user.trainers)%>;
           var id;
@@ -437,9 +457,11 @@
                     method: 'GET',  
                     success:(data2)=>{
 
-                    for(var i=0;i<data2.length;i++){
-                      if(Object.keys(data2[i])[0] == name){
-                        slots = data2[i][Object.keys(data2[i])[0]];
+                    if(data2){
+                      for(var i=0;i<data2.length;i++){
+                        if(Object.keys(data2[i])[0] == name){
+                          slots = data2[i][Object.keys(data2[i])[0]];
+                        }
                       }
                     }
 
@@ -476,13 +498,15 @@
                                     $(this).find('.content').find('.empty').attr('hidden','');
                                   }
                                   else{
-                                    $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
-                                    $(this).find('.content').find('.empty').attr('hidden','');
-                                    $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                                    $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                                    $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                                    // $(this).find('.content').css('background-color',"yellowgreen");
-                                    // $(this).find('.content').css('color',"darkgreen");
+                                    if(userSessions>0){
+                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                      $(this).find('.content').find('.empty').attr('hidden','');
+                                      $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                      $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                      $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                      // $(this).find('.content').css('background-color',"yellowgreen");
+                                      // $(this).find('.content').css('color',"darkgreen");
+                                    }
                                   }
                                 }
                               }
@@ -518,8 +542,9 @@
                                     $(this).find('.content').find('.empty').attr('hidden','');
                                   }
                                   else{
-                                    if(parseInt(data[dayCol][i].slice(-1))==0){
-                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'>Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                    if((parseInt(data[dayCol][i].slice(-1))==0)){
+                                      if(userSessions >0){
+                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                                       $(this).find('.content').find('.empty').attr('hidden','');
                                       $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
                                       $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
@@ -528,6 +553,7 @@
                                       // $(this).find('.content').css('background-color',"yellowgreen");
                                       // $(this).find('.content').css('color',"darkgreen");
                                     }
+                                  }
                                   }
                                 }
                               };
@@ -669,18 +695,29 @@
         
           j=1;       
           
+
+          var key = null;
+          var key3 = null;
+          var slot = null;
+          var name = null;
+          var date = null;
+          var date2 = null;
+          var userCount = null;
+          var booked2 = null;
+        
+
           $(document).on('click', '.bookSlot', function() {
-              const key  = $(this).attr('data-key');
-              const key3  = $(this).attr('data-key2');
-              const slot = $(this).attr('data-slot');
-              const name = $(this).attr('data-trainer');
+              key  = $(this).attr('data-key');
+              key3  = $(this).attr('data-key2');
+              slot = $(this).attr('data-slot');
+              name = $(this).attr('data-trainer');
 
               $(this).attr('hidden','');
               $(this).next().removeAttr('hidden');
 
-              const date = new Object();
-              const date2 = new Object();
-              const userCount = new Object();
+              date = new Object();
+              date2 = new Object();
+              userCount = new Object();
 
               date[key] = new Array();
               date[key].push(slot);
@@ -701,6 +738,14 @@
                 url:'/user/bookedSlots/<%= user._id %>' ,
                 method:'GET',
                 success:(booked)=>{
+
+                  if(booked.length == 0){
+                    var newObj = new Object();
+                    newObj[name] = new Array();
+                    newObj[name].push(date);
+                    booked.push(newObj);
+                  
+                  }
 
                   for(var i=0;i<booked.length;i++){
                     if(Object.keys(booked[i])[0] == name){
@@ -723,17 +768,22 @@
                     }
                   }
                 }
-                $.ajax({
+                booked2= booked;
+                console.log(booked);
+              }
+            });
+          
+          });
+
+          $(document).on('click', '.accept', function() {
+            $.ajax({
                   url:'/user/updateuser',
                   method:'PUT',
-                  data:{booked,userCount,trainerType,trainerCat},
+                  data:{booked2,userCount,trainerType,trainerCat},
                   success:(data2)=>{
                       location.reload();
                   }
                 });
-              }
-            });
-          
           });
 
 

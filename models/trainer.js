@@ -43,8 +43,8 @@ var trainerSchema = new mongoose.Schema({
     },
     users: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            type: Object,
+            default: {}
         }
     ],
     isCreated: {

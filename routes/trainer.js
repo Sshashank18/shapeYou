@@ -19,7 +19,7 @@ const e = require('express');
 const route = express.Router();
 
 route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
- 
+    
     var options = {
         "method": "GET",
         "hostname": "api.zoom.us",
@@ -45,18 +45,20 @@ route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
           if(body.existed_email == true){
             Trainer.findByIdAndUpdate(req.user._id,{isZoomVerified:true},(err,trainer)=>{
                 if(err) console.log(err);
-                else console.log(trainer);
+                else console.log('zoom verified');
             });
            }
-
+        //    Trainer.findById(req.user._id).populate('users').exec( (err,trainer)=>{
+        //     res.render('trainerDashboard', {trainer:trainer});
+        // });
+        Trainer.findById(req.user._id,(err,trainer)=>{
+            res.render('trainerDashboard',{trainer:trainer})
+        })
         });
       });
       
       req1.end();
-
-    Trainer.findById(req.user._id).populate('users').exec( (err,trainer)=>{
-        res.render('trainerDashboard', {trainer:trainer});
-    });
+  
 });
  
 route.get('/details',middleware.isTrainerLoggedIn,(req,res)=>{
@@ -449,7 +451,7 @@ route.post('/signature',(req,res)=>{
 
 // FEEDBACK ROUTING
 
-route.get('/:id/review', (req, res) => {
+route.get('/:id/review', middleware.isUserLoggedIn,(req, res) => {
     Trainer.findById(req.params.id, (err, foundTrainer) => {
         if(err) {
             console.log(err);
@@ -478,7 +480,8 @@ route.post('/:id/review', (req, res) => {
                 } else {
                     foundTrainer.reviews.push(review);
                     foundTrainer.save();
-                    res.send("Review submitted")
+                    // res.send("Review submitted") 
+                    res.redirect('/user/userDashboard/'+req.user._id);
                 }
             });
         }

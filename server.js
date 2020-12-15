@@ -105,10 +105,28 @@ app.get('/zoomDashboard',(req,res)=>{
 
 cron.schedule('0 0 * * sun', function() {
 	console.log('Data Reset');
+
 	Trainer.updateMany({$set:{calendar:null,personalSlots:null}},(err,result)=>{
         if(err) console.log(err);
         else console.log('Calendar has been resetted.');
-    });
+	});
+
+	console.log('numOfSessions with 0 value removed')
+	User.find({},(err,result)=>{
+		result.forEach(user => {
+			tempTrainers = [];
+			if(user.trainers.length!=0){
+				// tempTrainers = user.trainers;
+				user.trainers.forEach((trainer,i)=>{
+					if(trainer.numOfSessions > 0){
+						tempTrainers.push(trainer)
+					}
+				});
+			}
+			user.trainers = tempTrainers;
+			user.save();
+		});
+	});
 });
 
 var tempTrainers;
@@ -140,7 +158,6 @@ cron.schedule('0 0 * * *',()=>{
 		});
 	});
 });
-
 
 //Port Listening
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));

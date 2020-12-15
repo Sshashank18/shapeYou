@@ -267,7 +267,7 @@ route.post('/userInfo',(req,res)=>{
 // Trainer Profile Display
 
 route.get('/profile/:id/:name', middleware.isUserLoggedIn,(req, res) => {
-    Trainer.findById(req.params.id).populate('reviews').exec( (err, foundTrainer) => {
+    Trainer.findById(req.params.id).populate(['reviews', 'pricePlan']).exec( (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {

@@ -9,7 +9,7 @@
 </head>
 <body>
     <a href="/admin">Go Back</a>
-    <h2 class="text-center"><%= trainer %></h2>
+    <!-- <h2 class="text-center"><%= trainer %></h2> -->
     <% if(!trainer.isVerified) { %>
     <form action="/admin/trainerVerify/<%= trainer._id %>?_method=PUT" method="POST">
         <button id="verify">Verify</button>
@@ -158,18 +158,27 @@
                       </div>
                     </div>
                   </div>
+                  <% if(trainer.isVerified && !trainer.pricePlan) { %>
+                      <!-- Allot to basic/standard/premium -->
+                      <h3>Verified! Please allot this trainer into basic/standard/premium category.</h3>
+                      <form action="/admin/trainerPack/<%= trainer._id %>?_method=PUT" method="POST">
+                        <label for="basic">Basic</label>
+                          <input type="radio" name="trainerPack" id="basic" value="Basic" />
+                        <label for="standard">Standard</label>
+                          <input type="radio" name="trainerPack" id="standard" value="Standard">
+                        <label for="premium">Premium</label>
+                          <input type="radio" name="trainerPack" id="premium" value="Premium">
+                          <button type="submit">Set</button>
+                      </form>
+                  <% } %>
+                  <% if(trainer.pricePlan) { %>
+                    <h4>Trainer has been alotted a category <%= trainer.pricePlan %></h4>
+                  <% } %>
                 </div>
               </div>
             </div>
         </div>
 
-        <% if(trainer.isVerified) { %>
-            <!-- Allot to basic/standard/premium -->
-            <h3>Verified! Please allot this trainer into basic/standard/premium category.</h3>
-            <form action="/admin/trainerPack?_method=_PUT" action="POST">
-                <button type="submit"></button>
-            </form>
-        <% } %>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

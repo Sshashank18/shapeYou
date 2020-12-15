@@ -142,6 +142,7 @@
         <% trainer.reviews.forEach(function(review) { %>
           <h2><%= review %></h2>
         <% }) %>
+        <h3><%= trainer.pricePlan %></h3>
         <button name = "personal" class="button activated" style="margin:20px; background: #79B258">Personal Training</button>
         <button name = "group" class="button" style="margin:20px; background: #79B258">Group Training - <%=category %></button>
     </div>

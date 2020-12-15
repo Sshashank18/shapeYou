@@ -151,7 +151,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
             titles.push(foundCategory[i].title);
         }
 
-        Trainer.find({}, (err, foundTrainer) => {
+        Trainer.find({}).populate('pricePlan').exec( (err, foundTrainer) => {
             if(err) {
                 console.log(err)
             } else {

@@ -92,18 +92,6 @@ route.put('/trainerVerify', (req, res) => {
         }));
         
         req1.end();
-
-    
-    
-
-
-    // Trainer.findByIdAndUpdate(req.params.id, {isVerified: true}, (err, foundTrainer) => {
-    //     if(err) {
-    //         console.log(err);
-    //     } else {
-           
-    //     }
-    // });
 });
 
 route.get('/user/:id', (req, res) => {
@@ -166,11 +154,29 @@ route.put('/approveCoupon/:id/:requestid', (req, res) => {
             Trainer.findByIdAndUpdate(req.params.id, { coupon:request.coupon } ,(err,result)=>{
                     if(err){
                         return res.status(422).json({error: err});
+                    } else {
+                        request.remove();
+                        res.redirect('/admin');
                     }
-                    res.sendStatus(200);
                 });
         }
-    })
+    });
+});
+
+route.put('/trainerPack/:id', (req, res) => {
+    Price.findOne({title: req.body.trainerPack}, (err, price) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Trainer.findByIdAndUpdate(req.params.id, {pricePlan: price._id}, (err, foundTrainer) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    console.log(foundTrainer);
+                }
+            });
+        }
+    });
 });
 
 module.exports = route;

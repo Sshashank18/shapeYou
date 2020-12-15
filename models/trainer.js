@@ -71,10 +71,8 @@ var trainerSchema = new mongoose.Schema({
         }
     ],
     pricePlan: {
-        id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Price"
-        }
     }
 });
 

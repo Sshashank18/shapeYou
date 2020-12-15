@@ -21,10 +21,10 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" style="background-color: #79B258 !important;">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Admin</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="" alt="" /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile mx-auto mb-2" src="/images/arnav.png" alt="" /></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,18 +32,19 @@
                     <li class="nav-item"><a href="/admin/trainers" class="nav-link btn">Trainers</a></li>
                     <li class="nav-item"><a href="/admin/users" class="nav-link btn">Users</a></li>
                     <li class="nav-item"><a href="/admin/pricing" class="nav-link btn">Pricing</a></li>
-                    <li class="nav-item active"><a href="/admin/couponRequests">Coupon Requests</a></li>
+                    <li class="nav-item active"><a class="nav-link btn" href="/admin/couponRequests">Coupon Requests</a></li>
                     <li class="nav-item"><a class="nav-link btn" href="/auth/logout">Sign Out</a></li>
                 </ul>
             </div>
         </nav>
-        <h1 class="text-center">ShapeYou - Coupon Requests</h1>
+        <h2 class="text-center">ShapeYou - Coupon Requests</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Trainer Name</th>
+                    <th scope="col">Coupon Code</th>
+                    <th scope="col">Discount</th>
                     <th scope="col">Handle</th>
                 </tr>
             </thead>
@@ -52,7 +53,8 @@
               <tr>
                 <th scope="row"><%= idx+1 %></th>
                 <td><%= request.username %></td>
-                <td><%= request.id %></td>
+                <td><%= request.coupon.couponName %></td>
+                <td><%= request.coupon.couponDiscount %></td>
                 <td>
                     <form action="/admin/approveCoupon/<%= request.id %>/<%= request._id %>?_method=PUT" method="POST">
                         <button type="submit">Approve</a></td>

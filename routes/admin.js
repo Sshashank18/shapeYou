@@ -172,7 +172,8 @@ route.put('/trainerPack/:id', (req, res) => {
                 if(err) {
                     console.log(err);
                 } else {
-                    console.log(foundTrainer);
+                    res.redirect('/admin/trainer/'+foundTrainer._id);
+
                 }
             });
         }

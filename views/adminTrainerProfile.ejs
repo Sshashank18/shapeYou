@@ -186,7 +186,7 @@
 <script>
   var email = <%-JSON.stringify(trainer.email) %>;
   var id = <%- JSON.stringify(trainer._id) %>;
-  $('#verify').on('click',(e)=>{
+  $(document).on('click','#verify',(e)=>{
     e.preventDefault();
     $.ajax({
       url:'http://127.0.0.1:3500/admin/trainerVerify',

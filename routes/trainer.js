@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Trainer = require('../models/trainer');
 const Category = require('../models/category');
+const Pricing = require('../models/pricing');
 const Request = require('../models/requestCoupon');
 const Review = require('../models/reviews');
 const crypto = require('crypto');
@@ -43,7 +44,7 @@ route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
           console.log(body.existed_email);
         
           if(body.existed_email == true){
-            Trainer.findByIdAndUpdate(req.user._id,{isZoomVerified:true},(err,trainer)=>{
+            Trainer.findByIdAndUpdate(req.user._id,{isZoomVerified:true,isCreated:false},(err,trainer)=>{
                 if(err) console.log(err);
                 else console.log('zoom verified');
             });
@@ -269,12 +270,38 @@ route.post('/userInfo',(req,res)=>{
 // Trainer Profile Display
 
 route.get('/profile/:id/:name', middleware.isUserLoggedIn,(req, res) => {
-    Trainer.findById(req.params.id).populate(['reviews', 'pricePlan']).exec( (err, foundTrainer) => {
+    Trainer.findById(req.params.id).populate(['reviews']).exec( (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
-            // console.log(req.params.name)
-            res.render('trainerProfile',{trainer:foundTrainer, category: req.params.name});
+            Pricing.find({},(err,result)=>{
+
+                result.forEach((title)=>{
+                if(title.title == foundTrainer.pricePlan){
+
+                    var pricing = {
+                        trialNumofSessions: title.trialnumOfSessions,
+                        trialPackPrice: title.trialPackPrice,
+                        trialPackDiscount: title.trialPackDiscount,
+                        trialBasicSegement: title.trialBasicSegement,
+                        trialPerSessionAmount: title.trialPerSessionAmount,
+                        goldNumofSessions: title.goldnumOfSessions,
+                        goldPackPrice: title.goldPackPrice,
+                        goldPackDiscount: title.goldPackDiscount,
+                        goldBasicSegement: title.goldBasicSegement,
+                        goldPerSessionAmount: title.goldPerSessionAmount,
+                        platinumNumofSessions: title.platinumnumOfSessions,
+                        platinumPackPrice: title.platinumPackPrice,
+                        platinumPackDiscount: title.platinumPackDiscount,
+                        platinumBasicSegement: title.platinumBasicSegement,
+                        platinumPerSessionAmount: title.platinumPerSessionAmount,
+                    }
+
+                    res.render('trainerProfile',{trainer:foundTrainer, category: req.params.name,pricing});
+                }
+            });
+                
+            });
         }
     });
 });

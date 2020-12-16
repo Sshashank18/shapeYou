@@ -66,6 +66,11 @@
         <!-- Page Content-->
         <div class="container-fluid p-0">
           <h3 class="text-center"> <span class="trainerName"></span>'s time table</h3>
+          <div class="infoContainer" >
+            <h6><u>SubCategory:</u><span id="subcat"></span></h6>
+            <h6><u>Num Of Sessions Remaining:</u><span id="numOfSessions"></span></h6>
+            <h6><u>Expiry Date:</u><span id="val"></span></h6>
+          </div>
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
@@ -429,8 +434,14 @@
                   trainerCat =  t.category;
                   trainerType = t.type;
                   userSessions = t.numOfSessions;
+                  txnDate = t.txndate
                 }
               });
+
+              $('#numOfSessions').text(userSessions)
+              $('#subcat').text(trainerCat)
+              $('#val').text(txnDate.slice(0,10))
+
 
               $('#trainerTT tr').each(function(){
                   $(this).find('td').each(function(){

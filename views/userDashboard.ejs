@@ -638,11 +638,11 @@
                         url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
                         method: 'GET',
                         success:(data)=>{
-                          // if(data.isCreated == true){
+                          if(data.isCreated == true){
                             $('#join'+(i-1)).removeAttr('disabled');
                             $('#join'+(i-1)).css('background-color','green');
                             $('#join'+(i-1)).css('cursor','pointer');
-                          // }
+                          }
                         }
                       }); 
                     }

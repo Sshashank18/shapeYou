@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
     
@@ -139,10 +141,7 @@
     
 
       <div class="trainingType">
-        <% trainer.reviews.forEach(function(review) { %>
-          <h2><%= review %></h2>
-        <% }) %>
-        <h3><%= trainer.pricePlan %></h3>
+        <!-- <h3><%= trainer.pricePlan %></h3> -->
         <button name = "personal" class="button activated" style="margin:20px; background: #79B258">Personal Training</button>
         <button name = "group" class="button" style="margin:20px; background: #79B258">Group Training - <%=category %></button>
     </div>
@@ -437,82 +436,43 @@
               </table>
   
       </div>
+<% if(trainer.reviews.length > 0) { %>
 
-      <!-- <div class="timetable">
-        <div class="week-names">
-          <div id="dateT1"></div>
-          <div id="dateT2"></div>
-          <div id="dateT3"></div>
-          <div id="dateT4"></div>
-          <div id="dateT5"></div>
-          <div id="dateT6" class="weekend"></div>
-          <div id="dateT7" class="weekend"></div>
-        </div>
-        <div class="time-interval">
-          <div>8:00 - 10:00</div>
-          <div>10:00 - 12:00</div>
-          <div>12:00 - 14:00</div>
-          <div>14:00 - 16:00</div>
-          <div>16:00 - 18:00</div>
-          <div>18:00 - 20:00</div>
-        </div>
-        <div class="content">
-          <div>
-            <div class="accent-orange-gradient"></div>
+  <!-- ======= Testimonials Section ======= -->
+  <section id="testimonials" class="testimonials section-bg">
+    <div class="container">
+      
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Reviews</h2>
+        <!-- <p>Magnam dolores commodi suscipit eum quidem consectetur velit</p> -->
+      </div>
+      
+      <div class="owl-carousel testimonials-carousel" data-aos="fade-up" data-aos-delay="200">
+        <% trainer.reviews.forEach((review) => { %>
+          <div class="testimonial-wrap">
+            <div class="testimonial-item text-center">
+              <!-- <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt=""> -->
+              <h3><%= review.author.username %> </h3>
+              <!-- <h4>Ceo &amp; Founder</h4> -->
+              <p class="starability-result text-left" data-rating = "<%= review.rating %>">
+                Rated: 3 stars
+              </p>
+              <p>
+                <i class="fas fa-quote-left"></i>
+                <%= review.body %> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, alias ipsa dignissimos tempore fugiat veritatis distinctio nam dolores officia quas quos, cum suscipit labore sit tempora hic sed commodi dolorem!
+                <i class="fas fa-quote-right"></i>
+              </p>
+            </div>
           </div>
-          <div></div>
-          <div></div>
-          <div></div>
-              <div>
-            <div class="accent-green-gradient"></div>
-          </div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div>
-            <div class="accent-cyan-gradient"></div>
-          </div>
-          <div></div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-          <div>
-            <div class="accent-pink-gradient"></div>
-          </div>
-          <div></div>
-          <div>
-            <div class="accent-purple-gradient"></div>
-          </div>
-          <div></div>
-          <div></div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-          <div>
-            <div class="accent-purple-gradient"></div>
-          </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div class="weekend"></div>
-          <div class="weekend"></div>
-        </div>
-      </div> -->
+        <% }) %>
+          
+        
+        
+      </div>
+      
+    </div>
+  </section><!-- End Testimonials Section -->
+<% } %>
 
       <!-- <button data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button> -->
 
@@ -971,7 +931,7 @@
   
       </div>
     </footer><!-- End Footer -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
 
     <script>
 
@@ -1389,6 +1349,23 @@
       $('.nav-link').on('click', function() {
       $('.active-link').removeClass('active-link');
       $(this).addClass('active-link');
+    });
+    // Testimonials carousel (uses the Owl Carousel library)
+    $(".testimonials-carousel").owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 1
+        },
+        900: {
+          items: 2
+        }
+      }
     });
     </script>
     

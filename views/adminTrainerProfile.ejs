@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin dashboard</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="stylesheets/adminTrainerProfile.css">
-    <title>Trainer Profile</title>
-</head>
-<body>
-    <a href="/admin">Go Back</a>
-    <!-- <h2 class="text-center"><%= trainer %></h2> -->
-    <% if(!trainer.isVerified) { %>
-    <form action="/admin/trainerVerify/<%= trainer._id %>?_method=PUT" method="POST">
-        <button id="verify">Verify</button>
-    </form>
-    <% } %>
-    <div class="container">
-        <div class="main-body">
+        <link rel="stylesheet" href="/stylesheets/userDashboard.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+                
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" style="background-color: #79B258 !important;">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Admin</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile mx-auto mb-2" src="/images/arnav.png" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"><a href="/admin/trainers" class="nav-link btn">Trainers</a></li>
+                    <li class="nav-item"><a href="/admin/users" class="nav-link btn">Users</a></li>
+                    <li class="nav-item"><a href="/admin/pricing" class="nav-link btn">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link btn" href="/admin/couponRequests">Coupon Requests</a></li>
+                    <li class="nav-item"><a class="nav-link btn" href="/auth/logout">Sign Out</a></li>
+                </ul>
+            </div>
+        </nav>
+          <div class="container">
+            <div class="main-body">
+          <a href="/admin">Go Back</a>
         
               <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
@@ -28,10 +52,13 @@
                           <h4><%=trainer.username%></h4>
                           <p class="text-secondary mb-1">Full Stack Developer</p>
                           <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                          <form action="/admin/trainerVerify/<%= trainer._id %>?_method=PUT" method="POST" style="display: inline;">
-                            <button class="btn btn-primary" id="verify">Verify</button>
-                        </form>
-                          <button class="btn btn-outline-primary">Decline</button>
+                          <% if(!trainer.isVerified) { %>
+
+                            <form action="/admin/trainerVerify/<%= trainer._id %>?_method=PUT" method="POST" style="display: inline;">
+                              <button class="btn btn-primary" id="verify">Verify</button>
+                            </form>
+                            <button class="btn btn-outline-primary">Decline</button>
+                          <% } %>
                         </div>
                       </div>
                     </div>
@@ -172,7 +199,7 @@
                       </form>
                   <% } %>
                   <% if(trainer.pricePlan) { %>
-                    <h4>Trainer has been alotted a category <%= trainer.pricePlan %></h4>
+                    <h4>Trainer has been alotted <%= trainer.pricePlan %> category</h4>
                   <% } %>
                 </div>
               </div>
@@ -186,7 +213,8 @@
 <script>
   var email = <%-JSON.stringify(trainer.email) %>;
   var id = <%- JSON.stringify(trainer._id) %>;
-  $('#verify').on('click',(e)=>{
+  $(document).on('click','#verify', (e)=>{
+    console.log("HELLO");
     e.preventDefault();
     $.ajax({
       url:'http://127.0.0.1:3500/admin/trainerVerify',

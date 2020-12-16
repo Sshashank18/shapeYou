@@ -70,12 +70,10 @@ var trainerSchema = new mongoose.Schema({
             ref: "Review"
         }
     ],
-    pricePlan: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Price"
-    }
+    avgRating: {type: Number, default: 0},
+    pricePlan: String
 });
 
-trainerSchema.plugin(passportLocalMongoose);
+trainerSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
 
 module.exports = mongoose.model("Trainer", trainerSchema);

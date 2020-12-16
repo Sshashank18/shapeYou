@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
+    <title>ShapeYou - Categories</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
@@ -61,18 +61,20 @@
           <% if(!currentUser){ %>
             
               
-              <form action="/user" method="GET" class="form-inline">
+              <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
                 <div class="form-group">
-                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;">
+                <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
                 <!-- <input type="submit" value="Search" class="btn btn-success"> -->
               </div>
               </form>
               <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
               
           <% } else{ %>
-            <form action="/user" method="GET" class="form-inline">
+            <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> 
+                <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
               <!-- <input type="submit" value="Search" class="btn btn-success"> -->
             </div>
             </form>
@@ -92,8 +94,6 @@
     </nav>
 
 <!-- content -->
-
-
 
                 <% switch (category.parent) {
                     case 'Wellness' : %>

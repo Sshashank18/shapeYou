@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShapeYou - Categories</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  .navbar-nav > li > .dropdown-menu {
+    background-color: rgb(7, 7, 8); 
+  }
+</style>
+    <link rel="stylesheet" href="/stylesheets/categoryShow.css">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+  <div class="mainBox">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#79B258; height: 80px; font-size: 18px;">
+      <a class="navbar-brand" href="/user"><img style="width: 3rem; height: auto;" src="/images/arnav.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+            <div class="underline"></div>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Wellness">Wellness</a>
+            <div class="underline"></div>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link" href="/user/category/Counselling" >Counselling</a>
+            <div class="underline"></div>
+          </li>
+            
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentUser){ %>
+            
+              
+              <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
+                <div class="form-group">
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;">
+                <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
+                <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+              </div>
+              </form>
+              <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
+              
+          <% } else{ %>
+            <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
+              <div class="form-group">
+                <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> 
+                <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
+              <!-- <input type="submit" value="Search" class="btn btn-success"> -->
+            </div>
+            </form>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
+                <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+
+    <% switch (category.parent) {
+        case 'Wellness' : %>
+        <section style="height: 400px; background: url('https://images.unsplash.com/photo-1524901548305-08eeddc35080?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+        <div class="text-center" style="padding-top: 80px;">
+          <h1 style="color: white; font-family: 'Playfair Display', serif; font-size: 100px;">WELLNESS</h1> 
+        </div>
+         </section>
+        <% break;%>
+    
+        <% case 'Counselling' : %>
+        <section style="height: 400px; background: url('https://images.unsplash.com/photo-1588873281272-14886ba1f737?ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80') bottom ">
+        <div class="text-center" style="padding-top: 80px;">
+          <h1 style="color: white; font-family: 'Playfair Display', serif; font-size: 100px;">COUNSELLING</h1> 
+         </div>
+         </section>
+        <% break;%>
+    
+        <% case 'Fitness trainer' : %>
+        <section style="height: 400px; background: url('https://images.unsplash.com/photo-1575052814074-c05122e0a17a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80') center center">
+        <div class="text-center" style="padding-top: 80px;">
+          <h1 style="color: white; font-family: 'Playfair Display', serif; font-size: 100px;">FITNESS TRAINERS</h1> 
+         </div>
+         </section>
+        <% break;%>
+    
+    <% } %>
+
+    <section style="height: 500px;">
+        <% if(noMatch) { %>
+            <div class="container my-auto"></div>
+            <h2 class="text-center"><%= noMatch %></h2>
+        <a href="/user/category/<%= parent %>">Go Back</a>
+        </div>
+        <% } else {%>
+        <div class="container">
+            <div class="card">
+                <div class="card-body text-center">
+                    <%= trainer.username %>
+                </div>
+            </div>
+        </div>
+        <a href="/user/category/<%= parent %>">Go Back</a>
+        <%}%>
+    </section>
+
+
+    <footer id="footer">
+
+        <div class="footer-top">
+          <div class="container">
+            <div class="row">
+    
+              <div class="col-lg-4 col-md-6 footer-contact">
+                <h3>ShapeYou</h3>
+                <p>
+                  A108 Gzb <br>
+                  Ghaziabad, 201001<br>
+                  India <br><br>
+                  <strong>Phone:</strong> +91 95824567813<br>
+                  <strong>Email:</strong> info@example.com<br>
+                </p>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Fitness</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Wellness</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Counselling</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Gym</a></li>
+                </ul>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 footer-newsletter">
+                <h4>Join Our Newsletter</h4>
+                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                <form action="" method="post">
+                  <input type="email" name="email"><input type="submit" value="Subscribe">
+                </form>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+    
+        <div class="container">
+    
+          <div class="copyright-wrap d-md-flex py-4">
+            <div class="mr-md-auto text-center text-md-left">
+              <div class="copyright">
+                &copy; Copyright <strong><span>ShapeYou</span></strong>. All Rights Reserved
+              </div>
+              <div class="credits">
+                Designed by <a href="https://theredatom.com/">RedAtom</a>
+              </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+              <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fab fa-skype"></i></a>
+              <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+    
+        </div>
+      </footer><!-- End Footer -->
+
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <!-- <script src="/scripts/carousel.js"></script> -->
+      <script>
+      //  $(document).on('click','.viewMore',()=>{
+      //   $(this).prev('.more').css('display','block');
+      //   console.log($(this));
+      //  });
+      const viewMore = document.querySelectorAll('.viewMore');
+
+      for (let i = 0; i < viewMore.length; i++) {
+          viewMore[i].addEventListener("click", function() {
+            $(this).parent().prev().find('.more').css('display','block');
+            $(this).parent().prev().find('.more').removeAttr('hidden');
+            $(this).attr('hidden','');
+            $(this).next().removeAttr('hidden');
+          });
+
+      }
+      const viewLess = document.querySelectorAll('.viewLess');
+
+      for (let i = 0; i < viewLess.length; i++) {
+          viewLess[i].addEventListener("click", function() {
+            $(this).parent().prev().find('.more').css('display','none');
+            $(this).parent().prev().find('.more').attr('hidden','');
+            $(this).attr('hidden','');
+            $(this).prev().removeAttr('hidden');
+          });
+      }
+    
+      </script>
+</body>
+</html>

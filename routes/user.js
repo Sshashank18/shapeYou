@@ -11,7 +11,7 @@ const passport = require('passport');
 var User = require('../models/user');
 var Trainer = require('../models/trainer');
 var Category = require('../models/category');
-
+var _ = require('agile');
 var middleware = require("../middleware");
 // var payment = require("../middleware/payment")(route);
 // const PaytmChecksum = require('./PaytmChecksum');
@@ -145,13 +145,29 @@ route.get('/bookedSlots/:id',(req, res)=>{
 
 route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
     var parent = req.params.parent;
+    if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+            Trainer.find({username: regex}, (err, foundTrainers) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    var noMatch = "";
+                    if(foundTrainers.length == 0) {
+                        noMatch = "No such trainers exist";
+                    } 
+                    res.render('categoryShow1', {category: foundCategory[0], trainer: foundTrainers[0], noMatch: noMatch, parent: parent});
+                }
+            });
+        });
+    } else {
     Category.find({parent:req.params.parent}, (err, foundCategory) => { 
         var titles = [];
         for(var i=0;i<foundCategory.length;i++){
             titles.push(foundCategory[i].title);
         }
 
-        Trainer.find({}).populate('pricePlan').exec( (err, foundTrainer) => {
+        Trainer.find({}).populate(['pricePlan', 'reviews']).exec( (err, foundTrainer) => {
             if(err) {
                 console.log(err)
             } else {
@@ -172,6 +188,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
             }
         })
     })
+}
 });
 
 route.post('/newSession', (req, res) => {

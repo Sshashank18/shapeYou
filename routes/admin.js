@@ -40,6 +40,9 @@ route.get('/trainer/:id', (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            if(foundTrainer.pricePlan) {
+                foundTrainer.populate('pricePlan');
+            }
             res.render('adminTrainerProfile', {trainer: foundTrainer});
         }
     });
@@ -134,6 +137,25 @@ route.put('/editPrice', (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            if(req.body.trialnumOfSessions) {
+                foundPrice[0].trialnumOfSessions = req.body.trialnumOfSessions;
+            }
+            if(req.body.trialPackPrice) {
+                foundPrice[0].trialPackPrice = req.body.trialPackPrice;
+            }
+            if(req.body.goldnumOfSessions) {
+                foundPrice[0].goldnumOfSessions = req.body.goldnumOfSessions;
+            }
+            if(req.body.goldPackPrice) {
+                foundPrice[0].goldPackPrice = req.body.goldPackPrice;
+            }
+            if(req.body.platinumnumOfSessions) {
+                foundPrice[0].platinumnumOfSessions = req.body.platinumnumOfSessions;
+            }
+            if(req.body.platinumPackPrice) {
+                foundPrice[0].platinumPackPrice = req.body.platinumPackPrice;
+            }
+            foundPrice[0].save();
             console.log(foundPrice);
             res.redirect('/admin');
         }
@@ -164,19 +186,15 @@ route.put('/approveCoupon/:id/:requestid', (req, res) => {
 });
 
 route.put('/trainerPack/:id', (req, res) => {
-    Price.findOne({title: req.body.trainerPack}, (err, price) => {
-        if(err) {
-            console.log(err);
-        } else {
-            Trainer.findByIdAndUpdate(req.params.id, {pricePlan: price._id}, (err, foundTrainer) => {
+   
+            Trainer.findByIdAndUpdate(req.params.id, {pricePlan: req.body.trainerPack}, (err, foundTrainer) => {
                 if(err) {
                     console.log(err);
                 } else {
                     console.log(foundTrainer);
+                    res.redirect('/admin/trainer/' + foundTrainer._id);
                 }
             });
-        }
-    });
 });
 
 module.exports = route;

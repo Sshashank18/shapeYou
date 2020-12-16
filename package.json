@@ -17,6 +17,7 @@
   "homepage": "https://github.com/Sshashank18/shapeYou#readme",
   "dependencies": {
     "@zoomus/websdk": "^1.8.1",
+    "agile": "0.0.2",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

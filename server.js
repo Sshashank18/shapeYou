@@ -51,6 +51,7 @@ app.use(methodOverride("_method"));
 
 const Trainer = require('./models/trainer');
 const User = require('./models/user');
+const Admin = require('./models/admin');
 
 // PASSPORT CONFIG
 const passport = require('passport');
@@ -65,6 +66,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use('trainer-local', new LocalStrategy(Trainer.authenticate()));
 passport.use('user-local', new LocalStrategy(User.authenticate()));
+passport.use('admin-local', new LocalStrategy(Admin.authenticate()));
 
 passport.serializeUser(function(user, done) { 
 	done(null, user);

@@ -29,7 +29,8 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <% if(trainer.subCategories.length>0){ %>
+                <% if (trainer.isVerified == true) { 
+                    if(trainer.isZoomVerified==true && trainer.subCategories.length>0){ %>
                 <li class="nav-item">
                     <div class="hide1">You can change calendar every sunday and it can be changed once for that week.</div>
                     <button type="button" class="btn btn-primary grpUpload" id="groupSlotsButton" data-toggle="modal" data-target="#setTimeTable">
@@ -49,6 +50,7 @@
                        Add Coupon
                     </button>
               </li>
+              <%}%>
                 <li class="nav-item"><a class="btn btn-primary" href="/auth/logout" style="text-decoration: none;">Logout</a></li>
             </ul>
         </div>
@@ -86,6 +88,7 @@
 
     <!-- Trainer TimeTable -->
 
+    <%if(trainer.isVerified && trainer.isZoomVerified){ %>
     <div class="text-center">
         <h2><%=trainer.username%>'s timetable for this week.</h2>
     </div>
@@ -1124,6 +1127,11 @@
         </div>
       </div>
 
+      <% }else if(trainer.isVerified == false){ %>
+        <h3>Please Wait for the Verification by Admin</h3>
+        <% }else if(trainer.isVerified == true && trainer.isZoomVerified == false){ %>
+        <h3>Please Verify your Email of Zoom For continuing further</h3>
+    <% } %>
 
       <script>
 

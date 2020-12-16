@@ -2,6 +2,7 @@ const express = require('express');
 var passport = require("passport");
 const Trainer = require('../models/trainer');
 const User = require('../models/user');
+const Admin = require('../models/admin');
 var http = require("https");
 
 const route = express.Router();
@@ -97,6 +98,35 @@ route.post("/userLogin", passport.authenticate("user-local",
         console.log(req.user);
     }
 );
+
+// Admin
+route.get('/admin', (req, res) => {
+    res.render('adminLogin');
+});
+
+route.post('/admin', passport.authenticate('admin-local',
+    {
+        successRedirect: '/admin',
+        failureRedirect: '/user'
+    }
+), (req, res) => {
+
+    // var newAdmin = new Admin({
+    //     email: req.body.email,
+    //     type: "Admin"
+    // });
+    // Admin.register(newAdmin, req.body.password, (err, admin) => {
+    //     if(err){
+    //         console.log(err); 
+    //     } else {
+    //         console.log(admin);
+    //     }
+    // })  
+    // Admin.findOne({email: req.body.email}, (err, admin) => {
+    //     console.log(admin);
+    // })     
+    console.log(req.user);
+});
 
 
 // Logout logic

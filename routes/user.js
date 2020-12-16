@@ -167,7 +167,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
             titles.push(foundCategory[i].title);
         }
 
-        Trainer.find({}).populate(['pricePlan', 'reviews']).exec( (err, foundTrainer) => {
+        Trainer.find({}).populate('reviews').exec( (err, foundTrainer) => {
             if(err) {
                 console.log(err)
             } else {

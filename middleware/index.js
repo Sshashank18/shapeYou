@@ -35,4 +35,16 @@ middlewareObj.isTrainerLoggedIn = function(req, res, next){
 	// req.flash("error", "You need to be logged in to do that!");
 }
 
+middlewareObj.isAdminLoggedIn = function(req, res, next) {
+	if(req.isAuthenticated()){
+		if(req.user.type == 'Admin') {
+			next();
+		} else {
+			res.redirect('/user');
+		}
+	} else {
+		res.redirect('/auth/admin');
+	}
+}
+
 module.exports = middlewareObj;

@@ -70,8 +70,12 @@ var trainerSchema = new mongoose.Schema({
             ref: "Review"
         }
     ],
-    avgRating: {type: Number, default: 0},
     pricePlan: String
+    // {
+    //         // type: mongoose.Schema.Types.ObjectId,
+    //         type:String,
+    //         // ref: "Price"
+    // }
 });
 
 trainerSchema.plugin(passportLocalMongoose, {usernameField: 'email'});

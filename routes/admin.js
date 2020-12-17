@@ -6,16 +6,17 @@ const Category = require('../models/category');
 const User = require('../models/user');
 const Price = require('../models/pricing');
 const Request = require('../models/requestCoupon');
+const Admin = require('../models/admin');
 var middleware = require("../middleware");
 var http = require("https");
 
 const route = express.Router();
 
-route.get('/', (req, res) => {
+route.get('/', middleware.isAdminLoggedIn, (req, res) => {
     res.redirect('/admin/trainers');
 });
 
-route.get('/trainers', (req, res) => {
+route.get('/trainers', middleware.isAdminLoggedIn, (req, res) => {
     Trainer.find({}, (err, foundTrainer) => {
         if(err) {
             console.log(err);
@@ -25,7 +26,7 @@ route.get('/trainers', (req, res) => {
     });
 });
 
-route.get('/users', (req, res) => {
+route.get('/users', middleware.isAdminLoggedIn, (req, res) => {
     User.find({}, (err, foundUser) => {
         if(err) {
             console.log(err);
@@ -35,20 +36,17 @@ route.get('/users', (req, res) => {
     });
 });
 
-route.get('/trainer/:id', (req, res) => {
-    Trainer.findById(req.params.id, (err, foundTrainer) => {
+route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
+    Trainer.findById(req.params.id).populate('reviews').exec( (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
-            if(foundTrainer.pricePlan) {
-                foundTrainer.populate('pricePlan');
-            }
             res.render('adminTrainerProfile', {trainer: foundTrainer});
         }
     });
 });
 
-route.put('/trainerVerify', (req, res) => {
+route.put('/trainerVerify', middleware.isAdminLoggedIn, (req, res) => {
 
     console.log(req.body);
 
@@ -97,7 +95,7 @@ route.put('/trainerVerify', (req, res) => {
         req1.end();
 });
 
-route.get('/user/:id', (req, res) => {
+route.get('/user/:id', middleware.isAdminLoggedIn, (req, res) => {
     User.findById(req.params.id, (err, foundUser) => {
         if(err) {
             console.log(err);
@@ -107,7 +105,7 @@ route.get('/user/:id', (req, res) => {
     })
 });
 
-route.get('/pricing', (req, res) => {
+route.get('/pricing', middleware.isAdminLoggedIn, (req, res) => {
     Price.find({}, (err, foundPrices) => {
         if(err) {
             console.log(err);
@@ -117,7 +115,7 @@ route.get('/pricing', (req, res) => {
     });
 });
 
-route.post('/pricing', (req, res) => {
+route.post('/pricing', middleware.isAdminLoggedIn, (req, res) => {
     Price.create(req.body, (err, price) => {
         if(err) {
             console.log(err);
@@ -128,11 +126,11 @@ route.post('/pricing', (req, res) => {
     });
 });
 
-route.get('/editPrice', (req, res) => {
+route.get('/editPrice', middleware.isAdminLoggedIn, (req, res) => {
     res.render('priceEditForm');
 });
 
-route.put('/editPrice', (req, res) => {
+route.put('/editPrice', middleware.isAdminLoggedIn, (req, res) => {
     Price.find({title: req.body.segment}, (err, foundPrice) => {
         if(err) {
             console.log(err);
@@ -162,13 +160,13 @@ route.put('/editPrice', (req, res) => {
     })
 });
 
-route.get('/couponRequests', (req, res) => {
+route.get('/couponRequests', middleware.isAdminLoggedIn, (req, res) => {
     Request.find({}, (err, requests) => {
         res.render('couponRequests', {requests: requests});
     });
 });
 
-route.put('/approveCoupon/:id/:requestid', (req, res) => {
+route.put('/approveCoupon/:id/:requestid', middleware.isAdminLoggedIn, (req, res) => {
     Request.findById(req.params.requestid, (err, request) => {
         if(err) {
             console.log(err);
@@ -185,7 +183,7 @@ route.put('/approveCoupon/:id/:requestid', (req, res) => {
     });
 });
 
-route.put('/trainerPack/:id', (req, res) => {
+route.put('/trainerPack/:id', middleware.isAdminLoggedIn, (req, res) => {
    
             Trainer.findByIdAndUpdate(req.params.id, {pricePlan: req.body.trainerPack}, (err, foundTrainer) => {
                 if(err) {

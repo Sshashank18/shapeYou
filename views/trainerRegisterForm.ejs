@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/details.css" media="all">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>
+    <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <h2 class="title">Update your details</h2>
+            </div>
+            <div class="card-body">
+        <input>
+          <div class="form-row">
+            <div class="name">Name</div>
+            <div class="value">
+                <div class="input-group">
+                    <input class="input--style-6" type="text" placeholder="Enter your name" required/>
+                </div>
+                <div class="label--desc">Enter your first and last name.</div>
+            </div>
+        </div>
+          <div class="form-row">
+            <div class="name">Upload Image</div>
+            <div class="value">
+                <div class="input-group js-input-file">
+                    <input type="file" name="file_img" id="inputimage3">
+                    <!-- <label class="label--file" for="file">Choose Image</label> -->
+                    <!-- <span class="input-file__info">No Image chosen</span> -->
+                </div>
+                <div class="label--desc">Upload your Profile Image.</div>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="name">
+              Area of expertise
+            </div>
+            <div class="value">
+                <div class="input-group mb-3">
+                    <select class="custom-select categories" id="inputGroupSelect01" required>
+                        <option selected>Choose...</option>
+                        <option value="Fitness Trainer">Fitness Trainer</option>
+                        <option value="Wellness">Wellness</option>
+                        <option value="Counselling">Counselling</option>
+                    </select>
+                </div>
+            </div>
+        <div class="input-group mb-3 fitness" hidden>
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">SubCategories</label>
+          </div>
+            <input type="checkbox" name="Fitness Trainer" value="CrossFit" /> CrossFit  
+            <input type="checkbox" name="Fitness Trainer" value="Functional & Strength Training" /> Functional & Strength Training
+            <input type="checkbox" name="Fitness Trainer" value="Zumba" /> Zumba
+            <input type="checkbox" name="Fitness Trainer" value="Dance" /> Dance
+            <input type="checkbox" name="Fitness Trainer" value="MMA and Boxing" /> MMA and Boxing
+        </div>
+        <div class="input-group mb-3 wellness" hidden>
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">SubCategories</label>
+          </div>
+            <input type="checkbox" name="Wellness" value="Yoga" /> Yoga  
+            <input type="checkbox" name="Wellness" value="Meditation" /> Meditation
+        </div>
+        <div class="input-group mb-3 counselling" hidden>
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">SubCategories</label>
+          </div>
+            <input type="checkbox" name="Counselling" value="Nutrition" /> Nutrition  
+            <input type="checkbox" name="Counselling" value="Therapy & counselling" /> Therapy & counselling
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="name">DOB</div>
+      <div class="value">
+          <div class="input-group">
+              <input class="input--style-6" type="date" name="DateofBirth" placeholder="dd/mm/yyyy">
+          </div>
+      </div>
+  </div>
+  <div class="form-row">
+      <div class="name">Address</div>
+      <div class="value">
+          <div class="input-group">
+              <input class="input--style-6" type="text" placeholder="Address" />
+          </div>
+      </div>
+  </div>
+  <div class="form-row">
+    <div class="name">Contact number</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="contact number" required/>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Alternate Contact Number</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="alternate contact" required/>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Amount /hour/month</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="amount" required>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Timing /hour/days</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="" type="checkbox" placeholder="amount"> Monday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Tuesday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Wednesday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Thursday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Friday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Saturday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+            <input class="" type="checkbox" placeholder="amount"> Sunday
+            <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Past experience - number of years</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="number" placeholder="past experience" required />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Past expereinece - where have you worked before?</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="Where have you worked" required />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Education (course in fitness)</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="education" required />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Certification in Fitness domain</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="certification" />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">A pinch of personality(About You)</div>
+    <div class="value">
+        <div class="input-group">
+            <textarea class="textarea--style-6" name="About" placeholder="Enter description about you" required></textarea>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Website (if any)</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="link of website" />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Social media links (if any)</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="social media link" />
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">AADHAR/PAN details</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text" placeholder="aadhar/pan details" required/>
+            <input type="file">
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Accepted payment sources</div>
+    <div class="value">
+        <div class="input-group">
+            <input type="checkbox" name="Fitness Trainer" value="CrossFit" /> Bank Transfer  
+            <input type="checkbox" name="Fitness Trainer" value="Functional & Strength Training" /> Gpay
+            <input type="checkbox" name="Fitness Trainer" value="Zumba" /> Paytm
+            <input type="checkbox" name="Fitness Trainer" value="Dance" /> PhonePe
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Referral Code</div>
+    <div class="value">
+        <div class="input-group">
+            <input class="input--style-6" type="text">
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="name">Upload Resume</div>
+    <div class="value">
+        <div class="input-group js-input-file">
+            <input type="file" name="file_img" id="inputimage3">
+            <!-- <label class="label--file" for="file">Choose Image</label> -->
+            <!-- <span class="input-file__info">No Image chosen</span> -->
+        </div>
+    </div>
+</div>      
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" id="formSubmit">Save</button>
+              </div>
+            </div>
+            
+    </form>
+    
+      <script src = "/scripts/details.js"></script>
+</body>
+</html>

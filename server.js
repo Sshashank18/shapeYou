@@ -66,7 +66,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use('trainer-local', new LocalStrategy(Trainer.authenticate()));
 passport.use('user-local', new LocalStrategy(User.authenticate()));
-passport.use('admin-local', new LocalStrategy(Admin.authenticate()));
+passport.use('admin', new LocalStrategy(Admin.authenticate()));
 
 passport.serializeUser(function(user, done) { 
 	done(null, user);
@@ -163,3 +163,27 @@ cron.schedule('0 0 * * *',()=>{
 
 //Port Listening
 app.listen(PORT,()=>console.log("Server Up and Running on http://127.0.0.1:"+PORT));
+
+// route.post('/admin', passport.authenticate('admin-local',
+//     {
+//         successRedirect: '/admin',
+//         failureRedirect: '/user'
+//     }
+// ), (req, res) => {
+
+//     // var newAdmin = new Admin({
+//     //     email: req.body.email,
+//     //     type: "Admin"
+//     // });
+//     // Admin.register(newAdmin, req.body.password, (err, admin) => {
+//     //     if(err){
+//     //         console.log(err); 
+//     //     } else {
+//     //         console.log(admin);
+//     //     }
+//     // })  
+//     Admin.findOne({email: req.body.email}, (err, admin) => {
+//         console.log(admin);
+//     })     
+//     console.log(req.user);
+// });

@@ -106,6 +106,12 @@ route.put('/submitDetails',(req,res)=>{
     }
 });
 
+
+// TRAINER FORM REGISTRATION FOR STEP 2
+route.get('/trainerForm', (req, res) => {
+    res.render('trainerRegisterForm.ejs');
+})
+
 route.get('/:type', (req, res) => {
     Trainer.find({categoryType: req.params.type}, (err, foundTrainer) => {
         if(err) {
@@ -514,5 +520,6 @@ route.post('/:id/review', (req, res) => {
         }
     });
 });
+
 
 module.exports = route;

@@ -64,9 +64,9 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use('admin', new LocalStrategy(Admin.authenticate()));
 passport.use('trainer-local', new LocalStrategy(Trainer.authenticate()));
 passport.use('user-local', new LocalStrategy(User.authenticate()));
-passport.use('admin', new LocalStrategy(Admin.authenticate()));
 
 passport.serializeUser(function(user, done) { 
 	done(null, user);

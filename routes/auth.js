@@ -79,11 +79,14 @@ route.get('/login',(req,res)=>{
 });
 
 // Login
-route.post("/trainerLogin", passport.authenticate("trainer-local", 
+route.post("/trainerLogin",
+ passport.authenticate("trainer-local", 
 	{
 		successRedirect: "/trainer",
 		failureRedirect: "/auth/login"
-	}), function(req, res){
+    }), 
+    function(req, res){
+
         console.log(req.user);
     }
 );
@@ -103,12 +106,29 @@ route.get('/admin', (req, res) => {
     res.render('adminLogin');
 });
 
-route.post('/admin',passport.authenticate('admin',
+route.post('/admin', 
+passport.authenticate("admin",
     {
         successRedirect: '/admin',
         failureRedirect: '/user'
     }
-),(req, res) => {
+),
+ (req, res) => {
+
+    // var newAdmin = new Admin({
+    //     email: req.body.email,
+    //     type: "Admin"
+    // });
+    // Admin.register(newAdmin, req.body.password, (err, admin) => {
+    //     if(err){
+    //         console.log(err); 
+    //     } else {
+    //         console.log(admin);
+    //     }
+    // })  
+    // Admin.findOne({email: req.body.email}, (err, admin) => {
+    //     console.log(admin);
+    // })     
     console.log(req.user);
 });
 

@@ -79,11 +79,14 @@ route.get('/login',(req,res)=>{
 });
 
 // Login
-route.post("/trainerLogin", passport.authenticate("trainer-local", 
+route.post("/trainerLogin",
+ passport.authenticate("trainer-local", 
 	{
 		successRedirect: "/trainer",
 		failureRedirect: "/auth/login"
-	}), function(req, res){
+    }), 
+    function(req, res){
+
         console.log(req.user);
      
     }
@@ -104,12 +107,14 @@ route.get('/admin', (req, res) => {
     res.render('adminLogin');
 });
 
-route.post('/admin', passport.authenticate('admin-local',
+route.post('/admin', 
+passport.authenticate("admin",
     {
         successRedirect: '/admin',
         failureRedirect: '/user'
     }
-), (req, res) => {
+),
+ (req, res) => {
 
     // var newAdmin = new Admin({
     //     email: req.body.email,

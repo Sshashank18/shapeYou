@@ -139,13 +139,13 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                      <button value="Basic CrossFit"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                      <button value="Standard CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                      <button value="Premium CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <!-- <div id="carousel1" class="carouselBox">
@@ -164,7 +164,7 @@
                   <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('CrossFit') && trainer.pricePlan!=null) { %>
                       <% if(z<3){ %>
-                          <div class="card">
+                          <div class="card <%= trainer.username %> CrossFit" style="display: none">
                             <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                             <div class="card-body text-center">
                               <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
@@ -173,7 +173,7 @@
                           </div>
                         <!-- </div> -->
                     <% } else {%>
-                      <div class="card more" hidden>
+                      <div class="card more <%= trainer.username %> CrossFit" hidden>
                         <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                         <div class="card-body text-center">
                           <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
@@ -207,13 +207,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                    <button value="Basic Functional & Strength Training"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                    <button value="Standard Functional & Strength Training"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                    <button value="Premium Functional & Strength Training"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel2" class="carouselBox">
@@ -232,7 +232,7 @@
                   <% trainers.forEach(function(trainer,i) { %>
                     <% if(trainer.subCategories.includes('Functional & Strength Training') && trainer.pricePlan!=null) { %>
                       <% if(z<3){ %>
-                          <div class="card">
+                          <div class="card <%= trainer.username %> Functional & Strength Training" style="display: none;">
                             <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                             <div class="card-body text-center">
                               <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
@@ -241,7 +241,7 @@
                           </div>
                         <!-- </div> -->
                     <% } else {%>
-                      <div class="card more" hidden>
+                      <div class="card more <%= trainer.username %> Functional & Strength Training" hidden>
                         <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                         <div class="card-body text-center">
                           <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
@@ -272,13 +272,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                    <button value="Basic Zumba"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                    <button value="Standard Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                    <button value="Premium Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel3" class="carouselBox">
@@ -297,7 +297,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Zumba') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> Zumba">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
@@ -306,7 +306,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> Zumba" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
@@ -338,13 +338,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                    <button value="Basic Dance"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                    <button value="Standard Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                    <button value="Premium Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel4" class="carouselBox">
@@ -363,7 +363,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Dance') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> Dance">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
@@ -372,7 +372,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> Dance" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
@@ -403,13 +403,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                    <button value="Basic MMA & Boxing"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                    <button value="Standard MMA & Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                    <button value="Premium MMA & Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel5" class="carouselBox">
@@ -428,7 +428,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('MMA & Boxing') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> MMA & Boxing">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
@@ -437,7 +437,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> MMA & Boxing" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
@@ -494,13 +494,13 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                      <button value="Basic Yoga"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                      <button value="Standard Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                      <button value="Premium Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <!-- <div id="carousel5" class="carouselBox">
@@ -519,7 +519,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Yoga') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> Yoga">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
@@ -528,7 +528,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> Yoga" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
@@ -560,13 +560,13 @@
                     </div>
                     <div class="row" style="margin-top: 100px;">
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                        <button value="Basic Meditation"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                        <button value="Standard Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                        <button value="Premium Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                       </div>
                     </div>
                     <br><br>
@@ -575,7 +575,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Meditation') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> Meditation">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
@@ -584,7 +584,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> Meditation" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
@@ -616,13 +616,13 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                      <button value="Basic Nutrition"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                      <button value="Standard Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                      <button value="Premium Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <br><br>
@@ -631,7 +631,7 @@
               <% trainers.forEach(function(trainer,i) { %>
                 <% if(trainer.subCategories.includes('Nutrition') && trainer.pricePlan!=null) { %>
                   <% if(z<3){ %>
-                      <div class="card">
+                      <div class="card <%= trainer.username %> Nutrition">
                         <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                         <div class="card-body text-center">
                           <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
@@ -640,7 +640,7 @@
                       </div>
                     <!-- </div> -->
                 <% } else {%>
-                  <div class="card more" hidden>
+                  <div class="card more <%= trainer.username %> Nutrition" hidden>
                     <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                     <div class="card-body text-center">
                       <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
@@ -671,13 +671,13 @@
                     </div>
                     <div class="row" style="margin-top: 100px;">
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5>
+                        <button value="Basic Therapy & counselling"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5>
+                        <button value="Standard Therapy & counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5>
+                        <button value="Premium Therapy & counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                       </div>
                     </div>
                     <br><br>
@@ -686,7 +686,7 @@
                 <% trainers.forEach(function(trainer,i) { %>
                   <% if(trainer.subCategories.includes('Therapy & counselling') && trainer.pricePlan!=null) { %>
                     <% if(z<3){ %>
-                        <div class="card">
+                        <div class="card <%= trainer.username %> Therapy & counselling">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
                             <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
@@ -695,7 +695,7 @@
                         </div>
                       <!-- </div> -->
                   <% } else {%>
-                    <div class="card more" hidden>
+                    <div class="card more <%= trainer.username %> Therapy & counselling" hidden>
                       <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
@@ -811,6 +811,23 @@
                 });
             }
           
+            </script>
+            <script>
+              $('button').click(function() {
+                var value = $(this).val();
+                var pricePlan = value.substr(0,value.indexOf(' '));
+                var subCategory = value.substr(value.indexOf(' ')+1);         
+                var trainers = <%- JSON.stringify(trainers) %>
+                trainers.forEach((trainer) => {
+                  if(trainer.pricePlan == pricePlan && trainer.subCategories.includes(subCategory)) {
+                    var className = trainer.username + ' ' + subCategory;
+                    $('div.' + className.replace(' ', '.')).css('display', 'block');
+                  } else {
+                    var className = trainer.username + ' ' + subCategory;
+                    $('div.' + className.replace(' ', '.')).css('display', 'none');
+                  }
+                })
+              });
             </script>
 </body>
 </html>

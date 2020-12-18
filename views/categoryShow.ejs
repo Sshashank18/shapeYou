@@ -160,38 +160,84 @@
                     <!-- <div class="items"> -->
                       <br><br>
                       <div class="card-deck">
-                  <% z = 0 %>
-                  <% trainers.forEach(function(trainer,i) { %>
-                    <% if(trainer.subCategories.includes('CrossFit') && trainer.pricePlan!=null) { %>
-                      <% if(z<3){ %>
-                          <div class="card <%= trainer.username %> CrossFit" style="display: none">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                            <div class="card-body text-center">
-                              <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                      <% trainers.forEach(function(trainer,i) { %>
+                        <% if( trainer.subCategories.includes('CrossFit')) { 
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                              <% z = 0 %>
+                              <div class="Basic CrossFit">
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> CrossFit">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> CrossFit" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
                               
-                            </div>
-                          </div>
-                        <!-- </div> -->
-                    <% } else {%>
-                      <div class="card more <%= trainer.username %> CrossFit" hidden>
-                        <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                        <div class="card-body text-center">
-                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
-                          
-                        </div>
-                      </div>
-                    <%}%>
-                    <% z++ %>
-                 <% }}) %>
-                </div>
-                <% if(z>3){ %>
+                          <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                              <% z = 0 %>
+                              <div class="Standard CrossFit" hidden>
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> CrossFit">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> CrossFit" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
+                             
+                          <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                              <% z = 0 %>
+                              <div class="Premium CrossFit" hidden>
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> CrossFit">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> CrossFit" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
+                              
+                          <% }
+                            }
+                            }) %>
+              </div>
+              <% if(z>=3){ %>
                 <div class="btn-holder">
                   <button class="btn btn-primary viewMore">View more</button>
                   <button class="btn btn-warning viewLess" hidden>View less</button>
                 </div>
-                <%} %>
-              <!-- </div> -->
-          
+              <% } %>
             </section>
 
             <section style="background: #7F986F;">
@@ -207,13 +253,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic Functional & Strength Training"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
+                    <button value="Basic Functional&StrengthTraining"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard Functional & Strength Training"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
+                    <button value="Standard Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium Functional & Strength Training"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button value="Premium Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel2" class="carouselBox">
@@ -227,36 +273,85 @@
                   </div> -->
                   <!-- <div class="items" id="carousel-items2"> -->
                     <br><br>
-                      <div class="card-deck">
-                        <% z = 0 %>
-                  <% trainers.forEach(function(trainer,i) { %>
-                    <% if(trainer.subCategories.includes('Functional & Strength Training') && trainer.pricePlan!=null) { %>
-                      <% if(z<3){ %>
-                          <div class="card <%= trainer.username %> Functional & Strength Training" style="display: none;">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                            <div class="card-body text-center">
-                              <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
-                              
+                    <div class="card-deck">
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('Functional & Strength Training')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic Functional-StrengthTraining">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Functional-StrengthTraining">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
                             </div>
-                          </div>
-                        <!-- </div> -->
-                    <% } else {%>
-                      <div class="card more <%= trainer.username %> Functional & Strength Training" hidden>
-                        <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                        <div class="card-body text-center">
-                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
-                          
-                        </div>
+                            
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard Functional-StrengthTraining" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Functional-StrengthTraining">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium Functional-StrengthTraining" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Functional-StrengthTraining">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            
+                        <% }
+                      }
+                    }) %>
+                    </div>
+                    <% if(z>=3){ %>
+                      <div class="btn-holder">
+                        <button class="btn btn-primary viewMore">View more</button>
+                        <button class="btn btn-warning viewLess" hidden>View less</button>
                       </div>
-                    <%} z++%>
-                 <% }}) %>
-                </div>
-                <% if(z>3){ %>
-                  <div class="btn-holder">
-                    <button class="btn btn-primary viewMore">View more</button>
-                    <button class="btn btn-warning viewLess" hidden>View less</button>
-                  </div>
-                  <%} %>
+                    <% } %>
             </section>
 
             <section>
@@ -293,36 +388,84 @@
                   <div class="items" id="carousel-items3"> -->
                     <br><br>
                     <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('Zumba') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> Zumba">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('Zumba')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic Zumba">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Zumba">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Zumba" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
                             
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> Zumba" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
-                        
-                      </div>
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard Zumba" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Zumba">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Zumba" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium Zumba" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Zumba">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Zumba" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }
+                      }
+                    }) %>
+                  </div>
+                  <% if(z>=3){ %>
+                    <div class="btn-holder">
+                      <button class="btn btn-primary viewMore">View more</button>
+                      <button class="btn btn-warning viewLess" hidden>View less</button>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
-              
+                  <% } %>
             </section>
 
             <section style="background: #7F986F;">
@@ -359,35 +502,84 @@
                   <div class="items" id="carousel-items4"> -->
                     <br><br>
                     <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('Dance') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> Dance">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('Dance')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic Dance">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Dance">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Dance" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard Dance" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Dance">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Dance" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
                             
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> Dance" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
-                        
-                      </div>
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium Dance" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Dance">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Dance" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            
+                       <% }
+                      }
+                    }) %>
+                  </div>
+                  <% if(z>=3){ %>
+                    <div class="btn-holder">
+                      <button class="btn btn-primary viewMore">View more</button>
+                      <button class="btn btn-warning viewLess" hidden>View less</button>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
+                  <% } %>
             </section>
 
             <section>
@@ -403,13 +595,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic MMA & Boxing"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
+                    <button value="Basic MMA&Boxing"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard MMA & Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
+                    <button value="Standard MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium MMA & Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button value="Premium MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel5" class="carouselBox">
@@ -424,36 +616,84 @@
                   <div class="items" id="carousel-items5"> -->
                     <br><br>
                     <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('MMA & Boxing') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> MMA & Boxing">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('MMA & Boxing')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic MMA-Boxing">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> MMA-Boxing">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
                             
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> MMA & Boxing" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
-                        
-                      </div>
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard MMA-Boxing" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> MMA-Boxing">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium MMA-Boxing" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> MMA-Boxing">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }
+                      }
+                    }) %>
+                  </div>
+                  <% if(z>=3){ %>
+                    <div class="btn-holder">
+                      <button class="btn btn-primary viewMore">View more</button>
+                      <button class="btn btn-warning viewLess" hidden>View less</button>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
-               
+                  <% } %>
             </section>
             
             <% } if(parent == 'Wellness') { %>
@@ -514,37 +754,85 @@
                     </div>
                     <div class="items" id="carousel-items5"> -->
                       <br><br>
-                    <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('Yoga') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> Yoga">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                      <div class="card-deck">
+                      <% trainers.forEach(function(trainer,i) { %>
+                        <% if( trainer.subCategories.includes('Yoga')) { 
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                              <% z = 0 %>
+                              <div class="Basic Yoga">
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> Yoga">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> Yoga" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
+                              
+                          <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                              <% z = 0 %>
+                              <div class="Standard Yoga" hidden>
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> Yoga">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> Yoga" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
                             
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> Yoga" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
-                        
-                      </div>
+                          <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                              <% z = 0 %>
+                              <div class="Premium Yoga" hidden>
+                              <% if(z<3){ %>
+                                <div class="card <%= trainer.username %> Yoga">
+                                  <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    
+                                  </div>
+                                </div>
+                              <% } else {%>
+                                <div class="card more <%= trainer.username %> Yoga" hidden>
+                                  <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                  <div class="card-body text-center">
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                  </div>
+                                </div>
+                              <% }
+                                z++  %>
+                              </div>
+                              
+                          <% }
+                        }
+                      }) %>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
-               
+                    <% if(z>=3){ %>
+                      <div class="btn-holder">
+                        <button class="btn btn-primary viewMore">View more</button>
+                        <button class="btn btn-warning viewLess" hidden>View less</button>
+                      </div>
+                    <% } %>
                 </section>
 
                 <section>
@@ -571,36 +859,83 @@
                     </div>
                     <br><br>
                     <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('Meditation') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> Meditation">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('Meditation')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic Meditation">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Meditation">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Meditation" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
                             
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> Meditation" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
-                        
-                      </div>
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard Meditation" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Meditation">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Meditation" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium Meditation" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Meditation">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Meditation" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            <%}
+                      }
+                    }) %>
+                  </div>
+                  <% if(z>=3){ %>
+                    <div class="btn-holder">
+                      <button class="btn btn-primary viewMore">View more</button>
+                      <button class="btn btn-warning viewLess" hidden>View less</button>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
-               
+                  <% } %>
                 </section>
             <% } if(parent == 'Counselling') { %>
               <section>
@@ -625,37 +960,85 @@
                       <button value="Premium Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
-                  <br><br>
-                  <div class="card-deck">
-                    <% z = 0 %>
+                  <br>
+                  <div class="card-deck"><br>
               <% trainers.forEach(function(trainer,i) { %>
-                <% if(trainer.subCategories.includes('Nutrition') && trainer.pricePlan!=null) { %>
-                  <% if(z<3){ %>
-                      <div class="card <%= trainer.username %> Nutrition">
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                        <div class="card-body text-center">
-                          <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
-                          
+                <% if( trainer.subCategories.includes('Nutrition')) { 
+                  if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                      <% z = 0 %>
+                      <div class="Basic Nutrition">
+                      <% if(z<3){ %>
+                        <div class="card <%= trainer.username %> Nutrition">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            
+                          </div>
                         </div>
+                      <% } else {%>
+                        <div class="card more <%= trainer.username %> Nutrition" hidden>
+                          <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                          </div>
+                        </div>
+                      <% }
+                        z++  %>
                       </div>
-                    <!-- </div> -->
-                <% } else {%>
-                  <div class="card more <%= trainer.username %> Nutrition" hidden>
-                    <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                    <div class="card-body text-center">
-                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
-                      
-                    </div>
-                  </div>
-                <%}z++%>
-             <% }}) %>
+                     
+                  <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                      <% z = 0 %>
+                      <div class="Standard Nutrition" hidden>
+                      <% if(z<3){ %>
+                        <div class="card <%= trainer.username %> Nutrition">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            
+                          </div>
+                        </div>
+                      <% } else {%>
+                        <div class="card more <%= trainer.username %> Nutrition" hidden>
+                          <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                          </div>
+                        </div>
+                      <% }
+                        z++  %>
+                      </div>
+                    
+                  <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){  %>
+                      <% z = 0 %>
+                      <div class="Premium Nutrition" hidden>
+                      <% if(z<3){ %>
+                        <div class="card <%= trainer.username %> Nutrition">
+                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            
+                          </div>
+                        </div>
+                      <% } else {%>
+                        <div class="card more <%= trainer.username %> Nutrition" hidden>
+                          <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                          </div>
+                        </div>
+                      <% }
+                        z++  %>
+                      </div>
+                      <% }
+                }
+              }) %>
             </div>
-            <% if(z>3){ %>
+            <% if(z>=3){ %>
               <div class="btn-holder">
                 <button class="btn btn-primary viewMore">View more</button>
                 <button class="btn btn-warning viewLess" hidden>View less</button>
               </div>
-              <%} %>
+            <% } %>
                 </section>
 
                 <section style="background: #F6EDD9;">
@@ -671,46 +1054,96 @@
                     </div>
                     <div class="row" style="margin-top: 100px;">
                       <div class="col-lg-4 text-center">
-                        <button value="Basic Therapy & counselling"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
+                        <button value="Basic Therapy&counselling"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">basic</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Standard Therapy & counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
+                        <button value="Standard Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase; border-right: 5px solid black;">standard</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Premium Therapy & counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                        <button value="Premium Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                       </div>
                     </div>
                     <br><br>
                     <div class="card-deck">
-                      <% z = 0 %>
-                <% trainers.forEach(function(trainer,i) { %>
-                  <% if(trainer.subCategories.includes('Therapy & counselling') && trainer.pricePlan!=null) { %>
-                    <% if(z<3){ %>
-                        <div class="card <%= trainer.username %> Therapy & counselling">
-                          <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                          <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
-                            
-                          </div>
-                        </div>
-                      <!-- </div> -->
-                  <% } else {%>
-                    <div class="card more <%= trainer.username %> Therapy & counselling" hidden>
-                      <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
-                      </div>
+                    <% trainers.forEach(function(trainer,i) { %>
+                      <% if( trainer.subCategories.includes('Therapy & counselling')) { 
+                        if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            <% z = 0 %>
+                            <div class="Basic Therapy-counselling">
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Therapy-counselling">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                           
+                        <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
+                            <% z = 0 %>
+                            <div class="Standard Therapy-counselling" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Therapy-counselling">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                          
+                        <% }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){ %>
+                            <% z = 0 %>
+                            <div class="Premium Therapy-counselling" hidden>
+                            <% if(z<3){ %>
+                              <div class="card <%= trainer.username %> Therapy-counselling">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  
+                                </div>
+                              </div>
+                            <% } else {%>
+                              <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
+                                <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
+                                <div class="card-body text-center">
+                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                </div>
+                              </div>
+                            <% }
+                              z++  %>
+                            </div>
+                            <%}
+                      }
+                    }) %>
+                  </div>
+                  <% if(z>=3){ %>
+                    <div class="btn-holder">
+                      <button class="btn btn-primary viewMore">View more</button>
+                      <button class="btn btn-warning viewLess" hidden>View less</button>
                     </div>
-                  <%}z++%>
-               <% }}) %>
-              </div>
-              <% if(z>3){ %>
-                <div class="btn-holder">
-                  <button class="btn btn-primary viewMore">View more</button>
-                  <button class="btn btn-warning viewLess" hidden>View less</button>
-                </div>
-                <%} %>
+                  <% } %>
                 </section>
+              
             <% } %>
             <footer id="footer">
 
@@ -813,20 +1246,39 @@
           
             </script>
             <script>
+
+              var trainers = <%- JSON.stringify(trainers) %>
+              trainers.forEach((trainer)=>{
+                console.log(trainer.username)
+                console.log(trainer.pricePlan)
+                console.log(trainer.subCategories)
+              })
+
               $('button').click(function() {
                 var value = $(this).val();
                 var pricePlan = value.substr(0,value.indexOf(' '));
-                var subCategory = value.substr(value.indexOf(' ')+1);         
-                var trainers = <%- JSON.stringify(trainers) %>
-                trainers.forEach((trainer) => {
-                  if(trainer.pricePlan == pricePlan && trainer.subCategories.includes(subCategory)) {
-                    var className = trainer.username + ' ' + subCategory;
-                    $('div.' + className.replace(' ', '.')).css('display', 'block');
-                  } else {
-                    var className = trainer.username + ' ' + subCategory;
-                    $('div.' + className.replace(' ', '.')).css('display', 'none');
-                  }
-                })
+                var subCategory = value.substr(value.indexOf(' ')+1);
+                subCategory = subCategory.replace('&','-');
+
+                var className = pricePlan + ' ' + subCategory;
+                var className2 = "";
+                var className3 = "";
+                if(pricePlan == 'Basic'){
+                  className2 = "Standard"+ ' ' + subCategory;
+                  className3 = "Premium"+ ' ' + subCategory;
+                }
+                else if(pricePlan == 'Standard'){
+                  className2 = "Basic"+ ' ' + subCategory;
+                  className3 = "Premium"+ ' ' + subCategory;
+                }
+                else if(pricePlan == "Premium"){
+                  className2 = "Standard"+ ' ' + subCategory;
+                  className3 = "Basic"+ ' ' + subCategory;
+                }
+                $('div.' + className.replace(' ', '.')).removeAttr('hidden');
+                $('div.' + className2.replace(' ', '.')).attr('hidden','');
+                $('div.' + className3.replace(' ', '.')).attr('hidden','');
+               
               });
             </script>
 </body>

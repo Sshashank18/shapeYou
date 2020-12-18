@@ -48,10 +48,6 @@
                 
                 <!-- Trainer Sign up -->
                 <form id="trainerForm" class="hide" method="POST" action="/auth/trainer">
-                    <div class="form-group mt-2 ">
-                        <label for="trainerName">Username</label>
-                        <input type="text" class="form-control" id="trainerName" name="trainerName" placeholder="Enter Name" required>
-                    </div>
                     <div class="form-group mt-2">
                         <label for="trainerEmail">Email address</label>
                         <input type="text" class="form-control" id="trainerEmail" name="trainerEmail" placeholder="Enter Email" required>
@@ -59,10 +55,6 @@
                     <div class="form-group">
                         <label for="trainerPassword">Password</label>
                         <input type="password" class="form-control" id="trainerPassword" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="trainerMobile">Mobile</label>
-                        <input type="number" class="form-control" id="trainerMobile" name="trainerPhone" placeholder="Enter Mobile Number" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="trainerSignupFormButton">Sign-up</button>
                     <h4 style="font-size: 20px; margin-top: 30px;">Have An Existing Account?<a href="/auth/login">Login</a></h4>

@@ -9,7 +9,6 @@ var trainerSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    contact: Number,
     dob: {
         type:Date,
         default: null
@@ -21,6 +20,62 @@ var trainerSchema = new mongoose.Schema({
     about: {
         type:String,
         default:null
+    },
+    contact: {
+        type:Number,
+        default:null
+    },
+    alternateContact: {
+        type:Number,
+        default:null
+    },
+    address: {
+        type:String,
+        default:null
+    },
+    amount: {
+        type:Number,
+        default:null
+    },
+    experiencePlace: {
+        type:String,
+        default:null
+    },
+    experienceYears: {
+        type:Number,
+        default:null
+    },
+    certification: {
+        type:String,
+        default:null
+    },
+    education: {
+        type:String,
+        default:null
+    },
+    socialHandle: {
+        type:String,
+        default:null
+    },
+    website: {
+        type:String,
+        default:null
+    },
+    aadhar: {
+        type:String,
+        default:null
+    },
+    referral: {
+        type:String,
+        default:null
+    },
+    payment: {
+        type:Array,
+        default:[]
+    },
+    timings: {
+        type:Object,
+        default:{}
     },
     isVerified: {
         type: Boolean,

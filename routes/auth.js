@@ -35,7 +35,7 @@ route.post('/trainer', (req, res) => {
                 if (err){
                     console.log(err);
                 } else {
-                    res.redirect('/trainer/');
+                    res.redirect('/trainer/trainerForm');
                 }
             })
             // res.redirect('/waiting');

@@ -25,12 +25,13 @@
                 <h2 class="title">Update your details</h2>
             </div>
             <div class="card-body">
-        <input>
+        <h6> &nbsp;&nbsp;&nbsp;&nbsp;* fields are compulsory</h6>
+        <form>
           <div class="form-row">
-            <div class="name">Name</div>
+            <div class="name">Name *</div>
             <div class="value">
                 <div class="input-group">
-                    <input class="input--style-6" type="text" placeholder="Enter your name" required/>
+                    <input class="input--style-6" type="text" id="name" placeholder="Enter your name" required/>
                 </div>
                 <div class="label--desc">Enter your first and last name.</div>
             </div>
@@ -48,7 +49,7 @@
         </div>
         <div class="form-row">
           <div class="name">
-              Area of expertise
+              Area of expertise *
             </div>
             <div class="value">
                 <div class="input-group mb-3">
@@ -94,18 +95,18 @@
       </div>
   </div>
   <div class="form-row">
-      <div class="name">Address</div>
+      <div class="name">Address </div>
       <div class="value">
           <div class="input-group">
-              <input class="input--style-6" type="text" placeholder="Address" />
+              <input class="input--style-6" type="text" name="address" placeholder="Address" />
           </div>
       </div>
   </div>
   <div class="form-row">
-    <div class="name">Contact number</div>
+    <div class="name">Contact number *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="contact number" required/>
+            <input class="input--style-6" type="number" name="contact" placeholder="Contact number" min="0000000000" max="999999999" pattern="[0-9]{10}" required/>
         </div>
     </div>
 </div>
@@ -113,73 +114,73 @@
     <div class="name">Alternate Contact Number</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="alternate contact" required/>
+            <input class="input--style-6" type="number" name="alternateContact" placeholder="Alternate contact" min="0000000000" max="999999999"/>
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Amount /hour/month</div>
+    <div class="name">Amount /hour/month *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="amount" required>
+            <input class="input--style-6" type="number" name="amount" placeholder="amount" required>
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Timing /hour/days</div>
+    <div class="name">Timing /hour/days </div>
     <div class="value">
         <div class="input-group">
-            <input class="" type="checkbox" placeholder="amount"> Monday
+            <input class="day" type="checkbox" val="Monday"> Monday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Tuesday
+            <input class="day" type="checkbox" val="Tuesday"> Tuesday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Wednesday
+            <input class="day" type="checkbox" val="Wednesday"> Wednesday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Thursday
+            <input class="day" type="checkbox" val="Thursday"> Thursday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Friday
+            <input class="day" type="checkbox" val="Friday"> Friday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Saturday
+            <input class="day" type="checkbox" val="Saturday"> Saturday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
-            <input class="" type="checkbox" placeholder="amount"> Sunday
+            <input class="day" type="checkbox" val="Sunday"> Sunday
             <input type="text" placeholder="enter time slots" class="input--style-6 mt-3 mb-3"/>
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Past experience - number of years</div>
+    <div class="name">Past experience - number of years *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="number" placeholder="past experience" required />
+            <input class="input--style-6" type="number" name="experienceYears" placeholder="past experience" min="0" required />
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Past expereinece - where have you worked before?</div>
+    <div class="name">Past experience - where have you worked before? *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="Where have you worked" required />
+            <input class="input--style-6" type="text" name="experiencePlace" placeholder="Where have you worked" required />
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Education (course in fitness)</div>
+    <div class="name">Education (course in fitness) *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="education" required />
+            <input class="input--style-6" type="text" name="education" placeholder="education" required />
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">Certification in Fitness domain</div>
+    <div class="name">Certification in Fitness domain *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="certification" />
+            <input class="input--style-6" type="text" name="certification" placeholder="certification" required/>
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">A pinch of personality(About You)</div>
+    <div class="name">A pinch of personality(About You)*</div>
     <div class="value">
         <div class="input-group">
             <textarea class="textarea--style-6" name="About" placeholder="Enter description about you" required></textarea>
@@ -190,7 +191,7 @@
     <div class="name">Website (if any)</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="link of website" />
+            <input class="input--style-6" name="website" type="text" placeholder="link of website" />
         </div>
     </div>
 </div>
@@ -198,15 +199,15 @@
     <div class="name">Social media links (if any)</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="social media link" />
+            <input class="input--style-6" type="text" name="socialHandle" placeholder="social media link" />
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="name">AADHAR/PAN details</div>
+    <div class="name">AADHAR/PAN details *</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text" placeholder="aadhar/pan details" required/>
+            <input class="input--style-6" type="text" name="aadhar" placeholder="aadhar/pan details" required/>
             <input type="file">
         </div>
     </div>
@@ -215,10 +216,10 @@
     <div class="name">Accepted payment sources</div>
     <div class="value">
         <div class="input-group">
-            <input type="checkbox" name="Fitness Trainer" value="CrossFit" /> Bank Transfer  
-            <input type="checkbox" name="Fitness Trainer" value="Functional & Strength Training" /> Gpay
-            <input type="checkbox" name="Fitness Trainer" value="Zumba" /> Paytm
-            <input type="checkbox" name="Fitness Trainer" value="Dance" /> PhonePe
+            <input type="checkbox" name="payment" value="Bank" /> Bank Transfer  
+            <input type="checkbox" name="payment" value="GPay" /> Gpay
+            <input type="checkbox" name="payment" value="Paytm" /> Paytm
+            <input type="checkbox" name="payment" value="PhonePe" /> PhonePe
         </div>
     </div>
 </div>
@@ -226,7 +227,7 @@
     <div class="name">Referral Code</div>
     <div class="value">
         <div class="input-group">
-            <input class="input--style-6" type="text">
+            <input class="input--style-6" name="referral" type="text">
         </div>
     </div>
 </div>
@@ -248,6 +249,6 @@
             
     </form>
     
-      <script src = "/scripts/details.js"></script>
+      <script src = "/scripts/trainerRegisterForm.js"></script>
 </body>
 </html>

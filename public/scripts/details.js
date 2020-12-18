@@ -16,7 +16,11 @@ $("select.categories").change(function(){
         $('.counselling').removeAttr('hidden');
         $('.wellness').attr('hidden','');
         $('.fitness').attr('hidden','');
-    };
+    }else{
+        $('.counselling').attr('hidden','');
+        $('.wellness').attr('hidden','');
+        $('.fitness').attr('hidden','');
+    }
 });
 
 

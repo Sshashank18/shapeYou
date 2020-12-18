@@ -106,6 +106,32 @@ route.put('/submitDetails',(req,res)=>{
     }
 });
 
+route.put('/registerForm',(req,res)=>{
+    Trainer.findByIdAndUpdate(req.user._id,{
+        username:req.body.name,
+        dob:req.body.dob,
+        address:req.body.address,
+        contact:req.body.contact,
+        alternateContact:req.body.alternateContact,
+        amount:req.body.amount,
+        experiencePlace:req.body.experiencePlace,
+        experienceYears:req.body.experienceYears,
+        about:req.body.about,
+        certification:req.body.certification,
+        education:req.body.education,
+        socialHandle:req.body.socialHandle,
+        website:req.body.website,
+        aadhar:req.body.aadhar,
+        referral:req.body.referral,
+        payment:req.body.payment,
+        timings:req.body.timings,
+        subCategories: req.body.subcategories
+    },(err,result)=>{
+        if(err) return res.status(422).json({error:err})
+        res.json(result);
+    });
+});
+
 
 // TRAINER FORM REGISTRATION FOR STEP 2
 route.get('/trainerForm', (req, res) => {

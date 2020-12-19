@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const Trainer = require('../models/trainer');
 const Category = require('../models/category');
+const Pricing = require('../models/pricing');
 const User = require('../models/user');
 const Price = require('../models/pricing');
 const Request = require('../models/requestCoupon');
@@ -35,6 +36,138 @@ route.get('/users', middleware.isAdminLoggedIn, (req, res) => {
         }
     });
 });
+
+let average = (array) => {
+    if(array.length>1){
+        return array.reduce((a, b) => a + b) / 5.0;
+    }else if(array.length == 1){
+        return array[0];
+    }else{
+        return 0;
+    }
+};
+
+
+trainerSort = trainers =>{
+
+    return trainers.sort((a,b)=>{
+        avg1 = []
+        avg2 = []
+        a.reviews.forEach(review =>{
+            avg1.push(review.rating);
+        })
+        b.reviews.forEach(review =>{
+            avg2.push(review.rating);
+        })
+
+        avg1 = average(avg1);
+        avg2 = average(avg2);
+    
+        if(avg1 > avg2) return -1;
+        else return 1;
+    
+    });
+
+};
+
+route.get('/category/:parent', middleware.isAdminLoggedIn, (req, res) => {
+    var parent = req.params.parent;
+    if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+            Trainer.find({username: regex}, (err, foundTrainers) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    var noMatch = "";
+                    if(foundTrainers.length == 0) {
+                        noMatch = "No such trainers exist";
+                    } 
+                    res.render('categoryShow1', {category: foundCategory[0], trainer: foundTrainers[0], noMatch: noMatch, parent: parent,type:req.user.type});
+                }
+            });
+        });
+    } else {
+    Category.find({parent:req.params.parent}, (err, foundCategory) => { 
+        var titles = [];
+        var trainers = [];
+        var sortedTrainers = null;
+        for(var i=0;i<foundCategory.length;i++){
+            titles.push(foundCategory[i].title);
+        }
+
+        Trainer.find({}).populate('reviews').exec( (err, foundTrainer) => {
+            if(err) {
+                console.log(err)
+            } else {
+                sortedTrainers = trainerSort(foundTrainer);
+            }
+        });
+       
+        setTimeout(() => {
+            if(sortedTrainers){
+                // console.log(sortedTrainers)
+                sortedTrainers.forEach(trainer =>{ 
+                    if(trainer.subCategories && trainer.subCategories.length>0){
+                        for (var i=0;i<trainer.subCategories.length;i++){
+    
+                            if(titles.indexOf(trainer.subCategories[i]) in titles===true){
+                                if (trainers.indexOf(trainer) in trainers==true){
+                                    continue;
+                                }else{
+                                    trainers.push(trainer);
+                                }
+                            }
+                        }
+                    }
+                });
+                    res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent ,type:req.user.type})
+            }
+        }, 500);
+                
+       
+            });
+        }
+    });
+
+
+route.get('/trainer/profile/:id/:name', middleware.isAdminLoggedIn,(req, res) => {
+    Trainer.findById(req.params.id).populate(['reviews']).exec( (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Pricing.find({},(err,result)=>{
+
+                result.forEach((title)=>{
+                if(title.title == foundTrainer.pricePlan){
+
+                    var pricing = {
+                        trialNumofSessions: title.trialnumOfSessions,
+                        trialPackPrice: title.trialPackPrice,
+                        trialPackDiscount: title.trialPackDiscount,
+                        trialBasicSegement: title.trialBasicSegement,
+                        trialPerSessionAmount: title.trialPerSessionAmount,
+                        goldNumofSessions: title.goldnumOfSessions,
+                        goldPackPrice: title.goldPackPrice,
+                        goldPackDiscount: title.goldPackDiscount,
+                        goldBasicSegement: title.goldBasicSegement,
+                        goldPerSessionAmount: title.goldPerSessionAmount,
+                        platinumNumofSessions: title.platinumnumOfSessions,
+                        platinumPackPrice: title.platinumPackPrice,
+                        platinumPackDiscount: title.platinumPackDiscount,
+                        platinumBasicSegement: title.platinumBasicSegement,
+                        platinumPerSessionAmount: title.platinumPerSessionAmount,
+                    }
+
+                    res.render('trainerProfile',{trainer:foundTrainer, category: req.params.name,pricing});
+                }
+            });
+                
+            });
+        }
+    });
+});
+
 
 route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
     Trainer.findById(req.params.id).populate('reviews').exec( (err, foundTrainer) => {

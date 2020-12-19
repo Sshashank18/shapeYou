@@ -34,15 +34,27 @@
           <ul class="navbar-nav mr-auto">
             
             <li class="nav-item ml-3">
+              <% if(currentUser && currentUser.type=="Admin") {%>
+              <a class="nav-link" href="/admin/category/Fitness%20trainer">Fitness</a>
+              <% }else{ %>
               <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+              <% } %>
               <div class="underline"></div>
             </li>
             <li class="nav-item ml-3">
-              <a class="nav-link" href="/user/category/Wellness" ">Wellness</a>
+              <% if(currentUser && currentUser.type=="Admin") {%>
+                <a class="nav-link" href="/admin/category/Wellness">Wellness</a>
+                <% }else{ %>
+                <a class="nav-link" href="/user/category/Wellness">Wellness</a>
+                <% } %>
               <div class="underline"></div>
             </li>
             <li class="nav-item ml-3">
-              <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
+              <% if(currentUser && currentUser.type=="Admin") {%>
+                <a class="nav-link" href="/admin/category/Counselling">Counselling</a>
+                <% }else{ %>
+                <a class="nav-link" href="/user/category/Counselling">Counselling</a>
+                <% } %>
               <div class="underline"></div>
             </li>
               
@@ -71,8 +83,13 @@
                   My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
-                  <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
-                  <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                  <% if(currentUser.type=="Admin"){ %>
+                  <a class="dropdown-item" href="/admin" style="color: white;">Go to dashboard</a>
+                  <a class="dropdown-item" href="#" style="color: white;">Signed In as Admin</a>
+                  <%}else{ %>
+                    <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                    <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                  <%}%>
                   <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
                 </div>
               </li>
@@ -85,7 +102,11 @@
         <!-- <div class="container"> -->
           <div class="row no-gutters">
             <div class="col-lg-6">
-              <a class="portfolio-item" href="/user/category/Fitness%20trainer">
+              <% if(currentUser && currentUser.type=="Admin"){ %>
+                <a class="portfolio-item" href="/admin/category/Fitness%20trainer">
+              <%}else{ %>
+                <a class="portfolio-item" href="/user/category/Fitness%20trainer">
+              <%}%>
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white;">Fitness trainers</div>
@@ -96,7 +117,11 @@
               </a>
             </div>
             <div class="col-lg-6">
-              <a class="portfolio-item" href="/user/category/Wellness">
+              <% if(currentUser && currentUser.type=="Admin"){ %>
+                <a class="portfolio-item" href="/admin/category/Wellness">
+              <%}else{ %>
+                <a class="portfolio-item" href="/user/category/Wellness">
+              <%}%>
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white">Wellness</div>
@@ -107,7 +132,11 @@
               </a>
             </div>
             <div class="col-lg-6">
-              <a class="portfolio-item" href="/user/category/Counselling">
+              <% if(currentUser && currentUser.type=="Admin"){ %>
+                <a class="portfolio-item" href="/admin/category/Counselling">
+              <%}else{ %>
+                <a class="portfolio-item" href="/user/category/Counselling">
+              <%}%>
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white;">Counselling</div>
@@ -174,7 +203,11 @@
                 <% } %>
               </span>
             </div>
+            <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
             <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
           </div>
       <% } %>
@@ -209,7 +242,11 @@
                 <%= category.title %>
               </span>
             </div>
-            <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% if(currentUser && currentUser.type=="Admin") { %>
+              <span class="item-load-icon button opacity-none"><a href="/admin/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+              <% }else{ %>
+              <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+              <%} %>
             <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
           </div>
 
@@ -222,7 +259,11 @@
             Yoga
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+         <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Yoga category.</div>
       </div>
 
@@ -233,7 +274,11 @@
             Meditation
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+         <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Meditation category.</div>
       </div>
 
@@ -244,7 +289,11 @@
             Yoga
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+         <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Yoga category.</div>
       </div>
 
@@ -283,7 +332,11 @@
                 <% } %>
               </span>
             </div>
-            <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% if(currentUser && currentUser.type=="Admin") { %>
+              <span class="item-load-icon button opacity-none"><a href="/admin/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+              <% }else{ %>
+              <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+              <%} %>
             <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
           </div>
       <% } %>
@@ -296,7 +349,11 @@
             nutrition
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+        <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Nutrition category.</div>
       </div>
       <div class="item text-center" style="background: #F6EDD9;">
@@ -306,7 +363,11 @@
             Therapy
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+        <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Therapy category.</div>
       </div>
       <div class="item text-center" style="background: #F6EDD9;">
@@ -316,7 +377,11 @@
             nutrition
           </span>
         </div>
-        <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+        <% if(currentUser && currentUser.type=="Admin") { %>
+            <span class="item-load-icon button opacity-none"><a href="/admin/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <% }else{ %>
+            <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <%} %>
         <div class="item-description opacity-none container">Trainers under Nutrition category.</div>
       </div>
         </div>

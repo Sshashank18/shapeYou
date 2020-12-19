@@ -37,15 +37,27 @@
         <ul class="navbar-nav mr-auto">
           
           <li class="nav-item ml-3">
+            <% if(currentUser.type=="Admin") { %>
+            <a class="nav-link" href="/admin/category/Fitness%20trainer">Fitness</a>
+            <%}else{%>
             <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+            <%}%>
             <div class="underline"></div>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/user/category/Wellness" ">Wellness</a>
+            <% if(currentUser.type=="Admin") { %>
+              <a class="nav-link" href="/admin/category/Wellness">Wellness</a>
+              <%}else{%>
+              <a class="nav-link" href="/user/category/Wellness">Wellness</a>
+              <%}%>
             <div class="underline"></div>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
+            <% if(currentUser.type=="Admin") { %>
+              <a class="nav-link" href="/admin/category/Counselling">Counselling</a>
+              <%}else{%>
+              <a class="nav-link" href="/user/category/Counselling">Counselling</a>
+              <%}%>
             <div class="underline"></div>
           </li>
             
@@ -74,8 +86,13 @@
                 My Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
-                <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
-                <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                <%if (currentUser.type=="Admin"){ %>
+                <a class="dropdown-item" href="/admin" style="color: white;">Go to dashboard</a>
+                <a class="dropdown-item" href="#" style="color: white;">Signed In as Admin</a>
+                <%}else{%>
+                  <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                  <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                  <%}%>
                 <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
               </div>
             </li>

@@ -1,4 +1,6 @@
-
+body {
+  background-color: #fffff4;
+}
 .courseContainer{
     height:400px;
     border: 2px solid grey;
@@ -50,7 +52,7 @@ button{
   }
 
   .week-names{
-    background-color: black;
+    background-color: #1B5E6F;
     color:white;
   }
   
@@ -59,7 +61,7 @@ button{
   }
   
   .time-interval{
-    background-color: black;
+    background-color: #1B5E6F;
     color:white;
     font-family: 'Roboto', sans-serif;
   }

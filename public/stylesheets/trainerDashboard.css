@@ -4,6 +4,7 @@ body{
     height: 1200px;
     margin: 0;
     padding: 0;
+    background-color: #fffff4;
 }
 
 
@@ -168,7 +169,7 @@ button{
 }
 
 .week-names{
-  background-color: black;
+  background-color: #1B5E6F;
   color:white;
 }
 
@@ -177,7 +178,7 @@ button{
 }
 
 .time-interval{
-  background-color: black;
+  background-color: #1B5E6F;
   color:white;
   font-family: 'Roboto', sans-serif;
 }

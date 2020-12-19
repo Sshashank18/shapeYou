@@ -195,4 +195,15 @@ route.put('/trainerPack/:id', middleware.isAdminLoggedIn, (req, res) => {
             });
 });
 
+route.put('/upgrade/:id', (req, res) => {
+    Trainer.findByIdAndUpdate(req.params.id, {pricePlan: req.body.pricePlan}, (err, trainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(trainer.pricePlan);
+            res.redirect('/admin/trainer/' + req.params.id);
+        }
+    })
+});
+
 module.exports = route;

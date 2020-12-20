@@ -48,15 +48,26 @@
         <ul class="navbar-nav mr-auto">
           
           <li class="nav-item ml-3">
+            <% if(currentUser.type=='Admin'){ %>
+            <a class="nav-link" href="/admin/category/Fitness%20trainer">Fitness</a>
+            <% }else{%>
             <a class="nav-link" href="/user/category/Fitness%20trainer">Fitness</a>
+            <%}%>
             <div class="underline"></div>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/user/category/Wellness">Wellness</a>
-            <div class="underline"></div>
+            <% if(currentUser.type=='Admin'){ %>
+              <a class="nav-link" href="/admin/category/Wellness">Wellness</a>
+              <% }else{%>
+              <a class="nav-link" href="/user/category/Wellness">Wellness</a>
+              <%}%>            <div class="underline"></div>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/user/category/Counselling" >Counselling</a>
+            <% if(currentUser.type=='Admin'){ %>
+              <a class="nav-link" href="/admin/category/Counselling">Counselling</a>
+              <% }else{%>
+              <a class="nav-link" href="/user/category/Counselling">Counselling</a>
+              <%}%>
             <div class="underline"></div>
           </li>
             
@@ -64,8 +75,11 @@
         <ul class="navbar-nav ml-auto">
           <% if(!currentUser){ %>
             
-              
+              <% if (type=='Admin'){ %>
+              <form action="/admin/category/<%= parent %>" method="GET" class="form-inline">
+               <% }else{%> 
               <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
+                <%}%>
                 <div class="form-group">
                 <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;">
                 <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
@@ -75,7 +89,11 @@
               <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
               
           <% } else{ %>
-            <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
+            <% if (type=='Admin'){ %>
+              <form action="/admin/category/<%= parent %>" method="GET" class="form-inline">
+               <% }else{%> 
+              <form action="/user/category/<%= parent %>" method="GET" class="form-inline">
+                <%}%>
               <div class="form-group">
                 <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> 
                 <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
@@ -87,8 +105,13 @@
                 My Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;">
-                <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
-                <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                <% if (type=='Admin'){ %>
+                    <a class="dropdown-item" href="/admin" style="color: white;">Go to dashboard</a>
+                    <a class="dropdown-item" href="#" style="color: white;">Signed In as Admin</a>
+                   <% }else{%> 
+                    <a class="dropdown-item" href="/user/userDashboard/<%= currentUser._id %>" style="color: white;">Go to dashboard</a>
+                    <a class="dropdown-item" href="#" style="color: white;">Signed In as <%= currentUser.username %></a>
+                    <%}%>
                 <a class="dropdown-item" href="/auth/logout" style="color: white;">Sign Out</a>
               </div>
             </li>
@@ -173,7 +196,12 @@
                                 <div class="card <%= trainer.username %> CrossFit">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                    
                                     
                                   </div>
                                 </div>
@@ -181,7 +209,11 @@
                                 <div class="card more <%= trainer.username %> CrossFit" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
-                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                      <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}else{%>
+                                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -195,7 +227,11 @@
                                 <div class="card <%= trainer.username %> CrossFit">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
-                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                      <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}else{%>
+                                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}%>
                                     
                                   </div>
                                 </div>
@@ -203,7 +239,11 @@
                                 <div class="card more <%= trainer.username %> CrossFit" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
-                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                      <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}else{%>
+                                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -217,7 +257,11 @@
                                 <div class="card <%= trainer.username %> CrossFit">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
-                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                      <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}else{%>
+                                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}%>
                                     
                                   </div>
                                 </div>
@@ -225,7 +269,11 @@
                                 <div class="card more <%= trainer.username %> CrossFit" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
-                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                      <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}else{%>
+                                      <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/CrossFit"><%= trainer.username %></a></h5>
+                                      <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -287,7 +335,11 @@
                               <div class="card <%= trainer.username %> Functional-StrengthTraining">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -295,7 +347,12 @@
                               <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                   <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }
@@ -309,7 +366,12 @@
                               <div class="card <%= trainer.username %> Functional-StrengthTraining">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                   <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                   
                                 </div>
                               </div>
@@ -317,7 +379,12 @@
                               <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }
@@ -331,7 +398,12 @@
                               <div class="card <%= trainer.username %> Functional-StrengthTraining">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                   
                                 </div>
                               </div>
@@ -339,7 +411,12 @@
                               <div class="card more <%= trainer.username %> Functional-StrengthTraining" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Functional&StrengthTraining"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }
@@ -401,7 +478,12 @@
                               <div class="card <%= trainer.username %> Zumba">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                   
                                 </div>
                               </div>
@@ -409,7 +491,11 @@
                               <div class="card more <%= trainer.username %> Zumba" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -423,7 +509,11 @@
                               <div class="card <%= trainer.username %> Zumba">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                 <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -431,7 +521,11 @@
                               <div class="card more <%= trainer.username %> Zumba" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                 <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -445,7 +539,11 @@
                               <div class="card <%= trainer.username %> Zumba">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -453,7 +551,11 @@
                               <div class="card more <%= trainer.username %> Zumba" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Zumba"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -515,7 +617,11 @@
                               <div class="card <%= trainer.username %> Dance">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -523,7 +629,11 @@
                               <div class="card more <%= trainer.username %> Dance" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -537,7 +647,11 @@
                               <div class="card <%= trainer.username %> Dance">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -545,7 +659,11 @@
                               <div class="card more <%= trainer.username %> Dance" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                 <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -559,7 +677,11 @@
                               <div class="card <%= trainer.username %> Dance">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                 <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -567,7 +689,11 @@
                               <div class="card more <%= trainer.username %> Dance" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                 <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Dance"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -629,7 +755,11 @@
                               <div class="card <%= trainer.username %> MMA-Boxing">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -637,7 +767,11 @@
                               <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -651,7 +785,11 @@
                               <div class="card <%= trainer.username %> MMA-Boxing">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -659,7 +797,11 @@
                               <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -673,7 +815,11 @@
                               <div class="card <%= trainer.username %> MMA-Boxing">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -681,7 +827,11 @@
                               <div class="card more <%= trainer.username %> MMA-Boxing" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/MMA&Boxing"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -768,7 +918,11 @@
                                 <div class="card <%= trainer.username %> Yoga">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                     
                                   </div>
                                 </div>
@@ -776,7 +930,11 @@
                                 <div class="card more <%= trainer.username %> Yoga" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -790,7 +948,11 @@
                                 <div class="card <%= trainer.username %> Yoga">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                     
                                   </div>
                                 </div>
@@ -798,7 +960,11 @@
                                 <div class="card more <%= trainer.username %> Yoga" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -812,7 +978,11 @@
                                 <div class="card <%= trainer.username %> Yoga">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                     
                                   </div>
                                 </div>
@@ -820,7 +990,11 @@
                                 <div class="card more <%= trainer.username %> Yoga" hidden>
                                   <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
+                                    <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}else{%>
                                     <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Yoga"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   </div>
                                 </div>
                               <% }
@@ -872,7 +1046,11 @@
                               <div class="card <%= trainer.username %> Meditation">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -880,7 +1058,11 @@
                               <div class="card more <%= trainer.username %> Meditation" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -894,7 +1076,11 @@
                               <div class="card <%= trainer.username %> Meditation">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -902,7 +1088,11 @@
                               <div class="card more <%= trainer.username %> Meditation" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -916,7 +1106,11 @@
                               <div class="card <%= trainer.username %> Meditation">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -924,7 +1118,11 @@
                               <div class="card more <%= trainer.username %> Meditation" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Meditation"><%= trainer.username %></a></h5>
+                                    <%}%>
                                 </div>
                               </div>
                             <% }
@@ -975,7 +1173,11 @@
                         <div class="card <%= trainer.username %> Nutrition">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                             
                           </div>
                         </div>
@@ -983,7 +1185,11 @@
                         <div class="card more <%= trainer.username %> Nutrition" hidden>
                           <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                           </div>
                         </div>
                       <% }
@@ -997,7 +1203,11 @@
                         <div class="card <%= trainer.username %> Nutrition">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                             
                           </div>
                         </div>
@@ -1005,7 +1215,11 @@
                         <div class="card more <%= trainer.username %> Nutrition" hidden>
                           <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                           </div>
                         </div>
                       <% }
@@ -1019,7 +1233,11 @@
                         <div class="card <%= trainer.username %> Nutrition">
                           <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                             
                           </div>
                         </div>
@@ -1027,7 +1245,11 @@
                         <div class="card more <%= trainer.username %> Nutrition" hidden>
                           <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                           <div class="card-body text-center">
-                            <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                            <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Nutrition"><%= trainer.username %></a></h5>
+                                    <%}%>
                           </div>
                         </div>
                       <% }
@@ -1078,7 +1300,11 @@
                               <div class="card <%= trainer.username %> Therapy-counselling">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
                                   
                                 </div>
                               </div>
@@ -1086,7 +1312,12 @@
                               <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }
@@ -1100,7 +1331,12 @@
                               <div class="card <%= trainer.username %> Therapy-counselling">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                   
                                 </div>
                               </div>
@@ -1108,7 +1344,12 @@
                               <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }
@@ -1122,7 +1363,12 @@
                               <div class="card <%= trainer.username %> Therapy-counselling">
                                 <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                   
                                 </div>
                               </div>
@@ -1130,7 +1376,12 @@
                               <div class="card more <%= trainer.username %> Therapy-counselling" hidden>
                                 <img class="card-img-top" width="250px" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                 <div class="card-body text-center">
-                                  <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&counselling"><%= trainer.username %></a></h5>
+                                  <% if(type=="Admin"){ %>
+                                    <h5 class="card-title"><a href="/admin/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}else{%>
+                                    <h5 class="card-title"><a href="/trainer/profile/<%= trainer._id %>/Therapy&Counselling"><%= trainer.username %></a></h5>
+                                    <%}%>
+                                  
                                 </div>
                               </div>
                             <% }

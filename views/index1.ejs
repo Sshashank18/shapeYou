@@ -13,6 +13,10 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/>
 <script type="text/javascript" src="scripts/JQuery3.3.1.js"></script>
 <script type="text/javascript" src="scripts/lightslider.js"></script>
+<style>
+  .navbar-nav > li > .dropdown-menu { background-color: #79B258 !important; }
+  .dropdown-item:focus, .dropdown-item:hover {color: black !important;}
+</style>
 </head>
 <body>
 
@@ -37,7 +41,16 @@
           <a class="nav-link" href="/user/category/Counselling" ">Counselling</a>
           <div class="underline"></div>
         </li>
-          
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="#">
+            Fitness center
+          </a>
+      </li>
+      <li class="nav-item ml-3">
+        <a class="nav-link" href="#">
+          Relaxation Center
+        </a>
+    </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if(!currentUser){ %>

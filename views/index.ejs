@@ -19,7 +19,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/> -->
 <style>
-  .navbar-nav > li > .dropdown-menu { background-color: #79B258; }
+  .navbar-nav > li > .dropdown-menu { background-color: #79B258 !important; }
+  .dropdown-item:focus, .dropdown-item:hover {color: black !important;}
 </style>
 </head>
 <body>
@@ -57,6 +58,16 @@
                 <% } %>
               <div class="underline"></div>
             </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link" href="#">
+                  Fitness center
+                </a>
+            </li>
+            <li class="nav-item ml-3">
+              <a class="nav-link" href="#">
+                Relaxation Center
+              </a>
+          </li>
               
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -150,11 +161,24 @@
               <a class="portfolio-item" href="#!">
                 <div class="caption">
                   <div class="caption-content">
-                    <div class="h2" style="color: white;">Gym</div>
+                    <div class="h2" style="color: white;">Fitness Center</div>
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
                 <img class="img-fluid" src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" alt="">
+              </a>
+            </div>
+            <div class="col-lg-12">
+              <a class="portfolio-item" href="#!">
+                <div class="caption">
+                  <div class="caption-content">
+                    <div class="h2 text-center" style="color: white; padding-left: 100%;">Relaxation center</div>
+                    <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
+                  </div>
+                </div>
+                <div class="text-center">
+                  <img style="min-width: 70vw;" class="img-fluid" src="https://images.unsplash.com/photo-1488345979593-09db0f85545f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+                </div>
               </a>
             </div>
           </div>
@@ -176,7 +200,6 @@
   <div class="container mx-auto">
     <div>
       <h1 style="font-size: 40px; color: black; font-family: 'Playfair Display', serif;">Fitness Trainers</h1><br>
-      <p style="font-size: 1.4rem">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos ullam officia nisi ducimus, praesentium temporibus aspernatur quod, ex, qui dolores ipsa iusto. Aut consequuntur sequi, quo sint voluptates iure numquam?</p>
     </div>
       
     <div id="carousel" class="carouselBox">

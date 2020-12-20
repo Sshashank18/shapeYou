@@ -156,14 +156,22 @@
         </p>
       </section> -->
     
+      
+      <div id="loading">
+        <img id="loading-image" src="/images/ajax-loader.gif" alt="Loading..." />
+      </div>
 
-      <div class="trainingType">
+
+
+      <div class="trainingType" id="container1" hidden>
         <!-- <h3><%= trainer.pricePlan %></h3> -->
         <button name = "personal" class="button activated" style="margin:20px; background: #79B258">Personal Training</button>
         <button name = "group" class="button" style="margin:20px; background: #79B258">Group Training - <%=category %></button>
     </div>
 
-      <div class="container trainerTimeTable table-responsive">
+
+
+      <div class="container trainerTimeTable table-responsive" id="container2" hidden>
         <table class="table table-bordered" id="trainerTT">
             <thead class="week-names">
               <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -964,8 +972,20 @@
 
       var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
       var persSlots = null;
+      var loaded = false;
+
+      
+      setInterval(()=>{
+        if(loaded == true){
+          $('#loading').hide();
+          $('#container1').removeAttr('hidden');
+          $('#container2').removeAttr('hidden');
+          loaded = false;
+        }
+       },500);
 
       $(".button").click(function() {
+        $('#loading').show();
         $(this).addClass("activated");
         $(".button").not(this).removeClass('activated');
         trainerType = this.name;
@@ -1025,7 +1045,6 @@
                         $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                         // $(this).find('.content').css('background-color',"yellowgreen");
                         // $(this).find('.content').css('color',"darkgreen");
-                      
                     }
                   }
                 }else if(trainerType == "personal" && index!=0){
@@ -1070,6 +1089,7 @@
               });
               index++;
             });
+            loaded = true;
           }
         });
 
@@ -1201,13 +1221,14 @@
                             $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                             // $(this).find('.content').css('background-color',"yellowgreen");
                             // $(this).find('.content').css('color',"darkgreen");
-                      }
                     };
                   }
                 }
-              });
+              }
+            });
               index++;
             });
+            loaded = true;
           }
         });
 

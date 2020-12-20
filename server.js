@@ -106,6 +106,7 @@ app.get('/zoomDashboard',(req,res)=>{
 });
 
 cron.schedule('0 0 * * sun', function() {
+	// cron.schedule("*/10 * * * * *", function() {
 	console.log('Data Reset');
 
 	Trainer.updateMany({$set:{calendar:null,personalSlots:null}},(err,result)=>{

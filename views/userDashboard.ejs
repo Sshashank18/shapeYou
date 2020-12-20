@@ -78,7 +78,12 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
 
-                  <div class="container trainerTimeTable table-responsive">
+                  <div id="loading">
+                    <img id="loading-image" src="/images/ajax-loader.gif" alt="Loading..." />
+                  </div>
+            
+
+                  <div class="container trainerTimeTable table-responsive" id="container1" hidden>
                     <table class="table table-bordered" id="trainerTT">
                         <thead class="week-names">
                           <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -374,7 +379,7 @@
 
             <!-- Course Details -->
 
-    <div class="container courseContainer">
+    <div class="container courseContainer" id="container2" hidden>
         <div class="group" >
             <h2 id="todayDate"></h2>
             <div id="classes">
@@ -415,6 +420,12 @@
           var userSessions = null;
 
           var weekName = null;
+
+          setTimeout(()=>{
+            $('#loading').hide();
+            $('#container1').removeAttr('hidden');
+            $('#container2').removeAttr('hidden');
+          },2000);
 
 
           $(function () {

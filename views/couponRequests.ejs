@@ -56,9 +56,13 @@
                 <td><%= request.coupon.couponName %></td>
                 <td><%= request.coupon.couponDiscount %></td>
                 <td>
-                    <form action="/admin/approveCoupon/<%= request.id %>/<%= request._id %>?_method=PUT" method="POST">
-                        <button type="submit">Approve</a></td>
+                    <form action="/admin/approveCoupon/<%= request.id %>/<%= request._id %>?_method=PUT" method="POST" style="display: inline;">
+                        <button type="submit">Approve</a>
                     </form>
+                    <form action="/admin/rejectCoupon/<%= request.id %>/<%= request._id %>?_method=PUT" method="POST" style="display: inline;">
+                        <button type="submit">Reject</button>
+                    </form>
+                </td>
               </tr>
             <% }) %>
               

@@ -314,6 +314,19 @@ route.put('/approveCoupon/:id/:requestid', middleware.isAdminLoggedIn, (req, res
     });
 });
 
+route.put('/rejectCoupon/:id/:requestid', middleware.isAdminLoggedIn, (req, res) => {
+    Request.findById(req.params.requestid, (err, request) => {
+        if(err) {
+            console.log(err);
+        } else {
+       
+            request.remove();
+            res.redirect('/admin');
+      
+        }
+    });
+});
+
 route.put('/trainerPack/:id', middleware.isAdminLoggedIn, (req, res) => {
    
             Trainer.findByIdAndUpdate(req.params.id, {pricePlan: req.body.trainerPack}, (err, foundTrainer) => {

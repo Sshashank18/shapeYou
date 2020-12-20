@@ -62,8 +62,8 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
             "EMAIL" : req.user.email,
             "TXN_AMOUNT" : price,
             // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
-            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
-            // "CALLBACK_URL" :`http://127.0.0.1:3500/user/success?trainerId=${req.body.trainerId}&category=${req.body.category}&type=${req.body.type}&username=${req.body.username}&numOfSessions=${req.body.numOfSessions}&booked=${req.body.booked}`,
+            // "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            "CALLBACK_URL" :`https://shapeyou-demo.herokuapp.com/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
         };
         
         checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
@@ -237,7 +237,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
 }
 });
 
-route.post('/newSession', (req, res) => {
+route.post('/newSession',(req, res) => {
     var details = JSON.parse(req.query.body);
     if (req.body.STATUS === "TXN_SUCCESS") {
         User.findById(req.query.id, (err, user) => {
@@ -503,8 +503,8 @@ var meetConfig = {
 route.post('/signature/:username',(req,res)=>{
     var options = {
         method: 'GET',
-        url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
-        // url: 'https://shapeyou-demo.herokuapp.com/trainer/passMeetingDetails/'+req.body.trainerId,
+        // url: 'http://127.0.0.1:3500/trainer/passMeetingDetails/'+req.body.trainerId,
+        url: 'https://shapeyou-demo.herokuapp.com/trainer/passMeetingDetails/'+req.body.trainerId,
         headers: {
             'content-type': 'application/json'
         }

@@ -561,7 +561,8 @@
     $(document).on('click','#verify',(e)=>{
       e.preventDefault();
       $.ajax({
-        url:'http://127.0.0.1:3500/admin/trainerVerify',
+        // url:'http://127.0.0.1:3500/admin/trainerVerify',
+        url:'https://shapeyou-demo.herokuapp.com//admin/trainerVerify',
         method:'PUT',
         data:{
           email:email,

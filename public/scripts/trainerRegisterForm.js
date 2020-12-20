@@ -90,7 +90,8 @@ $('#formSubmit').click(e => {
             data:data2,
             success:(data)=>{
                 alert('Saved Details');
-                window.location="http://127.0.0.1:3500/trainer"
+                // window.location="http://127.0.0.1:3500/trainer"
+                window.location="https://shapeyou-demo.herokuapp.com/trainer"
             }
         });
     }else{

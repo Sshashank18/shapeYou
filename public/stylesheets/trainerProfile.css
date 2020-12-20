@@ -154,6 +154,8 @@ button{
 .table td,.table th,.table thead th{
     vertical-align: inherit;
 }
+
+
 /* .timetable {
     display: grid;
     grid-template-areas: ". week" "time content";

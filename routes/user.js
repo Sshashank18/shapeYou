@@ -215,7 +215,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
         setTimeout(() => {
             if(sortedTrainers){
                 // console.log(sortedTrainers)
-                sortedTrainers.forEach(trainer =>{ 
+                sortedTrainers.forEach(trainer =>{
                     if(trainer.subCategories && trainer.subCategories.length>0){
                         for (var i=0;i<trainer.subCategories.length;i++){
     
@@ -231,7 +231,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
                 });
                     res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent ,type:req.user.type})
             }
-        }, 500);
+        }, 1000);
                
     });
 }

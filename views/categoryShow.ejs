@@ -21,10 +21,6 @@
   .navbar-nav > li > .dropdown-menu {
     background-color: rgb(7, 7, 8); 
   }
-
-  .active {
-    border-bottom: 3px solid black;
-  }
 </style>
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
    
@@ -169,10 +165,10 @@
                       <button class="btn" value="Basic CrossFit"></a><h5 class="active" style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Standard CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                      <button class="btn" value="Standard CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Premium CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                      <button class="btn" value="Premium CrossFit"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <!-- <div id="carousel1" class="carouselBox">
@@ -192,7 +188,7 @@
                           if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
                               <% z = 0 %>
                               <div class="Basic CrossFit">
-                              <% if(z<3){ %>
+                              <% if(z < 3 ) { %>
                                 <div class="card <%= trainer.username %> CrossFit">
                                   <img class="card-img-top" src="https://images.unsplash.com/photo-1583454103137-57bd578f0afa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Card image cap">
                                   <div class="card-body text-center">
@@ -305,13 +301,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic Functional&StrengthTraining"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                    <button class="btn" value="Basic Functional&StrengthTraining"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                    <button class="btn" value="Standard Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button class="btn" value="Premium Functional&StrengthTraining"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel2" class="carouselBox">
@@ -448,13 +444,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic Zumba"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                    <button class="btn" value="Basic Zumba"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                    <button class="btn" value="Standard Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button class="btn" value="Premium Zumba"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel3" class="carouselBox">
@@ -587,13 +583,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic Dance"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                    <button class="btn" value="Basic Dance"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                    <button class="btn" value="Standard Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button class="btn" value="Premium Dance"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel4" class="carouselBox">
@@ -725,13 +721,13 @@
                 </div>
                 <div class="row" style="margin-top: 100px;">
                   <div class="col-lg-4 text-center">
-                    <button value="Basic MMA&Boxing"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                    <button class="btn" value="Basic MMA&Boxing"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Standard MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                    <button class="btn" value="Standard MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                   </div>
                   <div class="col-lg-4 text-center">
-                    <button value="Premium MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                    <button class="btn" value="Premium MMA&Boxing"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                   </div>
                 </div>
                 <!-- <div id="carousel5" class="carouselBox">
@@ -888,13 +884,13 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4 text-center">
-                      <button value="Basic Yoga"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                      <button class="btn" value="Basic Yoga"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Standard Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                      <button class="btn" value="Standard Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Premium Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                      <button class="btn" value="Premium Yoga"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <!-- <div id="carousel5" class="carouselBox">
@@ -1026,13 +1022,13 @@
                     </div>
                     <div class="row" style="margin-top: 100px;">
                       <div class="col-lg-4 text-center">
-                        <button value="Basic Meditation"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                        <button class="btn" value="Basic Meditation"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Standard Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                        <button class="btn" value="Standard Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Premium Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                        <button class="btn" value="Premium Meditation"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                       </div>
                     </div>
                     <br><br>
@@ -1153,13 +1149,13 @@
                   </div>
                   <div class="row" style="margin-top: 100px;">
                     <div class="col-lg-4 text-center">
-                      <button value="Basic Nutrition"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                      <button class="btn" value="Basic Nutrition"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Standard Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                      <button class="btn" value="Standard Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                     </div>
                     <div class="col-lg-4 text-center">
-                      <button value="Premium Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                      <button class="btn" value="Premium Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
                   <br>
@@ -1280,13 +1276,13 @@
                     </div>
                     <div class="row" style="margin-top: 100px;">
                       <div class="col-lg-4 text-center">
-                        <button value="Basic Therapy&counselling"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
+                        <button class="btn" value="Basic Therapy&counselling"></a><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">basic</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Standard Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
+                        <button class="btn" value="Standard Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">standard</h5></button>
                       </div>
                       <div class="col-lg-4 text-center">
-                        <button value="Premium Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
+                        <button class="btn" value="Premium Therapy&counselling"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                       </div>
                     </div>
                     <br><br>

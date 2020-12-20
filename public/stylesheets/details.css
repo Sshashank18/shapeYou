@@ -237,6 +237,10 @@
   .bg-dark {
     background: #1a1a1a;
   }
+
+  .bg-green {
+    background: #79B258;
+  }
   
   .bg-gra-01 {
     background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));

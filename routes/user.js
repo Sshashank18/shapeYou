@@ -156,7 +156,7 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
                     if(foundTrainers.length == 0) {
                         noMatch = "No such trainers exist";
                     } 
-                    res.render('categoryShow1', {category: foundCategory[0], trainer: foundTrainers[0], noMatch: noMatch, parent: parent});
+                    res.render('categoryShow1', {category: foundCategory[0], trainer: foundTrainers, noMatch: noMatch, parent: parent});
                 }
             });
         });

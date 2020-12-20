@@ -5,7 +5,7 @@ var middlewareObj = {};
 
 middlewareObj.isUserLoggedIn = function(req, res, next){
 	if(req.isAuthenticated()){
-        if(req.user.type == 'User') {
+        if(req.user.type == 'User' || req.user.type == 'Admin') {
 			console.log("This is a user");
 		    next();
         } else {

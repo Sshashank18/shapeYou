@@ -125,7 +125,8 @@ var trainerSchema = new mongoose.Schema({
             ref: "Review"
         }
     ],
-    pricePlan: String
+    pricePlan: String,
+    avgRating : Number,
     // {
     //         // type: mongoose.Schema.Types.ObjectId,
     //         type:String,

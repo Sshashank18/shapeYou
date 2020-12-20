@@ -520,8 +520,33 @@ route.get('/:id/review', middleware.isUserLoggedIn,(req, res) => {
     });
 });
 
+let average = (array) => {
+    var n1 = 0;
+    var n2 = 0;
+    var n3 = 0;
+    var n4 = 0;
+    var n5 = 0;
+
+    for(var i = 0;i<array.length;i++){
+        if(array[i]==1){
+            n1++;
+        }else if(array[i]==2){
+            n2++;
+        }else if(array[i]==3){
+            n3++;
+        }else if(array[i]==4){
+            n4++;
+        }else{
+            n5++;
+        }
+    }
+
+    avg = (1*n1 + 2*n2 + 3*n3 + 4*n4 + 5*n5)/5;
+    return avg;
+};
+
 route.post('/:id/review', (req, res) => {
-    Trainer.findById(req.params.id, (err, foundTrainer) => {
+    Trainer.findById(req.params.id).populate('reviews').exec((err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
@@ -538,13 +563,28 @@ route.post('/:id/review', (req, res) => {
                     console.log(err);
                 } else {
                     foundTrainer.reviews.push(review);
+                    avg = []
+                    foundTrainer.reviews.forEach(review => {
+                        avg.push(review.rating);
+                    })
+
+                    avg = average(avg);
+                    console.log(avg);
+                    foundTrainer.avgRating = avg;
+
+                    foundTrainer.markModified('avgRating');
                     foundTrainer.save();
                     // res.send("Review submitted") 
                     res.redirect('/user/userDashboard/'+req.user._id);
                 }
             });
+
+
         }
     });
+
+    // Trainer.find({}).populate('reviews').exec( (err, foundTrainer) => {
+
 });
 
 

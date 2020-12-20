@@ -37,34 +37,16 @@ route.get('/users', middleware.isAdminLoggedIn, (req, res) => {
     });
 });
 
-let average = (array) => {
-    if(array.length>1){
-        return array.reduce((a, b) => a + b) / 5.0;
-    }else if(array.length == 1){
-        return array[0];
-    }else{
-        return 0;
-    }
-};
 
 
 trainerSort = trainers =>{
 
     return trainers.sort((a,b)=>{
-        avg1 = []
-        avg2 = []
-        a.reviews.forEach(review =>{
-            avg1.push(review.rating);
-        })
-        b.reviews.forEach(review =>{
-            avg2.push(review.rating);
-        })
-
-        avg1 = average(avg1);
-        avg2 = average(avg2);
+        avg1 = a.avgRating;
+        avg2 = b.avgRating;
     
-        if(avg1 > avg2) return -1;
-        else return 1;
+        if(avg1 > avg2) return 1;
+        else return -1;
     
     });
 
@@ -92,6 +74,7 @@ route.get('/category/:parent', middleware.isAdminLoggedIn, (req, res) => {
         var titles = [];
         var trainers = [];
         var sortedTrainers = null;
+        var foundTrainers = null;
         for(var i=0;i<foundCategory.length;i++){
             titles.push(foundCategory[i].title);
         }
@@ -101,31 +84,46 @@ route.get('/category/:parent', middleware.isAdminLoggedIn, (req, res) => {
                 console.log(err)
             } else {
                 sortedTrainers = trainerSort(foundTrainer);
-            }
-        });
-       
-        setTimeout(() => {
-            if(sortedTrainers){
-                // console.log(sortedTrainers)
-                sortedTrainers.forEach(trainer =>{ 
-                    if(trainer.subCategories && trainer.subCategories.length>0){
-                        for (var i=0;i<trainer.subCategories.length;i++){
-    
-                            if(titles.indexOf(trainer.subCategories[i]) in titles===true){
-                                if (trainers.indexOf(trainer) in trainers==true){
-                                    continue;
-                                }else{
-                                    trainers.push(trainer);
+                foundTrainers = foundTrainer;
+
+                setTimeout(() => {
+                    if(sortedTrainers){
+                        // console.log(sortedTrainers)
+                        sortedTrainers.forEach(trainer =>{ 
+                            if(trainer.subCategories && trainer.subCategories.length>0){
+                                for (var i=0;i<trainer.subCategories.length;i++){
+            
+                                    if(titles.indexOf(trainer.subCategories[i]) in titles===true){
+                                        if (trainers.indexOf(trainer) in trainers==true){
+                                            continue;
+                                        }else{
+                                            trainers.push(trainer);
+                                        }
+                                    }
                                 }
                             }
-                        }
+                        });
+                            res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent ,type:req.user.type})
+                    }else{
+                        foundTrainers.forEach(trainer =>{ 
+                            if(trainer.subCategories && trainer.subCategories.length>0){
+                                for (var i=0;i<trainer.subCategories.length;i++){
+            
+                                    if(titles.indexOf(trainer.subCategories[i]) in titles===true){
+                                        if (trainers.indexOf(trainer) in trainers==true || req.user.trainers.find(el => el.id == trainer._id)){
+                                            continue;
+                                        }else{
+                                            trainers.push(trainer);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                            res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent ,type:req.user.type})
                     }
-                });
-                    res.render('categoryShow', {category: foundCategory[0], trainers: trainers, parent: parent ,type:req.user.type})
+                }, 500);
             }
-        }, 500);
-                
-       
+        });
             });
         }
     });

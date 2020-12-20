@@ -569,7 +569,7 @@ route.post('/:id/review', (req, res) => {
                     })
 
                     avg = average(avg);
-                    console.log(avg);
+                    avg = Math.round(avg);
                     foundTrainer.avgRating = avg;
 
                     foundTrainer.markModified('avgRating');

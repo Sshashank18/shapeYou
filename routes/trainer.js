@@ -418,15 +418,6 @@ route.post('/createMeeting',(req,res)=>{
 route.get('/getMeeting/:id',(req1,res1)=>{
 
     console.log(req1.params.id);
-    Trainer.findByIdAndUpdate(req1.user._id,
-        {
-            isCreated:true
-        },
-        (err,result)=>{
-            if(err){
-                return res1.status(422).json({error: err});
-            }
-        });
 
         var options = {
             "method": "GET",
@@ -454,7 +445,8 @@ route.get('/getMeeting/:id',(req1,res1)=>{
 
               Trainer.findByIdAndUpdate(req1.user._id,
                   {
-                      meetingDetails:meetConfig
+                      meetingDetails:meetConfig,
+                      isCreated:true
                   },
               (err,result)=>{
                   if(err){
@@ -501,9 +493,9 @@ route.post('/signature',(req,res)=>{
       
       // pass in your Zoom JWT API Key, Zoom JWT API Secret, Zoom Meeting Number, and 0 to join meeting or webinar or 1 to start meeting
       signature = generateSignature(config.APIKey, config.APISecret,meetConfig.meetingNumber,1);
-      
       meetConfig.signature = signature;
 
+      console.log(meetConfig);
       res.json({meetConfig});
 
 });

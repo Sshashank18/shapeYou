@@ -388,20 +388,21 @@
     <!-- Course Details -->
 
     <div class="trainingType" id="container2" hidden>
-        <button name = "Personal" class="button " style="margin:20px">Personal</button>
+        <button name = "Personal" class="button" style="margin:20px">Personal</button>
         <button name = "Group" class="button activated" style="margin:20px">Group</button>
     </div>
 
-    <div class="container courseContainer" id="container3" hidden>
-        <div class="group" >
-            <h2 class="todayDate"></h2>
-            <div id="classesG">
+    <div class="container" id="container3" hidden>
+        <div class="group table-responsive" >
+            <h2 class="text-center todayDate"></h2>
+            <table class="table text-center" id="classesG">
                 
-            </div>
+                
+            </table>
         </div>
-        <div class="personal" hidden>
-            <h2 class="todayDate"></h2>
-            <div id="classesP">
+        <div class="personal table-responsive" hidden>
+            <h2 class="text-center todayDate"></h2>
+            <table id="classesP"></table>
         </div>
     </div>
 
@@ -1292,24 +1293,49 @@
 
                     var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
                     var todayDay = today.getDay();
-                    var text = " ";
-                    var text2 = " ";
+                    var text = `<thead>
+                        <tr>
+                        <th scope='col'>Time slot</th>
+                        <th scope='col'>Category</th>
+                        <th scope='col'>Number of people</th>
+                        <th scope='col'>Handle</th>
+                        </tr>
+                        </thead>
+                        <tbody>`;
+                    var text2 = `
+                    <thead>
+                        <tr>
+                        <th scope='col'>Time slot</th>
+                        <th scope='col'>User</th>
+                        <th scope='col'>Handle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    `;
 
                     if(data && (todayTime in data)){
                         for(var i =0;i<data[todayTime].length;i++){
                             compare.push(data[todayTime][i]);
-                            text += `<div class="slotRow">
-                                    <div class="slots">
-                                    ${data[todayTime][i]}
-                                    </div>
-                                    <div class="createLink">
+                            var length = data[todayTime][i].length;
+                            var timeSlot = data[todayTime][i].substr(0, 11);
+                            var leftString = data[todayTime][i].substr(12, length);
+                            var category = leftString.substr(0, leftString.indexOf(' '));
+                            var numOfPeople = leftString.substr(leftString.indexOf(' ')+1);
+                            text += `
+                            <tr class="slotRow">
+                                    <td>
+                                    ${timeSlot}
+                                    </td>
+                                    <td>${category}</td>
+                                    <td>${numOfPeople}</td>
+                                    <td>
                                         <form method="post" action='/trainer/createMeeting'>
-                                            <button style="background-color:red;cursor:default" disabled id="create${i}">Create</button>
+                                            <button class="mx-auto" style="background-color:red;cursor:default" disabled id="create${i}">Create</button>
                                         </form>
-                                    </div>
-                                    </div>`
+                                    </td>
+                                    </tr>`
                         }
-
+                        text += "</tbody>";
 
                         document.getElementById('classesG').innerHTML = text;
                     }
@@ -1327,17 +1353,23 @@
                     
                     if(compareP){
                         for(var j=0;j<trainerPersonals[weekday[todayDay]].length;j++){
-                            text2 += `<div class="slotRow">
-                                    <div class="slots">
-                                    ${trainerPersonals[weekday[todayDay]][j]}
-                                    </div>
-                                    <div class="createLink">
+                            var length = data[todayTime][i].length;
+                            var timeSlot = data[todayTime][i].substr(0, 11);
+                            var user = data[todayTime][i].substr(12, length);
+                            
+                            text2 += `<tr class="slotRow">
+                                    <td>
+                                    ${timeSlot}
+                                    </td>
+                                    <td>${user}</td>
+                                    <td class="createLink">
                                         <form method="post" action='/trainer/createMeeting'>
                                             <button style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
                                         </form>
-                                    </div>
-                                    </div>`
+                                    </td>
+                                    </tr>`
                         }
+                        text2 += "</tbody>";
                     }
 
                     document.getElementById('classesP').innerHTML = text2;

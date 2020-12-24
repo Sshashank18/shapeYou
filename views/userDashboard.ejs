@@ -382,12 +382,12 @@
 
             <!-- Course Details -->
 
-    <div class="container courseContainer" id="container2" hidden>
+    <div class="container" id="container2" hidden>
         <div class="group" >
             <h2 id="todayDate"></h2>
-            <div id="classes">
+            <table id="classes">
                 
-            </div>
+            </table>
         </div>
     </div>
 
@@ -594,23 +594,31 @@
                         var today = new Date();
 
                         var todayTime = today.getDate()+ "-"+today.toLocaleString('default', { month: 'short' })+ "-" + today.getFullYear();
-                        var text = " ";
+                        var text = `
+                        <thead>
+                        <tr>
+                        <th scope='col'>Time slot</th>
+                        <th scope='col'>Handle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        `;
 
                           if(slots){
                             for(var i=0;i<slots.length;i++){
                               if(todayTime in slots[i]){
                                 for(var j=0;j<slots[i][todayTime].length;j++){
                                   compare.push(slots[i][todayTime][j]);
-                                  text += `<div class="slotRow">
-                                              <div class="slots">
+                                  text += `<tr class="slotRow">
+                                              <td class="slots">
                                               ${slots[i][todayTime][j]}
-                                              </div>
-                                              <div class="joinLink">
+                                              </td>
+                                              <td class="joinLink">
                                                   <form method="get" action='/user/zoomDashboard/${id}'>
                                                       <button style="background-color:red;cursor:default" disabled id="join${j}">Join</button>
                                                   </form>
-                                              </div>
-                                              </div>`
+                                              </td>
+                                              </tr>`
                                 }
                               }
                             }

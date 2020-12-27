@@ -105,7 +105,7 @@ app.get('/zoomDashboard',(req,res)=>{
 	res.render('zoomDashboard');
 });
 
-cron.schedule('0 0 * * sun', function() {
+cron.schedule('12 1 * * SUN', function() {
 	// cron.schedule("*/10 * * * * *", function() {
 	console.log('Data Reset');
 

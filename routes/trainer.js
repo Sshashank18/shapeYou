@@ -215,18 +215,21 @@ route.put('/personalSlots', (req, res) => {
     const arr4 = [];
     const arr5 = [];
     const arr6 = [];
+    const arr7 = [];
     if(req.body.Monday) arr1.push(req.body.Monday);
     if(req.body.Tuesday) arr2.push(req.body.Tuesday);
     if(req.body.Wednesday) arr3.push(req.body.Wednesday);
     if(req.body.Thursday) arr4.push(req.body.Thursday);
     if(req.body.Friday) arr5.push(req.body.Friday);
     if(req.body.Saturday) arr6.push(req.body.Saturday);
+    if(req.body.Sunday) arr7.push(req.body.Sunday);
     var arr1f = Array.prototype.concat.apply([], arr1);
     var arr2f = Array.prototype.concat.apply([], arr2);
     var arr3f = Array.prototype.concat.apply([], arr3);
     var arr4f = Array.prototype.concat.apply([], arr4);
     var arr5f = Array.prototype.concat.apply([], arr5);
     var arr6f = Array.prototype.concat.apply([], arr6);
+    var arr7f = Array.prototype.concat.apply([], arr7);
     const obj = 
     {
         Monday: arr1f,
@@ -234,7 +237,8 @@ route.put('/personalSlots', (req, res) => {
         Wednesday: arr3f,
         Thursday: arr4f,
         Friday: arr5f,
-        Saturday: arr6f
+        Saturday: arr6f,
+        Sunday: arr7f
     }
     Trainer.findByIdAndUpdate(req.user._id, {personalSlots: obj}, (err, trainer) => {
         if(err) {

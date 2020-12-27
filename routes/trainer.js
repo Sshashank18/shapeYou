@@ -5,6 +5,7 @@ const Category = require('../models/category');
 const Pricing = require('../models/pricing');
 const Request = require('../models/requestCoupon');
 const Review = require('../models/reviews');
+const Report = require('../models/report');
 const crypto = require('crypto');
 
 const jwt = require('jsonwebtoken');
@@ -577,6 +578,16 @@ route.post('/:id/review', (req, res) => {
 
     // Trainer.find({}).populate('reviews').exec( (err, foundTrainer) => {
 
+});
+
+route.post('/:id/report', (req, res) => {
+    Trainer.findById(req.params.id, (err, foundTrainer) => {
+        if(err) {
+            console.log(err);
+        } else {
+            Report.create()
+        }
+    });
 });
 
 

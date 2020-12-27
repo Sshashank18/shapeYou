@@ -21,6 +21,9 @@
 <style>
   .navbar-nav > li > .dropdown-menu { background-color: #79B258 !important; }
   .dropdown-item:focus, .dropdown-item:hover {color: black !important;}
+  #form1 {
+    display:none;
+  }
 </style>
     <link rel="stylesheet" href="/stylesheets/categoryShow.css">
    
@@ -130,11 +133,34 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <button type="button" id="reportButton" class="btn btn-danger">Report Session</button>
+      <form id="form1" action="/trainer/<%= trainer._id %>/report" method="POST">
+        <div class="form-group">
+          <label for="trainerName">Name of the trainer: </label>
+          <input class="form-control" type="text" placeholder="Trainer name" id="trainerName" />
+        </div>
+        <div class="form-group">
+          <label for="category">Category of training: </label>
+          <input class="form-control" type="text" placeholder="Crossfit, MMA etc..." id="category" />
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about the issue: </label>
+          <textarea class="form-control"></textarea>
+        </div>
+        <button class="btn" type="submit">Submit</button>
+      </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+        $("#reportButton").click(function() {
+          $("#form1").toggle();
+        });
+      });
+    </script>
 </body>
 </html>
 

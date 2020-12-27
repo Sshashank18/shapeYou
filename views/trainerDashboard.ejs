@@ -396,13 +396,21 @@
         <div class="group table-responsive" >
             <h2 class="text-center todayDate"></h2>
             <table class="table text-center" id="classesG">
-                
+                <thead>
+                    <tr>
+                    <th scope='col'>Time slot</th>
+                    <th scope='col'>Category</th>
+                    <th scope='col'>Number of people</th>
+                    <th scope='col'>Handle</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                 
             </table>
         </div>
         <div class="personal table-responsive" hidden>
             <h2 class="text-center todayDate"></h2>
-            <table id="classesP"></table>
+            <table class="table text-center" id="classesP"></table>
         </div>
     </div>
 
@@ -1293,15 +1301,7 @@
 
                     var todayTime = today.getDate()+ " "+today.toLocaleString('default', { month: 'short' })+ " " + today.getFullYear();
                     var todayDay = today.getDay();
-                    var text = `<thead>
-                        <tr>
-                        <th scope='col'>Time slot</th>
-                        <th scope='col'>Category</th>
-                        <th scope='col'>Number of people</th>
-                        <th scope='col'>Handle</th>
-                        </tr>
-                        </thead>
-                        <tbody>`;
+                    var text = ``;
                     var text2 = `
                     <thead>
                         <tr>
@@ -1337,7 +1337,7 @@
                         }
                         text += "</tbody>";
 
-                        document.getElementById('classesG').innerHTML = text;
+                        document.getElementById('classesG').innerHTML += text;
                     }
 
                     var weekday=new Array(7);
@@ -1372,7 +1372,7 @@
                         text2 += "</tbody>";
                     }
 
-                    document.getElementById('classesP').innerHTML = text2;
+                    document.getElementById('classesP').innerHTML += text2;
 
                 }
             });

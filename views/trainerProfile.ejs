@@ -118,8 +118,8 @@
 <section style="height: 380px; background: #000000; background: linear-gradient(45deg, rgba(133, 175, 99, 0.9) 0%, rgba(0, 105, 148, 0.9) 100%)">
   <div class="row">
     <div class="col-lg-6">
-     <h2 style="font-size: 60px;; text-align: center; text-transform: uppercase; color: white; margin-top: 20%;"> anish </h2>
-      <p style="font-size: 40px; text-align: center; color: white"> BOXING | BASIC </p>
+     <h2 style="font-size: 60px;; text-align: center; text-transform: uppercase; color: white; margin-top: 20%;"> <%= trainer.username %> </h2>
+      <p style="font-size: 40px; text-align: center; text-transform: uppercase; color: white"> <%= category %> | <%= trainer.pricePlan %> </p>
       <%if(trainer.coupon != null){%>
       <div class="coupon">
           <div class="ticket__content">
@@ -137,7 +137,7 @@
 
       <div class="container">
         <div class="text-left">
-          <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; font-weight: 800; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">about anish </h1>
+          <h1 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 55px; font-weight: 800; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">about <%= trainer.username %> </h1>
           <p style="margin-top: 31px; font-size: 18px;line-height: 27px;font-weight: 300;">
             Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.
           </p>
@@ -153,8 +153,8 @@
 
       <div class="trainingType" id="container1" hidden>
         <!-- <h3><%= trainer.pricePlan %></h3> -->
-        <button name = "personal" class="button activated" style="margin:20px; background: #79B258">Personal Training</button>
-        <button name = "group" class="button" style="margin:20px; background: #79B258">Group Training - <%=category %></button>
+        <button name = "personal" class="button activated">Personal Training</button>
+        <button name = "group" class="button ml-5">Group Training - <%=category %></button>
     </div>
 
 

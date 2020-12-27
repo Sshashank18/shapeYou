@@ -384,9 +384,15 @@
 
     <div class="container" id="container2" hidden>
         <div class="group" >
-            <h2 id="todayDate"></h2>
-            <table id="classes">
-                
+            <h2 class="text-center" id="todayDate"></h2>
+            <table class="table text-center" id="classes">
+              <thead>
+                <tr>
+                <th scope='col'>Time slot</th>
+                <th scope='col'>Handle</th>
+                </tr>
+                </thead>
+                <tbody>
             </table>
         </div>
     </div>
@@ -594,15 +600,7 @@
                         var today = new Date();
 
                         var todayTime = today.getDate()+ "-"+today.toLocaleString('default', { month: 'short' })+ "-" + today.getFullYear();
-                        var text = `
-                        <thead>
-                        <tr>
-                        <th scope='col'>Time slot</th>
-                        <th scope='col'>Handle</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        `;
+                        var text = " ";
 
                           if(slots){
                             for(var i=0;i<slots.length;i++){
@@ -622,8 +620,8 @@
                                 }
                               }
                             }
-
-                            document.getElementById('classes').innerHTML = text;
+                            text += "</tbody>"
+                            document.getElementById('classes').innerHTML += text;
                         }
                     }
                   });

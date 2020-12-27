@@ -243,7 +243,7 @@
                           }
       
                          }
-                         if(trainer.subCategories.includes('Therapy & Counselling')){
+                         if(trainer.subCategories.includes('Therapy & counselling')){
       
                           if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
                             tb++;
@@ -1683,7 +1683,7 @@
                             }
                               })
                               if(tb==0 || ts==0 || tp==0){ %>
-                                <div class="noAvailable Therapy-Counselling"> <h3>No Trainer Available in Basic Category</h3></div>
+                                <div class="noAvailable Therapy-counselling"> <h3>No Trainer Available in Basic Category</h3></div>
                                <% } %>
                     </div>
                   <% if(z && z>=3){ %>
@@ -1836,8 +1836,6 @@
                 tp = <%= tp %>;
               }
 
-             
-              
 
               if((mb!=0) ){
                 $('div.noAvailable.MMA-Boxing').attr('hidden','');
@@ -1904,7 +1902,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && cs==0){
+                  if(pricePlan == 'Standard' && cs==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1918,7 +1916,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && fs==0){
+                  if(pricePlan == 'Standard' && fs==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1932,7 +1930,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && zs==0){
+                  if(pricePlan == 'Standard' && zs==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1946,7 +1944,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && ds==0){
+                  if(pricePlan == 'Standard' && ds==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1960,7 +1958,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && ms==0 ){
+                  if(pricePlan == 'Standard' && ms==0 ){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1974,7 +1972,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && ys==0){
+                  if(pricePlan == 'Standard' && ys==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -1987,7 +1985,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && mes==0){
+                  if(pricePlan == 'Standard' && mes==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -2000,7 +1998,7 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && ns==0){
+                  if(pricePlan == 'Standard' && ns==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
@@ -2008,14 +2006,14 @@
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
                   }
-                }else if(subCategory == 'Therapy-Counselling'){
+                }else if(subCategory == 'Therapy-counselling'){
                   if(pricePlan == 'Basic' && tb==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
                     $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
                   }
-                  else if(pricePlan == 'Standard' && ts==0){
+                  if(pricePlan == 'Standard' && ts==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');
-                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standar Category.<h3>";
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
                   }
                   if(pricePlan == 'Premium' && tp==0){
                     $('div.noAvailable.'+subCategory).removeAttr('hidden');

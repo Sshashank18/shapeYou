@@ -63,7 +63,8 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
             "TXN_AMOUNT" : price,
             // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
             // "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
-            "CALLBACK_URL" :`https://shapeyou-demo.herokuapp.com/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            // "CALLBACK_URL" :`https://shapeyou-demo.herokuapp.com/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
         };
         
         checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
@@ -361,13 +362,14 @@ route.post('/newSession',(req, res) => {
 
                                 if(details.type == "group"){
                                     var trainerSlots = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')];
+                                    console.log(trainerSlots);
                                     for(var i=0;i<trainerSlots.length;i++){
-                                        var timeStr=trainerSlots[i].slice(0,11);
-                                        timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
-
-                                        if(details.userCount[trainer._id][Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')] == timeStr){
+                                        var ne = trainerSlots[i].replace(/\s/g,'-').split('-');
+                                        var timeStr = ne[0]+"-"+ne[3];
+                                        var timeStr2 = ne[0]+" - "+ne[3];
+                                        if(details.userCount[trainer._id][Object.keys(details.userCount[trainer._id])[0]] == timeStr){
                                             var ref = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i];
-                                            var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                                            var output = timeStr2 + " " + ne[4] + " "+ (parseInt(ne[5])+1);
                                             trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')][i] = output;
                                         }
                                     }
@@ -375,13 +377,13 @@ route.post('/newSession',(req, res) => {
                                 }else{
 
                                     var trainerKey = Object.keys(details.userCount[trainer._id])[0].split('-').join(' ');
-                                    console.log(trainerKey);
                                     for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
                                         console.log(trainer.personalSlots[trainerKey][i]);
-                                        var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                                        var timeStr=trainer.personalSlots[trainerKey][i].split(' ')[0];    
                                         if(timeStr == details.userCount[trainer._id][trainerKey]){
                                             var ref = trainer.personalSlots[trainerKey][i];
-                                            var output = ref.substring(0,ref.length-1) + details.category + " "+(parseInt(ref.slice('-1'))+1);
+                                            var ref = trainer.personalSlots[trainerKey][i].split(' ');
+                                            var output = ref[0] + " " + details.category + " "+(parseInt(ref[1])+1);
                                             trainer.personalSlots[trainerKey][i] = output;
                                         }
                                     }
@@ -432,12 +434,13 @@ route.put('/updateuser/', (req, res) => {
             if(req.body.trainerType == "group"){
                 var trainerSlots = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]];
                 for(var i=0;i<trainerSlots.length;i++){
-                    var timeStr=trainerSlots[i].slice(0,11);
-                    timeStr = timeStr.split(' ')[0]+'-'+timeStr.split(' ')[2];
+                    var ne = trainerSlots[i].replace(/\s/g,'-').split('-');
+                    var timeStr = ne[0]+"-"+ne[3];
+                    var timeStr2 = ne[0]+" - "+ne[3];
                     
                     if(req.body.userCount[trainerID][Object.keys(req.body.userCount[trainerID])[0]] == timeStr){
                         var ref = trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i];
-                        var output = ref.substring(0,ref.length-1) + (parseInt(ref.slice('-1'))+1);
+                        var output = timeStr2 + " " + ne[4] + " "+ (parseInt(ne[5])+1);
                         trainer.calendar[Object.keys(req.body.userCount[trainerID])[0]][i] = output;
                     }
                 }
@@ -445,10 +448,11 @@ route.put('/updateuser/', (req, res) => {
             }else{
                 var trainerKey = Object.keys(req.body.userCount[trainerID])[0];
                 for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
-                    var timeStr=trainer.personalSlots[trainerKey][i].slice(0,9);    
+                    var timeStr=trainer.personalSlots[trainerKey][i].split(' ')[0];    
                     if(timeStr == req.body.userCount[trainerID][trainerKey]){
-                        var ref = trainer.personalSlots[trainerKey][i];
-                        var output = ref.substring(0,ref.length-1) + req.body.trainerCat + " "+(parseInt(ref.slice('-1'))+1);
+                        var ref = trainer.personalSlots[trainerKey][i].split(' ');
+                        var output = ref[0] + " " + req.body.trainerCat + " "+(parseInt(ref[1])+1);
+                        console.log(output);
                         trainer.personalSlots[trainerKey][i] = output;
                     }
                 }

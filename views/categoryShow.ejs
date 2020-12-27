@@ -153,6 +153,110 @@
                 
                 <% } %>
 
+                <% var cb=0,cs=0,cp=0,db=0,ds=0,dp=0,mb=0,ms=0,mp=0,zb=0,zs=0,zp=0,fb=0,fs=0,fp=0,yb=0,ys=0,yp=0,meb=0,mes=0,mep=0,nb=0,ns=0,np=0,tb=0,ts=0,tp=0; 
+                        trainers.forEach(function(trainer,i) { 
+                         if( trainer.subCategories.includes('CrossFit')) { 
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            cb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            cs++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            cp++;
+                          }
+
+                         }
+                         if(trainer.subCategories.includes('Dance')){
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            db++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            ds++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            dp++;
+                          }
+
+                         }
+                         if(trainer.subCategories.includes('Zumba')){
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            zb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            zs++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            zp++;
+                          }
+
+                         }
+                         if(trainer.subCategories.includes('Functional & Strength Training')){
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            fb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            fs++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            fp++;
+                          }
+
+                         }
+                         if(trainer.subCategories.includes('MMA & Boxing')){
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            mb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            ms++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            mp++;
+                          }
+                        }
+
+                        if( trainer.subCategories.includes('Yoga')) { 
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            yb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            ys++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            yp++;
+                          }
+
+                         }
+                         if(trainer.subCategories.includes('Meditation')){
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            meb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            mes++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            mep++;
+                          }
+
+                         }
+                         if( trainer.subCategories.includes('Nutrition')) { 
+
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            nb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            ns++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            np++;
+                          }
+      
+                         }
+                         if(trainer.subCategories.includes('Therapy & Counselling')){
+      
+                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){
+                            tb++;
+                          }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ 
+                            ts++;
+                          }else if(trainer.pricePlan && (trainer.pricePlan == "Premium")){
+                            tp++;
+                          }
+      
+                         }
+
+                        });
+                        %>
           
             
           </section>
@@ -194,11 +298,13 @@
                     </div>
                     </div> -->
                     <!-- <div class="items"> -->
+                      
+
                       <br><br>
                       <div class="card-deck">
                       <% trainers.forEach(function(trainer,i) { %>
                         <% if( trainer.subCategories.includes('CrossFit')) { 
-                          if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
+                            if(trainer.pricePlan && (trainer.pricePlan == "Basic")){ %>
                               <% z = 0 %>
                               <div class="Basic CrossFit">
                               <% if(z < 3 ) { %>
@@ -233,7 +339,6 @@
                               <% }
                                 z++  %>
                               </div>
-                              
                           <% }else if (trainer.pricePlan && (trainer.pricePlan == "Standard")){ %>
                               <% z = 0 %>
                               <div class="Standard CrossFit" hidden>
@@ -305,8 +410,11 @@
                               </div>
                               
                           <% }
-                            }
-                            }) %>
+                          }
+                            }) 
+                            if(cb==0 || cs==0 || cp==0){ %>
+                              <div class="noAvailable CrossFit"> <h3>No Trainer Available in Basic Category</h3></div>
+                             <% } %>
               </div>
               <% if(z && z>=3){ %>
                 <div class="btn-holder">
@@ -462,10 +570,12 @@
                             <% }
                               z++  %>
                             </div>
-                            
-                        <% }
-                      }
-                    }) %>
+                            <% }
+                            }
+                              })
+                          if(fb==0 || fs==0 || fp==0){ %>
+                            <div class="noAvailable Functional-StrengthTraining"> <h3>No Trainer Available in Basic Category</h3></div>
+                            <% } %>
                     </div>
                     <% if(z && z>=3){ %>
                       <div class="btn-holder">
@@ -621,10 +731,13 @@
                               z++  %>
                             </div>
                            
-                        <% }
-                      }
-                    }) %>
-                  </div>
+                          <% }
+                          }
+                            })
+                            if(zb==0 || zs ==0 || zp==0){ %>
+                              <div class="noAvailable Zumba"> <h3>No Trainer Available in Basic Category</h3></div>
+                             <% } %>
+                    </div>
                   <% if(z && z>=3){ %>
                     <div class="btn-holder">
                       <button class="btn btn-primary viewMore">View more</button>
@@ -778,10 +891,13 @@
                               z++  %>
                             </div>
                             
-                       <% }
-                      }
-                    }) %>
-                  </div>
+                         <% }
+                          }
+                            })
+                            if(db==0 || ds==0 || dp==0){ %>
+                              <div class="noAvailable Dance"> <h3>No Trainer Available in Basic Category</h3></div>
+                             <% } %>
+                    </div>
                   <% if(z && z>=3){ %>
                     <div class="btn-holder">
                       <button class="btn btn-primary viewMore">View more</button>
@@ -935,10 +1051,13 @@
                               z++  %>
                             </div>
                            
-                        <% }
-                      }
-                    }) %>
-                  </div>
+                          <% }
+                          }
+                            })
+                            if(mb==0 || ms==0 || mp==0){ %>
+                              <div class="noAvailable MMA-Boxing"> <h3>No Trainer Available in Basic Category</h3></div>
+                             <% } %>
+                    </div>
                   <% if(z && z>=3){ %>
                     <div class="btn-holder">
                       <button class="btn btn-primary viewMore">View more</button>
@@ -1004,6 +1123,11 @@
                     </div>
                     </div>
                     <div class="items" id="carousel-items5"> -->
+
+                     
+
+
+
                       <br><br>
                       <div class="card-deck">
                       <% trainers.forEach(function(trainer,i) { %>
@@ -1113,10 +1237,13 @@
                                 z++  %>
                               </div>
                               
-                          <% }
-                        }
-                      }) %>
-                    </div>
+                              <% }
+                              }
+                                })
+                                if(yb==0 || ys==0 || yp==0){ %>
+                                  <div class="noAvailable Yoga"> <h3>No Trainer Available in Basic Category</h3></div>
+                                 <% } %>
+                      </div>
                     <% if(z && z>=3){ %>
                       <div class="btn-holder">
                         <button class="btn btn-primary viewMore">View more</button>
@@ -1255,10 +1382,13 @@
                             <% }
                               z++  %>
                             </div>
-                            <%}
-                      }
-                    }) %>
-                  </div>
+                            <% }
+                            }
+                              })
+                              if(meb==0 || mes==0 || mep==0){ %>
+                                <div class="noAvailable Meditation"> <h3>No Trainer Available in Basic Category</h3></div>
+                               <% } %>
+                    </div>
                   <% if(z && z>=3){ %>
                     <div class="btn-holder">
                       <button class="btn btn-primary viewMore">View more</button>
@@ -1289,6 +1419,11 @@
                       <button class="btn" value="Premium Nutrition"><h5 style="color: black; font-family: 'Montserrat', sans-serif; font-size: 35px; line-height: .9em; letter-spacing: .02em; text-transform: uppercase;">premium</h5></button>
                     </div>
                   </div>
+
+
+
+
+
                   <br>
                   <div class="card-deck"><br>
               <% trainers.forEach(function(trainer,i) { %>
@@ -1398,9 +1533,12 @@
                         z++  %>
                       </div>
                       <% }
-                }
-              }) %>
-            </div>
+                      }
+                        })
+                        if(nb==0 || ns == 0 || np==0){ %>
+                          <div class="noAvailable Nutrition"> <h3>No Trainer Available in Basic Category</h3></div>
+                         <% } %>
+                  </div>
             <% if(z && z>=3){ %>
               <div class="btn-holder">
                 <button class="btn btn-primary viewMore">View more</button>
@@ -1541,10 +1679,13 @@
                             <% }
                               z++  %>
                             </div>
-                            <%}
-                      }
-                    }) %>
-                  </div>
+                            <% }
+                            }
+                              })
+                              if(tb==0 || ts==0 || tp==0){ %>
+                                <div class="noAvailable Therapy-Counselling"> <h3>No Trainer Available in Basic Category</h3></div>
+                               <% } %>
+                    </div>
                   <% if(z && z>=3){ %>
                     <div class="btn-holder">
                       <button class="btn btn-primary viewMore">View more</button>
@@ -1656,7 +1797,77 @@
             </script>
             <script>
 
-              var trainers = <%- JSON.stringify(trainers) %>
+              var trainers = <%- JSON.stringify(trainers) %>;
+
+              var parent = `<%= category.parent %>`;
+
+              var cb,cs,cp,fb,fs,fp,db,ds,dp,mb,ms,mp,zb,zs,zp,yb,ys,yp,meb,mes,mep,nb,ns,np,tb,ts,tp;
+
+              if(parent == "Fitness trainer"){
+                cb = <%= cb %>;
+                cs = <%= cs %>;
+                cp = <%= cp %>;
+                fb = <%= fb %>;
+                fs = <%= fs %>;
+                fp = <%= fp %>;
+                db = <%= db %>;
+                ds = <%= ds %>;
+                dp = <%= dp %>;
+                mb = <%= mb %>;
+                ms = <%= ms %>;
+                mp = <%= mp %>;
+                zb = <%= zb %>;
+                zs = <%= zs %>;
+                zp = <%= zp %>;
+              }
+              else if(parent == "Wellness"){
+                yb = <%= yb %>;
+                ys = <%= ys %>;
+                yp = <%= yp %>;
+                meb = <%= meb %>;
+                mes = <%= mes  %>;
+                mep = <%= mep %>;
+              }else{
+                nb = <%= nb %>;
+                ns = <%= ns %>;
+                np = <%= np %>;
+                tb = <%= tb %>;
+                ts = <%= ts %>;
+                tp = <%= tp %>;
+              }
+
+             
+              
+
+              if((mb!=0) ){
+                $('div.noAvailable.MMA-Boxing').attr('hidden','');
+              }
+              if((cb!=0) ){
+                $('div.noAvailable.CrossFit').attr('hidden','');
+              }
+              if((db!=0) ){
+                $('div.noAvailable.Dance').attr('hidden','');
+              }
+              if((zb!=0) ){
+                $('div.noAvailable.Zumba').attr('hidden','');
+              }
+              if((fb!=0) ){
+                $('div.noAvailable.Fitness-StrengthTraining').attr('hidden','');
+              }
+              if((yb!=0) ){
+                $('div.noAvailable.Yoga').attr('hidden','');
+              }
+              if((meb!=0) ){
+                $('div.noAvailable.Meditation').attr('hidden','');
+              }
+              if((nb!=0) ){
+                $('div.noAvailable.Nutrition').attr('hidden','');
+              }
+              if((tb!=0) ){
+                $('div.noAvailable.Therapy-Counselling').attr('hidden','');
+              }
+
+
               trainers.forEach((trainer)=>{
                 console.log(trainer.username)
                 console.log(trainer.pricePlan)
@@ -1668,7 +1879,6 @@
                 var pricePlan = value.substr(0,value.indexOf(' '));
                 var subCategory = value.substr(value.indexOf(' ')+1);
                 subCategory = subCategory.replace('&','-');
-
                 var className = pricePlan + ' ' + subCategory;
                 var className2 = "";
                 var className3 = "";
@@ -1687,6 +1897,131 @@
                 $('div.' + className.replace(' ', '.')).removeAttr('hidden');
                 $('div.' + className2.replace(' ', '.')).attr('hidden','');
                 $('div.' + className3.replace(' ', '.')).attr('hidden','');
+                $('div.noAvailable.'+subCategory).attr('hidden','');
+                
+                if(subCategory == 'CrossFit'){
+                  if(pricePlan == 'Basic' && cb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && cs==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && cp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
+                else if(subCategory == 'Functional-StrengthTraining'){
+                  if(pricePlan == 'Basic' && fb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && fs==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && fp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
+                else if(subCategory == 'Zumba'){
+                  if(pricePlan == 'Basic' && zb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && zs==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && zp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
+                else if(subCategory == 'Dance'){
+                  if(pricePlan == 'Basic' && db==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && ds==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && dp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
+                else if(subCategory == 'MMA-Boxing'){
+                  if(pricePlan == 'Basic' && mb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && ms==0 ){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && mp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
+                else if(subCategory == 'Yoga'){
+                  if(pricePlan == 'Basic' && yb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && ys==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && yp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }else if(subCategory == 'Meditation'){
+                  if(pricePlan == 'Basic' && meb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && mes==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && mep==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }else if(subCategory == 'Nutrition'){
+                  if(pricePlan == 'Basic' && nb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && ns==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standard Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && np==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }else if(subCategory == 'Therapy-Counselling'){
+                  if(pricePlan == 'Basic' && tb==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Basic Category.<h3>";
+                  }
+                  else if(pricePlan == 'Standard' && ts==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Standar Category.<h3>";
+                  }
+                  if(pricePlan == 'Premium' && tp==0){
+                    $('div.noAvailable.'+subCategory).removeAttr('hidden');
+                    $('div.noAvailable.'+subCategory)[0].innerHTML = "<h3>No Trainer Available in Premium Category.<h3>";
+                  }
+                }
                
               });
             </script>

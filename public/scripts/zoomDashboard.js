@@ -16,7 +16,7 @@ fetch(`http://127.0.0.1:3500/trainer/signature`, {
 
 		console.log(data);
 	const meetingConfig = {
-		leaveUrl:'http://127.0.0.1:3500/trainer',
+		leaveUrl:'http://127.0.0.1:3500/trainer/meetingDetails',
 		// leaveUrl:'https://shapeyou-demo.herokuapp.com/trainer',
 		signature: data.meetConfig.signature,
 		meetingNumber : data.meetConfig.meetingNumber,

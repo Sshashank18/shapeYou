@@ -92,6 +92,12 @@ var trainerSchema = new mongoose.Schema({
         type: Object,
         default:null
     },
+    meetingLogs:[
+        {
+            type:Object,
+            default:null
+        }
+    ],
     calendar:{
         type: Object,
         default:null

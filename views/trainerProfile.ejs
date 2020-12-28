@@ -25,6 +25,10 @@
     <style>
       .navbar-nav > li > .dropdown-menu { background-color: #79B258 !important; }
       .dropdown-item:focus, .dropdown-item:hover {color: black !important;}
+      .modal{
+        overflow-y: auto !important;
+      }
+      
     </style>
 </head>
 <body>
@@ -124,7 +128,7 @@
       <div class="coupon">
           <div class="ticket__content">
             <%=trainer.coupon.couponName %><br>
-            <%=trainer.coupon.discount %>
+            <%=trainer.coupon.couponDiscount %>
           </div>
         </div>
       <%}%>
@@ -159,7 +163,7 @@
 
 
 
-      <div class="container trainerTimeTable table-responsive" id="container2" hidden>
+      <div class="container trainerTimeTable table-responsive" id="container2" style="height: 500px;overflow-y: scroll;margin-bottom: 50px;" hidden>
         <table class="table table-bordered" id="trainerTT">
           <thead class="week-names">
             <tr style="text-align: center;font-family: 'Roboto', sans-serif;">
@@ -1123,8 +1127,8 @@
     <section>
   <!-- Modal for coupon -->
 <div class="modal fade" id="mymodal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-     <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered"  >
+     <div class="modal-content" style="background-image: url('/images/coupon.jpg');">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">Avail Coupon</h4>
            <button type="button" class="close" onclick="javascript:window.location.reload()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1132,18 +1136,33 @@
         <div class="modal-body">
               <fieldset style="display: block;">
                     <input type="text" style="text-transform: uppercase;border: 1px solid black;" />
-                    <button type="button" class="couponApply" class="btn btn-next cn1">Apply</button>
+                    <button type="button" class="couponApply btn cn1 btn-success" id="applyButton">Apply</button>
+                    <small class="text-danger" id="couponInvalid" hidden>Coupon is NOT VALID</small>
+                    <small class="text-success" id="couponValid" hidden>Coupon Applied!!</small>
               </fieldset>
+              <div class="available" style="background-color: white;">
+                <h4>Available Coupon</h4>
+                <%if(trainer.coupon != null){%>
+                  <div class="coupon">
+                      <div class="ticket__content">
+                        <%=trainer.coupon.couponName %><br>
+                        <%=trainer.coupon.couponDiscount %>
+                      </div>
+                    </div>
+                  <%}else{%>
+                    <span>No Coupon Available for this Trainer</span>
+                  <%}%>
+              </div>
         </div>
         <div class="modal-footer">
-           <button type="button" class="btn btn-primary btn-default btn-next cn1">Next</button>
-           <button type="button" class="btn btn-default" onclick="javascript:window.location.reload()" data-dismiss="modal">Close</button>
+           <a class="btn btn-primary btn-default cn1" href="#mymodal2" data-toggle="modal" >Next</a>
+           <button type="button" class="btn btn-default btn-danger" onclick="javascript:window.location.reload()" data-dismiss="modal">Close</button>
         </div>
      </div>
   </div>
 </div>
-  <div class="modal fade bd-example-modal-lg" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
+  <div class="modal fade bd-example-modal-lg modal-open" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
       <div class="personal">
         <h1 style="text-align: center;margin-top: 25px;">Sessions Available</h1>
@@ -1159,7 +1178,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="box" data-aos="zoom-in-right" data-aos-delay="200">
           <h3><%= pricing.trialNumofSessions %> Session</h3>
-          <h4><sup>₹</sup><%= pricing.trialPackPrice%></h4>
+          <h4 class="prices"><sup>₹</sup><%= pricing.trialPackPrice%></h4>
           <form class="newSession" id="formp1" action="/user/paytm" method="POST">
             
             <input type="hidden" name="trainerId" value="<%= trainer._id %>">
@@ -1178,8 +1197,8 @@
       <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
         <div class="box recommended" data-aos="zoom-in" data-aos-delay="100">
           <h3><%= pricing.goldNumofSessions %> Session</h3>
-          <h4><sup>₹</sup><%= pricing.goldPackPrice%></h4>
-          <form class="newSession" id="formp1" action="/user/paytm" method="POST">
+          <h4 class="prices"><sup>₹</sup><%= pricing.goldPackPrice%></h4>
+          <form class="newSession" id="formp2" action="/user/paytm" method="POST">
             
             <input type="hidden" name="trainerId" value="<%= trainer._id %>">
             <input type="hidden" name="category" value="<%= category %>">
@@ -1197,8 +1216,8 @@
       <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
         <div class="box" data-aos="zoom-in-left" data-aos-delay="200">
           <h3><%= pricing.platinumNumofSessions %> Session</h3>
-          <h4><sup>₹</sup><%= pricing.platinumPackPrice%></h4>
-          <form class="newSession" id="formp1" action="/user/paytm" method="POST">
+          <h4 class="prices"><sup>₹</sup><%= pricing.platinumPackPrice%></h4>
+          <form class="newSession" id="formp3" action="/user/paytm" method="POST">
             
             <input type="hidden" name="trainerId" value="<%= trainer._id %>">
             <input type="hidden" name="category" value="<%= category %>">
@@ -1226,8 +1245,8 @@
 
 <!-- Modal for coupon-group -->
 <div class="modal fade" id="mymodal-g1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-     <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content" style="background-image: url('/images/coupon.jpg');">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Avail Coupon</h4>
          <button type="button" class="close" onclick="javascript:window.location.reload()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1235,20 +1254,35 @@
       <div class="modal-body">
             <fieldset style="display: block;">
                   <input type="text" style="text-transform: uppercase;border: 1px solid black;" />
-                  <button type="button" class="couponApply" class="btn btn-next cn1">Apply</button>
+                  <button type="button" class="couponApply btn cn1 btn-success" id="applyButton2">Apply</button>
+                  <small class="text-danger" id="couponInvalid2" hidden>Coupon is NOT VALID</small>
+                  <small class="text-success" id="couponValid2" hidden>Coupon Applied!!</small>
             </fieldset>
+            <div class="available" style="background-color: white;">
+              <h4>Available Coupon</h4>
+              <%if(trainer.coupon != null){%>
+                <div class="coupon">
+                    <div class="ticket__content">
+                      <%=trainer.coupon.couponName %><br>
+                      <%=trainer.coupon.couponDiscount %>
+                    </div>
+                  </div>
+                <%}else{%>
+                  <span>No Coupon Available for this Trainer</span>
+                <%}%>
+            </div>
       </div>
         <div class="modal-footer">
-           <button type="button" class="btn btn-primary btn-default btn-next">Next</button>
-           <button type="button" class="btn btn-default" onclick="javascript:window.location.reload()" data-dismiss="modal">Close</button>
+          <a type="button" class="btn btn-primary btn-default cn1" href="#mymodal-g2" data-toggle="modal">Next</a>
+           <button type="button" class="btn btn-default btn-danger" onclick="javascript:window.location.reload()" data-dismiss="modal">Close</button>
         </div>
      </div>
   </div>
 </div>
 
 
-<div class="modal fade bd-example-modal-lg-group" id="mymodal-g2"tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-lg" >
+<div class="modal fade bd-example-modal-lg-group" id="mymodal-g2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-lg modal-dialog-centered" >
     <div class="modal-content">
       <div class="group">
 
@@ -1265,8 +1299,8 @@
                 <div class="col-lg-4 col-md-6">
                   <div class="box" data-aos="zoom-in-right" data-aos-delay="200">
                     <h3><%= pricing.trialNumofSessions %> Session</h3>
-                    <h4><sup>₹</sup><%= pricing.trialPackPrice%></h4>
-                    <form class="newSession" id="formp1" action="/user/paytm" method="POST">
+                    <h4 class="prices"><sup>₹</sup><%= pricing.trialPackPrice%></h4>
+                    <form class="newSession" id="form1" action="/user/paytm" method="POST">
                       
                       <input type="hidden" name="trainerId" value="<%= trainer._id %>">
                       <input type="hidden" name="category" value="<%= category %>">
@@ -1284,8 +1318,8 @@
                 <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
                   <div class="box recommended" data-aos="zoom-in" data-aos-delay="100">
                     <h3><%= pricing.goldNumofSessions %> Session</h3>
-                    <h4><sup>₹</sup><%= pricing.goldPackPrice%></h4>
-                    <form class="newSession" id="formp1" action="/user/paytm" method="POST">
+                    <h4 class="prices"><sup>₹</sup><%= pricing.goldPackPrice%></h4>
+                    <form class="newSession" id="form2" action="/user/paytm" method="POST">
                       
                       <input type="hidden" name="trainerId" value="<%= trainer._id %>">
                       <input type="hidden" name="category" value="<%= category %>">
@@ -1303,8 +1337,8 @@
                 <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
                   <div class="box" data-aos="zoom-in-left" data-aos-delay="200">
                     <h3><%= pricing.platinumNumofSessions %> Session</h3>
-                    <h4><sup>₹</sup><%= pricing.platinumPackPrice%></h4>
-                    <form class="newSession" id="formp1" action="/user/paytm" method="POST">
+                    <h4 class="prices"><sup>₹</sup><%= pricing.platinumPackPrice%></h4>
+                    <form class="newSession" id="form3" action="/user/paytm" method="POST">
                       
                       <input type="hidden" name="trainerId" value="<%= trainer._id %>">
                       <input type="hidden" name="category" value="<%= category %>">
@@ -1406,7 +1440,7 @@
 
       if(coupon){
         var couponName = coupon.couponName%>;
-        var discount = coupon.discount;
+        var discount = coupon.couponDiscount;
       }
 
       var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
@@ -1681,45 +1715,46 @@
           }
         });
 
-        $("div[id^='mymodal']").each(function(){
+        // $("div[id^='mymodal']").each(function(){
 
-          var currentModal = $(this);
+        //   var currentModal = $(this);
           
-          //click next
-          currentModal.find('.btn-next').click(function(){
-            currentModal.modal('hide');
-            currentModal.closest("div[id^='mymodal']").nextAll("div[id^='mymodal']").first().modal('show');
-          });
+        //   //click next
+        //   currentModal.find('.btn-next').click(function(){
+        //     currentModal.modal('hide');
+        //     currentModal.closest("div[id^='mymodal']").nextAll("div[id^='mymodal']").first().modal('show');
+        //   });
           
-          //click prev
-          currentModal.find('.btn-prev').click(function(){
-            currentModal.modal('hide');
-            currentModal.closest("div[id^='mymodal']").prevAll("div[id^='mymodal']").first().modal('show'); 
-          });
+        //   //click prev
+        //   currentModal.find('.btn-prev').click(function(){
+        //     currentModal.modal('hide');
+        //     currentModal.closest("div[id^='mymodal']").prevAll("div[id^='mymodal']").first().modal('show'); 
+        //   });
 
-        });
+        // });
 
-        $("div[id^='mymodal-g']").each(function(){
+        // $("div[id^='mymodal-g']").each(function(){
   
-          var currentModal = $(this);
+        //   var currentModal = $(this);
           
-          //click next
-          currentModal.find('.btn-next').click(function(){
-            currentModal.modal('hide');
-            currentModal.closest("div[id^='mymodal-g']").nextAll("div[id^='mymodal-g']").first().modal('show'); 
-          });
+        //   //click next
+        //   currentModal.find('.btn-next').click(function(){
+        //     currentModal.modal('hide');
+        //     currentModal.closest("div[id^='mymodal-g']").nextAll("div[id^='mymodal-g']").first().modal('show'); 
+        //   });
           
-          //click prev
-          currentModal.find('.btn-prev').click(function(){
-            currentModal.modal('hide');
-            currentModal.closest("div[id^='mymodal-g']").prevAll("div[id^='mymodal-g']").first().modal('show'); 
-          });
+        //   //click prev
+        //   currentModal.find('.btn-prev').click(function(){
+        //     currentModal.modal('hide');
+        //     currentModal.closest("div[id^='mymodal-g']").prevAll("div[id^='mymodal-g']").first().modal('show'); 
+        //   });
 
-        });
+        // });
 
         $(document).on('click', '.couponApply', function() {
           var currentModal = $(this).parent().parent().parent().parent().parent();
           if($(this).prev().val().toUpperCase() ==couponName){
+
             $('.prices').each((e,value)=>{
               console.log(e);
               var price = value.innerText;
@@ -1737,10 +1772,26 @@
                 $('#formp'+(e+1)).append(content);
               }
             });
-          }
-          currentModal.modal('hide');
-          currentModal.next().modal('show'); 
 
+            $('#applyButton').css('cursor','not-allowed');
+            $('#applyButton').attr('disabled','');
+            $('#applyButton')[0].innerText = 'Applied';
+            $('#couponValid').removeAttr('hidden');
+            $('#couponInvalid').attr('hidden','');
+            $('#applyButton2').css('cursor','not-allowed');
+            $('#applyButton2').attr('disabled','');
+            $('#applyButton2')[0].innerText = 'Applied';
+            $('#couponValid2').removeAttr('hidden');
+            $('#couponInvalid2').attr('hidden','');
+          }else{
+            $('#couponInvalid').removeAttr('hidden');
+            $('#couponValid').attr('hidden','');
+            $('#couponInvalid2').removeAttr('hidden');
+            $('#couponValid2').attr('hidden','');
+          }
+          // currentModal.modal('hide');
+          // currentModal.next().modal('show'); 
+          
         });
         
 

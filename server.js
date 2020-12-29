@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const ejs = require('ejs');
 const cron = require('node-cron');
-
+const flash = require('connect-flash');
 const app = express();
 
 const methodOverride = require("method-override");
@@ -60,7 +60,12 @@ const LocalStrategy  = require("passport-local");
 app.use(require("express-session")({
 	secret: "This is the secret cryptic message",
 	resave: false,
-	saveUninitialized: false
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: true,
+		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		maxAge: 1000 * 60 * 60 * 24 * 7
+	}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -77,8 +82,12 @@ passport.deserializeUser(function(user, done) {
 		done(null,user);
 });
 
+app.use(flash());
+
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
+	res.locals.success = req.flash('success');
+	res.locals.error = req.flash('error');
 	next();
 });
 

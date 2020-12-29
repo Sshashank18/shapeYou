@@ -38,7 +38,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                        <div class="hide1">U can change calendar every sunday and it can be changed once for that week.</div>
+                        <div class="hide1">You can change calendar every sunday and it can be changed once for that week.</div>
                       <button class="btn btn-primary persUpload" id="personalSlotsButton" data-toggle="modal" data-target="#setPersonalTimeTable">
                          Upload Personal time slots
                       </button>
@@ -87,6 +87,23 @@
     
 
     <!-- Trainer TimeTable -->
+    <% if(success && success.length) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+
+    <% if(error && error.length) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
 
     <%if(trainer.isVerified && trainer.isZoomVerified){ %>
     <div class="text-center">
@@ -3202,9 +3219,43 @@
       </div>
 
       <% }else if(trainer.isVerified == false){ %>
-        <h3>Please Wait for the Verification by Admin</h3>
+        <% if(success && success.length) {%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+
+        <% if(error && error.length) {%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+        <h3 class="text-center">Please Wait for the Verification by Admin</h3>
         <% }else if(trainer.isVerified == true && trainer.isZoomVerified == false){ %>
-        <h3>Please Verify your Email of Zoom For continuing further</h3>
+            <% if(success && success.length) {%>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <%= success %>
+                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+    
+            <% if(error && error.length) {%>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+        <h3 class="text-center">Please Verify your Email of Zoom For continuing further</h3>
     <% } %>
 
       <script>

@@ -11,7 +11,24 @@
 </head>
 <body>
     <div class="row showcase">
-        <div class="showcase-content text-center">
+        <div class="showcase-content text-center">    
+        <% if(success && success.length) {%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+
+        <% if(error && error.length) {%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
             <h1>ShapeYou Login</h1>
             <div class="form text-center">
                 <button class="btn btn-primary" id="userLoginButton">User Login</button>

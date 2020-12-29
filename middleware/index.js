@@ -13,7 +13,7 @@ middlewareObj.isUserLoggedIn = function(req, res, next){
 			res.redirect("/trainer");
 		}
 	} else {
-		// req.flash("error", "You need to be logged in to do that!");
+		req.flash("error", "You need to be logged in to do that!");
 		// Not logged in ==>
 		res.redirect("/auth/login");
 	}
@@ -30,9 +30,9 @@ middlewareObj.isTrainerLoggedIn = function(req, res, next){
 		}
 	} else {
 		// Not logged in ==>
+		req.flash("error", "You need to be logged in to do that!");
 		res.redirect("/auth/login");
 	}
-	// req.flash("error", "You need to be logged in to do that!");
 }
 
 middlewareObj.isAdminLoggedIn = function(req, res, next) {

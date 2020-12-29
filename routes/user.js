@@ -401,6 +401,7 @@ route.post('/newSession',(req, res) => {
                                     res.redirect('/user/userDashboard/' + user._id);
                                 },1000);
                             } else {
+                                req.flash('success', 'Transaction succesfull!')
                                 res.redirect('/user/userDashboard/' + user._id);
                             }
                         }
@@ -419,6 +420,7 @@ route.get('/userDashboard/:id', middleware.isUserLoggedIn, (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            req.flash('success', 'Welcome to user dashboard');
             res.render('userDashboard', {user: user});
         }
     })

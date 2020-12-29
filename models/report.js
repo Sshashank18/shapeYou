@@ -9,7 +9,8 @@ var reportSchema = new mongoose.Schema({
         }
     },
     trainerName: String,
-    category: String
+    category: String,
+    issue: String
 });
 
-mongoose.exports = mongoose.model("Report", reportSchema);
+module.exports = mongoose.model("Report", reportSchema);

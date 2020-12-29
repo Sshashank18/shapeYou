@@ -131,6 +131,12 @@ var trainerSchema = new mongoose.Schema({
             ref: "Review"
         }
     ],
+    reports: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Report"
+        }
+    ],
     pricePlan: String,
     avgRating : Number,
     // {

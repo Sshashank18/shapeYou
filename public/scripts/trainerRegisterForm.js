@@ -28,12 +28,10 @@ $("select.categories").change(function(){
 $('#formSubmit').click(e => {
 
     e.preventDefault();
-
     var subcategories = [];
     $.each($(`input[name='${selectedCategory}']:checked`), function(){
         subcategories.push($(this).val());
     });
-
     var name = $(`input[id='name']`).val();
     var dob = $(`input[name='DateofBirth']`).val();
     var address = $(`input[name='address']`).val();
@@ -95,7 +93,7 @@ $('#formSubmit').click(e => {
             }
         });
     }else{
-        alert('Fill all fields.')
+        $('.error').html('Please fill this field');
     }
 
 

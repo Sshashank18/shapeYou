@@ -68,6 +68,23 @@
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
+          <% if(success && success.length) {%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
+    
+        <% if(error && error.length) {%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } %>
           <h3 class="text-center"> 
             <span class="trainerName"></span>'s time table  <br>
             <h4 class="text-center">SubCategory:<span id="subcat"></span></h4>
@@ -1017,7 +1034,7 @@
     <div class="container" id="container2" hidden>
         <div class="group" >
             <h2 class="text-center" id="todayDate"></h2>
-            <table class="table text-center" id="classes">
+            <table class="table" id="classes">
               <thead>
                 <tr>
                 <th scope='col'>Time slot</th>
@@ -1025,7 +1042,7 @@
                 </tr>
                 </thead>
                 <tbody>
-            </table>
+            
         </div>
     </div>
 
@@ -1257,7 +1274,7 @@
                                 }
                               }
                             }
-                            text += "</tbody>"
+                            text += "</tbody></table>"
                             document.getElementById('classes').innerHTML += text;
                         }
                     }

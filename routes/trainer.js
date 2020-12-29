@@ -54,6 +54,7 @@ route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
         //     res.render('trainerDashboard', {trainer:trainer});
         // });
         Trainer.findById(req.user._id,(err,trainer)=>{
+            req.flash('success', 'Welcome to the trainer dashboard!');
             res.render('trainerDashboard',{trainer:trainer})
         })
         });
@@ -187,8 +188,10 @@ route.post('/addCoupon/:id', middleware.isTrainerLoggedIn, (req,res)=>{
             Request.create(request, (err, request) => {
                 if(err) {
                     console.log(err);
+                    req.flash('error', 'Something went wrong, please try again!');
                 } else {
                     console.log(request);
+                    req.flash('success', 'Request has been sent to the admin for verification!');
                     res.redirect('/trainer')
                 }
             });
@@ -244,6 +247,7 @@ route.put('/personalSlots', (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            req.flash('success', 'Succesfully updated the personal slots!');
             res.redirect('/trainer');
         }
     });
@@ -633,6 +637,7 @@ route.post('/:id/review', (req, res) => {
 
                     foundTrainer.markModified('avgRating');
                     foundTrainer.save();
+                    req.flash('success', 'Review submitted!');
                     // res.send("Review submitted") 
                     res.redirect('/user/userDashboard/'+req.user._id);
                 }
@@ -651,7 +656,24 @@ route.post('/:id/report', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            Report.create()
+            var report = {
+                trainerName: req.body.trainerName,
+                category: req.body.category,
+                issue: req.body.issue,
+                author: {
+                    username: req.user.username,
+                    id: req.user._id
+                }
+            }
+            Report.create(report, (err, report) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    foundTrainer.reports.push(report);
+                    req.flash('success', 'Successfully reported!');
+                    res.redirect('/user/userDashboard/'+req.user._id);
+                }
+            })
         }
     });
 });

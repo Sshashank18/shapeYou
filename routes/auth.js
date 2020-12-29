@@ -5,6 +5,7 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 var http = require("https");
 
+
 const route = express.Router();
 
 // =============
@@ -84,9 +85,8 @@ route.post("/trainerLogin",
 	{
 		successRedirect: "/trainer",
 		failureRedirect: "/auth/login"
-    }), 
+    }),
     function(req, res){
-
         console.log(req.user);
     }
 );
@@ -136,6 +136,7 @@ passport.authenticate("admin",
 // Logout logic
 route.get('/logout', (req, res) => {
     req.logout();
+    req.flash('success', 'Successfully logged you out');
     res.redirect('/');
 });
 

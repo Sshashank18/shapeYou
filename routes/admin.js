@@ -8,6 +8,7 @@ const User = require('../models/user');
 const Price = require('../models/pricing');
 const Request = require('../models/requestCoupon');
 const Admin = require('../models/admin');
+const Report = require('../models/report');
 var middleware = require("../middleware");
 var http = require("https");
 
@@ -22,6 +23,7 @@ route.get('/trainers', middleware.isAdminLoggedIn, (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            foundTrainer.reverse();
             res.render('adminTrainers', {trainers: foundTrainer});
         }
     });
@@ -32,6 +34,7 @@ route.get('/users', middleware.isAdminLoggedIn, (req, res) => {
         if(err) {
             console.log(err);
         } else {
+            foundUser.reverse();
             res.render('adminUsers', {users: foundUser});
         }
     });
@@ -135,7 +138,6 @@ route.get('/trainer/profile/:id/:name', middleware.isAdminLoggedIn,(req, res) =>
             console.log(err);
         } else {
             Pricing.find({},(err,result)=>{
-
                 result.forEach((title)=>{
                 if(title.title == foundTrainer.pricePlan){
 
@@ -168,7 +170,7 @@ route.get('/trainer/profile/:id/:name', middleware.isAdminLoggedIn,(req, res) =>
 
 
 route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
-    Trainer.findById(req.params.id).populate('reviews').exec( (err, foundTrainer) => {
+    Trainer.findById(req.params.id).populate(['reviews', 'reports']).exec( (err, foundTrainer) => {
         if(err) {
             console.log(err);
         } else {
@@ -349,6 +351,17 @@ route.put('/upgrade/:id', (req, res) => {
             res.redirect('/admin/trainer/' + req.params.id);
         }
     })
+});
+
+route.get('/reports', middleware.isAdminLoggedIn, (req, res) => {
+    Report.find({}, (err, reports) => {
+        if(err) {
+            console.log(err);
+        } else {
+            reports.reverse();
+            res.render('adminReports', {reports: reports});
+        }
+    });
 });
 
 module.exports = route;

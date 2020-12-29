@@ -112,14 +112,31 @@
         </div>
       </nav>
 
-      <section class="content-section" id="index" style="background-image: url('https://images.unsplash.com/photo-1561532325-7d5231a2dede?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');" >
+      <% if(success && success.length) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+
+    <% if(error && error.length) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+      <section class="content-section" id="index" style="background-image: url('https://images.unsplash.com/photo-1561532325-7d5231a2dede?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');">
         <!-- <div class="container"> -->
-          <div class="card-columns no-gutters">
+          <div class="card-columns no-gutters mt-5">
             <div class="mt-5">
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Fitness%20trainer">
+                <a class="portfolio-item" href="/admin/category/Fitness%20trainer" style="background: #7F986F;">
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Fitness%20trainer">
+                <a class="portfolio-item" href="/user/category/Fitness%20trainer" style="background: #7F986F;">
               <%}%>
                 <div class="caption">
                   <div class="caption-content">
@@ -127,14 +144,14 @@
                     <!-- <p class="mb-0">Lorem ipsum dolor sit </p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1575052814074-c05122e0a17a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1575052814074-c05122e0a17a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" style="opacity: 0;">
               </a>
             </div>
             <div class="mt-5">
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Wellness">
+                <a class="portfolio-item" href="/admin/category/Wellness" style="background: #7F986F;">
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Wellness">
+                <a class="portfolio-item" href="/user/category/Wellness" style="background: #7F986F;">
               <%}%>
                 <div class="caption">
                   <div class="caption-content">
@@ -142,14 +159,14 @@
                     <!-- <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1524901548305-08eeddc35080?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1524901548305-08eeddc35080?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="" style="opacity: 0;">
               </a>
             </div>
-            <div class="mt-5" >
+            <div class="" style="padding-top: 6rem;">
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Counselling">
+                <a class="portfolio-item" href="/admin/category/Counselling" style="background: #7F986F;">
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Counselling">
+                <a class="portfolio-item" href="/user/category/Counselling" style="background: #7F986F;">
               <%}%>
                 <div class="caption">
                   <div class="caption-content">
@@ -157,22 +174,22 @@
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1588873281272-14886ba1f737?ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" alt="">
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1588873281272-14886ba1f737?ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" alt="" style="opacity: 0;">
               </a>
             </div>
-            <div class="" style="margin-top: 6rem" > 
-              <a class="portfolio-item" href="#!">
+            <div class="mt-5"> 
+              <a class="portfolio-item" href="#!" style="background: #7F986F;">
                 <div class="caption">
                   <div class="caption-content">
                     <div class="h2" style="color: white;">Fitness Center</div>
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" alt="">
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" alt="" style="opacity: 0;">
               </a>
             </div>
-            <div class="mt-5" style="background: red; min-height: 100vh;">
-              <a class="portfolio-item" href="#!" style="min-height: 100vh;">
+            <div class="mt-5" style="min-height: 100vh;">
+              <a class="portfolio-item" href="#!" style="height: 66rem; background: #7F986F; border-radius: 10%;">
                 <div class="caption" style="min-height: 100%;">
                   <div class="caption-content">
                     <div class="h2 text-left pr-3" style="color: white;">Relaxation center</div>
@@ -477,7 +494,7 @@
     </div>
   </footer><!-- End Footer -->
 
-<script src="scripts/script.js" type="text/javascript"></script>
+<!-- <script src="scripts/script.js" type="text/javascript"></script> -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

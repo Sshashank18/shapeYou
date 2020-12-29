@@ -1985,6 +1985,8 @@ pre code {
   display: block;
   width: 100%;
   overflow-x: auto;
+  height: 500px;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 .table-responsive > .table-bordered {

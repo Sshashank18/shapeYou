@@ -105,7 +105,7 @@ app.get('/zoomDashboard',(req,res)=>{
 	res.render('zoomDashboard');
 });
 
-cron.schedule('12 1 * * SUN', function() {
+cron.schedule('0 1 * * SUN', function() {
 	// cron.schedule("*/10 * * * * *", function() {
 	console.log('Data Reset');
 
@@ -127,6 +127,7 @@ cron.schedule('12 1 * * SUN', function() {
 				});
 			}
 			user.trainers = tempTrainers;
+			user.bookedSlot = null;
 			user.save();
 		});
 	});

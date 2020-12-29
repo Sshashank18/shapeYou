@@ -3216,13 +3216,18 @@
           var compareP = null;
           
           var persSlots = null;
+          var loaded = false;
+
 
           setTimeout(()=>{
-            $('#loading').hide();
-            $('#container1').removeAttr('hidden');
-            $('#container2').removeAttr('hidden');
-            $('#container3').removeAttr('hidden');
-          },2000);
+            if(loaded == true){
+                $('#loading').hide();
+                $('#container1').removeAttr('hidden');
+                $('#container2').removeAttr('hidden');
+                $('#container3').removeAttr('hidden');
+                loaded=false;
+            }
+          },500);
 
           $.ajax({
             //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
@@ -3234,8 +3239,7 @@
                       var timeR = null;
                       var timeStr = null;
                       var timeStr2 = null;
-                      var timeStrV1 = null;
-                      var timeStrV2 = null;
+                      
                       if(index!=0){
                           timeR = $(this).find('th')[0].innerText;
                           var timeA = timeR.split('-');
@@ -3440,8 +3444,8 @@
                         text2 += "</tbody>";
                     }
 
-                    document.getElementById('classesP').innerHTML += text2;
-
+                    document.getElementById('classesP').innerHTML = text2;
+                    loaded = true;
                 }
             });
 

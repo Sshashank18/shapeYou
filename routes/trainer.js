@@ -139,15 +139,15 @@ route.get('/trainerForm', (req, res) => {
     res.render('trainerRegisterForm.ejs');
 })
 
-route.get('/:type', (req, res) => {
-    Trainer.find({categoryType: req.params.type}, (err, foundTrainer) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render('trainerType', {trainers: foundTrainer});
-        }
-    });
-});
+// route.get('/:type', (req, res) => {
+//     Trainer.find({categoryType: req.params.type}, (err, foundTrainer) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             res.render('trainerType', {trainers: foundTrainer});
+//         }
+//     });
+// });
 
 
 route.get('/getTimeTable/:id',(req,res)=>{
@@ -303,6 +303,65 @@ route.post('/userInfo',(req,res)=>{
     
 });
 
+route.get('/meetingDetails',middleware.isTrainerLoggedIn,(req,res)=>{
+
+    var uuid = null;
+    Trainer.findById(req.user._id,(err,trainer)=>{
+        if(err) console.log(err);
+        else{
+        uuid = trainer.meetingDetails.uuid;
+
+        setTimeout(()=>{
+            var options = {
+                "method": "GET",
+                "hostname": "api.zoom.us",
+                "port": null,
+                "path": "/v2/past_meetings/"+uuid,
+                "headers": {
+                  "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6ImxlcFBlVFJzUm82QXA1eDVDYjVnS1EiLCJleHAiOjE2MzI5MTUxMjAsImlhdCI6MTYwMTM3MzgwMn0.fk7wLdI0ZQ94KReS8xe1CjpFSCfALdq3hKOhjQR_sZk"
+                }
+              };
+              var req1 = http.request(options, function (res1) {
+                var chunks = [];
+        
+                res1.on("data", function (chunk) {
+                    chunks.push(chunk);
+                });
+
+                res1.on("end", function () {
+                    var body = Buffer.concat(chunks);
+                    body = JSON.parse(body.toString());
+                      console.log(body);
+                        var meetingLogs = {
+                            uuid:body.uuid,
+                            id: body.id,
+                            user_name:body.user_name,
+                            user_email:body.user_email,
+                            start_time:body.start_time,
+                            end_time:body.end_time,
+                            duration:body.duration,
+                            total_minutes:body.total_minutes,
+                            participants_count:body.participants_count,
+                            participants_user: new Array()
+                        }
+
+                        trainer.meetingLogs.push(meetingLogs);
+                        trainer.meetingDetails = null;
+                        trainer.markModified('meetingLogs');
+                        trainer.markModified('meetingDetails');
+                        trainer.save();
+                    
+                      });
+                      res.redirect('/trainer');
+                    });
+                    req1.end();
+                },2000);
+        }
+
+    });
+        
+});
+
 
 // Trainer Profile Display
 
@@ -357,7 +416,8 @@ var meetConfig = {
     password:null,
     signature:null,
     meetingNumber:null,
-    username:null
+    username:null,
+    uuid:null
 };
 
 route.post('/createMeeting',(req,res)=>{
@@ -390,6 +450,8 @@ route.post('/createMeeting',(req,res)=>{
         meetConfig.meetingNumber = response.id;
 
         meetConfig.username = req.user.username;
+
+        meetConfig.uuid = response.uuid;
 
        res.redirect('/trainer/getMeeting/'+response.id);
 

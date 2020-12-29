@@ -160,6 +160,7 @@ a{
 	overflow: hidden;
 	max-width: 530px;
 	margin: auto auto 1rem;
+	border-radius: 20%;
   }
   
   .portfolio-item .caption {
@@ -224,11 +225,13 @@ a{
 	.portfolio-item:hover img {
 	  -webkit-clip-path: inset(2rem);
 	  clip-path: inset(2rem);
+	  border-radius: 20%;
 	}
 	.portfolio-item:hover .caption {
 	  background-color: rgba(165,174,157, 0.7);
 	  -webkit-clip-path: inset(2rem);
 	  clip-path: inset(2rem);
+	  border-radius: 20%;
 	}
   }
 

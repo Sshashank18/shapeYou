@@ -1436,12 +1436,12 @@
       var loaded = false;
 
       
-      setInterval(()=>{
+      var interval = setInterval(()=>{
         if(loaded == true){
           $('#loading').hide();
           $('#container1').removeAttr('hidden');
           $('#container2').removeAttr('hidden');
-          loaded = false;
+          clearInterval(interval);
         }
        },500);
 
@@ -1481,6 +1481,7 @@
             data: {trainerType},
             success:(data)=>{
           var index = 0;
+          loaded = true;
           $('#trainerTT tr').each(function(){
             var timeR = null;
             var timeStr = null;
@@ -1699,7 +1700,6 @@
             });
               index++;
             });
-            loaded = true;
           }
         });
 

@@ -3270,13 +3270,13 @@
           var loaded = false;
 
 
-          setTimeout(()=>{
+          var interval = setInterval(()=>{
             if(loaded == true){
                 $('#loading').hide();
                 $('#container1').removeAttr('hidden');
                 $('#container2').removeAttr('hidden');
                 $('#container3').removeAttr('hidden');
-                loaded=false;
+                clearInterval(interval);
             }
           },500);
 
@@ -3286,6 +3286,7 @@
               method: 'GET',
               success:(data)=>{
                   var index = 0;
+                  loaded = true;
                   $('#trainerTT tr').each(function(){
                       var timeR = null;
                       var timeStr = null;
@@ -3459,6 +3460,7 @@
                         text += "</tbody>";
 
                         document.getElementById('classesG').innerHTML += text;
+                        loaded = true;
                     }
 
                     var weekday=new Array(7);
@@ -3496,7 +3498,6 @@
                     }
 
                     document.getElementById('classesP').innerHTML = text2;
-                    loaded = true;
                 }
             });
 

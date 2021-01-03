@@ -10,7 +10,7 @@ const route = express.Router();
 const isUserVerified = async (req, res, next) => {
     try {
         const user = await User.findOne({email: req.body.username});
-        if(user.isAuthenticated()) {
+        if(user) {
             return next();
         } 
             req.flash('error', 'Incorrect credentials');
@@ -25,7 +25,7 @@ const isUserVerified = async (req, res, next) => {
 const isTrainerVerified = async (req, res, next) => {
     try {
         const trainer = await Trainer.findOne({email: req.body.username});
-        if(trainer.isAuthenticated()) {
+        if(trainer) {
             return next();
         } 
             req.flash('error', 'Incorrect credentials');

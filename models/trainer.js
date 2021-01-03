@@ -65,6 +65,10 @@ var trainerSchema = new mongoose.Schema({
         type:String,
         default:null
     },
+    resume: {
+        type:String,
+        default:null
+    },
     referral: {
         type:String,
         default:null
@@ -78,6 +82,10 @@ var trainerSchema = new mongoose.Schema({
         default:{}
     },
     isVerified: {
+        type: Boolean,
+        default: false
+    },
+    formFilled: {
         type: Boolean,
         default: false
     },

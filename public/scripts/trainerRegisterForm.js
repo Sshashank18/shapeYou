@@ -24,6 +24,73 @@ $("select.categories").change(function(){
 });
 
 
+$('#uploadImg').click(e=>{
+    e.preventDefault();
+    var fd = new FormData();
+    var files = $('#inputimage3')[0].files;
+    fd.append('file',files[0]);
+
+    $.ajax({
+        url: '/trainer/uploadImg',
+        // url: 'http://127.0.0.1:3500/trainer/uploadImg',
+        type: 'POST',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success:(res)=>{
+            if(res.message){alert(res.message);}
+            else{
+                alert(res.location);
+            }
+        }
+    });
+});
+
+$('#uploadAadhar').click(e=>{
+    e.preventDefault();
+    var fd = new FormData();
+    var files = $('#adhaar')[0].files;
+    fd.append('file',files[0]);
+
+    $.ajax({
+        url: '/trainer/uploadAadhar',
+        // url: 'http://127.0.0.1:3500/trainer/uploadAadhar',
+        type: 'POST',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success:(res)=>{
+            if(res.message){alert(res.message);}
+            else{
+                alert(res.location);
+            }
+        }
+    });
+});
+
+$('#uploadResume').click(e=>{
+    e.preventDefault();
+    var fd = new FormData();
+    var files = $('#resume')[0].files;
+    fd.append('file',files[0]);
+
+    $.ajax({
+        url: '/trainer/uploadCV',
+        // url: 'http://127.0.0.1:3500/trainer/uploadAadhar',
+        type: 'POST',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success:(res)=>{
+            if(res.message){alert(res.message);}
+            else{
+                alert(res.location);
+            }
+        }
+    });
+});
+
+
 
 $('#formSubmit').click(e => {
 
@@ -88,12 +155,30 @@ $('#formSubmit').click(e => {
             data:data2,
             success:(data)=>{
                 alert('Saved Details');
-                // window.location="http://127.0.0.1:3500/trainer"
-                window.location="https://shapeyou-demo.herokuapp.com/trainer"
+                window.location="http://127.0.0.1:3500/trainer"
+                // window.location="https://shapeyou-demo.herokuapp.com/trainer"
             }
         });
     }else{
+        var fields = $('.error').prev();
+        // for(var key=0;key<fields.length ;key++){
+        //     console.log(fields[key].val);
+        //     var name = $(`input[id='name']`).val();
+        //     var contact = $(`input[name='contact']`).val();
+        //     var amount = $(`input[name='amount']`).val();
+        //     var experiencePlace = $(`input[name='experiencePlace']`).val();
+        //     var experienceYears = $(`input[name='experienceYears']`).val();
+        //     var about = $(`textarea[name='About']`).val();
+        //     var certification = $(`input[name='certification']`).val();
+        //     var education = $(`input[name='education']`).val();
+        //     var aadhar = $(`input[name='aadhar']`).val();
+
+
+
+        // }
         $('.error').html('Please fill this field');
+        $('.error').css('color','red');
+        alert('Fill all fields');
     }
 
 

@@ -16,6 +16,9 @@ var middleware = require("../middleware");
 const request = require('request');
 const e = require('express');
 
+const aws = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 
 
 const route = express.Router();
@@ -62,6 +65,152 @@ route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
       
       req1.end();
   
+});
+
+
+//Uploading to Spaces Digital ocean
+
+const path = require('path');
+
+const spacesEndpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');
+const s3 = new aws.S3({
+  endpoint: spacesEndpoint,
+  accessKeyId: '22CB4ZCNMX2ABRU6ROOF',
+  secretAccessKey: 'KlemSL69iF6H771XTWefnjsTOB+Y13WOS6Hgdw3JYmY'
+});
+
+
+const upload = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'shapeyou/trainerProfiles',
+      acl: 'public-read',
+      key: function (request, file, cb) {
+        cb(null, request.user.username + '-' + Date.now() + path.extname(file.originalname));
+      }
+    }),
+    limits:{fileSize: 1000000},  //1MB
+    fileFilter: function(req, file, cb){
+        checkFileType(file, cb);
+    }
+  }).single('file');
+
+const upload2 = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'shapeyou/trainerAadhar',
+      acl: 'public-read',
+      key: function (request, file, cb) {
+        cb(null, request.user.username + '-' + Date.now() + path.extname(file.originalname));
+      }
+    }),
+    limits:{fileSize: 1000000},  //1MB
+    fileFilter: function(req, file, cb){
+        checkFileType(file, cb);
+    }
+  }).single('file');
+
+const upload3 = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'shapeyou/trainerResume',
+      acl: 'public-read',
+      key: function (request, file, cb) {
+        cb(null, request.user.username + '-' + Date.now() + path.extname(file.originalname));
+      }
+    }),
+    limits:{fileSize: 1000000},  //1MB
+    fileFilter: function(req, file, cb){
+        checkFileType2(file, cb);
+    }
+  }).single('file');
+
+// Check File Type
+function checkFileType(file, cb){
+    // Allowed ext
+    const filetypes = /jpeg|jpg|png|gif/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb({message:'Error: Images Only!'});
+    }
+  }
+
+function checkFileType2(file, cb){
+    // Allowed ext
+    const filetypes = /doc|docx|odt|pdf|tex|txt|rtf|wps|wks|wpd/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb({message:'Error: File Only!'});
+    }
+  }
+
+route.post('/uploadImg',(req,res)=>{
+    upload(req, res, (err) => {
+        if(err){
+            return res.status(200).send({message: err.message});
+        } else {
+          if(req.file == undefined){
+            return res.status(200).send({
+                message: 'Please upload image!!'
+             });
+          } else {
+            Trainer.findByIdAndUpdate(req.user._id,{profilePic:req.file.location},(err,foundTrainer)=>{
+                if(err) return res.status(422).json({error: err});
+                return res.status(200).json({message:'Image Uploaded Sucessfully!!'});
+            });
+          }
+        }
+      });
+});
+
+route.post('/uploadAadhar',(req,res)=>{
+    upload2(req, res, (err) => {
+        if(err){
+            return res.status(200).send({message: err.message});
+        } else {
+          if(req.file == undefined){
+            return res.status(200).send({
+                message: 'Please Upload Aadhar!!'
+             });
+          } else {
+            Trainer.findByIdAndUpdate(req.user._id,{aadhar:req.file.location},(err,foundTrainer)=>{
+                if(err) return res.status(422).json({error: err});
+                return res.status(200).json({message:'Aadhaar Uploaded Sucessfully!!'});
+            });
+          }
+        }
+      });
+});
+
+route.post('/uploadCV',(req,res)=>{
+    upload3(req, res, (err) => {
+        if(err){
+            return res.status(200).send({message: err.message});
+        } else {
+          if(req.file == undefined){
+            return res.status(200).send({
+                message: 'Please upload Resume!!'
+             });
+          } else {
+            Trainer.findByIdAndUpdate(req.user._id,{resume:req.file.location},(err,foundTrainer)=>{
+                if(err) return res.status(422).json({error: err});
+                return res.status(200).json({message:'Resume Uploaded Sucessfully!!'});
+            });
+          }
+        }
+      });
 });
  
 route.get('/details',middleware.isTrainerLoggedIn,(req,res)=>{
@@ -127,7 +276,8 @@ route.put('/registerForm',(req,res)=>{
         referral:req.body.referral,
         payment:req.body.payment,
         timings:req.body.timings,
-        subCategories: req.body.subcategories
+        subCategories: req.body.subcategories,
+        formFilled:true,
     },(err,result)=>{
         if(err) return res.status(422).json({error:err})
         res.json(result);
@@ -136,7 +286,7 @@ route.put('/registerForm',(req,res)=>{
 
 
 // TRAINER FORM REGISTRATION FOR STEP 2
-route.get('/trainerForm', (req, res) => {
+route.get('/trainerForm', middleware.isTrainerLoggedIn,(req, res) => {
     res.render('trainerRegisterForm.ejs');
 })
 

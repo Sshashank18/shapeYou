@@ -7,6 +7,34 @@ var http = require("https");
 
 
 const route = express.Router();
+const isUserVerified = async (req, res, next) => {
+    try {
+        const user = await User.findOne({email: req.body.username});
+        if(user) {
+            return next();
+        } 
+            req.flash('error', 'Incorrect credentials');
+            res.redirect('/auth/login');
+    } catch (error) {
+        req.flash('error', 'Incorrect password');
+        res.redirect('/auth/login');
+    }
+}
+
+
+const isTrainerVerified = async (req, res, next) => {
+    try {
+        const trainer = await Trainer.findOne({email: req.body.username});
+        if(trainer) {
+            return next();
+        } 
+            req.flash('error', 'Incorrect credentials');
+            res.redirect('/auth/login');
+    } catch (error) {
+        req.flash('error', 'Incorrect password');
+        res.redirect('/auth/login');
+    }
+}
 
 // =============
 // Trainer Auth
@@ -80,7 +108,7 @@ route.get('/login',(req,res)=>{
 });
 
 // Login
-route.post("/trainerLogin",
+route.post("/trainerLogin", isTrainerVerified,
  passport.authenticate("trainer-local", 
 	{
 		successRedirect: "/trainer",
@@ -92,7 +120,7 @@ route.post("/trainerLogin",
 );
 
 // User Login
-route.post("/userLogin", passport.authenticate("user-local", 
+route.post("/userLogin", isUserVerified, passport.authenticate("user-local", 
 	{
 		successRedirect: "/user",
 		failureRedirect: "/auth/login"

@@ -219,7 +219,7 @@ a{
 	  transition: clip-path 0.25s ease-out, -webkit-clip-path 0.25s ease-out;
 	  -webkit-clip-path: inset(-1px);
 	  clip-path: inset(-1px);
-    max-height: 475px;
+    /* max-height: 475px; */
     min-width: 713px;
 	}
 	.portfolio-item:hover img {

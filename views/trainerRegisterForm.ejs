@@ -25,17 +25,27 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Apply as a Trainer</h3>
-                        <form action="">
-                            <div class="row register-form">
-                                <div class="col-md-6">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group mb-3">
+                                        <label for="inputimage3">Upload Image</label>
+                                        <input class="form-control" type="file" name="file_img" id="inputimage3">
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </form>
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group mb-3">
+                                        <label for="">Upload Resume</label>
+                                        <input class="form-control" type="file" name="file_img" id="inputimage3">
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </form>
+                                <form action="" method="POST">
                                     <div class="form-group mb-3">
                                         <label for="name">Name *</label> 
                                         <input class="form-control" type="text" id="name" placeholder="Enter your first and last name" required/>
                                         <p class="error"></p>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="inputimage3">Upload Image</label>
-                                        <input class="form-control" type="file" name="file_img" id="inputimage3">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputGroupSelect01">Area of expertise *</label>
@@ -104,10 +114,6 @@
                                         <input class="form-control" name="referral" type="text">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">Upload Resume</label>
-                                        <input class="form-control" type="file" name="file_img" id="inputimage3">
-                                    </div>
-                                    <div class="form-group mb-3">
                                         <label for="">Website (if any)</label>
                                         <input class="form-control" name="website" type="text" placeholder="link of website" />
                                     </div>
@@ -116,7 +122,17 @@
                                         <input class="form-control" type="text" name="socialHandle" placeholder="social media link" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </form>
+                            <div class="col-md-6">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group mb-3">
+                                        <label for="">AADHAR/PAN details *</label>
+                                        <input type="file" class="form-control">
+                                        <p class="error"></p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                                <form action="" method="POST">
                                     <div class="form-group mb-3">
                                         <label for="">Timing /hour/days</label> <br>
                                         <input class="day form-check-input" type="checkbox" val="Monday"> Monday 
@@ -155,11 +171,6 @@
                                         <p class="error"></p>
                                     </div>
                                     
-                                    <div class="form-group mb-3">
-                                        <label for="">AADHAR/PAN details *</label>
-                                        <input type="file" class="form-control">
-                                        <p class="error"></p>
-                                    </div>
                                     <div class="form-group mb-3">
                                         <label for="">Accepted payment sources</label> <br>
                                         <input class="form-check-label" type="checkbox" name="payment" value="Bank" /> Bank Transfer  

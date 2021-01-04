@@ -331,7 +331,7 @@ route.post('/addCoupon/:id', middleware.isTrainerLoggedIn, (req,res)=>{
                     id: req.params.id,
                     username: trainer.username,
                     coupon: {
-                        couponName: req.body.couponCode,
+                        couponName: req.body.couponCode.toUpperCase(),
                         couponDiscount: req.body.couponDiscount
                     }
             }

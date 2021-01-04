@@ -15,6 +15,7 @@ var http = require("https");
 const route = express.Router();
 
 route.get('/', middleware.isAdminLoggedIn, (req, res) => {
+    req.flash("success", "Welcome");
     res.redirect('/admin/trainers');
 });
 
@@ -275,11 +276,17 @@ route.put('/editPrice', middleware.isAdminLoggedIn, (req, res) => {
             if(req.body.trialPackPrice) {
                 foundPrice[0].trialPackPrice = req.body.trialPackPrice;
             }
+            if(req.body.trialValidity) {
+                foundPrice[0].trialValidity = req.body.trialValidity;
+            }
             if(req.body.goldnumOfSessions) {
                 foundPrice[0].goldnumOfSessions = req.body.goldnumOfSessions;
             }
             if(req.body.goldPackPrice) {
                 foundPrice[0].goldPackPrice = req.body.goldPackPrice;
+            }
+            if(req.body.goldValidity) {
+                foundPrice[0].goldValidity = req.body.goldValidity;
             }
             if(req.body.platinumnumOfSessions) {
                 foundPrice[0].platinumnumOfSessions = req.body.platinumnumOfSessions;
@@ -287,9 +294,13 @@ route.put('/editPrice', middleware.isAdminLoggedIn, (req, res) => {
             if(req.body.platinumPackPrice) {
                 foundPrice[0].platinumPackPrice = req.body.platinumPackPrice;
             }
+            if(req.body.platinumValidity) {
+                foundPrice[0].platinumValidity = req.body.platinumValidity;
+            }
             foundPrice[0].save();
             console.log(foundPrice);
-            res.redirect('/admin');
+            req.flash('success', "Successfully Updated!");
+            res.redirect('/admin/trainers');
         }
     })
 });

@@ -327,12 +327,13 @@ route.post('/addCoupon/:id', middleware.isTrainerLoggedIn, (req,res)=>{
         if(err) {
             console.log(err);
         } else {
+            console.log();
             var request = {
                     id: req.params.id,
                     username: trainer.username,
                     coupon: {
                         couponName: req.body.couponCode.toUpperCase(),
-                        couponDiscount: req.body.couponDiscount
+                        couponDiscount: req.body.couponDiscount + '%'
                     }
             }
             Request.create(request, (err, request) => {

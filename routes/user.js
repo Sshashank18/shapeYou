@@ -63,8 +63,8 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
             "TXN_AMOUNT" : price,
             // "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
             // "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
-            "CALLBACK_URL" :`https://shapeyou-demo.herokuapp.com/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
-            // "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            // "CALLBACK_URL" :`https://shapeyou-demo.herokuapp.com/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
+            "CALLBACK_URL" :`http://127.0.0.1:3500/user/newSession?body=${encodeURIComponent( JSON.stringify(req.body) )}&id=${req.user._id}`,
         };
         
         checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
@@ -318,10 +318,14 @@ route.post('/newSession',(req, res) => {
                                 var txnD = req.body.TXNDATE.slice(0,11);
                                 var trsD = new Date(txnD);
 
-                                if(details.numOfSessions == 5){
-                                    trsD.setDate(trsD.getDate()+30);
-                                }else if(details.numOfSessions == 10){
-                                    trsD.setDate(trsD.getDate()+90);
+                                if(details.pack == "gold"){
+                                    console.log(details.validity);
+                                    console.log(typeof(details.validity));
+                                    console.log(parseInt(details.validity))
+                                    console.log(typeof(parseInt(details.validity)));
+                                    trsD.setDate(trsD.getDate()+parseInt(details.validity));
+                                }else if(details.pack == "platinum"){
+                                    trsD.setDate(trsD.getDate()+parseInt(details.validity));
                                 }
 
                                 var info = {
@@ -329,6 +333,7 @@ route.post('/newSession',(req, res) => {
                                     category: details.category,
                                     name: details.username,
                                     type: details.type,
+                                    pack:details.pack,
                                     numOfSessions:  parseInt(details.numOfSessions)-1,
                                     txndate: trsD,
                                 }
@@ -338,6 +343,7 @@ route.post('/newSession',(req, res) => {
                                     userName: user.username,
                                     category: details.category,
                                     type: details.type,
+                                    pack:details.pack,
                                     numOfSessions: details.numOfSessions,
                                     payment_info:{
                                         TransactionID: req.body.TXNID,
@@ -362,7 +368,6 @@ route.post('/newSession',(req, res) => {
 
                                 if(details.type == "group"){
                                     var trainerSlots = trainer.calendar[Object.keys(details.userCount[trainer._id])[0].split('-').join(' ')];
-                                    console.log(trainerSlots);
                                     for(var i=0;i<trainerSlots.length;i++){
                                         var ne = trainerSlots[i].replace(/\s/g,'-').split('-');
                                         var timeStr = ne[0]+"-"+ne[3];
@@ -378,7 +383,6 @@ route.post('/newSession',(req, res) => {
 
                                     var trainerKey = Object.keys(details.userCount[trainer._id])[0].split('-').join(' ');
                                     for(var i=0;i<trainer.personalSlots[trainerKey].length;i++){
-                                        console.log(trainer.personalSlots[trainerKey][i]);
                                         var timeStr=trainer.personalSlots[trainerKey][i].split(' ')[0];    
                                         if(timeStr == details.userCount[trainer._id][trainerKey]){
                                             var ref = trainer.personalSlots[trainerKey][i];

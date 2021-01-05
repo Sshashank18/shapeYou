@@ -540,11 +540,13 @@ route.get('/profile/:id/:name', middleware.isUserLoggedIn,(req, res) => {
                         goldPackDiscount: title.goldPackDiscount,
                         goldBasicSegement: title.goldBasicSegement,
                         goldPerSessionAmount: title.goldPerSessionAmount,
+                        goldValidity: title.goldValidity,
                         platinumNumofSessions: title.platinumnumOfSessions,
                         platinumPackPrice: title.platinumPackPrice,
                         platinumPackDiscount: title.platinumPackDiscount,
                         platinumBasicSegement: title.platinumBasicSegement,
                         platinumPerSessionAmount: title.platinumPerSessionAmount,
+                        platinumValidity: title.platinumValidity,
                     }
 
                     res.render('trainerProfile',{trainer:foundTrainer, category: req.params.name,pricing});

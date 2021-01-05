@@ -1173,6 +1173,7 @@
             <input type="hidden" name="category" value="<%= category %>">
             <input type="hidden" name="type" value="personal">
             <input type="hidden" name="username" value="<%= trainer.username %>">
+            <input type="hidden" name="pack" value="trial"> 
             <input type="hidden" name="numOfSessions" value="<%= pricing.trialNumofSessions %>" >
             <input type="hidden" name="defaultPrice" value="<%= pricing.trialPackPrice%>">
             <div class="btn-wrap">
@@ -1192,8 +1193,10 @@
             <input type="hidden" name="category" value="<%= category %>">
             <input type="hidden" name="type" value="personal">
             <input type="hidden" name="username" value="<%= trainer.username %>">
+            <input type="hidden" name="pack" value="gold"> 
             <input type="hidden" name="numOfSessions" value="<%= pricing.goldNumofSessions %>" >
             <input type="hidden" name="defaultPrice" value="<%= pricing.goldPackPrice%>">
+            <input type="hidden" name="validity" value="<%= pricing.goldValidity%>">
             <div class="btn-wrap">
               <button type="submit" class="btn-buy">Buy Now</button>
             </div>
@@ -1208,11 +1211,13 @@
           <form class="newSession" id="formp3" action="/user/paytm" method="POST">
             
             <input type="hidden" name="trainerId" value="<%= trainer._id %>">
-            <input type="hidden" name="category" value="<%= category %>">
+            <input type="hidden" name="category" value="<%= category %>"> 
             <input type="hidden" name="type" value="personal">
-            <input type="hidden" name="username" value="<%= trainer.username %>">
+            <input type="hidden" name="username" value="<%= trainer.username %>"> 
+            <input type="hidden" name="pack" value="platinum"> 
             <input type="hidden" name="numOfSessions" value="<%= pricing.platinumNumofSessions %>" >
-            <input type="hidden" name="defaultPrice" value="<%= pricing.platinumPrice%>">
+            <input type="hidden" name="defaultPrice" value="<%= pricing.platinumPackPrice%>">
+            <input type="hidden" name="validity" value="<%= pricing.platinumValidity%>">
             <div class="btn-wrap">
               <button type="submit" class="btn-buy">Buy Now</button>
             </div>
@@ -1294,6 +1299,7 @@
                       <input type="hidden" name="category" value="<%= category %>">
                       <input type="hidden" name="type" value="group">
                       <input type="hidden" name="username" value="<%= trainer.username %>">
+                      <input type="hidden" name="pack" value="trial"> 
                       <input type="hidden" name="numOfSessions" value="<%= pricing.trialNumofSessions %>" >
                       <input type="hidden" name="defaultPrice" value="<%= pricing.trialPackPrice%>">
                       <div class="btn-wrap">
@@ -1313,8 +1319,10 @@
                       <input type="hidden" name="category" value="<%= category %>">
                       <input type="hidden" name="type" value="group">
                       <input type="hidden" name="username" value="<%= trainer.username %>">
+                      <input type="hidden" name="pack" value="gold"> 
                       <input type="hidden" name="numOfSessions" value="<%= pricing.goldNumofSessions %>" >
                       <input type="hidden" name="defaultPrice" value="<%= pricing.goldPackPrice%>">
+                      <input type="hidden" name="validity" value="<%= pricing.goldValidity%>">
                       <div class="btn-wrap">
                         <button type="submit" class="btn-buy">Buy Now</button>
                       </div>
@@ -1332,8 +1340,10 @@
                       <input type="hidden" name="category" value="<%= category %>">
                       <input type="hidden" name="type" value="group">
                       <input type="hidden" name="username" value="<%= trainer.username %>">
+                      <input type="hidden" name="pack" value="platinum"> 
                       <input type="hidden" name="numOfSessions" value="<%= pricing.platinumNumofSessions %>" >
-                      <input type="hidden" name="defaultPrice" value="<%= pricing.platinumPrice%>">
+                      <input type="hidden" name="defaultPrice" value="<%= pricing.platinumPackPrice%>">
+                      <input type="hidden" name="validity" value="<%= pricing.platinumValidity%>">
                       <div class="btn-wrap">
                         <button type="submit" class="btn-buy">Buy Now</button>
                       </div>
@@ -1559,7 +1569,6 @@
               });
               index++;
             });
-            loaded = true;
           }
         });
 
@@ -1754,7 +1763,8 @@
               console.log(discountP)
               discountP=parseInt(discountP.slice(0,2));
               amount -= amount*(discountP/100);
-              value.innerText = '₹' + amount.toFixed(2);
+              value.innerHTML = `<h4 class="prices"><del>${price}</del></h4>`
+              value.innerHTML += `<h4 class="prices2"><sup>₹</sup>${amount.toFixed(2)}</h4>`;
               if(trainerType == "group"){
                 var content = `<input type="hidden" name="price" value=${amount.toFixed(2)}>`
                 $('#form'+(e+1)).append(content);

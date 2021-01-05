@@ -29,6 +29,12 @@
                 </button>
             </div>
         <% } %>
+
+        <% for(let i=0; i<errors.length; i++) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= errors[i] %>
+            </div>
+        <% } %>
             <h1>ShapeYou Login</h1>
             <div class="form text-center">
                 <button class="btn btn-primary" id="userLoginButton">User Login</button>

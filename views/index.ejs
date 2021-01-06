@@ -213,12 +213,6 @@
     <h1 class="text-center" style="color: white; font-size: 2rem; padding-top: 50px; font-family: 'Playfair Display', serif;">Choose Your Sessions and Start Your Training.</h1>
   </section>
 <!-- </div>   -->
-<!-- 
-<section style="height: 400px; background: url('https://images.unsplash.com/photo-1484452330304-377cdeb05340?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80')">
-  <div class="text-center" style="padding-top: 10%;">
-   <h1 style="color: white; font-family: 'Londrina Outline', cursive; font-size: 100px;">OUR CLASSES</h1> 
-  </div>
-</section> -->
 
 <section class="text-left" style="margin-top: 100px;">
   <div class="container mx-auto">
@@ -249,7 +243,7 @@
             <% if(currentUser && currentUser.type=="Admin") { %>
             <span class="item-load-icon button opacity-none"><a href="/admin/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
             <% }else{ %>
-            <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
+            <span class=" button playButton"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
           </div>
       <% } %>

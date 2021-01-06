@@ -329,17 +329,15 @@ div.scroll i {
     opacity: 1;
     z-index: 950;
 }
-.carousel-row:hover .carousel-title:hover > .opacity-none {
-    opacity: 1 !important;
-}
+
 .item .item-load-icon {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
-.opacity-none {
-    opacity: 0 !important;
-}
+.carousel-row:hover .carousel-title:hover {
+	opacity: 0;
+} 
 .item img.item-image {
     width: 15rem;
     height: 200px;

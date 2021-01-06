@@ -376,4 +376,26 @@ route.get('/reports', middleware.isAdminLoggedIn, (req, res) => {
     });
 });
 
+route.get('/changepassword', (req, res) => {
+    res.render('adminPassword');
+})
+
+route.post('/changepassword', (req, res) => {
+    Admin.findById(req.user._id, (err, admin) => {
+        if(err) {
+            console.log(err);
+        } else {
+            admin.changePassword(req.body.oldPassword, req.body.newPassword, (err) => {
+                if(err) {
+                    req.flash('error', "Something went wrong");
+                    res.redirect('/admin/trainers');
+                } else {
+                    req.flash('success', 'Password changed');
+                    res.redirect('/admin/trainers');
+                }
+            })
+        }
+    })
+});
+
 module.exports = route;

@@ -57,8 +57,8 @@ route.get('/',middleware.isTrainerLoggedIn, (req,res)=>{
         //     res.render('trainerDashboard', {trainer:trainer});
         // });
         Trainer.findById(req.user._id,(err,trainer)=>{
-            req.flash('success', 'Welcome to the trainer dashboard!');
-            res.render('trainerDashboard',{trainer:trainer})
+            // req.flash('success', 'Welcome to the trainer dashboard!');
+            res.render('trainerDashboard',{trainer:trainer, success: "Welcome to the trainer dashboard"})
         })
         });
       });

@@ -175,6 +175,25 @@ route.post('/uploadImg',(req,res)=>{
       });
 });
 
+route.put('/uploadImg',(req,res)=>{
+    upload(req, res, (err) => {
+        if(err){
+            return res.status(200).send({message: err.message});
+        } else {
+          if(req.file == undefined){
+            return res.status(200).send({
+                message: 'Please upload image!!'
+             });
+          } else {
+            Trainer.findByIdAndUpdate(req.user._id,{profilePic:req.file.location},(err,foundTrainer)=>{
+                if(err) return res.status(422).json({error: err});
+                return res.status(200).json({message:'Image Uploaded Sucessfully!!'});
+            });
+          }
+        }
+      });
+});
+
 route.post('/uploadAadhar',(req,res)=>{
     upload2(req, res, (err) => {
         if(err){
@@ -227,34 +246,53 @@ route.get('/getDetails',(req,res)=>{
 });
 
 route.put('/submitDetails',(req,res)=>{
-    if(req.body.subcategories!=undefined){
-        Trainer.findByIdAndUpdate(req.user._id,
-            {
-                dob:req.body.dob,
-                profilePic:req.body.image,
-                about:req.body.about,
-                subCategories: req.body.subcategories
-            }
-        ,(err,result)=>{
-            if(err){
-                return res.status(422).json({error: err});
-            }
-            res.json(result);
-        });
-    }else{
-        Trainer.findByIdAndUpdate(req.user._id,
-            {
-                dob:req.body.dob,
-                profilePic:req.body.image,
-                about:req.body.about,
-            }
-        ,(err,result)=>{
-            if(err){
-                return res.status(422).json({error: err});
-            }
-            res.json(result);
-        });
-    }
+    
+    Trainer.findById(req.user._id,(err,result)=>{
+        if(err){
+            return res.status(422).json({error: err});
+        }
+        if(req.body.name != ""){
+            result.username = req.body.name;
+        }
+        if(req.body.address != ""){
+            result.address = req.body.address;
+        }
+        if(req.body.contact != ""){
+            result.contact = req.body.contact;
+        }
+        if(req.body.alternateContact != ""){
+            result.alternateContact = req.body.alternateContact;
+        }
+        if(req.body.amount != ""){
+            result.amount = req.body.amount;
+        }
+        if(req.body.experienceYears != ""){
+            result.experienceYears = req.body.experienceYears;
+        }
+        if(req.body.experiencePlace != ""){
+            result.experiencePlace = req.body.experiencePlace;
+        }
+        if(req.body.website != ""){
+            result.website = req.body.website;
+        }
+        if(req.body.socialHandle != ""){
+            result.socialHandle = req.body.socialHandle;
+        }
+        if(req.body.education != ""){
+            result.education = req.body.education;
+        }
+        if(req.body.certification != ""){
+            result.certification = req.body.certification;
+        }
+        if(req.body.about != ""){
+            result.about = req.body.about;
+        }
+        if(req.body.payment != []){
+            result.payment = req.body.payment;
+        }
+        result.save();
+        res.sendStatus(200);
+    });
 });
 
 route.put('/registerForm',(req,res)=>{

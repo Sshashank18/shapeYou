@@ -24,27 +24,20 @@
             <div class="col-md-9 register-right">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Apply as a Trainer</h3>
+                        <h3 class="register-heading">Edit Details</h3>
                         <div class="row register-form">
                             <div class="col-md-6">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="/trainer/uploadImg" method="POST" enctype="multipart/form-data">
                                     <div class="form-group mb-3">
                                         <label for="inputimage3">Upload Image</label>
                                         <input class="form-control" type="file" name="file_img" id="inputimage3">
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Upload</button>
-                                </form>
-                                <form action="" method="POST" enctype="multipart/form-data">
-                                    <div class="form-group mb-3">
-                                        <label for="">Upload Resume</label>
-                                        <input class="form-control" type="file" name="file_img" id="inputimage3">
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                    <button class="btn btn-primary" type="submit" id="uploadImg">Upload</button>
                                 </form>
                                 <form action="" method="POST">
                                     <div class="form-group mb-3">
-                                        <label for="name">Name *</label> 
-                                        <input class="form-control" type="text" id="name" placeholder="Enter your first and last name" required/>
+                                        <label for="name">Name</label> 
+                                        <input class="form-control" type="text" id="name" placeholder="Enter your first and last name"/>
                                         <p class="error"></p>
                                     </div>
                                     
@@ -54,8 +47,8 @@
                                         <input class="form-control" type="text" name="address" placeholder="Address" />
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="contact">Contact Number *</label>
-                                        <input class="form-control" type="number" name="contact" placeholder="Contact number" min="0000000000" max="999999999" pattern="[0-9]{10}" required/>
+                                        <label for="contact">Contact Number</label>
+                                        <input class="form-control" type="number" name="contact" placeholder="Contact number" min="0000000000" max="999999999" pattern="[0-9]{10}"/>
                                         <p class="error"></p>
                                     </div>
                                     <div class="form-group mb-3">
@@ -63,18 +56,14 @@
                                         <input class="form-control" type="number" name="alternateContact" placeholder="Alternate contact" min="0000000000" max="999999999"/>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">Amount /hour/month *</label>
-                                        <input class="form-control" type="number" name="amount" placeholder="amount" required>
+                                        <label for="">Amount /hour/month</label>
+                                        <input class="form-control" type="number" name="amount" placeholder="amount">
                                         <p class="error"></p>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">Past experience - number of years *</label>
-                                        <input class="form-control" type="number" name="experienceYears" placeholder="past experience" min="0" required />
+                                        <label for="">Past experience - number of years </label>
+                                        <input class="form-control" type="number" name="experienceYears" placeholder="past experience" min="0" />
                                         <p class="error"></p>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="">Referral Code</label>
-                                        <input class="form-control" name="referral" type="text">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="">Website (if any)</label>
@@ -88,42 +77,24 @@
                             </form>
                             <div class="col-md-6">
                                 
-                                <form action="" method="POST">
                                     <div class="form-group mb-3">
-                                        <label for="">Timing /hour/days</label> <br>
-                                        <input class="day form-check-input" type="checkbox" val="Monday"> Monday 
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Tuesday"> Tuesday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Wednesday"> Wednesday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Thursday"> Thursday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Friday"> Friday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Saturday"> Saturday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                        <input class="day form-check-input" type="checkbox" val="Sunday"> Sunday
-                                        <input type="text" placeholder="enter time slots" class="form-control mt-1 mb-1"/>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="">Past experience - where have you worked before? *</label>
-                                        <input class="form-control" type="text" name="experiencePlace" placeholder="Where have you worked" required />
+                                        <label for="">Past experience - where have you worked before? </label>
+                                        <input class="form-control" type="text" name="experiencePlace" placeholder="Where have you worked" />
                                         <p class="error"></p>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">Education (course in fitness) *</label>
-                                        <input class="form-control" type="text" name="education" placeholder="education" required />
+                                        <label for="">Education (course in fitness)</label>
+                                        <input class="form-control" type="text" name="education" placeholder="education" />
                                         <p class="error"></p>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">Certification in Fitness domain *</label>
-                                        <input class="form-control" type="text" name="certification" placeholder="certification" required/>
+                                        <label for="">Certification in Fitness domain </label>
+                                        <input class="form-control" type="text" name="certification" placeholder="certification"/>
                                         <p class="error"></p>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="">A pinch of personality(About You)*</label>
-                                        <textarea class="form-control" name="About" placeholder="Enter description about you" required></textarea>
+                                        <label for="">A pinch of personality(About You)</label>
+                                        <textarea class="form-control" name="About" placeholder="Enter description about you"></textarea>
                                         <p class="error"></p>
                                     </div>
                                     
@@ -136,7 +107,7 @@
                                         <p class="error"></p>
                                     </div>
                                     
-                                    <input type="submit" class="btnRegister"  value="Register"/>
+                                    <input type="submit" class="btnRegister" id="formEdit"  value="Edit"/>
                                 </div>
                             </div>
                         </form>
@@ -148,6 +119,6 @@
         </div>
   
     
-      <script src = "/scripts/trainerRegisterForm.js"></script>
+      <script src = "/scripts/details.js"></script>
 </body>
 </html>

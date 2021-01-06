@@ -38,6 +38,7 @@
     "multer-gridfs-storage": "^4.2.0",
     "multer-s3": "^2.9.0",
     "node-cron": "^2.0.3",
+    "owl.carousel": "^2.3.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",

@@ -1,27 +1,28 @@
 var selectedCategory = null;
 
-$("select.categories").change(function(){
-    selectedCategory = $(this).children("option:selected").val();
-    if (selectedCategory == 'Fitness Trainer'){
-        $('.fitness').removeAttr('hidden');
-        $('.wellness').attr('hidden','');
-        $('.counselling').attr('hidden','');
-    }
-    else if (selectedCategory == 'Wellness'){
-        $('.wellness').removeAttr('hidden');
-        $('.fitness').attr('hidden','');
-        $('.counselling').attr('hidden','');
-    }
-    else if (selectedCategory == 'Counselling'){
-        $('.counselling').removeAttr('hidden');
-        $('.wellness').attr('hidden','');
-        $('.fitness').attr('hidden','');
-    }else{
-        $('.counselling').attr('hidden','');
-        $('.wellness').attr('hidden','');
-        $('.fitness').attr('hidden','');
-    }
-});
+// $("select.categories").change(function(){
+//     selectedCategory = 'Category'; 
+//     // $(this).children("option:selected").val();
+//     if (selectedCategory == 'Fitness Trainer'){
+//         $('.fitness').removeAttr('hidden');
+//         $('.wellness').attr('hidden','');
+//         $('.counselling').attr('hidden','');
+//     }
+//     else if (selectedCategory == 'Wellness'){
+//         $('.wellness').removeAttr('hidden');
+//         $('.fitness').attr('hidden','');
+//         $('.counselling').attr('hidden','');
+//     }
+//     else if (selectedCategory == 'Counselling'){
+//         $('.counselling').removeAttr('hidden');
+//         $('.wellness').attr('hidden','');
+//         $('.fitness').attr('hidden','');
+//     }else{
+//         $('.counselling').attr('hidden','');
+//         $('.wellness').attr('hidden','');
+//         $('.fitness').attr('hidden','');
+//     }
+// });
 
 
 $('#uploadImg').click(e=>{
@@ -96,7 +97,7 @@ $('#formSubmit').click(e => {
 
     e.preventDefault();
     var subcategories = [];
-    $.each($(`input[name='${selectedCategory}']:checked`), function(){
+    $.each($(`input[name='Subcategory']:checked`), function(){
         subcategories.push($(this).val());
     });
     var name = $(`input[id='name']`).val();

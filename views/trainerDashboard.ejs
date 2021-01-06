@@ -93,18 +93,14 @@
     <% if(success && success.length) {%>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <%= success %>
-            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            
         </div>
     <% } %>
 
     <% if(error && error.length) {%>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <%= error %>
-            <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            
         </div>
     <% } %>
 
@@ -3437,6 +3433,7 @@
                         <tr>
                         <th scope='col'>Time slot</th>
                         <th scope='col'>User</th>
+                        <th scope='col'>Category</th>
                         <th scope='col'>Handle</th>
                         </tr>
                         </thead>
@@ -3489,15 +3486,21 @@
                             var length = compareP[j].length;
                             var timeSlot = compareP[j].split(' ')[0];
                             var user = compareP[j].split(' ')[1];
-                         
+                            var category = '';
+                            if(compareP[j].length == 3) {
+                                category = compareP[j].splite(' ')[2];
+                            } else {
+                                category = '-';
+                            }
                             text2 += `<tr class="slotRow">
                                     <td>
                                     ${timeSlot}
                                     </td>
                                     <td>${user}</td>
-                                    <td class="createLink">
+                                    <td>${category}</td>
+                                    <td>
                                         <form method="post" action='/trainer/createMeeting'>
-                                            <button style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
+                                            <button class="mx-auto" style="background-color:red;cursor:default" disabled id="createP${j}">Create</button>
                                         </form>
                                     </td>
                                     </tr>`

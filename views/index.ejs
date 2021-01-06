@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShapeYou - Index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.lite.min.css" integrity="sha512-rtKpq+tUiLpzSJ9MWw/nbRZjsGzTqFoh+cyzF8IVSAEO5TeQLCXCfELo/a1dLy/4Zc9SWyZ6YAPvrD+E4n4fZQ==" crossorigin="anonymous" /> -->
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/anthonykrivonos/flix-carousel/65556d56/src/carousel.css" rel="stylesheet">
     
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/> -->
@@ -221,21 +221,13 @@
       <h1 style="font-size: 40px; color: black; font-family: 'Playfair Display', serif;">Fitness Trainers</h1><br>
     </div>
       
-    <div id="carousel" class="carouselBox">
-      <div class="control-container">
-      <div id="left-scroll-button" class="left-scroll button scroll">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </div>
-      <div id="right-scroll-button" class="right-scroll button scroll">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </div>
-      </div>
-      <div class="items" id="carousel-items">
+    <div class="carousel">
+      <div class="carousel-row">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Fitness trainer') { %>
           
-          <div class="item text-center" style="background: #7F986F;">
-            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+          <div class="carousel-tile text-center" style="background: #7F986F;">
+            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
                 <%if(category.title.length > 12) { %>
@@ -250,7 +242,7 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-            <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
+            <!-- <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div> -->
           </div>
       <% } %>
       <% }); %>
@@ -265,20 +257,12 @@
     </div>
 
     
-    <div id="carousel" class="carouselBox">
-      <div class="control-container">
-      <div id="left-scroll-button" class="left-scroll button scroll">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </div>
-      <div id="right-scroll-button" class="right-scroll button scroll">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </div>
-      </div>
-      <div class="items" id="carousel-items">
+    <div class="carousel">
+      <div class="carousel-row">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
-          <div class="item text-center" style="background: #9ad3bc;">
-            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+          <div class="carousel-tile text-center" style="background: #9ad3bc;">
+            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
                 <%= category.title %>
@@ -289,13 +273,13 @@
               <% }else{ %>
               <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
               <%} %>
-            <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
+            <!-- <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div> -->
           </div>
 
       <% } %>
       <% }); %>
-      <div class="item text-center" style="background: #9ad3bc;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             Yoga
@@ -306,11 +290,11 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Yoga category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </div>
 
-      <div class="item text-center" style="background: #9ad3bc;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             Meditation
@@ -321,11 +305,11 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Meditation category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Meditation category.</div> -->
       </div>
 
-      <div class="item text-center" style="background: #9ad3bc;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             Yoga
@@ -336,7 +320,7 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Yoga category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </div>
 
 
@@ -351,20 +335,12 @@
     </div>
 
     
-    <div id="carousel" class="carouselBox">
-      <div class="control-container">
-      <div id="left-scroll-button" class="left-scroll button scroll">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </div>
-      <div id="right-scroll-button" class="right-scroll button scroll">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </div>
-      </div>
-      <div class="items" id="carousel-items">
+    <div class="carousel">
+      <div class="carousel-row">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
-          <div class="item text-center" style="background: #F6EDD9;">
-            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+          <div class="carousel-tile text-center" style="background: #F6EDD9;">
+            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
                 <%if(category.title.length > 12) { %>
@@ -379,13 +355,13 @@
               <% }else{ %>
               <span class="item-load-icon button opacity-none"><a href="/user/category/<%= category.parent %>"><i class="fas fa-play" style="color: white;"></i></a></span>
               <%} %>
-            <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div>
+            <!-- <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div> -->
           </div>
       <% } %>
       <% }); %>
 
-      <div class="item text-center" style="background: #F6EDD9;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             nutrition
@@ -396,10 +372,10 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Nutrition category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Nutrition category.</div> -->
       </div>
-      <div class="item text-center" style="background: #F6EDD9;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             Therapy
@@ -410,10 +386,10 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Therapy category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Therapy category.</div> -->
       </div>
-      <div class="item text-center" style="background: #F6EDD9;">
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 60%; height: auto; padding-top: 30%;" />
+      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
             nutrition
@@ -424,7 +400,7 @@
             <% }else{ %>
             <span class="item-load-icon button opacity-none"><a href="/user/category/Counselling"><i class="fas fa-play" style="color: white;"></i></a></span>
             <%} %>
-        <div class="item-description opacity-none container">Trainers under Nutrition category.</div>
+        <!-- <div class="item-description opacity-none container">Trainers under Nutrition category.</div> -->
       </div>
         </div>
   </div>

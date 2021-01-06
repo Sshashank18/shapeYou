@@ -253,7 +253,7 @@ div.items {
     white-space: nowrap;
     flex-flow: row nowrap;
     justify-content: space-between;
-    overflow: hidden;
+    /* overflow: scroll; */
     display: flex;
     align-self: center;
 }

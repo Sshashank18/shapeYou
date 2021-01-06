@@ -3,6 +3,7 @@ html, body {
     font-family: 'Karla';
     color: #546e7a;
     background: #fffff4;
+    overflow-x: hidden;
 }
 * {
     box-sizing: border-box;

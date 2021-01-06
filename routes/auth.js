@@ -7,34 +7,6 @@ var http = require("https");
 
 
 const route = express.Router();
-const isUserVerified = async (req, res, next) => {
-    try {
-        const user = await User.findOne({email: req.body.username});
-        if(user) {
-            return next();
-        } 
-            req.flash('error', 'Incorrect credentials');
-            res.redirect('/auth/login');
-    } catch (error) {
-        req.flash('error', 'Incorrect password');
-        res.redirect('/auth/login');
-    }
-}
-
-
-const isTrainerVerified = async (req, res, next) => {
-    try {
-        const trainer = await Trainer.findOne({email: req.body.username});
-        if(trainer) {
-            return next();
-        } 
-            req.flash('error', 'Incorrect credentials');
-            res.redirect('/auth/login');
-    } catch (error) {
-        req.flash('error', 'Incorrect password');
-        res.redirect('/auth/login');
-    }
-}
 
 // =============
 // Trainer Auth
@@ -42,7 +14,8 @@ const isTrainerVerified = async (req, res, next) => {
 
 // Trainer register form
 route.get('/', (req, res) => {
-    res.render('register');
+    const errors = req.flash().error || [];
+    res.render('register', {errors});
 });
 
 // Create a new trainer
@@ -104,14 +77,15 @@ route.post('/user', (req, res) => {
 
 // Trainer Login form
 route.get('/login',(req,res)=>{
-    res.render('login');
+    const errors = req.flash().error || [];
+    res.render('login', {errors});
 });
 
-// Login
-route.post("/trainerLogin", isTrainerVerified,
- passport.authenticate("trainer-local", 
+// Trainer login
+route.post("/trainerLogin", passport.authenticate("trainer-local", 
 	{
-		successRedirect: "/trainer",
+        successRedirect: "/trainer",
+        failureFlash: true,
 		failureRedirect: "/auth/login"
     }),
     function(req, res){
@@ -120,9 +94,10 @@ route.post("/trainerLogin", isTrainerVerified,
 );
 
 // User Login
-route.post("/userLogin", isUserVerified, passport.authenticate("user-local", 
+route.post("/userLogin", passport.authenticate("user-local", 
 	{
-		successRedirect: "/user",
+        successRedirect: "/user",
+        failureFlash: true,
 		failureRedirect: "/auth/login"
 	}), function(req, res){
         console.log(req.user);

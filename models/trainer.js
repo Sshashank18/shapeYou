@@ -65,6 +65,10 @@ var trainerSchema = new mongoose.Schema({
         type:String,
         default:null
     },
+    resume: {
+        type:String,
+        default:null
+    },
     referral: {
         type:String,
         default:null
@@ -78,6 +82,10 @@ var trainerSchema = new mongoose.Schema({
         default:{}
     },
     isVerified: {
+        type: Boolean,
+        default: false
+    },
+    formFilled: {
         type: Boolean,
         default: false
     },
@@ -146,6 +154,15 @@ var trainerSchema = new mongoose.Schema({
     // }
 });
 
-trainerSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
+trainerSchema.plugin(passportLocalMongoose, {usernameField: 'email',  errorMessages: {
+    MissingPasswordError: 'No password was given',
+    AttemptTooSoonError: 'Account is currently locked. Try again later',
+    TooManyAttemptsError: 'Account locked due to too many failed login attempts',
+    NoSaltValueStoredError: 'Authentication not possible. No salt value stored',
+    IncorrectPasswordError: 'Password  is incorrect',
+    IncorrectUsernameError: 'Username is incorrect',
+    MissingUsernameError: 'No username was given',
+    UserExistsError: 'A trainer with the given email is already registered'
+}});
 
 module.exports = mongoose.model("Trainer", trainerSchema);

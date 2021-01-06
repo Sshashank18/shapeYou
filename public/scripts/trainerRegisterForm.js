@@ -148,6 +148,16 @@ $('#formSubmit').click(e => {
         subcategories
     }
     console.log(data2);
+    $('.errorName').html(' ');
+    $('.errorContact').html(' ');
+    $('.errorAmount').html(' ');
+    $('.errorExperiencePlace').html(' ');
+    $('.errorExperienceYears').html(' ');
+    $('.errorAbout').html(' ');
+    $('.errorCertification').html(' ');
+    $('.errorEducation').html(' ');
+    $('.errorAadhar').html(' ');
+    $('.errorSubcategories').html(' ');
 
     if(name && contact && amount && experiencePlace && experienceYears && about && certification && education && aadhar && subcategories.length!=0) {
         $.ajax({
@@ -161,25 +171,56 @@ $('#formSubmit').click(e => {
             }
         });
     }else{
-        var fields = $('.error').prev();
-        // for(var key=0;key<fields.length ;key++){
-        //     console.log(fields[key].val);
-        //     var name = $(`input[id='name']`).val();
-        //     var contact = $(`input[name='contact']`).val();
-        //     var amount = $(`input[name='amount']`).val();
-        //     var experiencePlace = $(`input[name='experiencePlace']`).val();
-        //     var experienceYears = $(`input[name='experienceYears']`).val();
-        //     var about = $(`textarea[name='About']`).val();
-        //     var certification = $(`input[name='certification']`).val();
-        //     var education = $(`input[name='education']`).val();
-        //     var aadhar = $(`input[name='aadhar']`).val();
 
-
-
-        // }
-        $('.error').html('Please fill this field');
-        $('.error').css('color','red');
+        if(!name){
+            $('.errorName').html('Please fill this field');
+            $('.errorName').css('color','red');
+        }
+        if(!contact){
+            $('.errorContact').html('Please fill this field');
+            $('.errorContact').css('color','red');
+        }
+        if(!amount){
+            $('.errorAmount').html('Please fill this field');
+            $('.errorAmount').css('color','red');
+            
+        }
+        if(!experiencePlace){
+            $('.errorExperiencePlace').html('Please fill this field');
+            $('.errorExperiencePlace').css('color','red');
+            
+        }
+        if(!experienceYears){
+            $('.errorExperienceYears').html('Please fill this field');
+            $('.errorExperienceYears').css('color','red');
+            
+        }
+        if(!about){
+            $('.errorAbout').html('Please fill this field');
+            $('.errorAbout').css('color','red');
+            
+        }
+        if(!certification){
+            $('.errorCertification').html('Please fill this field');
+            $('.errorCertification').css('color','red');
+            
+        }
+        if(!education){
+            $('.errorEducation').html('Please fill this field');
+            $('.errorEducation').css('color','red');
+            
+        }
+        if(!aadhar){
+            $('.errorAadhar').html('Please fill this field');
+            $('.errorAadhar').css('color','red');
+            
+        }
+        if(subcategories.length!=0){
+            $('.errorSubcategories').html('Please fill this field');
+            $('.errorSubcategories').css('color','red');
+        }
         alert('Fill all fields');
+
     }
 
 

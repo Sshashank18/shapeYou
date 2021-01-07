@@ -1,9 +1,10 @@
 body {
-    background: url('https://images.unsplash.com/photo-1580086319619-3ed498161c77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80') no-repeat center center/cover;
+	background: url('https://images.unsplash.com/photo-1580086319619-3ed498161c77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80') ;
+	height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -45,7 +46,7 @@ body {
 
 .showcase-content h1 {
 	font-weight: 700;
-	font-size: 5.2rem;
+	font-size: 3rem;
 	line-height: 1.1;
 	margin: 0 0 2rem;
 }

@@ -225,12 +225,12 @@
       <div class="carousel-row">
         <% categories.forEach(function(category) { %>
           <% if(category.parent == 'Fitness trainer') { %>
-            <% if(currentUser && currentUser.type=="Admin") { %>
-              <a href="/admin/category/<%= category.parent %>">
-                <% }else {%>
-                  <a href="/user/category/<%= category.parent %>">
-                <%} %>
-          <div class="carousel-tile text-center" style="background: #7F986F;">
+            <div class="carousel-tile text-center" style="background: #7F986F;">
+              <% if(currentUser && currentUser.type=="Admin") { %>
+                <a href="/admin/category/<%= category.parent %>">
+                  <% }else {%>
+                    <a href="/user/category/<%= category.parent %>">
+                  <%} %>
             <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
@@ -262,12 +262,12 @@
       <div class="carousel-row">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
-          <% if(currentUser && currentUser.type=="Admin") { %>
-            <a href="/admin/category/<%= category.parent %>">
-            <% }else{ %>
-            <a href="/user/category/<%= category.parent %>">
-            <%} %>
           <div class="carousel-tile text-center" style="background: #9ad3bc;">
+            <% if(currentUser && currentUser.type=="Admin") { %>
+              <a href="/admin/category/<%= category.parent %>">
+              <% }else{ %>
+              <a href="/user/category/<%= category.parent %>">
+              <%} %>
             <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
@@ -279,12 +279,12 @@
         </a>
       <% } %>
       <% }); %>
-      <% if(currentUser && currentUser.type=="Admin") { %>
-         <a href="/admin/category/Wellness">
-         <% }else{ %>
-         <a href="/user/category/Wellness">
-         <%} %>
       <div class="carousel-tile text-center" style="background: #9ad3bc;">
+        <% if(currentUser && currentUser.type=="Admin") { %>
+           <a href="/admin/category/Wellness">
+           <% }else{ %>
+           <a href="/user/category/Wellness">
+           <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
@@ -294,12 +294,12 @@
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </div>
     </a>
-    <% if(currentUser && currentUser.type=="Admin") { %>
-      <a href="/admin/category/Wellness">
-      <% }else{ %>
-      <a href="/user/category/Wellness">
-      <%} %>
-      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+    <div class="carousel-tile text-center" style="background: #9ad3bc;">
+      <% if(currentUser && currentUser.type=="Admin") { %>
+        <a href="/admin/category/Wellness">
+        <% }else{ %>
+        <a href="/user/category/Wellness">
+        <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
@@ -310,12 +310,12 @@
         <!-- <div class="item-description opacity-none container">Trainers under Meditation category.</div> -->
       </div>
   </a>
-  <% if(currentUser && currentUser.type=="Admin") { %>
-    <a href="/admin/category/Wellness">
-    <% }else{ %>
-    <a href="/user/category/Wellness">
-    <%} %>
-      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+  <div class="carousel-tile text-center" style="background: #9ad3bc;">
+    <% if(currentUser && currentUser.type=="Admin") { %>
+      <a href="/admin/category/Wellness">
+      <% }else{ %>
+      <a href="/user/category/Wellness">
+      <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
@@ -341,12 +341,12 @@
       <div class="carousel-row">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
-          <% if(currentUser && currentUser.type=="Admin") { %>
-            <a href="/admin/category/<%= category.parent %>">
-            <% }else{ %>
-            <a href="/user/category/<%= category.parent %>">
-            <%} %>
           <div class="carousel-tile text-center" style="background: #F6EDD9;">
+            <% if(currentUser && currentUser.type=="Admin") { %>
+              <a href="/admin/category/<%= category.parent %>">
+              <% }else{ %>
+              <a href="/user/category/<%= category.parent %>">
+              <%} %>
             <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
             <div class="container">
               <span class="item-title">
@@ -364,12 +364,12 @@
       <% } %>
       <% }); %>
 
-      <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/Counselling">
-        <% }else{ %>
-        <a href="/user/category/Counselling">
-        <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <% if(currentUser && currentUser.type=="Admin") { %>
+          <a href="/admin/category/Counselling">
+          <% }else{ %>
+          <a href="/user/category/Counselling">
+          <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
@@ -380,12 +380,12 @@
         <!-- <div class="item-description opacity-none container">Trainers under Nutrition category.</div> -->
       </div>
       </a>
-      <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/Counselling">
-        <% }else{ %>
-        <a href="/user/category/Counselling">
-        <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <% if(currentUser && currentUser.type=="Admin") { %>
+          <a href="/admin/category/Counselling">
+          <% }else{ %>
+          <a href="/user/category/Counselling">
+          <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">
@@ -397,12 +397,12 @@
       </div>
       </a>
 
-      <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/Counselling">
-        <% }else{ %>
-        <a href="/user/category/Counselling">
-        <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
+        <% if(currentUser && currentUser.type=="Admin") { %>
+          <a href="/admin/category/Counselling">
+          <% }else{ %>
+          <a href="/user/category/Counselling">
+          <%} %>
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
         <div class="container">
           <span class="item-title">

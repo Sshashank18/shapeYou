@@ -89,43 +89,38 @@
         <% if(noMatch.length > 0) { %>
             <h1 class="text-center">No search results!!</h1>
         <% } else { %>
-            <ul class="autoWidth" class="cs-hidden">
+            <div class="carousel">
+              <div class="carousel-row">
                 <% categories.forEach(function(category) { %> 
-                    <li class="item-a">
-                      <!--slider-box-->
-                      <div class="card" style="width: 25rem;">
-                        <!--model-->
-                        <div class="view overlay">
-                          <img class="card-img-top model" src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                            alt="Card image cap">
-                          <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                          </a>
-                        </div>
-                        <!-- <img src="" class="model"> -->
-                        <!--details-->
-                         <!-- Card content -->
-              <div class="card-body">
-            
-                <!-- Title -->
-                <h4 class="card-title"><%= category.title %></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                  content.</p>
-                <!-- Button -->
-                <a href="/user/category/<%= category.parent %>" class="btn btn-primary">Read More</a>
-            
-              </div>
-                        
-                        </div>
-                      </li>
+                  <% if(currentUser && currentUser.type=="Admin") { %>
+                    <a href="/admin/category/<%= category.parent %>">
+                      <% }else{ %>
+                        <a href="/user/category/<%= category.parent %>">
+                          <%} %>
+                  <div class="carousel-tile text-center" style="background: #79B258;">
+                    <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
+                    <div class="container">
+                      <span class="item-title">
+                        <%if(category.title.length > 12) { %>
+                          Fitness
+                        <% } else { %> 
+                        <%= category.title %>
+                        <% } %>
+                      </span>
+                    </div>
+                    
+                  </div>
+                  </a>
                 <% }); %>
-              </ul>
+              </div>
+              </div>
+
         <% } %>
               <div class="text-center">
                 <a class="text-center" href="/user">Go Back</a>
               </div>
       </section>
+  <%- include('./partials/footer') %>
 
       <script src="scripts/script.js" type="text/javascript"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->

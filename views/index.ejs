@@ -322,11 +322,6 @@
             Yoga
           </span>
         </div>
-         <% if(currentUser && currentUser.type=="Admin") { %>
-            <span class="item-load-icon button opacity-none"><a href="/admin/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
-            <% }else{ %>
-            <span class="item-load-icon button opacity-none"><a href="/user/category/Wellness"><i class="fas fa-play" style="color: white;"></i></a></span>
-            <%} %>
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </div>
 </a>
@@ -370,9 +365,9 @@
       <% }); %>
 
       <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/<%= category.parent %>">
+        <a href="/admin/category/Counselling">
         <% }else{ %>
-        <a href="/user/category/<%= category.parent %>">
+        <a href="/user/category/Counselling">
         <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
@@ -386,9 +381,9 @@
       </div>
       </a>
       <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/<%= category.parent %>">
+        <a href="/admin/category/Counselling">
         <% }else{ %>
-        <a href="/user/category/<%= category.parent %>">
+        <a href="/user/category/Counselling">
         <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
@@ -403,9 +398,9 @@
       </a>
 
       <% if(currentUser && currentUser.type=="Admin") { %>
-        <a href="/admin/category/<%= category.parent %>">
+        <a href="/admin/category/Counselling">
         <% }else{ %>
-        <a href="/user/category/<%= category.parent %>">
+        <a href="/user/category/Counselling">
         <%} %>
       <div class="carousel-tile text-center" style="background: #F6EDD9;">
         <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />

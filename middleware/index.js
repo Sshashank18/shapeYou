@@ -4,6 +4,7 @@ var Category = require('../models/category');
 var middlewareObj = {};
 
 middlewareObj.isUserLoggedIn = function(req, res, next){
+	console.log(req.url);
 	if(req.isAuthenticated()){
         if(req.user.type == 'User' || req.user.type == 'Admin') {
 			console.log("This is a user");

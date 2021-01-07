@@ -37,8 +37,14 @@
             <% } %>
             <h1>ShapeYou Register</h1>
             <div class="form text-center">
-                <button class="btn btn-primary" id="userSignupButton">User Signup</button>
-                <button class="btn btn-secondary" id="trainerSignupButton">Trainer Signup</button>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-primary" id="userSignupButton" style="padding-left: 1.75rem; padding-right: 1.75rem;">User <br> Signup</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-secondary" id="trainerSignupButton">Trainer Signup</button>
+                    </div>
+                </div>
                 
                 <!-- User Sign up -->
                 <form id="userForm" method="POST" action="/auth/user">

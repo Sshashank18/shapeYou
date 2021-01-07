@@ -32,8 +32,14 @@
         <% } %>
             <h1>ShapeYou Login</h1>
             <div class="form text-center">
-                <button class="btn btn-primary" id="userLoginButton">User Login</button>
-                <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-primary" id="userLoginButton">User Login</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-secondary" id="trainerLoginButton">Trainer Login</button>
+                    </div>
+                </div>
                 <div class="container">
                 <form id="userForm" method="POST" action="/auth/userLogin">
                     <div class="form-group mt-2">

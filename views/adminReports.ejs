@@ -48,16 +48,22 @@
                     <th scope="col">Report made against</th>
                     <th scope="col">Category</th>
                     <th scope="col">Reported issue</th>
+                    <th scope="col">Handle</th>
                 </tr>
             </thead>
             <tbody>
             <% reports.forEach(function(report, idx) { %>
               <tr>
                 <th scope="row"><%= idx+1 %></th>
-                <td><%= report.author.username %></td>
-                <td><%= report.trainerName %></td>
+                <td><a href="/admin/user/<%= report.author.id %>"><%= report.author.username %></td></a>
+                <td><a href="/admin/trainer/<%= report.trainerId%>"><%= report.trainerName %></td></a>
                 <td><%= report.category %></td>
                 <td><%= report.issue %></td>
+                <td>
+                    <form action="/admin/removeReport/<%= report._id %>?_method=PUT" method="POST">
+                        <button type="submit" class="btn btn-primary">Remove</button>
+                    </form>
+                </td>
               </tr>
             <% }) %>
               

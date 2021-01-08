@@ -848,6 +848,7 @@ route.post('/:id/report', (req, res) => {
         } else {
             var report = {
                 trainerName: req.body.trainerName,
+                trainerId: req.body.trainerId,
                 category: req.body.category,
                 issue: req.body.issue,
                 author: {

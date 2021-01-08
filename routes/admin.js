@@ -398,4 +398,17 @@ route.post('/changepassword', (req, res) => {
     })
 });
 
+route.put('/removeReport/:id', (req, res) => {
+    Report.findById(req.params.id, (err, report) => {
+        if(err)
+        {
+            req.flash("error", "Something went wrong");
+            res.redirect('/admin/trainers');
+        } else {
+            report.remove();
+            req.flash("success", "Successfully removed!")
+            res.redirect('/admin/trainers');
+        }
+    })
+});
 module.exports = route;

@@ -306,7 +306,7 @@
                           <h4 class="d-flex align-items-center mb-3">Users Associated</h4>
                           <% if(trainer.users.length != 0){
                             trainer.users.forEach((user)=>{ %>
-                              <div class="containerSmall" style="background-color: black;color: white;margin-bottom: 15px;">
+                              <div class="containerSmall" style="color: white;margin-bottom: 15px;">
                                 <h5>Name: <%=user.userName%></h5>
                                 <h6>Category: <%= user.category%></h6>
                                 <h6>Type: <%= user.type%></h6>
@@ -319,6 +319,7 @@
                                 <h6>BankName: <%= user.payment_info.BankName%></h6>
                                 <h6>BankTransactionId: <%= user.payment_info.BankTransactionID%></h6>
                               </div>
+                              <hr>
                             <%});
                           }%>
                          

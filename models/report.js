@@ -9,6 +9,7 @@ var reportSchema = new mongoose.Schema({
         }
     },
     trainerName: String,
+    trainerId: String,
     category: String,
     issue: String
 });

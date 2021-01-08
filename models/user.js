@@ -23,10 +23,6 @@ var userSchema = new mongoose.Schema({
     }
 });
 
-var options = {
-   
-};
-
 userSchema.plugin(passportLocalMongoose, {usernameField: 'email',  errorMessages: {
     MissingPasswordError: 'No password was given',
     AttemptTooSoonError: 'Account is currently locked. Try again later',

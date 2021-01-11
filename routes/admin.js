@@ -181,6 +181,19 @@ route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
     });
 });
 
+route.put('/trainerDecline',middleware.isAdminLoggedIn,(req,res)=>{
+    Trainer.findByIdAndUpdate(req.body.id,
+        {
+            isDeclined: true
+        }
+        ,(err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+            res.sendStatus(200);
+        });
+})
+
 
 route.put('/trainerVerify/', middleware.isAdminLoggedIn, (req, res) => {
     console.log("HI");

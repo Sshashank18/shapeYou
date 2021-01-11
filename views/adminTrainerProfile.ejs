@@ -53,8 +53,7 @@
                         <img src="<%= trainer.profilePic%>" alt="Admin" class="" width="150">
                         <div class="mt-3">
                           <h4><%=trainer.username%></h4>
-                          <p class="text-secondary mb-1">Full Stack Developer</p>
-                          <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                          
                           <% if(!trainer.isVerified) { %>
                             <form action="" method="POST" style="display: inline;">
                               <button class="btn btn-primary" id="verify">Verify</button>
@@ -87,13 +86,13 @@
                         <div class="col-sm-9 text-secondary">
                           <ul>
                             <% trainer.meetingLogs.forEach(function (meeting){ %>
-                              <li><%=meeting.uuid%></li><hr>
-                              <li><%= meeting.id %></li><hr>
-                              <li><%= meeting.user_name %></li> <hr>
-                              <li><%= meeting.start_time %></li><hr>
-                              <li><%= meeting.end_time %></li><hr>
-                              <li><%= meeting.duration %></li><hr>
-                              <li><%= meeting.participants_count %></li>
+                              <li>Uuid: <%=meeting.uuid%></li><hr>
+                              <li>meeting id: <%= meeting.id %></li><hr>
+                              <li>username: <%= meeting.user_name %></li> <hr>
+                              <li>start time: <%= meeting.start_time %></li><hr>
+                              <li>end time: <%= meeting.end_time %></li><hr>
+                              <li>duration: <%= meeting.duration %></li><hr>
+                              <li>participants count: <%= meeting.participants_count %></li>
                             <% }) %> 
                           </ul>
                         </div>
@@ -177,7 +176,7 @@
                         <div class="col-sm-9 text-secondary">
                           <% if(trainer.payment && trainer.payment.length > 0){%>
                           <% trainer.payment.forEach((payment) => { %>
-                            <%= payment %>
+                            <%= payment %>,
                           <% }) %>
                           <%}else{%>
                             -
@@ -203,7 +202,7 @@
                           <h6 class="mb-0">Experience </h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <%if (trainer.experienceYears) {%>
+                          <%if (trainer.experienceYears >=0 ) {%>
                           <%= trainer.experienceYears %> Years
                           <% } else { %>
                             null
@@ -229,7 +228,7 @@
                           <h6 class="mb-0">Education </h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <%if (trainer.education) {%>
+                          <%if (trainer.education >= 0) {%>
                           <%= trainer.education %>
                           <% } else { %>
                             null
@@ -242,7 +241,11 @@
                           <h6 class="mb-0">Resume</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
+                          <% if(trainer.resume) {%>
                           <a href="<%= trainer.resume %>" class="btn btn-primary" download>Download resume</a>
+                          <% } else {%>
+                            not uploaded
+                            <% } %>
                         </div>
                       </div>
                       <hr>
@@ -251,7 +254,9 @@
                           <h6 class="mb-0">Aadhar/PAN</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
+                          
                           <a href="<%= trainer.aadhar %>" class="btn btn-primary" download>Download aadhar/PAN details</a>
+                          
                         </div>
                       </div>
                     </div>

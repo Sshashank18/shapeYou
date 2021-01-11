@@ -182,8 +182,8 @@ route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
 });
 
 
-route.put('/trainerVerify', middleware.isAdminLoggedIn, (req, res) => {
-
+route.put('/trainerVerify/', middleware.isAdminLoggedIn, (req, res) => {
+    console.log("HI");
     console.log(req.body);
 
         var options = {

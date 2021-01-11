@@ -52,10 +52,10 @@
             </div>
         <% } %>
         <div class="text-center mb-5">
-            <button class="btn btn-success">Trainers</button>
-            <button class="btn btn-success">Declined trainers</button>
+            <button class="btn btn-success" value="trainers">Trainers</button>
+            <button class="btn btn-success" value="declined">Declined trainers</button>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped trainers">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -66,7 +66,7 @@
             </thead>
             <tbody>
             <% trainers.forEach(function(trainer, idx) { %>
-                <%if(!trainer.isDeclined) {%>
+                <% if(!trainer.isDeclined) {%>
               <tr>
                 <th scope="row"><%= idx+1 %></th>
                 <td><%= trainer.username %></td>
@@ -78,6 +78,43 @@
               
             </tbody>
           </table>
+
+          <table class="table table-striped declined" style="display: none;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% trainers.forEach(function(trainer, idx) { %>
+                <% if(trainer.isDeclined){ %>
+              <tr>
+                <th scope="row"><%= idx+1 %></th>
+                <td><%= trainer.username %></td>
+                <td><%= trainer.email %></td>
+                <td><a href="/admin/trainer/<%= trainer._id %>">View Profile</a></td>
+              </tr>
+              <% } %>
+            <% }) %>
+              
+            </tbody>
+          </table>
+          <script>
+              $('button').click(function() {
+                  var val = $(this).val();
+                  if(val == 'trainers') {
+                      $('.declined').css('display', 'none');
+                      $('.trainers').css('display', 'table');
+                  } else {
+                      $('.trainers').css('display', 'none');
+                      $('.declined').css('display', 'table');
+                  }
+                //   $('.' + val).css('display', 'table');
+              })
+          </script>
           <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         </body>

@@ -202,7 +202,7 @@
                           <h6 class="mb-0">Experience </h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <%if (trainer.experienceYears) {%>
+                          <%if (trainer.experienceYears >=0 ) {%>
                           <%= trainer.experienceYears %> Years
                           <% } else { %>
                             null
@@ -228,7 +228,7 @@
                           <h6 class="mb-0">Education </h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <%if (trainer.education) {%>
+                          <%if (trainer.education >= 0) {%>
                           <%= trainer.education %>
                           <% } else { %>
                             null

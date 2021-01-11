@@ -156,7 +156,6 @@ $('#formSubmit').click(e => {
         education,
         socialHandle,
         website,
-        aadhar,
         referral,
         payment,
         timings,
@@ -175,14 +174,26 @@ $('#formSubmit').click(e => {
     $('.errorSubcategories').html(' ');
 
     if(name && contact && amount && experiencePlace && experienceYears && about && certification && education && aadhar && subcategories.length!=0) {
+        
         $.ajax({
-            url:'/trainer/registerForm',
-            type:'PUT',
-            data:data2,
-            success:(data)=>{
-                alert('Saved Details');
-                // window.location="http://127.0.0.1:3500/trainer"
-                window.location="https://shapeyou-demo.herokuapp.com/trainer"
+            url:'/trainer/aadhar',
+            type:'GET',
+            success:(d)=>{
+                if(d.message){
+                    alert(d.message);
+                }
+                else{
+                    $.ajax({
+                        url:'/trainer/registerForm',
+                        type:'PUT',
+                        data:data2,
+                        success:(data)=>{
+                            alert('Saved Details');
+                            // window.location="http://127.0.0.1:3500/trainer"
+                            window.location="https://shapeyou-demo.herokuapp.com/trainer"
+                        }
+                    });
+                }
             }
         });
     }else{

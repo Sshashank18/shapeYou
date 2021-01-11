@@ -245,6 +245,19 @@ route.get('/getDetails',(req,res)=>{
     });
 });
 
+route.get('/aadhar',(req,res)=>{
+    Trainer.findById(req.user._id,(err,result)=>{
+        if(err){
+            return res.status(422).json({error: err});
+        }
+        if(result.aadhar != null){
+            return res.json(result);
+        }else{
+            return res.status(200).json({message:'Upload Aadhar !!'});
+        }
+    });
+});
+
 route.put('/submitDetails',(req,res)=>{
     
     Trainer.findById(req.user._id,(err,result)=>{

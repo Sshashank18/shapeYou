@@ -86,13 +86,13 @@
                         <div class="col-sm-9 text-secondary">
                           <ul>
                             <% trainer.meetingLogs.forEach(function (meeting){ %>
-                              <li><%=meeting.uuid%></li><hr>
-                              <li><%= meeting.id %></li><hr>
-                              <li><%= meeting.user_name %></li> <hr>
-                              <li><%= meeting.start_time %></li><hr>
-                              <li><%= meeting.end_time %></li><hr>
-                              <li><%= meeting.duration %></li><hr>
-                              <li><%= meeting.participants_count %></li>
+                              <li>Uuid: <%=meeting.uuid%></li><hr>
+                              <li>meeting id: <%= meeting.id %></li><hr>
+                              <li>username: <%= meeting.user_name %></li> <hr>
+                              <li>start time: <%= meeting.start_time %></li><hr>
+                              <li>end time: <%= meeting.end_time %></li><hr>
+                              <li>duration: <%= meeting.duration %></li><hr>
+                              <li>participants count: <%= meeting.participants_count %></li>
                             <% }) %> 
                           </ul>
                         </div>

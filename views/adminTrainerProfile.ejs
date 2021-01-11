@@ -238,6 +238,34 @@
                       <hr>
                       <div class="row">
                         <div class="col-sm-3">
+                          <h6 class="mb-0">subcategories </h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <%if (trainer.subCategories) {%>
+                            <%trainer.subCategories.forEach((category) => { %>
+                              <%= category %> <br>
+                            <% })%>
+                          <% } else { %>
+                            null
+                          <% } %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Time slots </h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <%if (trainer.timings) {%>
+                          <%= trainer.timings %>
+                          <% } else { %>
+                            null
+                          <% } %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
                           <h6 class="mb-0">Resume</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">

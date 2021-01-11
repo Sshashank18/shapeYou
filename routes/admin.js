@@ -175,7 +175,7 @@ route.get('/trainer/:id', middleware.isAdminLoggedIn, (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            console.log(foundTrainer.subcategories)
+            console.log(foundTrainer.timings);
             res.render('adminTrainerProfile', {trainer: foundTrainer});
         }
     });

@@ -51,6 +51,10 @@
                 <%= error %>
             </div>
         <% } %>
+        <div class="text-center mb-5">
+            <button class="btn btn-success">Trainers</button>
+            <button class="btn btn-success">Declined trainers</button>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -62,12 +66,14 @@
             </thead>
             <tbody>
             <% trainers.forEach(function(trainer, idx) { %>
+                <%if(!trainer.isDeclined) {%>
               <tr>
                 <th scope="row"><%= idx+1 %></th>
                 <td><%= trainer.username %></td>
                 <td><%= trainer.email %></td>
                 <td><a href="/admin/trainer/<%= trainer._id %>">View Profile</a></td>
               </tr>
+              <% } %>
             <% }) %>
               
             </tbody>

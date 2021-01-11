@@ -51,7 +51,7 @@
                     </button>
               </li>
               <%}%>
-              <% if(trainer.formFilled == false){ %>
+              <% if(trainer.formFilled == false  || trainer.isDeclined == true){ %>
                 <li class="nav-item"><a class="btn btn-primary" href="/trainer/trainerForm" style="text-decoration: none;">Fill The Details Form</a></li>
               <% } %>
                 <li class="nav-item"><a class="btn btn-primary" href="/auth/logout" style="text-decoration: none;">Logout</a></li>
@@ -3221,7 +3221,7 @@
         </div>
       </div>
 
-      <% }else if(trainer.isVerified == false){ %>
+      <% }else if(trainer.isVerified == false && trainer.isDeclined== false){ %>
         <% if(success && success.length) {%>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <%= success %>
@@ -3240,6 +3240,25 @@
             </div>
         <% } %>
         <h3 class="text-center">Please Wait for the Verification by Admin</h3>
+        <% }else if(trainer.isDeclined == true){ %>
+            <% if(success && success.length) {%>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <%= success %>
+                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+    
+            <% if(error && error.length) {%>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+            <h3 class="text-center">You have been Declined by the Admin. Please fill the Details form again.</h3>
         <% }else if(trainer.isVerified == true && trainer.isZoomVerified == false){ %>
             <% if(success && success.length) {%>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -3349,6 +3368,7 @@
                                 for(var i=0;i<data[key].length;i++){
                                     var ne = data[key][i].replace(/\s/g,'-').split('-');
                                     var timeSlot = ne[0]+" - "+ne[3];
+                                    
                                     if(timeSlot == timeStr){
                                         var subCat = ne[4];
                                         if(subCat == "CrossFit"){
@@ -3365,7 +3385,7 @@
                                       $(this).find('.content').css('font-size',"28px");
                                       
                                   }
-                                  else if(subCat == "MMA&Boxing"){
+                                  else if(subCat == "MMAandBoxing"){
                                       $(this).find('.content')[0].innerText = "MMA";
                                       $(this).find('.content').css('color',"#0059A7");
                                       $(this).find('.content').css('font-weight',"600");
@@ -3406,7 +3426,7 @@
                                       $(this).find('.content').css('font-weight',"600");
                                       $(this).find('.content').css('font-size',"20px");
                                       
-                                  }else if(subCat =="Therapy"){
+                                  }else if(subCat =="Therapy&counselling"){
                                       $(this).find('.content')[0].innerText = "Therapy";
                                       $(this).find('.content').css('color',"rgb(130, 215, 0)");
                                       $(this).find('.content').css('font-weight',"600");

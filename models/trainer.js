@@ -82,6 +82,10 @@ var trainerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isDeclined: {
+        type: Boolean,
+        default: false
+    },
     formFilled: {
         type: Boolean,
         default: false

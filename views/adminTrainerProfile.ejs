@@ -58,7 +58,7 @@
                             <form action="" method="POST" style="display: inline;">
                               <button class="btn btn-primary" id="verify">Verify</button>
                             </form>
-                            <button class="btn btn-outline-primary">Decline</button>
+                            <button class="btn btn-outline-primary" id="decline">Decline</button>
                           <% } %>
                         </div>
                       </div>
@@ -1331,6 +1331,23 @@
       })
     });
 
+    $(document).on('click','#decline',(e)=>{
+      e.preventDefault();
+      $.ajax({
+        url:'http://127.0.0.1:3500/admin/trainerDecline',
+        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerDecline',
+        method:'PUT',
+        data:{
+          email:email,
+          id:id
+        },
+        success:()=>{
+          alert('Trainer Declined');
+          location.reload();
+        }
+      })
+    });
+
     var trainerPersonals = <%- JSON.stringify(trainer.personalSlots) %>;
     var calendar = <%- JSON.stringify(trainer.calendar) %>;
     var compare = new Array();
@@ -1418,7 +1435,7 @@
                                       $(this).find('.content').css('font-size',"28px");
                                       
                                   }
-                                  else if(subCat == "MMA&Boxing"){
+                                  else if(subCat == "MMAandBoxing"){
                                       $(this).find('.content')[0].innerText = "MMA";
                                       $(this).find('.content').css('color',"#0059A7");
                                       $(this).find('.content').css('font-weight',"600");
@@ -1459,7 +1476,7 @@
                                       $(this).find('.content').css('font-weight',"600");
                                       $(this).find('.content').css('font-size',"28px");
                                       
-                                  }else if(subCat =="Therapy"){
+                                  }else if(subCat =="Therapy&counselling"){
                                       $(this).find('.content')[0].innerText = "Therapy";
                                       $(this).find('.content').css('color',"rgb(130, 215, 0)");
                                       $(this).find('.content').css('font-weight',"600");

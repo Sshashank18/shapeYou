@@ -175,7 +175,7 @@
                           <h6 class="mb-0">Modes of payment</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <% if(trainer.payment.length > 0){%>
+                          <% if(trainer.payment && trainer.payment.length > 0){%>
                           <% trainer.payment.forEach((payment) => { %>
                             <%= payment %>
                           <% }) %>

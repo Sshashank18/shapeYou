@@ -27,22 +27,29 @@ route.post('/trainer', (req, res) => {
         dob: req.body.dob,
         type: 'Trainer'
     });
-    Trainer.register(newTrainer, req.body.password, (err, trainer) => {
-        if (err) {
-            console.log(err);
+    Trainer.findOne({email: req.body.trainerEmail}, (err, trainer) => {
+        if(trainer) {
+            req.flash('error', 'A trainer with the given email is already registered');
+            res.redirect('/auth/');
         } else {
-            console.log(trainer);
-            
-            req.login(trainer, function (err) {
-                if (err){
+            Trainer.register(newTrainer, req.body.password, (err, trainer) => {
+                if (err) {
                     console.log(err);
                 } else {
-                    res.redirect('/trainer/trainerForm');
+                    console.log(trainer);
+                    
+                    req.login(trainer, function (err) {
+                        if (err){
+                            console.log(err);
+                        } else {
+                            res.redirect('/trainer/trainerForm');
+                        }
+                    });
                 }
-            })
-            // res.redirect('/waiting');
+            });
+            
         }
-    });
+    })
 });
 
 route.get('/userInfo',(req,res)=>{
@@ -56,19 +63,25 @@ route.post('/user', (req, res) => {
         email: req.body.userEmail,
         type: "User"
     });
-    User.register(newUser, req.body.userPassword, (err, user) => {
-        if(err) {
-            console.log(err);
+    User.findOne({email: req.body.userEmail}, (err, user) => {
+        if(user) {
+            req.flash('error', 'A user with the given email is already registered');
+            res.redirect('/auth');
         } else {
-            console.log(user);
-            req.login(user, function (err) {
-                if (err){
+            User.register(newUser, req.body.userPassword, (err, user) => {
+                if(err) {
                     console.log(err);
                 } else {
-                    res.redirect('/');
+                    console.log(user);
+                    req.login(user, function (err) {
+                        if (err){
+                            console.log(err);
+                        } else {
+                            res.redirect('/');
+                        }
+                    })
                 }
-            })
-            // res.redirect('/');
+            });
         }
     })
 })

@@ -323,7 +323,6 @@ route.put('/registerForm',(req,res)=>{
         education:req.body.education,
         socialHandle:req.body.socialHandle,
         website:req.body.website,
-        aadhar:req.body.aadhar,
         referral:req.body.referral,
         payment:req.body.payment,
         timings:req.body.timings,

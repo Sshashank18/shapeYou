@@ -3222,61 +3222,15 @@
       </div>
 
       <% }else if(trainer.isVerified == false && trainer.isDeclined== false){ %>
-        <% if(success && success.length) {%>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <%= success %>
-                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <% } %>
-
-        <% if(error && error.length) {%>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <%= error %>
-                <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <% } %>
+        
         <h3 class="text-center">Please Wait for the Verification by Admin</h3>
         <% }else if(trainer.isDeclined == true){ %>
-            <% if(success && success.length) {%>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <%= success %>
-                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <% } %>
+            
     
-            <% if(error && error.length) {%>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <%= error %>
-                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <% } %>
+            
             <h3 class="text-center">You have been Declined by the Admin. Please fill the Details form again.</h3>
         <% }else if(trainer.isVerified == true && trainer.isZoomVerified == false){ %>
-            <% if(success && success.length) {%>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <%= success %>
-                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <% } %>
-    
-            <% if(error && error.length) {%>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <%= error %>
-                    <button type="button" class="close" data-dismissible="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <% } %>
+            
         <h3 class="text-center">Please Verify your Email of Zoom For continuing further</h3>
     <% } %>
 

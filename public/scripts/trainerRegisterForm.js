@@ -162,6 +162,8 @@ $('#formSubmit').click(e => {
        timings[$(this).val()] = $(this).next().val()
     });
 
+    console.log(timings);
+
     var data2={
         name,
         dob,

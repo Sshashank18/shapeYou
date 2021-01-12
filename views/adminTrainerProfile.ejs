@@ -1364,8 +1364,8 @@
     $(document).on('click','#decline',(e)=>{
       e.preventDefault();
       $.ajax({
-        url:'http://127.0.0.1:3500/admin/trainerDecline',
-        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerDecline',
+        // url:'http://127.0.0.1:3500/admin/trainerDecline',
+        url:'https://shapeyou-demo.herokuapp.com/admin/trainerDecline',
         method:'PUT',
         data:{
           email:email,

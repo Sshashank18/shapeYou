@@ -157,7 +157,8 @@ $('#formSubmit').click(e => {
        payment.push($(this).val())
     });
 
-    $('input:checkbox[class="day"]:checked').each(function() 
+
+    $('input:checkbox[name="day"]:checked').each(function() 
     {
        timings[$(this).val()] = $(this).next().val()
     });

@@ -336,7 +336,7 @@ route.put('/registerForm',(req,res)=>{
 
 
 // TRAINER FORM REGISTRATION FOR STEP 2
-route.get('/trainerForm', middleware.isTrainerLoggedIn,(req, res) => {
+route.get('/trainerForm',(req, res) => {
     res.render('trainerRegisterForm.ejs');
 })
 

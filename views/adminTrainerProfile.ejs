@@ -259,7 +259,27 @@
                         </div>
                         <div class="col-sm-9 text-secondary">
                           <%if (trainer.timings) {%>
-                          <%= trainer.timings %>
+                          <%if(trainer.timings.Monday){%>
+                            Monday - <%= trainer.timings.Monday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Tuesday){%>
+                            Tuesday - <%= trainer.timings.Tuesday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Wednesday){%>
+                            Wednesday - <%= trainer.timings.Wednesday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Thursday){%>
+                            Thursday - <%= trainer.timings.Thursday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Friday){%>
+                            Friday - <%= trainer.timings.Friday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Saturday){%>
+                            Saturday - <%= trainer.timings.Saturday %> <br>
+                          <%}%>
+                          <%if(trainer.timings.Sunday){%>
+                            Sunday - <%= trainer.timings.Sunday %> <br>
+                          <%}%>
                           <% } else { %>
                             null
                           <% } %>

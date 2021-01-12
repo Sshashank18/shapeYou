@@ -50,10 +50,12 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
-                        <img src="<%= trainer.profilePic%>" alt="Admin" class="" width="150">
+                        <img src="<%= trainer.profilePic%>" alt="Image" class="" width="150">
                         <div class="mt-3">
                           <h4><%=trainer.username%></h4>
-                          
+                          <% if(trainer.isDeclined) {%>
+                            <b>Trainer Declined</b> <br>
+                          <% } %>
                           <% if(!trainer.isVerified) { %>
                             <form action="" method="POST" style="display: inline;">
                               <button class="btn btn-primary" id="verify">Verify</button>

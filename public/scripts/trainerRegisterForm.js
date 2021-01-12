@@ -106,7 +106,27 @@ $(function(){
     $('#dob').attr('max', maxDate);
 });
 
-
+document.getElementById('mon').onchange = function() {
+    document.getElementById('monday').disabled = !this.checked;
+};
+document.getElementById('tue').onchange = function() {
+    document.getElementById('tuesday').disabled = !this.checked;
+};
+document.getElementById('wed').onchange = function() {
+    document.getElementById('wednesday').disabled = !this.checked;
+};
+document.getElementById('thur').onchange = function() {
+    document.getElementById('thursday').disabled = !this.checked;
+};
+document.getElementById('fri').onchange = function() {
+    document.getElementById('friday').disabled = !this.checked;
+};
+document.getElementById('sat').onchange = function() {
+    document.getElementById('saturday').disabled = !this.checked;
+};
+document.getElementById('sun').onchange = function() {
+    document.getElementById('sunday').disabled = !this.checked;
+};
 
 $('#formSubmit').click(e => {
 

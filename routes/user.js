@@ -147,20 +147,19 @@ route.get('/bookedSlots/:id',(req, res)=>{
 
 
 
-trainerSort = trainers =>{
-
+function trainerSort(trainers){
     return trainers.sort((a,b)=>{
         avg1 = a.avgRating;
         avg2 = b.avgRating;
     
-        if(avg1 > avg2) return 1;
-        else return -1;
+        if(avg1 > avg2) return -1;
+        else return 1;
     
     });
 
 };
 
-route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
+route.get('/category/:parent', middleware.isUserLoggedIn,(req, res) => {
     var parent = req.params.parent;
     if(req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -193,7 +192,6 @@ route.get('/category/:parent', middleware.isUserLoggedIn, (req, res) => {
             } else {
                 sortedTrainers = trainerSort(foundTrainer);
                 foundTrainers = foundTrainer;
-                
                 
                 setTimeout(() => {
                     if(sortedTrainers){

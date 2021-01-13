@@ -136,7 +136,7 @@ cron.schedule('0 1 * * SUN', function() {
 				});
 			}
 			user.trainers = tempTrainers;
-			user.bookedSlot = null;
+			user.bookedSlot = new Array();
 			user.save();
 		});
 	});

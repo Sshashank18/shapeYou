@@ -1171,10 +1171,16 @@
                               }
                             }
 
+                            var headDate = new Date(key);
+                            headDate.setHours(0,0,0,0);
+                            var currDate = new Date();
+                            currDate.setHours(0,0,0,0);
+
                             if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
                               for(var i=0;i<data[key].length;i++){
                                 var ne = data[key][i].replace(/\s/g,'-').split('-');
                                 var timeSlot = ne[0]+" - "+ne[3];
+                                
                                 if(timeSlot == timeStr && ne[4]==trainerCat){
 
                                   if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
@@ -1182,7 +1188,8 @@
                                     $(this).find('.content').find('.empty').attr('hidden','');
                                   }
                                   else{
-                                    if(userSessions>0){
+                                   
+                                    if(userSessions>0 && (currDate<=headDate)){
                                       $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                                       $(this).find('.content').find('.empty').attr('hidden','');
                                       $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1220,6 +1227,7 @@
                               if(data[dayCol]!=undefined){
 
                               for(var i=0;i<data[dayCol].length;i++){
+
                                 if(data[dayCol][i].split(' ')[0]==timeStr2){
                                   if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
                                     $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
@@ -1227,7 +1235,7 @@
                                   }
                                   else{
                                     if((parseInt(data[dayCol][i].split(' ')[1])==0)){
-                                      if(userSessions >0){
+                                      if(userSessions>0 && (currDate<=headDate)){
                                       $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                                       $(this).find('.content').find('.empty').attr('hidden','');
                                       $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1318,7 +1326,20 @@
                           }
                         }
                       }); 
-                    }
+                    }else if((parseInt(compare2.slice(0,2)) == 1)  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))){
+                      $.ajax({
+                        // url:'http://127.0.0.1:3500/user/isCreated/'+id,
+                        url:'https://shapeyou-demo.herokuapp.com/user/isCreated/'+id,
+                        method: 'GET',
+                        success:(data)=>{
+                          if(data.isCreated == true){
+                            $('#join'+(i-1)).removeAttr('disabled');
+                            $('#join'+(i-1)).css('background-color','green');
+                            $('#join'+(i-1)).css('cursor','pointer');
+                          }
+                        }
+                      }); 
+                        }
                     else{
                         $('#join'+i).attr('disabled','');
                         $('#join'+i).css('background-color','#99AAAB');

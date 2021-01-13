@@ -3461,8 +3461,9 @@
                             var timeSlot = compareP[j].split(' ')[0];
                             var user = compareP[j].split(' ')[1];
                             var category = '';
-                            if(compareP[j].length == 3) {
-                                category = compareP[j].splite(' ')[2];
+                            if(compareP[j].split(' ').length == 3) {
+                                category = compareP[j].split(' ')[1];
+                                user = compareP[j].split(' ')[2];
                             } else {
                                 category = '-';
                             }
@@ -3609,8 +3610,13 @@
                             $('#create'+i).css('border-radius','20px');
                             $('#create'+i).css('cursor','pointer');
     
-                        }
-                        else{
+                        }else if((parseInt(compare2.slice(0,2)) == 1)  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))){
+                            $('#create'+i).removeAttr('disabled');
+                            $('#create'+i).css('background-color','green');
+                            $('#create'+i).css('color','white');
+                            $('#create'+i).css('border-radius','20px');
+                            $('#create'+i).css('cursor','pointer');
+                        }else{
                             $('#create'+i).attr('disabled','');
                             $('#create'+i).css('background-color','#99AAAB');
                             $('#create'+i).css('color','white');
@@ -3632,6 +3638,13 @@
                             $('#createP'+j).css('border-radius','20px');
                             $('#createP'+j).css('cursor','pointer');
     
+                        }
+                        else if((parseInt(compare2.slice(0,2)) == 1)  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))){
+                            $('#createP'+j).removeAttr('disabled');
+                            $('#createP'+j).css('background-color','green');
+                            $('#createP'+j).css('color','white');
+                            $('#createP'+j).css('border-radius','20px');
+                            $('#createP'+j).css('cursor','pointer');
                         }
                         else{
                             $('#createP'+j).attr('disabled','');

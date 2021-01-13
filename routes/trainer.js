@@ -355,7 +355,7 @@ route.get('/getTimeTable/:id',(req,res)=>{
     Trainer.findById(req.params.id,(err,result)=>{
         res.json(result.calendar);
     });
-})
+});
 
 route.put('/setTimeTable/:id',(req,res)=>{
     Trainer.findByIdAndUpdate(req.params.id,

@@ -147,7 +147,10 @@ var trainerSchema = new mongoose.Schema({
         }
     ],
     pricePlan: String,
-    avgRating : Number,
+    avgRating : {
+        type:Number,
+        default:0
+    },
     // {
     //         // type: mongoose.Schema.Types.ObjectId,
     //         type:String,

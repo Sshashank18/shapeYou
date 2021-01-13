@@ -134,16 +134,21 @@
             <h2 class="text-center"><%= noMatch %></h2>
         <a href="/user/category/<%= parent %>">Go Back</a>
         </div>
-        <% } else {%>
-        <div class="container">
-            <div class="card">
-                <div class="card-body text-center">
-                    <%= trainer.username %>
-                </div>
+        <% } else { %>
+          
+          <div class="row">
+              <% trainer.forEach((trainer) => { %>
+                <a href="/trainer/profile/<%= trainer._id %>/category">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <%= trainer.username %>
+                    </div>
+                  </div>
+                </a>
+              <% }) %>
             </div>
-        </div>
-        <a href="/user/category/<%= parent %>">Go Back</a>
-        <%}%>
+            <%}%>
+            <a href="/user/category/<%= parent %>">Go Back</a>
     </section>
 
     <%- include('./partials/footer') %>

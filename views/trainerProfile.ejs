@@ -1453,13 +1453,19 @@
                 var key = col[0].getAttribute('value');
                 var key2 = key.split(' ').join('-');
                 var dayCol = col[0].innerHTML.split('>')[2].split('<')[0];
+
+                var headDate = new Date(key);
+                headDate.setHours(0,0,0,0);
+                var currDate = new Date();
+                currDate.setHours(0,0,0,0);
+
               
                 if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
                   
                   for(var i=0;i<data[key].length;i++){
                     var ne = data[key][i].replace(/\s/g,'-').split('-');
                     var timeSlot = ne[0]+" - "+ne[3];
-                    if(timeSlot == timeStr && ne[4]==trainerCat){
+                    if(timeSlot == timeStr  && (currDate<=headDate) && ne[4]==trainerCat){
                         console.log('in');
                         $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                         $(this).find('.content').find('.empty').attr('hidden','');
@@ -1496,7 +1502,7 @@
 
                   if(data && data[dayCol]){
                     for(var i=0;i<data[dayCol].length;i++){
-                      if(data[dayCol][i].split(' ')[0]==timeStr2 && parseInt(data[dayCol][i].split(' ')[1])==0){
+                      if(data[dayCol][i].split(' ')[0]==timeStr2 && (currDate<=headDate) && parseInt(data[dayCol][i].split(' ')[1])==0){
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                             $(this).find('.content').find('.empty').attr('hidden','');
                             $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));

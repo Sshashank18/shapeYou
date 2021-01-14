@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShapeYou - Trainers</title>
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/trainerProfile.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
@@ -123,7 +123,11 @@
       <%}%>
     </div>
     <div class="col-6" style="margin-top: 8rem;">
-      <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 20rem; max-height: 50%; border-radius: 50%; display: block; margin-left: 10%;">
+      <% if(trainer.profilePic) {%>
+        <img src="<%= trainer.profilePic %>" style="max-width: 20rem; max-height: 50%; border-radius: 50%; display: block; margin-left: 10%;">
+      <% } else {%>
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" style="max-width: 20rem; max-height: 50%; border-radius: 50%; display: block; margin-left: 10%;">
+      <% } %>
     </div>
   </div>
 </section>
@@ -1387,7 +1391,7 @@
 
       
       var interval = setInterval(()=>{
-        console.log(loaded);
+        
         if(loaded == true){
           $('#loading').hide();
           $('#container1').removeAttr('hidden');

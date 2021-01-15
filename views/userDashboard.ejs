@@ -1091,8 +1091,10 @@
               trainer = $(this);
               id = $(this).attr("data-id");
               name = $(this).attr("data-name");
+              name2 = name;
+              name = name.replace(/\s+/g, '');
 
-              $('.trainerName').text(name);
+              $('.trainerName').text(name2);
 
               // if(user.trainers.find(el => el.id == id)) {
               //   $('.trainerName').text(el.username)
@@ -1124,15 +1126,15 @@
                   });
 
               $.ajax({
-                // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-                url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+                url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+                // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
                 data: {trainerType},
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    // url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(user._id)%>,
-                    url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
                     method: 'GET',  
                     success:(data2)=>{
 
@@ -1174,7 +1176,27 @@
                             var headDate = new Date(key);
                             headDate.setHours(0,0,0,0);
                             var currDate = new Date();
+                            var m = currDate.getMinutes();
+                            var h = currDate.getHours();
+                            if(h == '0') {h = 12}
+                            if(m<10){
+                                m = '0' + m;
+                            }
+                            
+                            if(h>12){
+                                h = h-12;
+                                m = m;
+                            }else{
+                                m = m;
+                            }
+                            var currentTime = h+"."+m;
+                            
+                            var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                            inputTime = inputTime.replace(':','.');
+
+                            var totalTime = currentTime - inputTime;
                             currDate.setHours(0,0,0,0);
+
 
                             if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
                               for(var i=0;i<data[key].length;i++){
@@ -1186,17 +1208,28 @@
                                   if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
                                     $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
                                     $(this).find('.content').find('.empty').attr('hidden','');
-                                  }
+                                  } 
                                   else{
                                    
                                     if(userSessions>0 && (currDate<=headDate)){
-                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
-                                      $(this).find('.content').find('.empty').attr('hidden','');
-                                      $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                                      $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                                      $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                                      // $(this).find('.content').css('background-color',"yellowgreen");
-                                      // $(this).find('.content').css('color',"darkgreen");
+                                      if(currDate.getTime() == headDate.getTime()){
+                                          if((parseFloat(currentTime)<parseFloat(inputTime))){
+                                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                            $(this).find('.content').find('.empty').attr('hidden','');
+                                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                          }
+                                        }else{
+                                        $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                        $(this).find('.content').find('.empty').attr('hidden','');
+                                        $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                        $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                        $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                        // $(this).find('.content').css('background-color',"yellowgreen");
+                                        // $(this).find('.content').css('color',"darkgreen");
+                                      }
                                     }
                                   }
                                 }
@@ -1236,14 +1269,25 @@
                                   else{
                                     if((parseInt(data[dayCol][i].split(' ')[1])==0)){
                                       if(userSessions>0 && (currDate<=headDate)){
-                                      $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
-                                      $(this).find('.content').find('.empty').attr('hidden','');
-                                      $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
-                                      $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
-                                      $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
-                                      $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
-                                      // $(this).find('.content').css('background-color',"yellowgreen");
-                                      // $(this).find('.content').css('color',"darkgreen");
+                                        if(currDate.getTime() == headDate.getTime()){
+                                          if((parseFloat(currentTime)<parseFloat(inputTime))){
+                                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                            $(this).find('.content').find('.empty').attr('hidden','');
+                                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                          }
+                                        }else{
+                                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot'  data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmslot" >Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                                          $(this).find('.content').find('.empty').attr('hidden','');
+                                          $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                                          $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                                          $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                                          $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                                          // $(this).find('.content').css('background-color',"yellowgreen");
+                                          // $(this).find('.content').css('color',"darkgreen");
+                                        }
                                     }
                                   }
                                   }

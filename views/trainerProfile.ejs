@@ -1429,8 +1429,8 @@
 
           
           $.ajax({
-            // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-            url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+            url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+            // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
             method: 'GET',
             data: {trainerType},
             success:(data)=>{
@@ -1457,6 +1457,25 @@
                 var headDate = new Date(key);
                 headDate.setHours(0,0,0,0);
                 var currDate = new Date();
+                var m = currDate.getMinutes();
+                var h = currDate.getHours();
+                if(h == '0') {h = 12}
+                if(m<10){
+                    m = '0' + m;
+                }
+                
+                if(h>12){
+                    h = h-12;
+                    m = m;
+                }else{
+                    m = m;
+                }
+                var currentTime = h+"."+m;
+                
+                var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                inputTime = inputTime.replace(':','.');
+
+                var totalTime = currentTime - inputTime;
                 currDate.setHours(0,0,0,0);
 
               
@@ -1466,7 +1485,16 @@
                     var ne = data[key][i].replace(/\s/g,'-').split('-');
                     var timeSlot = ne[0]+" - "+ne[3];
                     if(timeSlot == timeStr  && (currDate<=headDate) && ne[4]==trainerCat){
-                        console.log('in');
+                      
+                      if(currDate.getTime() == headDate.getTime()){
+                        if((parseFloat(currentTime)<parseFloat(inputTime))){
+                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                        $(this).find('.content').find('.empty').attr('hidden','');
+                        $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                        $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                        $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                        }
+                      }else{
                         $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                         $(this).find('.content').find('.empty').attr('hidden','');
                         $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1474,6 +1502,7 @@
                         $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                         // $(this).find('.content').css('background-color',"yellowgreen");
                         // $(this).find('.content').css('color',"darkgreen");
+                      }
                     }
                   }
                 }else if(trainerType == "personal" && index!=0){
@@ -1503,6 +1532,16 @@
                   if(data && data[dayCol]){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].split(' ')[0]==timeStr2 && (currDate<=headDate) && parseInt(data[dayCol][i].split(' ')[1])==0){
+                        if(currDate.getTime() == headDate.getTime()){
+                          if((parseFloat(currentTime)<parseFloat(inputTime))){
+                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                            $(this).find('.content').find('.empty').attr('hidden','');
+                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                          }
+                        }else{
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                             $(this).find('.content').find('.empty').attr('hidden','');
                             $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1511,6 +1550,7 @@
                             $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                             // $(this).find('.content').css('background-color',"yellowgreen");
                             // $(this).find('.content').css('color',"darkgreen");
+                        }
                       }
                     };
                   }
@@ -1578,8 +1618,8 @@
       //FILLING TABLE DETAILS
 
       $.ajax({
-        // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-        url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+        // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
         method: 'GET',
         data: {trainerType},
         success:(data)=>{
@@ -1606,6 +1646,25 @@
                 var headDate = new Date(key);
                 headDate.setHours(0,0,0,0);
                 var currDate = new Date();
+                var m = currDate.getMinutes();
+                var h = currDate.getHours();
+                if(h == '0') {h = 12}
+                if(m<10){
+                    m = '0' + m;
+                }
+                
+                if(h>12){
+                    h = h-12;
+                    m = m;
+                }else{
+                    m = m;
+                }
+                var currentTime = h+"."+m;
+                
+                var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                inputTime = inputTime.replace(':','.');
+
+                var totalTime = currentTime - inputTime;
                 currDate.setHours(0,0,0,0);
 
                 if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
@@ -1614,6 +1673,15 @@
                     var ne = data[key][i].replace(/\s/g,'-').split('-');
                     var timeSlot = ne[0]+" - "+ne[3];
                     if(timeSlot == timeStr && (currDate<=headDate) && ne[4]==trainerCat){
+                      if(currDate.getTime() == headDate.getTime()){
+                        if((parseFloat(currentTime)<parseFloat(inputTime))){
+                          $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                        $(this).find('.content').find('.empty').attr('hidden','');
+                        $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                        $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                        $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                        }
+                      }else{
                         $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                         $(this).find('.content').find('.empty').attr('hidden','');
                         $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1621,7 +1689,7 @@
                         $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                         // $(this).find('.content').css('background-color',"yellowgreen");
                         // $(this).find('.content').css('color',"darkgreen");
-                      
+                      } 
                     }
                   }
                 }else if(trainerType == "personal" && index!=0){
@@ -1651,6 +1719,16 @@
                   if(data && data[dayCol]!=undefined){
                     for(var i=0;i<data[dayCol].length;i++){
                       if(data[dayCol][i].split(' ')[0]==timeStr2 && (currDate<=headDate) && parseInt(data[dayCol][i].split(' ')[1])==0){
+                        if(currDate.getTime() == headDate.getTime()){
+                          if((parseFloat(currentTime)<parseFloat(inputTime))){
+                            $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
+                            $(this).find('.content').find('.empty').attr('hidden','');
+                            $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
+                            $(this).find('.content').find('.bookSlot').attr('data-key2',dayCol);
+                            $(this).find('.content').find('.bookSlot').attr('data-slot',timeStr.replace(/\s/g, ''));
+                            $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
+                          }
+                        }else{
                             $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                             $(this).find('.content').find('.empty').attr('hidden','');
                             $(this).find('.content').find('.bookSlot').attr('data-key',key.replace(/\s/g, '-'));
@@ -1659,6 +1737,7 @@
                             $(this).find('.content').find('.bookSlot').attr('data-trainer',name);
                             // $(this).find('.content').css('background-color',"yellowgreen");
                             // $(this).find('.content').css('color',"darkgreen");
+                        }
                     };
                   }
                 }
@@ -1754,7 +1833,8 @@
               const key  = $(this).attr('data-key');
               const key3  = $(this).attr('data-key2');
               const slot = $(this).attr('data-slot');
-              const name = $(this).attr('data-trainer');
+              var name = $(this).attr('data-trainer');
+              name = name.replace(/\s+/g, '');
 
               $(this).attr('hidden','');
               $(this).next().removeAttr('hidden');

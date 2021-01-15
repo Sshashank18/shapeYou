@@ -1100,7 +1100,7 @@
               //   $('.trainerName').text(el.username)
               // }
               aboutTrainer.some((t)=>{
-                if(t.name == name){
+                if(t.name == name2){
                   trainerCat =  t.category;
                   trainerType = t.type;
                   userSessions = t.numOfSessions;
@@ -1126,15 +1126,15 @@
                   });
 
               $.ajax({
-                url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-                // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+                // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+                url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
                 method: 'GET',
                 data: {trainerType},
                 success:(data)=>{
                   var index = 0;
                   $.ajax({
-                    url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
-                    // url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    // url:'http://127.0.0.1:3500/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
+                    url:'https://shapeyou-demo.herokuapp.com/user/bookedSlots/'+<%- JSON.stringify(currentUser._id)%>,
                     method: 'GET',  
                     success:(data2)=>{
 
@@ -1183,18 +1183,20 @@
                                 m = '0' + m;
                             }
                             
-                            if(h>12){
-                                h = h-12;
-                                m = m;
-                            }else{
-                                m = m;
-                            }
+                            
                             var currentTime = h+"."+m;
                             
                             var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                            var t = timeStr.split(' ')[2].slice(-2);
                             inputTime = inputTime.replace(':','.');
+                            var temp = inputTime.split('.');
+                            var firstT = parseInt(temp[0]);
+                            if(firstT<12 && t=="PM"){
+                              firstT += 12;
+                            }
+                            temp[0] = firstT;
+                            inputTime = temp.join('.');
 
-                            var totalTime = currentTime - inputTime;
                             currDate.setHours(0,0,0,0);
 
 
@@ -1260,7 +1262,6 @@
                               if(data[dayCol]!=undefined){
 
                               for(var i=0;i<data[dayCol].length;i++){
-
                                 if(data[dayCol][i].split(' ')[0]==timeStr2){
                                   if(slots2!=undefined && slots2[key2]!=undefined && slots2[key2].includes(timeStr2)){
                                     $(this).find('.content')[0].innerHTML = `<button class="booked" disabled>BOOKED</button>`;
@@ -1460,6 +1461,7 @@
               key3  = $(this).attr('data-key2');
               slot = $(this).attr('data-slot');
               name = $(this).attr('data-trainer');
+              name = name.replace(/\s+/g, '');
 
               $(this).attr('hidden','');
               $(this).next().removeAttr('hidden');
@@ -1494,10 +1496,12 @@
                     newObj[name].push(date);
                     booked.push(newObj);
                   
-                  }
 
+                  }else{
+                  var isPresent = false;
                   for(var i=0;i<booked.length;i++){
                     if(Object.keys(booked[i])[0] == name){
+                      isPresent = true;
                       var temp = booked[i][Object.keys(booked[i])[0]];
                       if(temp.length == 0){
                         booked[i][Object.keys(booked[i])[0]].push(date); 
@@ -1517,8 +1521,17 @@
                     }
                   }
                 }
+
+                if(!isPresent){
+                  var newObj = new Object();
+                  newObj[name] = new Array();
+                  newObj[name].push(date);
+                  booked.push(newObj);
+                }
+
                 booked2= booked;
                 console.log(booked);
+               }
               }
             });
           

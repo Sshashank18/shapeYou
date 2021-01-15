@@ -3610,7 +3610,7 @@
                             $('#create'+i).css('border-radius','20px');
                             $('#create'+i).css('cursor','pointer');
     
-                        }else if((parseInt(compare2.slice(0,2)) == 1)  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))){
+                        }else if((parseInt(compare2.slice(0,2)) == "1:")  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))  ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ) && (currentTime.slice(-2)==compare2.slice(-2)))){
                             $('#create'+i).removeAttr('disabled');
                             $('#create'+i).css('background-color','green');
                             $('#create'+i).css('color','white');
@@ -3627,7 +3627,6 @@
                     }
 
                 var compare2 = compareP;
-
                 if(compare2){
                     for(var j=0;j<compare2.length;j++){
                         var compare3 = compare2[j].slice(0,6);
@@ -3639,7 +3638,7 @@
                             $('#createP'+j).css('cursor','pointer');
     
                         }
-                        else if((parseInt(compare2.slice(0,2)) == 1)  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2))){
+                        else if((parseInt(compare2[j].slice(0,2)) == "1:")  && (compare1.slice(-2)>=45) && (currentTime.slice(-2)==compare2.slice(-2)) ||   ((compare1.slice(0,2) == compare2.slice(0,2)) && (compare1.slice(-2) <=15 ) && (currentTime.slice(-2)==compare2.slice(-2)))){
                             $('#createP'+j).removeAttr('disabled');
                             $('#createP'+j).css('background-color','green');
                             $('#createP'+j).css('color','white');

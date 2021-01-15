@@ -1429,8 +1429,8 @@
 
           
           $.ajax({
-            url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-            // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+            // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+            url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
             method: 'GET',
             data: {trainerType},
             success:(data)=>{
@@ -1464,18 +1464,20 @@
                     m = '0' + m;
                 }
                 
-                if(h>12){
-                    h = h-12;
-                    m = m;
-                }else{
-                    m = m;
-                }
+                
                 var currentTime = h+"."+m;
                 
                 var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                var t = timeStr.split(' ')[2].slice(-2);
                 inputTime = inputTime.replace(':','.');
+                var temp = inputTime.split('.');
+                var firstT = parseInt(temp[0]);
+                if(firstT<12 && t=="PM"){
+                  firstT += 12;
+                }
+                temp[0] = firstT;
+                inputTime = temp.join('.');
 
-                var totalTime = currentTime - inputTime;
                 currDate.setHours(0,0,0,0);
 
               
@@ -1487,6 +1489,7 @@
                     if(timeSlot == timeStr  && (currDate<=headDate) && ne[4]==trainerCat){
                       
                       if(currDate.getTime() == headDate.getTime()){
+                        
                         if((parseFloat(currentTime)<parseFloat(inputTime))){
                           $(this).find('.content')[0].innerHTML = `<button class='bookSlot' data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#mymodal-g1">Book Your Slot</button><button class="booked" hidden disabled>BOOKED</button>`;
                         $(this).find('.content').find('.empty').attr('hidden','');
@@ -1618,8 +1621,8 @@
       //FILLING TABLE DETAILS
 
       $.ajax({
-        url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-        // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
+        url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
         method: 'GET',
         data: {trainerType},
         success:(data)=>{
@@ -1653,20 +1656,21 @@
                     m = '0' + m;
                 }
                 
-                if(h>12){
-                    h = h-12;
-                    m = m;
-                }else{
-                    m = m;
-                }
+                
                 var currentTime = h+"."+m;
                 
                 var inputTime = timeStr.split(' ')[2].slice(0,-2);
+                var t = timeStr.split(' ')[2].slice(-2);
                 inputTime = inputTime.replace(':','.');
+                var temp = inputTime.split('.');
+                var firstT = parseInt(temp[0]);
+                if(firstT<12 && t=="PM"){
+                  firstT += 12;
+                }
+                temp[0] = firstT;
+                inputTime = temp.join('.');
 
-                var totalTime = currentTime - inputTime;
                 currDate.setHours(0,0,0,0);
-
                 if(trainerType == "group" && index!=0 && data && data[key]!=undefined){
 
                   for(var i=0;i<data[key].length;i++){

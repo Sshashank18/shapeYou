@@ -684,8 +684,6 @@ route.post('/createMeeting',(req,res)=>{
     //     // API call failed...
     //     console.log('API call failed, reason ', err);
     // });
-
-
 });
 
 route.get('/getMeeting/:id',(req1,res1)=>{

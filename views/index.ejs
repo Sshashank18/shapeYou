@@ -144,7 +144,7 @@
                     <!-- <p class="mb-0">Lorem ipsum dolor sit </p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://d3nn873nee648n.cloudfront.net/900x600/18469/220-SM828293.jpg" alt="">
+                <img class="img-fluid" src="/images/fitness.jpeg" alt="">
               </a>
             </div>
             <div class="mt-5">
@@ -159,7 +159,7 @@
                     <!-- <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://d3nn873nee648n.cloudfront.net/900x600/19177/220-SM903264.jpg" alt="" >
+                <img class="img-fluid" src="/images/wellness.jpeg" alt="" >
               </a>
             </div>
             <div class="" style="padding-top: 5rem;">
@@ -174,7 +174,7 @@
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img style= "max-height: 475px;"class="img-fluid" src="https://d3nn873nee648n.cloudfront.net/900x600/18400/220-SM823678.jpg" alt="" >
+                <img style= "max-height: 475px;"class="img-fluid" src="/images/counselling.jpeg" alt="" >
               </a>
             </div>
             <div class="mt-5"> 
@@ -185,7 +185,7 @@
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="https://d3nn873nee648n.cloudfront.net/900x600/15404/120-SM620278.jpg" alt="" >
+                <img class="img-fluid" src="/images/fitnesscenter.jpeg" alt="" >
               </a>
             </div>
             <div class="mt-5" style="min-height: 100vh;">
@@ -222,7 +222,7 @@
     </div>
     
     <div class="carousel">
-      <div class="carousel-row">
+      <div class="carousel-row" style="line-height: 6.5;">
         <% categories.forEach(function(category) { %>
           <% if(category.parent == 'Fitness trainer') { %>
             <div class="carousel-tile text-center" style="background: #7F986F;">
@@ -231,13 +231,13 @@
                   <% }else {%>
                     <a href="/user/category/<%= category.parent %>" style="text-decoration: none;">
                   <%} %>
-              <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+              <img class="item-image img-fluid" src="<%= category.image %>" style="height: auto; " />
               <div class="container">
                 <span class="item-title">
                   <%if(category.title.length > 12) { %>
-                    <span style="color: black">  FITNESS</span>
+                    <span style="color: black; font-size: 1.12rem;">  <b>Fitness</b></span>
                     <% } else { %> 
-                <span style="color: black"><%= category.title %></span>
+                <span style="color: black; font-size: 1.12rem;"><b><%= category.title %></b></span>
                 <% } %>
               </span>
             </div>
@@ -259,7 +259,7 @@
 
     
     <div class="carousel">
-      <div class="carousel-row">
+      <div class="carousel-row" style="line-height: 6.5;">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
           <div class="carousel-tile text-center" style="background: #9ad3bc;">
@@ -268,10 +268,10 @@
               <% }else{ %>
               <a href="/user/category/<%= category.parent %>" style="text-decoration: none;">
               <%} %>
-            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+            <img class="item-image img-fluid" src="<%= category.image %>" style="height: auto; " />
             <div class="container">
-              <span class="item-title" style="color: black">
-                <%= category.title %>
+              <span class="item-title" style="color: black; font-size: 1.12rem;">
+                <b><%= category.title %></b>
               </span>
             </div>
             <!-- <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div> -->
@@ -285,10 +285,10 @@
            <% }else{ %>
            <a href="/user/category/Wellness" style="text-decoration: none;">
            <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/yoga.jpg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black">
-            Yoga
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+            <b>Yoga</b>
           </span>
         </div>
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
@@ -300,10 +300,10 @@
         <% }else{ %>
         <a href="/user/category/Wellness" style="text-decoration: none;">
         <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/meditation.jpg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black;">
-            Meditation
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+            <b>Meditation</b>
           </span>
         </div>
         
@@ -316,10 +316,10 @@
       <% }else{ %>
       <a href="/user/category/Wellness" style="text-decoration: none;">
       <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/yoga.jpg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black;">
-            Yoga
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+            <b>Yoga</b>
           </span>
         </div>
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
@@ -338,7 +338,7 @@
 
     
     <div class="carousel">
-      <div class="carousel-row">
+      <div class="carousel-row" style="line-height: 6.5;">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
           <div class="carousel-tile text-center" style="background: #F6EDD9;">
@@ -347,13 +347,13 @@
               <% }else{ %>
               <a href="/user/category/<%= category.parent %>" style="text-decoration: none;">
               <%} %>
-            <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 0%;" />
+            <img class="item-image img-fluid" src="<%= category.image %>" style="height: auto; padding-top: 0%;" />
             <div class="container">
-              <span class="item-title" style="color: black;"> 
+              <span class="item-title" style="color: black; font-size: 1.12rem;"> 
                 <%if(category.title.length > 12) { %>
-                  Therapy
+                  <b>Therapy</b>
                 <% } else { %> 
-                <%= category.title %>
+                <b><%= category.title %></b>
                 <% } %>
               </span>
             </div>
@@ -370,10 +370,10 @@
           <% }else{ %>
           <a href="/user/category/Counselling" style="text-decoration: none;">
           <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/nutrition.jpeg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black;">
-            Nutrition
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+            <b>Nutrition</b>
           </span>
         </div>
         
@@ -386,10 +386,10 @@
           <% }else{ %>
           <a href="/user/category/Counselling" style="text-decoration: none;">
           <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/therapy.jpg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black;">
-            Therapy
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+           <b> Therapy</b>
           </span>
         </div>
       
@@ -403,10 +403,10 @@
           <% }else{ %>
           <a href="/user/category/Counselling" style="text-decoration: none;">
           <%} %>
-        <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; " />
+        <img class="item-image img-fluid" src="/images/nutrition.jpeg" style="height: auto; " />
         <div class="container">
-          <span class="item-title" style="color: black">
-            Nutrition
+          <span class="item-title" style="color: black; font-size: 1.15rem;">
+           <b> Nutrition</b>
           </span>
         </div>
        

@@ -99,15 +99,26 @@ route.post('/paytm',middleware.isUserLoggedIn,(req,res)=>{
 route.get('/', (req, res) => {
     if(req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Category.find({title: regex}, (err, foundCategories) => {
+        Category.find({$or: [
+            { 'title': regex },
+            { 'parent': regex }
+          ]}, (err, foundCategories) => {
             if(err) {
                 console.log(err);
             } else {
                 var noMatch = "";
                 if(foundCategories.length < 1) {
                     noMatch = "No categories found, please try again!";
+                    Trainer.find({username: regex}, (err, trainers) => {
+                        if(err) {
+                            console.log(err);
+                        } else {
+                            res.render('categoryShow2', {trainers: trainers});
+                        }
+                    })
+                } else {
+                    res.render('index1', {categories: foundCategories, noMatch: noMatch});
                 }
-                res.render('index1', {categories: foundCategories, noMatch: noMatch});
             }
         })
     } else {

@@ -60,21 +60,11 @@
         <% if(!currentUser){ %>
           
             
-            <form action="/user" method="GET" class="form-inline">
-              <div class="form-group">
-              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
-              <!-- <input type="submit" value="Search" class="btn btn-success"> -->
-            </div>
-            </form>
+            
             <li><a class="nav-link mr-3" href="/auth/login">Login</a></li>
             
         <% } else{ %>
-          <form action="/user" method="GET" class="form-inline">
-            <div class="form-group">
-              <input type="text" name="search" placeholder="Search.." class="form-control mr-1" style="border-radius: 25px;"> <button type="submit" style="padding: 0; background-color: #79B258; border: none"><i class="fas fa-search ml-1 mr-3" style="color: white"></i></button>
-            <!-- <input type="submit" value="Search" class="btn btn-success"> -->
-          </div>
-          </form>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Account
@@ -89,7 +79,7 @@
       </ul>
     </div>
   </nav>
-      <section style="margin-top: 130px; padding-bottom: 70px;">
+      <section style="margin-top: 130px; padding-bottom: 130px;">
         <% if(noMatch.length > 0) { %>
             <h1 class="text-center">No search results!!</h1>
         <% } else { %>
@@ -101,19 +91,26 @@
                       <% }else{ %>
                         <a href="/user/category/<%= category.parent %>">
                           <%} %>
-                  <div class="carousel-tile text-center" style="background: #79B258;">
-                    <img class="item-image img-fluid" src="/images/dumbell.png" style="width: 45%; height: auto; padding-top: 10%;" />
-                    <div class="container">
-                      <span class="item-title">
-                        <%if(category.title.length > 12) { %>
-                          Fitness
-                        <% } else { %> 
-                        <%= category.title %>
-                        <% } %>
-                      </span>
-                    </div>
-                    
-                  </div>
+                          <div class="carousel-tile text-center" style="background: #F6EDD9;">
+                            <% if(currentUser && currentUser.type=="Admin") { %>
+                              <a href="/admin/category/<%= category.parent %>" style="text-decoration: none;">
+                              <% }else{ %>
+                              <a href="/user/category/<%= category.parent %>" style="text-decoration: none;">
+                              <%} %>
+                            <img class="item-image img-fluid" src="<%= category.image %>" style="height: auto; padding-top: 0%;" />
+                            <div class="container">
+                              <span class="item-title" style="color: black; font-size: 1.12rem;"> 
+                                <%if(category.title.length > 12) { %>
+                                  <b>Fitness</b>
+                                <% } else { %> 
+                                <b><%= category.title %></b>
+                                <% } %>
+                              </span>
+                            </div>
+                            
+                            <!-- <div class="item-description opacity-none container">Trainers under <%= category.title %> category.</div> -->
+                          </a>
+                          </div>
                   </a>
                 <% }); %>
               </div>

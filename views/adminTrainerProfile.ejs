@@ -1402,8 +1402,8 @@
     $(document).on('click','#delete',(e)=>{
       e.preventDefault();
       $.ajax({
-        url:'http://127.0.0.1:3500/admin/trainerDelete',
-        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerDelete',
+        // url:'http://127.0.0.1:3500/admin/trainerDelete',
+        url:'https://shapeyou-demo.herokuapp.com/admin/trainerDelete',
         method:'DELETE',
         data:{
           email:email,
@@ -1411,8 +1411,8 @@
         },
         success:()=>{
           alert('Trainer Deleted');
-          window.location = 'http://127.0.0.1:3500/admin';
-          // window.location = 'https://shapeyou-demo.herokuapp.com/admin';
+          // window.location = 'http://127.0.0.1:3500/admin';
+          window.location = 'https://shapeyou-demo.herokuapp.com/admin';
         }
       })
     });

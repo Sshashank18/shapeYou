@@ -65,6 +65,7 @@
                             </form>
                             <button class="btn btn-outline-primary" id="decline">Decline</button>
                           <% } %>
+                          <button class="btn btn-outline-primary" id="delete">Delete</button>
                         </div>
                       </div>
                     </div>
@@ -1397,6 +1398,24 @@
         success:()=>{
           alert('Trainer Declined');
           location.reload();
+        }
+      })
+    });
+
+    $(document).on('click','#delete',(e)=>{
+      e.preventDefault();
+      $.ajax({
+        // url:'http://127.0.0.1:3500/admin/trainerDelete',
+        url:'https://shapeyou-demo.herokuapp.com/admin/trainerDelete',
+        method:'DELETE',
+        data:{
+          email:email,
+          id:id
+        },
+        success:()=>{
+          alert('Trainer Deleted');
+          // window.location = 'http://127.0.0.1:3500/admin';
+          window.location = 'https://shapeyou-demo.herokuapp.com/admin';
         }
       })
     });

@@ -192,6 +192,15 @@ route.put('/trainerDecline', (req,res)=>{
             }
             res.sendStatus(200);
         });
+});
+
+route.delete('/trainerDelete', (req,res)=>{
+    Trainer.findByIdAndDelete(req.body.id,(err,result)=>{
+            if(err){
+                return res.status(422).json({error: err});
+            }
+            res.sendStatus(200);
+        });
 })
 
 

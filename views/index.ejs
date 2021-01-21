@@ -22,6 +22,25 @@
   .navbar-nav > li > .dropdown-menu { background-color: #79B258 !important; }
   .dropdown-item:focus, .dropdown-item:hover {color: black !important;}
   .navbar-collapse { background-color: #79B258; }
+  .card {
+    background-color: transparent;
+    border: none;
+  }
+  .fade-kids a {
+  display: block;
+  transition: 0.3s transform;
+  margin: 1.5em;
+  float:left;
+}
+
+.fade-kids:hover a:not(:hover) {
+    opacity: 0.8;
+}
+
+.fade-kids a:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
 </style>
 </head>
 <body>
@@ -131,75 +150,74 @@
     <% } %>
       <section class="content-section" id="index" style="background-image: url('https://images.unsplash.com/photo-1561532325-7d5231a2dede?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');">
         <!-- <div class="container"> -->
-          <div class="card-columns no-gutters mt-5">
-            <div class="mt-5">
+          <div class="card-columns fade-kids" style="margin-top: 5rem;">
+            
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Fitness%20trainer" >
+                <a  href="/admin/category/Fitness%20trainer" >
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Fitness%20trainer" >
+                <a  href="/user/category/Fitness%20trainer" >
               <%}%>
-                <div class="caption">
-                  <div class="caption-content">
-                    <div class="h2" style="color: white;">Fitness trainers</div>
+                <div class="card">
+                  <img class="img-fluid" class="card-img-top" src="/images/fitness.jpeg" alt="">
+                  <div class="card-body">
+                    <div class="h2 card-title" style="color: white;">Fitness trainers</div>
                     <!-- <p class="mb-0">Lorem ipsum dolor sit </p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="/images/fitness.jpeg" alt="">
               </a>
-            </div>
-            <div class="mt-5">
+            
+            
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Wellness">
+                <a  href="/admin/category/Wellness">
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Wellness">
+                <a  href="/user/category/Wellness">
               <%}%>
-                <div class="caption">
-                  <div class="caption-content">
-                    <div class="h2" style="color: white">Wellness</div>
+                <div class="card">
+                  <img class="img-fluid card-img-top" src="/images/wellness.jpeg" alt="" >
+                  <div class="card-body">
+                    <div class="h2 card-title" style="color: white">Wellness</div>
                     <!-- <p class="mb-0">aliquam aspernatur iusto nulla soluta dolor ullam excepturi possimus, repudiandae obcaecati perspiciatis voluptas?</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="/images/wellness.jpeg" alt="" >
               </a>
-            </div>
-            <div class="" style="padding-top: 5rem;">
+            
+            
               <% if(currentUser && currentUser.type=="Admin"){ %>
-                <a class="portfolio-item" href="/admin/category/Counselling">
+                <a  href="/admin/category/Counselling">
               <%}else{ %>
-                <a class="portfolio-item" href="/user/category/Counselling">
+                <a  href="/user/category/Counselling">
               <%}%>
-                <div class="caption">
-                  <div class="caption-content">
-                    <div class="h2 text-left" style="color: white;">Counselling</div>
+                <div class="card">
+                  <img style= "max-height: 475px;"class="img-fluid card-img-top" src="/images/counselling.jpeg" alt="" >
+                  <div class="card-body">
+                    <div class="h2 card-title text-left" style="color: white;">Counselling</div>
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img style= "max-height: 475px;"class="img-fluid" src="/images/counselling.jpeg" alt="" >
               </a>
-            </div>
-            <div class="mt-5"> 
-              <a class="portfolio-item" href="#!">
-                <div class="caption">
-                  <div class="caption-content">
-                    <div class="h2" style="color: white;">Fitness Center</div>
+            
+            
+              <a  href="#!">
+                <div class="card">
+                  <img class="img-fluid card-img-top" src="/images/fitnesscenter.jpeg" alt="" >
+                  <div class="card-body">
+                    <div class="h2 card-title" style="color: white;">Fitness Center</div>
                     <!-- <p class="mb-0">amet consectetur adipisicing elit. Totam deleniti doloribus debitis tempora unde qui a, inventore</p> -->
                   </div>
                 </div>
-                <img class="img-fluid" src="/images/fitnesscenter.jpeg" alt="" >
               </a>
-            </div>
-            <div class="mt-5" style="min-height: 100vh;">
-              <a class="portfolio-item" href="#!" style="height: 66rem; ">
-                <div class="caption" style="min-height: 100%;">
-                  <div class="caption-content" style="margin-bottom: 30rem;">
-                    <div class="h2 text-left pr-3" style="color: white;">Relaxation center</div>
+            
+              <a class="mt-3" href="#!" >
+                <div class="card" >
+                  <img class="img-fluid card-img-top" src="https://d3nn873nee648n.cloudfront.net/900x600/13618/20-ER796751.jpg" alt="">
+                  <div class="card-body">
+                    <div class="h2 card-title text-left" style="color: white;">Relaxation center</div>
                   </div>
                 </div>
                 <div class="text-center">
-                  <img class="img-fluid" src="https://d3nn873nee648n.cloudfront.net/900x600/13618/20-ER796751.jpg" alt="">
                 </div>
               </a>
-            </div>
+            
           </div>
         <!-- </div> -->
       </section>

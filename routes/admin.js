@@ -221,7 +221,8 @@ route.put('/trainerVerify/', middleware.isAdminLoggedIn, (req, res) => {
               Trainer.findByIdAndUpdate(req.body.id,
                 {
                     user_id: body.id,
-                    isVerified: true
+                    isVerified: true,
+                    isDeclined: false
                 }
                 ,(err,result)=>{
                     if(err){

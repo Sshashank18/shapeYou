@@ -55,6 +55,9 @@
                           <h4><%=trainer.username%></h4>
                           <% if(trainer.isDeclined) {%>
                             <b>Trainer Declined</b> <br>
+                            <form action="" method="POST" style="display: inline;">
+                              <button class="btn btn-primary" id="verify">Verify</button>
+                            </form>
                           <% } %>
                           <% if(!trainer.isVerified && !trainer.isDeclined) { %>
                             <form action="" method="POST" style="display: inline;">

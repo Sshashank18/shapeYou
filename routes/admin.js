@@ -204,7 +204,7 @@ route.delete('/trainerDelete', (req,res)=>{
 })
 
 
-route.put('/trainerVerify/', middleware.isAdminLoggedIn, (req, res) => {
+route.put('/trainerVerify', middleware.isAdminLoggedIn, (req, res) => {
     console.log(req.body);
 
         var options = {

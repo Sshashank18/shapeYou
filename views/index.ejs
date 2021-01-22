@@ -15,7 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://cdn.rawgit.com/anthonykrivonos/flix-carousel/65556d56/src/carousel.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="stylesheets/lightslider.css"/> -->
 <style>
@@ -239,11 +240,12 @@
       <h1 style="font-size: 40px; color: black; font-family: 'Playfair Display', serif;">Fitness Trainers</h1><br>
     </div>
     
-    <div class="carousel">
-      <div class="carousel-row" style="line-height: 6.5;">
+    <div class="netflix-slider">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
         <% categories.forEach(function(category) { %>
           <% if(category.parent == 'Fitness trainer') { %>
-            <div class="carousel-tile text-center" style="background: #7F986F;">
+            <div class="swiper-slide text-center">
               <% if(currentUser && currentUser.type=="Admin") { %>
                 <a href="/admin/category/<%= category.parent %>" style="text-decoration: none;">
                   <% }else {%>
@@ -265,7 +267,9 @@
           </div>
           <% } %>
       <% }); %>
-     
+        </div>
+        <div class="swiper-button-next" style="color: white;"></div>
+      <div class="swiper-button-prev" style="color: white;"></div>
           </div>
   </div>
 </section>
@@ -276,11 +280,12 @@
     </div>
 
     
-    <div class="carousel">
-      <div class="carousel-row" style="line-height: 6.5;">
+    <div class="netflix-slider">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Wellness') { %>
-          <div class="carousel-tile text-center" style="background: #9ad3bc;">
+          <div class="swiper-slide text-center">
             <% if(currentUser && currentUser.type=="Admin") { %>
               <a href="/admin/category/<%= category.parent %>" style="text-decoration: none;">
               <% }else{ %>
@@ -297,7 +302,7 @@
           </div>
       <% } %>
       <% }); %>
-      <div class="carousel-tile text-center" style="background: #9ad3bc;">
+      <div class="swiper-slide text-center">
         <% if(currentUser && currentUser.type=="Admin") { %>
            <a href="/admin/category/Wellness" style="text-decoration: none;">
            <% }else{ %>
@@ -312,7 +317,7 @@
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </a>
       </div>
-    <div class="carousel-tile text-center" style="background: #9ad3bc;">
+    <div class="swiper-slide text-center">
       <% if(currentUser && currentUser.type=="Admin") { %>
         <a href="/admin/category/Wellness" style="text-decoration: none;">
         <% }else{ %>
@@ -328,7 +333,7 @@
         <!-- <div class="item-description opacity-none container">Trainers under Meditation category.</div> -->
       </a>
       </div>
-  <div class="carousel-tile text-center" style="background: #9ad3bc;">
+  <div class="swiper-slide text-center">
     <% if(currentUser && currentUser.type=="Admin") { %>
       <a href="/admin/category/Wellness" style="text-decoration: none;">
       <% }else{ %>
@@ -343,7 +348,9 @@
         <!-- <div class="item-description opacity-none container">Trainers under Yoga category.</div> -->
       </a>
       </div>
-
+        </div>
+        <div class="swiper-button-next" style="color: white;"></div>
+      <div class="swiper-button-prev" style="color: white;"></div>
         </div>
   </div>
 </section>
@@ -355,11 +362,12 @@
     </div>
 
     
-    <div class="carousel">
-      <div class="carousel-row" style="line-height: 6.5;">
+    <div class="netflix-slider">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
       <% categories.forEach(function(category) { %>
         <% if(category.parent == 'Counselling') { %>
-          <div class="carousel-tile text-center" style="background: #F6EDD9;">
+          <div class="swiper-slide text-center" >
             <% if(currentUser && currentUser.type=="Admin") { %>
               <a href="/admin/category/<%= category.parent %>" style="text-decoration: none;">
               <% }else{ %>
@@ -382,7 +390,7 @@
       <% } %>
       <% }); %>
 
-      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+      <div class="swiper-slide text-center" >
         <% if(currentUser && currentUser.type=="Admin") { %>
           <a href="/admin/category/Counselling" style="text-decoration: none;">
           <% }else{ %>
@@ -398,7 +406,7 @@
         <!-- <div class="item-description opacity-none container">Trainers under Nutrition category.</div> -->
       </div>
       </a>
-      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+      <div class="swiper-slide text-center" >
         <% if(currentUser && currentUser.type=="Admin") { %>
           <a href="/admin/category/Counselling" style="text-decoration: none;">
           <% }else{ %>
@@ -415,7 +423,7 @@
       </div>
       </a>
 
-      <div class="carousel-tile text-center" style="background: #F6EDD9;">
+      <div class="swiper-slide text-center" >
         <% if(currentUser && currentUser.type=="Admin") { %>
           <a href="/admin/category/Counselling" style="text-decoration: none;">
           <% }else{ %>
@@ -432,6 +440,9 @@
       </div>
       </a>
         </div>
+        <div class="swiper-button-next" style="color: white;"></div>
+      <div class="swiper-button-prev" style="color: white;"></div>
+        </div>
   </div>
 </section>
 
@@ -441,12 +452,45 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/scripts/carousel.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
   $('.nav-link').on('click', function() {
 	$('.active-link').removeClass('active-link');
 	$(this).addClass('active-link');
 });
-</script>
+
+  $(window).on('resize load', function () {
+      if ($(window).width() > 620) {
+        var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      slidesPerGroup: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+      } else {
+        var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      slidesPerGroup: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+      }
+  });  
+  </script>
 </body>
 </html>

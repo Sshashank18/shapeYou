@@ -1,38 +1,3 @@
-@charset "utf-8";
-
-.col-xs-15,
-.col-sm-15,
-.col-md-15,
-.col-lg-15 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.col-xs-15 {
-    width: 20%;
-    float: left;
-}
-@media (min-width: 768px) {
-.col-sm-15 {
-        width: 20%;
-        float: left;
-    }
-}
-@media (min-width: 992px) {
-    .col-md-15 {
-        width: 20%;
-        float: left;
-    }
-}
-@media (min-width: 1200px) {
-    .col-lg-15 {
-        width: 20%;
-        float: left;
-    }
-}
-
 body{
 	margin:0px;
     padding:0px;
@@ -552,4 +517,46 @@ div.scroll i {
 	background: rgba(255, 255, 255, 0.2);
 	color: #fff;
 	text-decoration: none;
+  }
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;   
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  :root {
+    --swiper-theme-color: #fff;
+  }
+  
+  .netflix-slider .swiper-wrapper {
+    padding: 20px 0;
+  }
+  
+  .netflix-slider .swiper-slide {
+    -webkit-transition: 250ms all;
+    transition: 250ms all;
+  }
+  
+  .netflix-slider .swiper-slide:hover {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    z-index: 1;
+  }
+  
+  .netflix-slider .swiper-slide:first-child:hover {
+    margin: 0 40px;
+  }
+  
+  .netflix-slider .swiper-slide:last-child:hover {
+    margin: 0 -40px;
   }

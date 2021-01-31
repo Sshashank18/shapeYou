@@ -1586,20 +1586,18 @@
         var firstday = new Date(curr.setDate((curr.getDate() - curr.getDay())));
         var lastday = new Date((curr.setDate((curr.getDate() - curr.getDay())+6)));
         var j=1;
-        var first = firstday;
+        var first = new Date(firstday);
         var data=new Object();
 
-          for(var d = 0;d<7; d++){
-              var nextDay = new Date();
-              nextDay.setDate(firstday.getDate()+1);
-              var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
-              data[datePassed] = new Array();
-              firstday = nextDay;
-          }
+        for(var d = 0;d<7; d++){
+            
+            var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
+            firstday.setDate(firstday.getDate()+1);
+            data[datePassed] = new Array();
+          
+        }
 
-          firstday = first;
-
-          for(var i=firstday;i<=lastday;i.setDate(i.getDate() + 1)){
+          for(var i=first;i<=lastday;i.setDate(i.getDate() + 1)){
               document.getElementById('dateT'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
               document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);
               j++;

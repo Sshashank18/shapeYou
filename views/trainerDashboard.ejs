@@ -3555,6 +3555,7 @@
                         smallObj[weekday[newD.getDay()]]= calendar[smallArr[i]];
                     }
 
+                    console.log(smallObj);
                     $('#mytab tr').each(function(){
                         $(this).find('td').each(function(){
                             var col = $("#mytab thead tr th").eq($(this).index());
@@ -3707,20 +3708,20 @@
 
         var j=1;
 
-        var first = firstday;
+        var first = new Date(firstday);
+        console.log(first);     
 
 
         for(var d = 0;d<7; d++){
-            var nextDay = new Date();
-            nextDay.setDate(firstday.getDate()+1);
+            
             var datePassed = firstday.getDate() + " " + firstday.toLocaleString('default', { month: 'short' })+" "+firstday.getFullYear();
+            firstday.setDate(firstday.getDate()+1);
             data[datePassed] = new Array();
-            firstday = nextDay;
+          
         }
 
-        firstday = first;
 
-        for(var i=firstday;i<=lastday;i.setDate(i.getDate() + 1)){
+        for(var i=first;i<=lastday;i.setDate(i.getDate() + 1)){
             document.getElementById('date'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
             document.getElementById('dateT'+j).innerHTML = `<span>${i.getDate()}<br>${weekday[j-1]}</span>`;
             document.getElementById('dateT'+j).setAttribute('value',Object.keys(data)[j-1]);

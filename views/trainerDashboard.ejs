@@ -3257,8 +3257,9 @@
           },500);
 
           $.ajax({
-            //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
-              url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
+            //   url:'/trainer/getTimeTable/<%= trainer._id %>',
+            //   url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/<%= trainer._id %>',
+              url:'https://shapeyou.in/trainer/getTimeTable/<%= trainer._id %>',
               method: 'GET',
               success:(data)=>{
                   var index = 0;
@@ -3916,8 +3917,9 @@
                 });
             });
             $.ajax({
-                // url:'http://127.0.0.1:3500/trainer/setTimeTable/<%= trainer._id %>',
-                url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer._id %>',
+                // url:'/trainer/setTimeTable/<%= trainer._id %>',
+                // url:'https://shapeyou-demo.herokuapp.com/trainer/setTimeTable/<%= trainer._id %>',
+                url:'https://shapeyou.in/trainer/setTimeTable/<%= trainer._id %>',
                 method:'PUT',
                 data: data,
                 success:()=>{
@@ -3925,7 +3927,7 @@
                     location.reload();
                 }
             });
-            // window.location="http://127.0.0.1:3500/trainer";
+            // window.location="/trainer";
             // window.location="https://shapeyou-demo.herokuapp.com/trainer";
         });
 
@@ -3937,8 +3939,9 @@
                 discount
             }
             $.ajax({
-                // url:'http://127.0.0.1:3500/trainer/addCoupon/<%= trainer._id %>',
-                url:'https://shapeyou-demo.herokuapp.com/trainer/addCoupon/<%= trainer._id %>',
+                // url:'/trainer/addCoupon/<%= trainer._id %>',
+                // url:'https://shapeyou-demo.herokuapp.com/trainer/addCoupon/<%= trainer._id %>',
+                url:'https://shapeyou.in/trainer/addCoupon/<%= trainer._id %>',
                 method:'PUT',
                 data:coupon,
                 success:()=>{

@@ -1372,7 +1372,8 @@
       e.preventDefault();
       $.ajax({
         // url:'http://127.0.0.1:3500/admin/trainerVerify',
-        url:'https://shapeyou-demo.herokuapp.com/admin/trainerVerify',
+        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerVerify',
+        url:'https://shapeyou.in/admin/trainerVerify',
         method:'PUT',
         data:{
           email:email,
@@ -1389,7 +1390,8 @@
       e.preventDefault();
       $.ajax({
         // url:'http://127.0.0.1:3500/admin/trainerDecline',
-        url:'https://shapeyou-demo.herokuapp.com/admin/trainerDecline',
+        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerDecline',
+        url:'https://shapeyou.in/admin/trainerDecline',
         method:'PUT',
         data:{
           email:email,
@@ -1406,7 +1408,8 @@
       e.preventDefault();
       $.ajax({
         // url:'http://127.0.0.1:3500/admin/trainerDelete',
-        url:'https://shapeyou-demo.herokuapp.com/admin/trainerDelete',
+        // url:'https://shapeyou-demo.herokuapp.com/admin/trainerDelete',
+        url:'https://shapeyou.in/admin/trainerDelete',
         method:'DELETE',
         data:{
           email:email,
@@ -1415,7 +1418,8 @@
         success:()=>{
           alert('Trainer Deleted');
           // window.location = 'http://127.0.0.1:3500/admin';
-          window.location = 'https://shapeyou-demo.herokuapp.com/admin';
+          // window.location = 'https://shapeyou-demo.herokuapp.com/admin';
+          window.location = 'https://shapeyou.in/admin';
         }
       })
     });
@@ -1429,7 +1433,8 @@
 
     $.ajax({
       //   url:'http://127.0.0.1:3500/trainer/getTimeTable/<%= trainer._id %>',
-        url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/'+id,
+        // url:'https://shapeyou-demo.herokuapp.com/trainer/getTimeTable/'+id,
+        url:'https://shapeyou.in/trainer/getTimeTable/'+id,
         method: 'GET',
         success:(data)=>{
             var index = 0;

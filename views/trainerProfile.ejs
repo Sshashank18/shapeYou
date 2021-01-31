@@ -1429,8 +1429,9 @@
 
           
           $.ajax({
-            // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-            url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+            // url:'/user/getTimeTable/'+id,
+            // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+            url:'https://shapeyou.in/user/getTimeTable/'+id,
             method: 'GET',
             data: {trainerType},
             success:(data)=>{
@@ -1621,8 +1622,9 @@
       //FILLING TABLE DETAILS
 
       $.ajax({
-        // url:'http://127.0.0.1:3500/user/getTimeTable/'+id,
-        url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        // url:'/user/getTimeTable/'+id,
+        // url:'https://shapeyou-demo.herokuapp.com/user/getTimeTable/'+id,
+        url:'https://shapeyou.in/user/getTimeTable/'+id,
         method: 'GET',
         data: {trainerType},
         success:(data)=>{

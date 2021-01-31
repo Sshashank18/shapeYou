@@ -4,7 +4,8 @@ ZoomMtg.preLoadWasm();
 ZoomMtg.prepareJssdk();
 
 // fetch(`http://127.0.0.1:3500/trainer/signature`, {
-fetch(`https://shapeyou-demo.herokuapp.com/trainer/signature`, {
+// fetch(`https://shapeyou-demo.herokuapp.com/trainer/signature`, {
+fetch(`https://shapeyou.in/trainer/signature`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -17,7 +18,8 @@ fetch(`https://shapeyou-demo.herokuapp.com/trainer/signature`, {
 		console.log(data);
 	const meetingConfig = {
 		// leaveUrl:'http://127.0.0.1:3500/trainer/meetingDetails',
-		leaveUrl:'https://shapeyou-demo.herokuapp.com/trainer/meetingDetails',
+		// leaveUrl:'https://shapeyou-demo.herokuapp.com/trainer/meetingDetails',
+		leaveUrl:'https://shapeyou.in/trainer/meetingDetails',
 		signature: data.meetConfig.signature,
 		meetingNumber : data.meetConfig.meetingNumber,
 		userName : data.meetConfig.username,

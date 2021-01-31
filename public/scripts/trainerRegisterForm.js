@@ -213,7 +213,8 @@ $('#formSubmit').click(e => {
                         success:(data)=>{
                             alert('Saved Details');
                             // window.location="http://127.0.0.1:3500/trainer"
-                            window.location="https://shapeyou-demo.herokuapp.com/trainer"
+                            // window.location="https://shapeyou-demo.herokuapp.com/trainer"
+                            window.location="https://shapeyou.in/trainer"
                         }
                     });
                 }
